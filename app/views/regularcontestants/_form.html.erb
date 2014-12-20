@@ -1,0 +1,30 @@
+<%= form_for(@regularcontestant) do |f| %>
+  <% if @regularcontestant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@regularcontestant.errors.count, "error") %> prohibited this regularcontestant from being saved:</h2>
+
+      <ul>
+      <% @regularcontestant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :contest_id %>
+    <%= f.hidden_field :contest_type %>
+    <%= f.hidden_field :forfeit %>
+    <%= f.hidden_field :homeaway %>
+    <%= @regularcontestant.homeaway %>
+  </div>
+  <div class="field">
+    <%= f.select :team_id,
+		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		                                selected: @selectedteam), 
+		    {prompt: 'Select  a Team'} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

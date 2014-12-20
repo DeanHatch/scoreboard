@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contest:</strong>
+  <%= @contestant.contest %>
+</p>
+
+<p>
+  <strong>Homeaway:</strong>
+  <%= @contestant.homeaway %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @contestant.team %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @contestant.score %>
+</p>
+
+<p>
+  <strong>Forfeit:</strong>
+  <%= @contestant.forfeit %>
+</p>
+
+<p>
+  <strong>Contestanttype:</strong>
+  <%= @contestant.contestanttype %>
+</p>
+
+<p>
+  <strong>Seeding:</strong>
+  <%= @contestant.seeding %>
+</p>
+
+<p>
+  <strong>Bracketcontest:</strong>
+  <%= @contestant.bracketcontest %>
+</p>
+
+<p>
+  <strong>Grouping:</strong>
+  <%= @contestant.grouping %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @contestant.place %>
+</p>
+
+<%= link_to 'Edit', edit_contestant_path(@contestant) %> |
+<%= link_to 'Back', contestants_path %>

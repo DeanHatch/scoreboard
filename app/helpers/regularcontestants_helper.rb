@@ -1,0 +1,2 @@
+module RegularcontestantsHelper
+end

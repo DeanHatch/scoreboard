@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scoreboard - <%= controller.class.to_s.rpartition('C')[0] %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+
+<div class="mainContent">
+
+<div class="wrapper">
+
+<hr class="message"/><P></P>
+<hr class="message"/>
+</div>
+
+<%= yield %>
+</div>
+   <!-- end of mainContent -->
+
+
+
+<div class="sideMatter">
+
+<div class="navPanel">
+<UL class="nav1">
+<LI class="nav level1">
+<%= link_to 'Manage Venues', venues_path , class: "nav" %>
+</LI>
+<LI class="nav level1">
+<%= link_to 'Manage Groupings', groupings_path , class: "nav" %>
+</LI>
+<LI class="nav level1">
+<%= link_to 'Manage Teams', teams_path , class: "nav" %>
+</LI>
+<LI class="nav level1">
+<%= link_to 'Manage Bracket Contests', bracketcontests_path , class: "nav" %>
+</LI>
+<LI class="nav level1">
+<%= link_to 'Manage Regular Contests', regularcontests_path , class: "nav" %>
+</LI>
+</UL>
+</div>
+<div class="instructions"><br><br><br>
+<br>
+
+</div>
+</div>
+   <!-- end of sideMatter -->
+
+
+
+<div class="header">
+
+<div class="inner-header">
+<%= image_tag("netting.png") %>
+<!-- img src="app/assets/images/netting.png" alt=""/ --><strong>Online-Scoreboard.net</strong>
+</div>
+</div>
+   <!-- end of header -->
+
+</div>
+
+
+<div class="footer">
+Copyright 2007-2014 Mile High Software  --  Today is December 15, 2014
+</div>
+</body>
+</html>

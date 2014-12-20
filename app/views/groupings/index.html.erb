@@ -1,0 +1,27 @@
+<h1>Listing groupings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nameame</th>
+      <th>Parent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groupings.each do |grouping| %>
+      <tr>
+        <td><%= grouping.name %></td>
+        <td><%= Grouping.find(grouping.parent_id).name if grouping.parent_id %></td>
+        <td><%= link_to 'Show', grouping if grouping.parent_id %></td>
+        <td><%= link_to 'Edit', edit_grouping_path(grouping) if grouping.parent_id %></td>
+        <td><%= link_to 'Destroy', grouping, method: :delete, data: { confirm: 'Are you sure?' } if grouping.parent_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grouping', new_grouping_path %>

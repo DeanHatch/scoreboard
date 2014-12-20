@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contest:</strong>
+  <%= @regularcontestant.contest_id %>
+</p>
+
+<p>
+  <strong>Contest type:</strong>
+  <%= @regularcontestant.contest_type %>
+</p>
+
+<p>
+  <strong>Homeaway:</strong>
+  <%= @regularcontestant.homeaway %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @regularcontestant.team_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @regularcontestant.score %>
+</p>
+
+<p>
+  <strong>Forfeit:</strong>
+  <%= @regularcontestant.forfeit %>
+</p>
+
+<%= link_to 'Edit', edit_regularcontestant_path(@regularcontestant) %> |
+<%= link_to 'Back', regularcontestants_path %>

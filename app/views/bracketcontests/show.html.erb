@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ID:</strong>
+  <%= @bracketcontest.id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @bracketcontest.type %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @bracketcontest.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @bracketcontest.time %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @bracketcontest.venue_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bracketcontest.status %>
+</p>
+
+<%= link_to 'Edit', edit_bracketcontest_path(@bracketcontest) %> |
+<%= link_to 'Back', bracketcontests_path %>

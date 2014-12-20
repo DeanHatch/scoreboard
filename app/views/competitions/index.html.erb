@@ -1,0 +1,45 @@
+<h1>Listing competitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Sport</th>
+      <th>Variety</th>
+      <th>Poolgroupseason</th>
+      <th>Keepscores</th>
+      <th>Winpoints</th>
+      <th>Drawpoints</th>
+      <th>Losspoints</th>
+      <th>Forfeitpoints</th>
+      <th>Forfeitwinscore</th>
+      <th>Forfeitlossscore</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @competitions.each do |competition| %>
+      <tr>
+        <td><%= competition.name %></td>
+        <td><%= competition.sport %></td>
+        <td><%= competition.variety %></td>
+        <td><%= competition.poolgroupseason %></td>
+        <td><%= competition.keepscores %></td>
+        <td><%= competition.winpoints %></td>
+        <td><%= competition.drawpoints %></td>
+        <td><%= competition.losspoints %></td>
+        <td><%= competition.forfeitpoints %></td>
+        <td><%= competition.forfeitwinscore %></td>
+        <td><%= competition.forfeitlossscore %></td>
+        <td><%= link_to 'Show', competition %></td>
+        <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
+        <td><%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Competition', new_competition_path %>
