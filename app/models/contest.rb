@@ -12,4 +12,12 @@ class Contest < ActiveRecord::Base
 		self.venue_id ? Venue.find(venue_id).name : 'TBD'
 	end
 	
+	def display_date
+		self.date ? self.date.strftime('%m/%d/%Y').sub(/^0/, "") : 'TBD'
+	end
+	
+	def display_time
+		self.time ? self.time.strftime('%I:%M %p').sub(/^0/, "") : 'TBD'
+	end
+	
 end

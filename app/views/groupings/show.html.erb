@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Groupingname:</strong>
-  <%= @grouping.name %>
-</p>
+  <% gh = @grouping.hierarchy() ; fragm = ''%>
+  <% gh.each_index {|g| fragm << content_tag(('h'+((g+1).to_s)).to_sym, gh[g]).html_safe } %>
+  <%= fragm.html_safe %>
 
-<p>
-  <strong>Parent:</strong>
-  <%= Grouping.find(@grouping.parent_id).name if @grouping.parent_id %>
-</p>
+  <%= content_tag :ul, 'Teams:'  %>
+  <%= content_tag :ul do Team.where(grouping: @grouping).collect {|t| content_tag :li, t.name }.join.html_safe  end %>
 
 <%= link_to 'Edit', edit_grouping_path(@grouping) %> |
 <%= link_to 'Back', groupings_path %>

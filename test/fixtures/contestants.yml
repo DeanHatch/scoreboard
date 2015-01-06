@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contest_id: 
+  contest_type: Contest
+  homeaway: MyString
+  team_id: 
+  score: 1
+  forfeit: false
+  contestanttype: MyString
+  seeding: 1
+  bracketcontest_id: 
+  grouping_id: 
+  place: 1
+
+two:
+  contest_id: 
+  contest_type: Contest
+  homeaway: MyString
+  team_id: 
+  score: 1
+  forfeit: false
+  contestanttype: MyString
+  seeding: 1
+  bracketcontest_id: 
+  grouping_id: 
+  place: 1

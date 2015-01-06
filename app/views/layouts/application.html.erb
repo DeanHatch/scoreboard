@@ -15,7 +15,10 @@
 
 <div class="wrapper">
 
-<hr class="message"/><P></P>
+<hr class="message"/>
+ <p class="wrapper">
+  <%= yield :wrapped %>
+ </p>
 <hr class="message"/>
 </div>
 
@@ -39,10 +42,10 @@
 <%= link_to 'Manage Teams', teams_path , class: "nav" %>
 </LI>
 <LI class="nav level1">
-<%= link_to 'Manage Bracket Contests', bracketcontests_path , class: "nav" %>
+<%= link_to 'Schedule Regular Contests', regularcontests_path , class: "nav" %>
 </LI>
 <LI class="nav level1">
-<%= link_to 'Manage Regular Contests', regularcontests_path , class: "nav" %>
+<%= link_to 'Schedule Bracket Contests', bracketcontests_path , class: "nav" %>
 </LI>
 </UL>
 </div>

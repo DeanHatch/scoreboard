@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sport: 1
+  variety: 1
+  poolgroupseason: 1
+  keepscores: false
+  winpoints: 1
+  drawpoints: 1
+  losspoints: 1
+  forfeitpoints: 1
+  forfeitwinscore: 1
+  forfeitlossscore: 1
+
+two:
+  name: MyString
+  sport: 1
+  variety: 1
+  poolgroupseason: 1
+  keepscores: false
+  winpoints: 1
+  drawpoints: 1
+  losspoints: 1
+  forfeitpoints: 1
+  forfeitwinscore: 1
+  forfeitlossscore: 1

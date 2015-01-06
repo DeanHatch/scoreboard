@@ -1,4 +1,4 @@
-<h1>Listing bracketcontests</h1>
+<h1>Bracket Contest Listing</h1>
 
 
 <table>
@@ -15,8 +15,8 @@
   <tbody>
     <% @bracketcontests.each do |bracketcontest| %>
       <tr>
-        <td><%= bracketcontest.date %></td>
-        <td><%= bracketcontest.time %></td>
+        <td><%= bracketcontest.display_date %></td>
+        <td><%= bracketcontest.display_time %></td>
         <td><%= bracketcontest.venue_name %></td>
         <td><%= bracketcontest.status %></td>
         <td><%= link_to 'Show', bracketcontest %></td>

@@ -5,7 +5,9 @@ class VenuesController < ApplicationController
   # GET /venues.json
   def index
     @venues = Venue.all
-    @venue = Venue.new
+    @venue = Venue.new  # index contains the venueform
+    @validdates = Validdate.all
+    @validdate = Validdate.new  # index contains the validdateform
   end
 
   # GET /venues/1
@@ -57,7 +59,7 @@ class VenuesController < ApplicationController
   def destroy
     @venue.destroy
     respond_to do |format|
-      format.html { redirect_to venues_url, notice: 'Venue was successfully destroyed.' }
+      format.html { redirect_to venues_url, notice: 'Venue was successfully removed.' }
       format.json { head :no_content }
     end
   end

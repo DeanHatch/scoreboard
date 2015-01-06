@@ -14,8 +14,8 @@
   <tbody>
     <% @regularcontests.each do |regularcontest| %>
       <tr>
-        <td><%= regularcontest.date %></td>
-        <td><%= regularcontest.time %></td>
+        <td><%= regularcontest.display_date %></td>
+        <td><%= regularcontest.display_time %></td>
         <td><%= regularcontest.venue_name %></td>
         <td><%= regularcontest.status %></td>
         <td><%= link_to 'Show', regularcontest %></td>

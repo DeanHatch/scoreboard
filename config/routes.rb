@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :validdates
+
   resources :regularcontestants
 
   resources :regularcontests

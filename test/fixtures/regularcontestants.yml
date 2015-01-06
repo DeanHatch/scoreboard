@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contest_id: 1
+  contest_type: MyString
+  homeaway: MyString
+  team_id: 1
+  score: 1
+  forfeit: false
+
+two:
+  contest_id: 1
+  contest_type: MyString
+  homeaway: MyString
+  team_id: 1
+  score: 1
+  forfeit: false

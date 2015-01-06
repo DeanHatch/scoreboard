@@ -16,8 +16,8 @@
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :time %><br>
-    <%= f.time_select :time %>
+    <%= f.label :time %>
+    <%= time_select 'regularcontest', 'time', {minute_step: 5} %>
   </div>
   <div class="field">
     <%= f.label :venue %><br>
