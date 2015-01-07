@@ -8,6 +8,15 @@ class Contest < ActiveRecord::Base
 		['SCHED','PPD','COMP','FORFEIT','CAN','FINAL']
 	end
 	
+	def Contest.times
+		# Create a collection of times throughout the day in five minute increments
+		# This will be used to display starting time choices for schedulers
+		5.step((24*60-5), 5).to_a.
+					collect {|m| [ (Time.new(0)+(m*60)).strftime('%I:%M %p').sub(/^0/, ""),
+ 					                     (Time.new(0)+(m*60)).strftime('%I:%M %p').sub(/^0/, "") ]}
+	end
+	
+	
 	def venue_name
 		self.venue_id ? Venue.find(venue_id).name : 'TBD'
 	end

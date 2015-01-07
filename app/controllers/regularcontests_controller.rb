@@ -16,6 +16,8 @@ class RegularcontestsController < ApplicationController
   def new
     @regularcontest = Regularcontest.new
     @selectedvenue = nil
+    @selecteddate = nil
+    @selectedtime = nil
     @selectedstatus = Regularcontest.statuses.first
     
     @homecontestant = Regularcontestant.new
@@ -28,6 +30,8 @@ class RegularcontestsController < ApplicationController
   # GET /regularcontests/1/edit
   def edit
     @selectedvenue = @regularcontest.venue_id
+    @selecteddate = @regularcontest.date
+    @selectedtime = @regularcontest.time
     @selectedstatus = @regularcontest.status
     @homecontestant = @regularcontest.homecontestant
     @awaycontestant = @regularcontest.awaycontestant
@@ -40,7 +44,7 @@ class RegularcontestsController < ApplicationController
 
     respond_to do |format|
       if @regularcontest.save
-        format.html { redirect_to @regularcontest, notice: 'Regularcontest was successfully created.' }
+        format.html { redirect_to @regularcontest, notice: 'Contest scheduled.' }
         format.json { render :show, status: :created, location: @regularcontest }
       else
         format.html { render :new }
@@ -65,7 +69,7 @@ class RegularcontestsController < ApplicationController
   def update
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
-        format.html { redirect_to @regularcontest, notice: 'Regularcontest was successfully updated.' }
+        format.html { redirect_to @regularcontest, notice: 'Contest was successfully updated.' }
         format.json { render :show, status: :ok, location: @regularcontest }
       else
         format.html { render :edit }

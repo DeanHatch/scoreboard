@@ -13,11 +13,19 @@
 
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.select :date,
+		      options_for_select(Validdate.all.sort{|a,b| a.gamedate <=> b.gamedate}.
+		                                                 collect {|v| [ v.gamedate, v.gamedate ]},
+		                                selected: @selecteddate), 
+		    {prompt: 'TBD'} %>
   </div>
   <div class="field">
     <%= f.label :time %>
-    <%= time_select 'regularcontest', 'time', {minute_step: 5} %>
+    <!-- %= time_select 'regularcontest', 'time', {minute_step: 5} % --><br>
+    <%= f.select :time,
+		      options_for_select(Regularcontest.times,
+		                                selected: @selectedtime), 
+		    {prompt: 'TBD'} %>
   </div>
   <div class="field">
     <%= f.label :venue %><br>
