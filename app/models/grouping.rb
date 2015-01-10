@@ -8,4 +8,12 @@ class Grouping < ActiveRecord::Base
 		self.parent_id ? Grouping.find(self.parent_id).hierarchy << self.name  : [self.name]
 	end
 	
+	def teams()
+		Team.where(grouping: self)
+	end
+	
+	def hasTeams?()
+		self.teams.count>0
+	end
+	
 end

@@ -5,7 +5,7 @@ class Contest < ActiveRecord::Base
 	#validates_presence_of :venue_id
 	
 	def Contest.statuses
-		['SCHED','PPD','COMP','FORFEIT','CAN','FINAL']
+		['SCHED','PPD','COMP','FORFEIT','CANCELLED','FINAL']
 	end
 	
 	def Contest.times

@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   resources :regularcontestants
 
+  get 'regularcontests/rrobin' => 'regularcontests#rrobin'
+
+  post 'regularcontests/roundrobin' => 'regularcontests#roundrobin'
+
   resources :regularcontests
 
   resources :bracketcontests

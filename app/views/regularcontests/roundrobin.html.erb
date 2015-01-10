@@ -1,0 +1,34 @@
+<h1>Round Robin has (NOT) been Scheduled</h1>
+<h2>for <%= @grouping.name %></h2>
+
+<!-- %= render 'rrobinform' % -->
+<h3>Regular Contests Scheduled</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Venue</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contests.each do |regularcontest| %>
+      <tr>
+        <td><%= regularcontest.display_date %></td>
+        <td><%= regularcontest.display_time %></td>
+        <td><%= regularcontest.venue_name %></td>
+        <td><%= regularcontest.status %></td>
+        <td><%= regularcontest.awaycontestant.team.name %></td>
+        <td>at <%= regularcontest.homecontestant.team.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', regularcontests_path %>
