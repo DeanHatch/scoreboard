@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Contest - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-statuses">::statuses</a>
+    
+    <li ><a href="#method-c-times">::times</a>
+    
+    <li ><a href="#method-i-awaycontestant_fullname">#awaycontestant_fullname</a>
+    
+    <li ><a href="#method-i-display_date">#display_date</a>
+    
+    <li ><a href="#method-i-display_time">#display_time</a>
+    
+    <li ><a href="#method-i-has_score-3F">#has_score?</a>
+    
+    <li ><a href="#method-i-homecontestant_fullname">#homecontestant_fullname</a>
+    
+    <li ><a href="#method-i-needs_score-3F">#needs_score?</a>
+    
+    <li ><a href="#method-i-venue_name">#venue_name</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Contest">
+  <h1 id="class-Contest" class="class">
+    class Contest
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-statuses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">statuses</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a collection of contest statuses. This will be used to display
+selection choices and for validation.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="statuses-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">statuses</span>
+        [<span class="ruby-string">&#39;SCHED&#39;</span>,<span class="ruby-string">&#39;PPD&#39;</span>,<span class="ruby-string">&#39;COMP&#39;</span>,<span class="ruby-string">&#39;FORFEIT&#39;</span>,<span class="ruby-string">&#39;CANCELLED&#39;</span>,<span class="ruby-string">&#39;FINAL&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-times" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">times</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a collection of times throughout the day in five minute increments.
+This will be used to display starting time choices for schedulers</p>
+          
+          
+
+          
+          <div class="method-source-code" id="times-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">times</span>
+        <span class="ruby-comment"># Create a collection of times throughout the day in five minute increments</span>
+        <span class="ruby-comment"># This will be used to display starting time choices for schedulers</span>
+        <span class="ruby-value">5</span>.<span class="ruby-identifier">step</span>((<span class="ruby-value">24</span><span class="ruby-operator">*</span><span class="ruby-value">60</span><span class="ruby-operator">-</span><span class="ruby-value">5</span>), <span class="ruby-value">5</span>).<span class="ruby-identifier">to_a</span>.
+                                <span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> [ (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)<span class="ruby-operator">+</span>(<span class="ruby-identifier">m</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>),
+                                                     (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)<span class="ruby-operator">+</span>(<span class="ruby-identifier">m</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) ]}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-awaycontestant_fullname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">awaycontestant_fullname</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Full name can be customized for different contestant types.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="awaycontestant_fullname-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">awaycontestant_fullname</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">fullname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-display_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_date</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convenience method. Display “TBD” for nil.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="display_date-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_date</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%m/%d/%Y&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-display_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convenience method. Display “TBD” for nil.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="display_time-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_time</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-has_score-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">has_score?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>True if either <a href="Team.html">Team</a> has a score.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="has_score-3F-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_score?</span>
+        <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-homecontestant_fullname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">homecontestant_fullname</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Full name can be customized for different contestant types.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="homecontestant_fullname-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">homecontestant_fullname</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">fullname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-needs_score-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">needs_score?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>True if neither <a href="Team.html">Team</a> has a score.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="needs_score-3F-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">needs_score?</span>
+        <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">has_score?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-venue_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">venue_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convenience method. Display “TBD” for nil.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="venue_name-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">venue_name</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">venue_id</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">venue_id</span>).<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

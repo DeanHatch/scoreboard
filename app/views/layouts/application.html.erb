@@ -31,23 +31,8 @@
 <div class="sideMatter">
 
 <div class="navPanel">
-<UL class="nav1">
-<LI class="nav level1">
-<%= link_to 'Manage Venues', venues_path , class: "nav" %>
-</LI>
-<LI class="nav level1">
-<%= link_to 'Manage Groupings', groupings_path , class: "nav" %>
-</LI>
-<LI class="nav level1">
-<%= link_to 'Manage Teams', teams_path , class: "nav" %>
-</LI>
-<LI class="nav level1">
-<%= link_to 'Schedule Regular Contests', regularcontests_path , class: "nav" %>
-</LI>
-<LI class="nav level1">
-<%= link_to 'Schedule Bracket Contests', bracketcontests_path , class: "nav" %>
-</LI>
-</UL>
+<%= yield :navPanel %>
+<%= navPanel() %>
 </div>
 <div class="instructions"><br><br><br>
 <br>

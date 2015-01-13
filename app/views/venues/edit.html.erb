@@ -3,16 +3,16 @@
 <%= render 'venueform' %>
 
 <%= button_to 'Remove This Venue', @venue,
-        method: :delete, data: { confirm: 'Are you sure?' } if @venue.removeable %>
+        method: :delete, data: { confirm: 'Are you sure?' } if @venue.removeable? %>
 	
 <% content_for :wrapped do %>
 You can change the name of this Venue and press the UPDATE button.<br/>
   You cannot remove this Venue. A Contest is or has been scheduled at it.
-<% end if not(@venue.removeable) %>
+<% end if not(@venue.removeable?) %>
 	
 <% content_for :wrapped do %>
 You can change the name of this Venue and press the UPDATE button.<br/>
   You can also Remove this Venue by clicking on the REMOVE button.
-<% end if @venue.removeable %>
+<% end if @venue.removeable? %>
 
 <%= link_to 'Back to the List', venues_path %>

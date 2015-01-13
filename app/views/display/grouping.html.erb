@@ -1,0 +1,45 @@
+
+
+<%= html_headings_for(@grouping.hierarchy()) %>
+
+<h6>Standings</h6>
+<table>
+  <thead>
+    <tr>
+     <% standings_headings.each do |sh| %>
+       <th> <%= sh %> </th>
+     <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |gm| %>
+      <tr>
+        <% standings_columns.each do |columnsym| %>
+          <td><%= gm.method(columnsym).call %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h6>Schedule</h6>
+<table>
+  <thead>
+    <tr>
+     <% schedule_headings.each do |sh| %>
+       <th> <%= sh %> </th>
+     <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contests.each do |gm| %>
+      <tr>
+        <% schedule_columns.each do |columnsym| %>
+          <td><%= gm.method(columnsym).call %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

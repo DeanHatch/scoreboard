@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  get 'scorer' => 'scorer#index'
+  get 'scorer/index'
+
+  get 'scorer/record'
+
+  get 'scorer/revise'
+
+  get 'welcome' => 'welcome#index'
+  get 'welcome/index'
+
+  get 'display' => 'display#index'
+  get 'display/index'
+
+  get 'display/team'
+
+  get 'display/grouping'
+
   resources :validdates
 
   resources :regularcontestants
@@ -39,7 +56,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'grouping#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

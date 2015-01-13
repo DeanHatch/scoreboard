@@ -1,0 +1,9 @@
+   
+<% content_for :wrapped do %>
+You need to select something to display.   
+<% end %>
+<pre><%= @contests.collect{|c| c.id.inspect}.join(' - ') %></pre>
+<hr/>
+<pre><%= @bcontests.collect{|c| c.id.inspect}.join(' - ') %></pre>
+<hr/>
+<pre><%= @rcontests.collect{|c| c.id.inspect}.join(' - ') %></pre>
