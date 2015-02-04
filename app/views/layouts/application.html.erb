@@ -17,7 +17,7 @@
 
 <hr class="message"/>
  <p class="wrapper">
-  <%= yield :wrapped %>
+  <%= yield :info_message %>
  </p>
 <hr class="message"/>
 </div>
@@ -31,7 +31,8 @@
 <div class="sideMatter">
 
 <div class="navPanel">
-<%= yield :navPanel %>
+<!-- Navigation Panel contents are set by Controller. -->
+<!-- application helper method navPanel handles this. -->
 <%= navPanel() %>
 </div>
 <div class="instructions"><br><br><br>

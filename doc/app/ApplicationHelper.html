@@ -70,9 +70,9 @@
     
     <li ><a href="#method-i-html_ul_for">#html_ul_for</a>
     
-    <li ><a href="#method-i-link_hsh">#link_hsh</a>
-    
     <li ><a href="#method-i-navPanel">#navPanel</a>
+    
+    <li ><a href="#method-i-nav_panel">#nav_panel</a>
     
   </ul>
 </div>
@@ -178,45 +178,6 @@
       </div>
 
     
-      <div id="method-i-link_hsh" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">link_hsh</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Produce and Unordered List of Links for Navigation.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="link_hsh-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">link_hsh</span>()
-   { <span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:venues</span>,
-      <span class="ruby-string">&#39;Manage Groupings&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:groupings</span>,
-      <span class="ruby-string">&#39;Manage Teams&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:teams</span>,
-      <span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:regularcontests</span>,
-      <span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bracketcontests</span>,
-      <span class="ruby-string">&#39;Record/Revise Scores&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:scorer</span>,
-      <span class="ruby-string">&#39;Public Display&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:display</span>  }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-navPanel" class="method-detail ">
         
         <div class="method-heading">
@@ -230,20 +191,68 @@
 
         <div class="method-description">
           
-          <p>Produce and Unordered List of Links for Navigation.</p>
+          <p>Start the process to produce a (nested) Unordered List of Links for
+Navigation.</p>
           
           
 
           
           <div class="method-source-code" id="navPanel-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">navPanel</span>()
+        <span class="ruby-identifier">nav_panel</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">nav_link_hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nav_panel" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nav_panel</span><span
+            class="method-args">(nav_level, link_hsh )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Produce an Unordered List of Links for Navigation. This may be called
+recursively.</p>
+
+<pre>* ul_opts = HTML options for UL tag
+* li_opts = HTML options for LI tags
+* link_hsh = hash where key is hyperlink text and value is hyperlink target</pre>
+
+<p>Note that if the hash value is a Hash, then this method will recurse for an
+indented list.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nav_panel-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_panel</span>(<span class="ruby-identifier">nav_level</span>,
+                      <span class="ruby-identifier">link_hsh</span> )
         <span class="ruby-identifier">navitems</span> = <span class="ruby-string">&#39;&#39;</span>
-        <span class="ruby-comment">#navitems = self.controller.controller_name().humanize</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">link_hsh</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">lbl</span>, <span class="ruby-identifier">trgt</span><span class="ruby-operator">|</span> <span class="ruby-identifier">navitems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:li</span>,
-                                                                                <span class="ruby-identifier">link_to</span>( <span class="ruby-identifier">lbl</span>, <span class="ruby-identifier">trgt</span>, <span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>),
-                                                                                <span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav level1&quot;</span>)}
-        <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:ul</span>, <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">navitems</span>), <span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav1&quot;</span>))
+        <span class="ruby-identifier">ul_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav1&quot;</span>}
+        <span class="ruby-identifier">li_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;nav level#{nav_level}&quot;</span>}
+        <span class="ruby-identifier">link_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>}
+        <span class="ruby-identifier">link_hsh</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">lbl</span>, <span class="ruby-identifier">trgt</span><span class="ruby-operator">|</span> <span class="ruby-identifier">trgt</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Hash&quot;</span> <span class="ruby-operator">?</span> 
+                                              <span class="ruby-identifier">navitems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nav_panel</span>(<span class="ruby-identifier">nav_level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">trgt</span>) <span class="ruby-operator">:</span>
+                                              <span class="ruby-identifier">navitems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:li</span>,
+                                                                                <span class="ruby-identifier">link_to</span>( <span class="ruby-identifier">lbl</span>, <span class="ruby-identifier">trgt</span>, <span class="ruby-identifier">link_opts</span>),
+                                                                                <span class="ruby-identifier">li_opts</span>)
+                                              }
+        <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:ul</span>, <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">navitems</span>), <span class="ruby-identifier">ul_opts</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
           

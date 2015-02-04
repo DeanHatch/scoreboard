@@ -1,46 +1,18 @@
+<h1>Dates and Venues for <%= @competition.name %>
+<%= @competition.sport.humanize %> <%= @competition.variety.humanize %></h1>
 
-<% content_for :wrapped do %>
+<% content_for :info_message do %>
 To add a new Venue, simply type in it&apos;s name and press ENTER.
 <br/>To Change or Remove a Venue, click on the name of the Venue.
 <% end %>
 
 <div class="dividedContent">
-<div class="leftContent">
-<h1>Add a New Venue</h1>
-
-<%= render 'venueform' %>
-
-
-<h1>Venues</h1>
-
-<table class="schedule">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @venues.sort{ |a,b| a.name <=> b.name }.each do |venue| %>
-      <tr>
-        <td><%= link_to venue.name, edit_venue_path(venue) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<!-- %= link_to 'New Venue', new_venue_path % -->
-</div>
 <div class="rightContent">
-<h1>Add a New Date</h1>
+<h2>Add a New Date</h2>
 
 <%= render 'validdates/dateform' %>
 
-
-
-<h1>Dates</h1>
+<h2>Dates</h2>
 
 <table class="schedule">
   <thead>
@@ -50,15 +22,43 @@ To add a new Venue, simply type in it&apos;s name and press ENTER.
   </thead>
 
   <tbody>
-    <% @validdates.sort{ |a,b| a.gamedate <=> b.gamedate }.each do |validdate| %>
+      <!-- Show sorted, unique Game Dates -->
+    <% @validdates.sort{ |a,b| a.gamedate <=> b.gamedate }.
+                          uniq{|vd|vd.gamedate}.each do |validdate| %>
       <tr>
-        <td><%= link_to validdate.gamedate, edit_validdate_path(validdate) %></td>
+        <td><%= validdate.gamedate %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+</div>
+
+<div class="leftContent">
+<h2>Add a New Venue</h2>
+
+<%= render 'venueform' %>
+
+<h2>Venues</h2>
+
+<table class="schedule">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @venues.each do |venue| %>
+      <tr>
+        <td><%= link_to venue.name, edit_competition_venue_path(@competition, venue) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 </div>
 </div>

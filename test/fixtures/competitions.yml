@@ -4,8 +4,11 @@ one:
   name: MyString
   sport: 1
   variety: 1
-  poolgroupseason: 1
-  keepscores: false
+  poolgroupseason: false
+  poolgroupseasonlabel: MyString
+  playoffbracket: false
+  playoffbracketlabel: MyString
+  kepscores: false
   winpoints: 1
   drawpoints: 1
   losspoints: 1
@@ -17,8 +20,11 @@ two:
   name: MyString
   sport: 1
   variety: 1
-  poolgroupseason: 1
-  keepscores: false
+  poolgroupseason: false
+  poolgroupseasonlabel: MyString
+  playoffbracket: false
+  playoffbracketlabel: MyString
+  kepscores: false
   winpoints: 1
   drawpoints: 1
   losspoints: 1

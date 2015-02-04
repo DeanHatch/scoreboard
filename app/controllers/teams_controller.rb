@@ -1,10 +1,11 @@
-class TeamsController < ApplicationController
+class TeamsController < NestedController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_grouping
 
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    @teams = Team.where(competition_id: @competition_id, grouping_id: @grouping.id)
   end
 
   # GET /teams/1
@@ -15,22 +16,28 @@ class TeamsController < ApplicationController
   # GET /teams/new
   def new
     @team = Team.new
-    @groupings = Grouping.all
+    @team.competition_id = @competition_id
+    @team.grouping_id = @grouping_id
+    @groupings = Grouping.where(competition_id: @competition_id)
   end
 
   # GET /teams/1/edit
   def edit
-    @groupings = Grouping.all
+    @groupings = Grouping.where(competition_id: @competition_id)
   end
 
   # POST /teams
   # POST /teams.json
   def create
     @team = Team.new(team_params)
+    @team.competition_id = @competition.id
+    @team.grouping_id = @grouping.id
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+	#@grouping = Grouping.find(params[:grouping_id])
+        #format.html { redirect_to [@competition, @grouping], notice: 'Team was successfully created.' }
+	format.html { redirect_to competition_grouping_teams_path, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new }
@@ -65,12 +72,16 @@ class TeamsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_grouping
+      @grouping = Grouping.find(params[:grouping_id])
+    end
+
     def set_team
       @team = Team.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :grouping_id)
+      params.require(:team).permit(:competition_id, :name, :grouping_id)
     end
 end

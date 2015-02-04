@@ -3,11 +3,15 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Sport</th>
       <th>Variety</th>
       <th>Poolgroupseason</th>
-      <th>Keepscores</th>
+      <th>Poolgroupseasonlabel</th>
+      <th>Playoffbracket</th>
+      <th>Playoffbracketlabel</th>
+      <th>Keep Scores?</th>
       <th>Winpoints</th>
       <th>Drawpoints</th>
       <th>Losspoints</th>
@@ -21,10 +25,14 @@
   <tbody>
     <% @competitions.each do |competition| %>
       <tr>
+        <td><%= competition.id %></td>
         <td><%= competition.name %></td>
         <td><%= competition.sport %></td>
         <td><%= competition.variety %></td>
         <td><%= competition.poolgroupseason %></td>
+        <td><%= competition.poolgroupseasonlabel %></td>
+        <td><%= competition.playoffbracket %></td>
+        <td><%= competition.playoffbracketlabel %></td>
         <td><%= competition.keepscores %></td>
         <td><%= competition.winpoints %></td>
         <td><%= competition.drawpoints %></td>

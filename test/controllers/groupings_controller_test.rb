@@ -17,10 +17,8 @@ class GroupingsControllerTest < ActionController::TestCase
   end
 
   test "should create grouping" do
-	  puts Grouping.all.inspect
     assert_difference('Grouping.count') do
-      post :create, grouping: { parent_id: @grouping.parent_id, name: @grouping.name }
-	  puts Grouping.all.inspect
+      post :create, grouping: { competition_id: @grouping.competition_id, name: @grouping.name, parent_id: @grouping.parent_id }
     end
 
     assert_redirected_to grouping_path(assigns(:grouping))
@@ -37,7 +35,7 @@ class GroupingsControllerTest < ActionController::TestCase
   end
 
   test "should update grouping" do
-    patch :update, id: @grouping, grouping: { parent_id: @grouping.parent_id, name: @grouping.name }
+    patch :update, id: @grouping, grouping: { competition_id: @grouping.competition_id, name: @grouping.name, parent_id: @grouping.parent_id }
     assert_redirected_to grouping_path(assigns(:grouping))
   end
 

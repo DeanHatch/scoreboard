@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  <p class="link"><a href="BracketsController.html">BracketsController</a>
   
 </div>
 
@@ -77,9 +77,13 @@
     
     <li ><a href="#method-i-destroy">#destroy</a>
     
+    <li ><a href="#method-i-dump">#dump</a>
+    
     <li ><a href="#method-i-edit">#edit</a>
     
     <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-nav_link_hash">#nav_link_hash</a>
     
     <li ><a href="#method-i-new">#new</a>
     
@@ -140,30 +144,22 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@bracketcontest</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bracketcontest_params</span>)
+  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
+  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">bracket_id</span> = <span class="ruby-ivar">@bracket_id</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@bracketcontest</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bracketcontest was successfully created.&#39;</span> }
+      <span class="ruby-identifier">save_contestants</span>()
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>  [<span class="ruby-ivar">@competition</span>, <span class="ruby-ivar">@bracket</span>, <span class="ruby-ivar">@bracketcontest</span>], <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bracketcontest was successfully created.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketcontest</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
-    <span class="ruby-keyword">end</span> <span class="ruby-comment"># of if-then-else</span>
-  <span class="ruby-keyword">end</span> <span class="ruby-comment"># of do</span>
-  
-  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">awaycontestant</span> = <span class="ruby-constant">Bracketcontestant</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Bracketcontest&#39;</span>,
-                                                                 <span class="ruby-value">:forfeit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                                                                  <span class="ruby-identifier">homeaway</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;A&#39;</span>,
-                                                                  <span class="ruby-identifier">contest_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">id</span>)
-  
-  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">homecontestant</span> = <span class="ruby-constant">Bracketcontestant</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Bracketcontest&#39;</span>,
-                                                                <span class="ruby-value">:forfeit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                                                                  <span class="ruby-identifier">homeaway</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;H&#39;</span>,
-                                                                  <span class="ruby-identifier">contest_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">id</span>)
-  
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -194,13 +190,49 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">bracketcontests_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bracketcontest was successfully destroyed.&#39;</span> }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /regularcontests GET /regularcontests.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump-source">
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>
+      <span class="ruby-comment">#  Team.where(&#39;id=26&#39;).each{|t| t.destroy }</span>
+      <span class="ruby-comment">#  Bracketcontest.where(homecontestant_id: nil).each{|rc| rc.destroy }</span>
+      <span class="ruby-comment">#  Regularcontest.where(&#39;id&lt;92&#39;).each{|rc| rc.destroy }</span>
+  <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -231,10 +263,14 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">venue_id</span>
+  <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">date</span>
+  <span class="ruby-ivar">@selectedtime</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">time</span>
   <span class="ruby-ivar">@selectedstatus</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-ivar">@homecontestant</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">homecontestant</span>
+  <span class="ruby-ivar">@awaycontestant</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">awaycontestant</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -265,9 +301,42 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nav_link_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nav_link_hash</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="nav_link_hash-source">
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_hash</span>()
+        <span class="ruby-identifier">admin_link_hash</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -298,11 +367,17 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@bracketcontest</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
+  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">bracket_id</span> = <span class="ruby-ivar">@bracket_id</span>
   <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@selectedtime</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@selectedstatus</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">statuses</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-ivar">@homecontestant</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">homecontestant</span>
+  <span class="ruby-ivar">@awaycontestant</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">awaycontestant</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -333,7 +408,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -365,11 +440,12 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">bracketcontest_params</span>)
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@bracketcontest</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bracketcontest was successfully updated.&#39;</span> }
+      <span class="ruby-identifier">save_contestants</span>()
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>  [<span class="ruby-ivar">@competition</span>, <span class="ruby-ivar">@bracket</span>, <span class="ruby-ivar">@bracketcontest</span>], <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bracketcontest was successfully updated.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketcontest</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }

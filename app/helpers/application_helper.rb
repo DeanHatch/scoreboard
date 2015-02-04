@@ -12,25 +12,33 @@ module ApplicationHelper
 	  raw(content_tag(:ul,raw(listitems)))
   end
 
-  # Produce and Unordered List of Links for Navigation.
-  def link_hsh()
-     { 'Manage Dates/Venues' => :venues,
-	'Manage Groupings' => :groupings,
-	'Manage Teams' => :teams,
-	'Schedule Regular Contests' => :regularcontests,
-	'Schedule Bracket Contests' => :bracketcontests,
-	'Record/Revise Scores' => :scorer,
-	'Public Display' => :display  }
+
+  # Produce an Unordered List of Links for Navigation.
+  # This may be called recursively.
+  #  * ul_opts = HTML options for UL tag
+  #  * li_opts = HTML options for LI tags
+  #  * link_hsh = hash where key is hyperlink text and value is hyperlink target
+  # Note that if the hash value is a Hash, then this method will recurse for
+  # an indented list.
+  def nav_panel(nav_level,
+			link_hsh )
+	  navitems = ''
+	  ul_opts = {class: "nav1"}
+	  li_opts = {class: "nav level#{nav_level}"}
+	  link_opts = {class: "nav", target: "_blank"}
+	  link_hsh.each { |lbl, trgt| trgt.class.name == "Hash" ? 
+						navitems << nav_panel(nav_level + 1, trgt) :
+						navitems << content_tag(:li,
+										  link_to( lbl, trgt, link_opts),
+										  li_opts)
+						}
+	  raw(content_tag(:ul, raw(navitems), ul_opts))
   end
 
-  # Produce and Unordered List of Links for Navigation.
+
+  # Start the process to produce a (nested) Unordered List of Links for Navigation.
   def navPanel()
-	  navitems = ''
-	  #navitems = self.controller.controller_name().humanize
-	  self.link_hsh.each { |lbl, trgt| navitems << content_tag(:li,
-										  link_to( lbl, trgt, class: "nav"),
-										  class: "nav level1")}
-	  raw(content_tag(:ul, raw(navitems), class: "nav1"))
+	  nav_panel(1, controller.nav_link_hash)
   end
 
 end

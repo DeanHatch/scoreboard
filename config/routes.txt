@@ -1,0 +1,71 @@
+                                     Prefix Verb   URI Pattern                                                                               Controller#Action
+                                       root GET    /                                                                                         welcome#index
+                              welcome_index GET    /welcome/index(.:format)                                                                  welcome#index
+                         competition_venues GET    /competitions/:competition_id/venues(.:format)                                            venues#index
+                                            POST   /competitions/:competition_id/venues(.:format)                                            venues#create
+                      new_competition_venue GET    /competitions/:competition_id/venues/new(.:format)                                        venues#new
+                     edit_competition_venue GET    /competitions/:competition_id/venues/:id/edit(.:format)                                   venues#edit
+                          competition_venue GET    /competitions/:competition_id/venues/:id(.:format)                                        venues#show
+                                            PATCH  /competitions/:competition_id/venues/:id(.:format)                                        venues#update
+                                            PUT    /competitions/:competition_id/venues/:id(.:format)                                        venues#update
+                                            DELETE /competitions/:competition_id/venues/:id(.:format)                                        venues#destroy
+                     competition_validdates GET    /competitions/:competition_id/validdates(.:format)                                        validdates#index
+                                            POST   /competitions/:competition_id/validdates(.:format)                                        validdates#create
+                  new_competition_validdate GET    /competitions/:competition_id/validdates/new(.:format)                                    validdates#new
+                 edit_competition_validdate GET    /competitions/:competition_id/validdates/:id/edit(.:format)                               validdates#edit
+                      competition_validdate GET    /competitions/:competition_id/validdates/:id(.:format)                                    validdates#show
+                                            PATCH  /competitions/:competition_id/validdates/:id(.:format)                                    validdates#update
+                                            PUT    /competitions/:competition_id/validdates/:id(.:format)                                    validdates#update
+                                            DELETE /competitions/:competition_id/validdates/:id(.:format)                                    validdates#destroy
+                 competition_grouping_teams GET    /competitions/:competition_id/groupings/:grouping_id/teams(.:format)                      teams#index
+                                            POST   /competitions/:competition_id/groupings/:grouping_id/teams(.:format)                      teams#create
+              new_competition_grouping_team GET    /competitions/:competition_id/groupings/:grouping_id/teams/new(.:format)                  teams#new
+             edit_competition_grouping_team GET    /competitions/:competition_id/groupings/:grouping_id/teams/:id/edit(.:format)             teams#edit
+                  competition_grouping_team GET    /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#show
+                                            PATCH  /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#update
+                                            PUT    /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#update
+                                            DELETE /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#destroy
+                      competition_groupings GET    /competitions/:competition_id/groupings(.:format)                                         groupings#index
+                                            POST   /competitions/:competition_id/groupings(.:format)                                         groupings#create
+                   new_competition_grouping GET    /competitions/:competition_id/groupings/new(.:format)                                     groupings#new
+                  edit_competition_grouping GET    /competitions/:competition_id/groupings/:id/edit(.:format)                                groupings#edit
+                       competition_grouping GET    /competitions/:competition_id/groupings/:id(.:format)                                     groupings#show
+                                            PATCH  /competitions/:competition_id/groupings/:id(.:format)                                     groupings#update
+                                            PUT    /competitions/:competition_id/groupings/:id(.:format)                                     groupings#update
+                                            DELETE /competitions/:competition_id/groupings/:id(.:format)                                     groupings#destroy
+   dump_competition_bracket_bracketcontests GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/dump(.:format)         bracketcontests#dump
+edithome_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/edithome(.:format) bracketcontests#edithome
+updthome_competition_bracket_bracketcontest PATCH  /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updthome(.:format) bracketcontests#updthome
+                                            PUT    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updthome(.:format) bracketcontests#updthome
+editaway_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/editaway(.:format) bracketcontests#editaway
+updtaway_competition_bracket_bracketcontest PATCH  /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updtaway(.:format) bracketcontests#updtaway
+                                            PUT    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updtaway(.:format) bracketcontests#updtaway
+        competition_bracket_bracketcontests GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests(.:format)              bracketcontests#index
+                                            POST   /competitions/:competition_id/brackets/:bracket_id/bracketcontests(.:format)              bracketcontests#create
+     new_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/new(.:format)          bracketcontests#new
+    edit_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/edit(.:format)     bracketcontests#edit
+         competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#show
+                                            PATCH  /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#update
+                                            PUT    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#update
+                                            DELETE /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#destroy
+                       competition_brackets GET    /competitions/:competition_id/brackets(.:format)                                          brackets#index
+                        competition_bracket GET    /competitions/:competition_id/brackets/:id(.:format)                                      brackets#show
+           dump_competition_regularcontests GET    /competitions/:competition_id/regularcontests/dump(.:format)                              regularcontests#dump
+         rrobin_competition_regularcontests GET    /competitions/:competition_id/regularcontests/rrobin(.:format)                            regularcontests#rrobin
+     roundrobin_competition_regularcontests POST   /competitions/:competition_id/regularcontests/roundrobin(.:format)                        regularcontests#roundrobin
+                competition_regularcontests GET    /competitions/:competition_id/regularcontests(.:format)                                   regularcontests#index
+                                            POST   /competitions/:competition_id/regularcontests(.:format)                                   regularcontests#create
+             new_competition_regularcontest GET    /competitions/:competition_id/regularcontests/new(.:format)                               regularcontests#new
+            edit_competition_regularcontest GET    /competitions/:competition_id/regularcontests/:id/edit(.:format)                          regularcontests#edit
+                 competition_regularcontest GET    /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#show
+                                            PATCH  /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#update
+                                            PUT    /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#update
+                                            DELETE /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#destroy
+                               competitions GET    /competitions(.:format)                                                                   competitions#index
+                                            POST   /competitions(.:format)                                                                   competitions#create
+                            new_competition GET    /competitions/new(.:format)                                                               competitions#new
+                           edit_competition GET    /competitions/:id/edit(.:format)                                                          competitions#edit
+                                competition GET    /competitions/:id(.:format)                                                               competitions#show
+                                            PATCH  /competitions/:id(.:format)                                                               competitions#update
+                                            PUT    /competitions/:id(.:format)                                                               competitions#update
+                                            DELETE /competitions/:id(.:format)                                                               competitions#destroy

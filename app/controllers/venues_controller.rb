@@ -1,12 +1,22 @@
-class VenuesController < ApplicationController
+class VenuesController < NestedController  # formerly ApplicationController
+
+
+  def nav_link_hash()
+	admin_link_hash()
+  end
+
+
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
   # GET /venues
   # GET /venues.json
   def index
-    @venues = Venue.all
-    @venue = Venue.new  # index contains the venueform
-    @validdates = Validdate.all
+    @venues = Venue.where(competition_id: @competition_id)
+      # Need a venue object for form which is now on index page
+    @venue = Venue.new()
+    @venue.competition_id = @competition_id
+    @validdates = Validdate.where(competition_id: @competition_id)
+      # Need a validdate object for form which is now on index page
     @validdate = Validdate.new  # index contains the validdateform
   end
 
@@ -28,10 +38,11 @@ class VenuesController < ApplicationController
   # POST /venues.json
   def create
     @venue = Venue.new(venue_params)
+    @venue.competition_id = @competition_id
 
     respond_to do |format|
       if @venue.save
-        format.html { redirect_to @venue, notice: 'Venue was successfully created.' }
+        format.html { redirect_to competition_venues_url, notice: 'Venue was successfully created.' }
         format.json { render :show, status: :created, location: @venue }
       else
         format.html { render :new }
@@ -45,7 +56,7 @@ class VenuesController < ApplicationController
   def update
     respond_to do |format|
       if @venue.update(venue_params)
-        format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
+        format.html { redirect_to competition_venues_url, notice: 'Venue was successfully updated.' }
         format.json { render :show, status: :ok, location: @venue }
       else
         format.html { render :edit }
@@ -59,7 +70,7 @@ class VenuesController < ApplicationController
   def destroy
     @venue.destroy
     respond_to do |format|
-      format.html { redirect_to venues_url, notice: 'Venue was successfully removed.' }
+      format.html { redirect_to competition_venues_url, notice: 'Venue was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +83,6 @@ class VenuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def venue_params
-      params.require(:venue).permit(:name)
+      params.require(:venue).permit(:name, :competition_id)
     end
 end

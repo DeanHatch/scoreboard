@@ -1,1 +1,1 @@
-json.extract! @validdate, :id, :gamedate, :created_at, :updated_at
+json.extract! @validdate, :id, :gamedate, :competition_id, :created_at, :updated_at

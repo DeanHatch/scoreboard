@@ -1,62 +1,50 @@
 Rails.application.routes.draw do
-  get 'scorer' => 'scorer#index'
-  get 'scorer/index'
 
-  get 'scorer/record'
-
-  get 'scorer/revise'
-
-  get 'welcome' => 'welcome#index'
+  root 'welcome#index'
   get 'welcome/index'
 
-  get 'display' => 'display#index'
-  get 'display/index'
+  resources :competitions do
+	  resources :venues
+	  resources :validdates
+	  resources :groupings do
+		  resources :teams
+	  end
+	  resources :brackets, only: [:index, :show] do
+		  # httpverb /competitions/:competition_id/brackets/...
+		  resources :bracketcontests do
+			  # get /competitions/:competition_id/bracket/:bracket_id/bracketcontests/dump
+			  get 'dump', on: :collection
+			  # get /competitions/:competition_id/bracket/:bracket_id/bracketcontests/edithome
+			  get 'edithome', on: :member
+			  # patch/put /competitions/:competition_id/bracket/:bracket_id/bracketcontests/updthome
+			  patch 'updthome', on: :member
+			  put 'updthome', on: :member
+			  # get /competitions/:competition_id/bracket/:bracket_id/bracketcontests/editaway
+			  get 'editaway', on: :member
+			  # patch/put /competitions/:competition_id/bracket/:bracket_id/bracketcontests/updtaway
+			  patch 'updtaway', on: :member
+			  put 'updtaway', on: :member
+		  end # of bracketcontests resource
+	  end # of brackets resource
+	  resources :regularcontests do
+		  # get /competitions/:competition_id/regularcontests/dump
+		  get 'dump', on: :collection
+		  # This provides get /competitions/:competition_id/regularcontests/rrobin
+		  # with rrobin_competition_regularcontests_path()
+		  get 'rrobin', on: :collection
+		  # This provides post /competitions/:competition_id/regularcontests/roundrobin
+		  # with roundrobin_competition_regularcontests_path()
+		  post 'roundrobin', on: :collection
+	  end
+  end
 
-  get 'display/team'
-
-  get 'display/grouping'
-
-  resources :validdates
-
-  resources :regularcontestants
-
-  get 'regularcontests/rrobin' => 'regularcontests#rrobin'
-
-  post 'regularcontests/roundrobin' => 'regularcontests#roundrobin'
-
-  resources :regularcontests
-
-  resources :bracketcontests
-
-  get 'bracketcontests/index'
-
-  get 'bracketcontests/new'
-
-  get 'bracketcontests/create'
-
-  resources :contests
-
-  resources :bracketcontestants
-
-  resources :contestants
-
-  resources :teams
-
-  resources :competitions
-
-  resources :venues
-
-  get 'grouping/index'
-
-  resources :groupings
-
-
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

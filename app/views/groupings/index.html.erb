@@ -1,24 +1,13 @@
-<h1>Groupings</h1>
+<h1>Groupings for <%= @competition.name %>
+<%= @competition.sport.humanize %> <%= @competition.variety.humanize %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Parent</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  
+<% content_for :info_message do %>
+If you need to change something about a Grouping, click on its name.   
+<% end %>
 
-  <tbody>
-    <% @groupings.each do |grouping| %>
-      <tr>
-        <td><%= link_to grouping.name, edit_grouping_path(grouping) if grouping.parent_id %></td>
-        <td><%= Grouping.find(grouping.parent_id).name if grouping.parent_id %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= button_to 'Add New Grouping', new_competition_grouping_path, method: :get %>
 
-<br>
+<% topgroup = @groupings.select{|g| g.parent_id.nil?}.first %>
+<%= content_tag(:ul, nested_groupings(1, topgroup), {class: "nav1"} ) %>
 
-<%= link_to 'New Grouping', new_grouping_path %>

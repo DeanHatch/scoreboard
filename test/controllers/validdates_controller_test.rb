@@ -18,7 +18,7 @@ class ValiddatesControllerTest < ActionController::TestCase
 
   test "should create validdate" do
     assert_difference('Validdate.count') do
-      post :create, validdate: { gamedate: @validdate.gamedate }
+      post :create, validdate: { competition_id: @validdate.competition_id, gamedate: @validdate.gamedate }
     end
 
     assert_redirected_to validdate_path(assigns(:validdate))
@@ -35,7 +35,7 @@ class ValiddatesControllerTest < ActionController::TestCase
   end
 
   test "should update validdate" do
-    patch :update, id: @validdate, validdate: { gamedate: @validdate.gamedate }
+    patch :update, id: @validdate, validdate: { competition_id: @validdate.competition_id, gamedate: @validdate.gamedate }
     assert_redirected_to validdate_path(assigns(:validdate))
   end
 

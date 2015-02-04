@@ -66,10 +66,8 @@
                   margin: 0 auto;
                  float: left;
              background-color: white;
-
                  z-index: 4;}
-   div.header {
-	width: 940px;
+   div.header {	width: 940px;
 
                height: 120px;
                   top: 40;
@@ -80,19 +78,11 @@
    div.inner-header {
 	width: 940px;
                        height: 120px;
-
-             background-color: #666666;
-}
-
-
+             background-color: #666666;}
    div.inner-header img { width: 940px;
                          height: 120px;
-               background-color: #666666;
-}
-
-
-   
-div.inner-header strong {
+               background-color: #666666;}
+   div.inner-header strong {
  left: 2%;
                 
     top: 72%;
@@ -138,6 +128,7 @@ div.inner-header strong {
            text-decoration: none; }
    a.nav:hover { font-weight: bold; }
    li.nav { border-bottom: dotted white 1px;
+            text-align: left;
              font: normal 11px/140% Verdana, Arial, Helvetica, sans-serif;
             color: black; }
    li.nav1 { border-bottom: dotted white 1px;
@@ -268,7 +259,8 @@ td.winner {border-bottom: 1px solid black;
 
 td.buml {border-top: 1px solid black;
        border-right: 1px solid black;
-     vertical-align: bottom; 
+     vertical-align: bottom;
+         text-align: left; 
              height: 25%;
           font-size: 8pt;
             padding: 0 0 0px 0px;
@@ -277,6 +269,7 @@ td.buml {border-top: 1px solid black;
 td.blml {border-bottom: 1px solid black;
           border-right: 1px solid black;
         vertical-align: top;
+            text-align: left;
              font-size: 8pt;
                 height: 25%;
                padding: 0 0 0px 0px;

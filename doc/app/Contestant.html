@@ -73,7 +73,11 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-contest">#contest</a>
+    
     <li ><a href="#method-i-fullname">#fullname</a>
+    
+    <li ><a href="#method-i-opponent">#opponent</a>
     
     <li ><a href="#method-i-teamname">#teamname</a>
     
@@ -111,6 +115,40 @@
        </header>
 
     
+      <div id="method-i-contest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contest</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns instance of a descendant of <a href="Contest.html">Contest</a>
+class. This contestant is one of the two contestants for the contest.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="contest-source">
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contest</span>
+        <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">contest_type</span>).<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">contest_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-fullname" class="method-detail ">
         
         <div class="method-heading">
@@ -130,9 +168,45 @@
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teamname</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-opponent" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">opponent</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns instance of a descendant of <a
+href="Contestant.html">Contestant</a> class that is the other contestant in
+the <a href="Contest.html">Contest</a> with this <a
+href="Contestant.html">Contestant</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="opponent-source">
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">opponent</span>
+        <span class="ruby-identifier">homeaway</span><span class="ruby-operator">==</span><span class="ruby-string">&#39;H&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contest</span>.<span class="ruby-identifier">awaycontestant</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contest</span>.<span class="ruby-identifier">homecontestant</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -163,7 +237,7 @@
 
           
           <div class="method-source-code" id="teamname-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">teamname</span>
         <span class="ruby-identifier">team_id</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">team_id</span>).<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>

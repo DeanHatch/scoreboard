@@ -73,11 +73,19 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-default_comp">::default_comp</a>
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
     <li ><a href="#method-c-statuses">::statuses</a>
     
     <li ><a href="#method-c-times">::times</a>
     
+    <li ><a href="#method-i-away_team_id">#away_team_id</a>
+    
     <li ><a href="#method-i-awaycontestant_fullname">#awaycontestant_fullname</a>
+    
+    <li ><a href="#method-i-contestant_class">#contestant_class</a>
     
     <li ><a href="#method-i-display_date">#display_date</a>
     
@@ -85,9 +93,13 @@
     
     <li ><a href="#method-i-has_score-3F">#has_score?</a>
     
+    <li ><a href="#method-i-home_team_id">#home_team_id</a>
+    
     <li ><a href="#method-i-homecontestant_fullname">#homecontestant_fullname</a>
     
     <li ><a href="#method-i-needs_score-3F">#needs_score?</a>
+    
+    <li ><a href="#method-i-new_contestants">#new_contestants</a>
     
     <li ><a href="#method-i-venue_name">#venue_name</a>
     
@@ -104,6 +116,15 @@
 
   <section class="description">
     
+<p>This is the base class which contains the single table for all inherited <a
+href="Contest.html">Contest</a> classes (Regularcontest, <a
+href="Bracketcontest.html">Bracketcontest</a>, etc.) Because this has two
+associations of the type <strong>has_one</strong> to the same other class,
+we run into a problem when the Rails attribute workings attempts to
+maintain the integrity of the associations.  This is because two
+<strong>has_one</strong> associations is not the same as one
+*has_two*association.</p>
+
   </section>
 
   
@@ -123,6 +144,90 @@
        <header>
          <h3>Public Class Methods</h3>
        </header>
+
+    
+      <div id="method-c-default_comp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_comp</span><span
+            class="method-args">(comp_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_comp-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">comp_id</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">comp_id</span>) ) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(attributes = nil, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Each <a href="Contest.html">Contest</a> (and all subclasses) must have two
+Contestants. We initialize each <a href="Contest.html">Contest</a> with two
+shell Contestants, one home <a href="Contestant.html">Contestant</a> and
+one Away <a href="Contestant.html">Contestant</a>. The class of the
+Contestants is determined by the subclass of this <a
+href="Contest.html">Contest</a> class.</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">attributes</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">attributes</span>, <span class="ruby-identifier">options</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestant_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
+                                                           <span class="ruby-value">:forfeit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                                                            <span class="ruby-identifier">homeaway</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;A&#39;</span>,
+                                                            <span class="ruby-identifier">contest_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestant_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
+                                                          <span class="ruby-value">:forfeit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                                                            <span class="ruby-identifier">homeaway</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;H&#39;</span>,
+                                                            <span class="ruby-identifier">contest_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-c-statuses" class="method-detail ">
@@ -145,9 +250,9 @@ selection choices and for validation.</p>
 
           
           <div class="method-source-code" id="statuses-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">statuses</span>
-        [<span class="ruby-string">&#39;SCHED&#39;</span>,<span class="ruby-string">&#39;PPD&#39;</span>,<span class="ruby-string">&#39;COMP&#39;</span>,<span class="ruby-string">&#39;FORFEIT&#39;</span>,<span class="ruby-string">&#39;CANCELLED&#39;</span>,<span class="ruby-string">&#39;FINAL&#39;</span>]
+        [<span class="ruby-string">&#39;SCHEDULED&#39;</span>,<span class="ruby-string">&#39;POSTPONED&#39;</span>,<span class="ruby-string">&#39;COMPLETED&#39;</span>,<span class="ruby-string">&#39;FORFEIT&#39;</span>,<span class="ruby-string">&#39;CANCELLED&#39;</span>,<span class="ruby-string">&#39;FINAL&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -179,13 +284,12 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="times-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">times</span>
         <span class="ruby-comment"># Create a collection of times throughout the day in five minute increments</span>
         <span class="ruby-comment"># This will be used to display starting time choices for schedulers</span>
-        <span class="ruby-value">5</span>.<span class="ruby-identifier">step</span>((<span class="ruby-value">24</span><span class="ruby-operator">*</span><span class="ruby-value">60</span><span class="ruby-operator">-</span><span class="ruby-value">5</span>), <span class="ruby-value">5</span>).<span class="ruby-identifier">to_a</span>.
-                                <span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> [ (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)<span class="ruby-operator">+</span>(<span class="ruby-identifier">m</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>),
-                                                     (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)<span class="ruby-operator">+</span>(<span class="ruby-identifier">m</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) ]}
+        (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">287</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> [ (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)<span class="ruby-operator">+</span>(<span class="ruby-identifier">i</span><span class="ruby-operator">*</span><span class="ruby-value">5</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)).<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>),
+                                                     <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span> ]}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -203,6 +307,40 @@ This will be used to display starting time choices for schedulers</p>
        <header>
          <h3>Public Instance Methods</h3>
        </header>
+
+    
+      <div id="method-i-away_team_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">away_team_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="Team.html">Team</a> ID of Away <a
+href="Contestant.html">Contestant</a>, if any</p>
+          
+          
+
+          
+          <div class="method-source-code" id="away_team_id-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">away_team_id</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team_id</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-awaycontestant_fullname" class="method-detail ">
@@ -224,9 +362,45 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="awaycontestant_fullname-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">awaycontestant_fullname</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">fullname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-contestant_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contestant_class</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Attach the letters &#39;ant&#39; to the end of the class name of this <a
+href="Contest.html">Contest</a> subclass object to determine the name of
+the <a href="Contestant.html">Contestant</a> subclass. Return the <a
+href="Contestant.html">Contestant</a> subclass.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="contestant_class-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contestant_class</span>()
+        <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;ant&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -257,7 +431,7 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="display_date-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_date</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%m/%d/%Y&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -290,9 +464,19 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="display_time-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_time</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%I:%M %p&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
+        <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span>
+                    <span class="ruby-comment"># before 1AM</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-value">11</span> <span class="ruby-keyword">then</span> (<span class="ruby-string">&quot;12:%02d AM&quot;</span> <span class="ruby-operator">%</span> ((<span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span>) <span class="ruby-operator">*</span> <span class="ruby-value">5</span>))
+                    <span class="ruby-comment"># from 1AM to just before Noon</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-value">12</span><span class="ruby-operator">...</span><span class="ruby-value">143</span> <span class="ruby-keyword">then</span> (<span class="ruby-string">&quot;%2d:%02d AM&quot;</span> <span class="ruby-operator">%</span> [(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">/</span> <span class="ruby-value">12</span>) , ((<span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">%</span> <span class="ruby-value">12</span>) <span class="ruby-operator">*</span> <span class="ruby-value">5</span>)])
+                    <span class="ruby-comment"># Noon</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-value">144</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;Noon&quot;</span>
+                    <span class="ruby-comment"># after Noon</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-value">145</span><span class="ruby-operator">...</span><span class="ruby-value">287</span> <span class="ruby-keyword">then</span> (<span class="ruby-string">&quot;%2d:%02d PM&quot;</span> <span class="ruby-operator">%</span> [(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">/</span> <span class="ruby-value">12</span>) <span class="ruby-operator">-</span> <span class="ruby-value">12</span> , ((<span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">%</span> <span class="ruby-value">12</span>) <span class="ruby-operator">*</span> <span class="ruby-value">5</span>)])
+                <span class="ruby-keyword">else</span> <span class="ruby-string">&quot;TBD&quot;</span>
+                <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -323,9 +507,43 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="has_score-3F-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_score?</span>
         <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-home_team_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">home_team_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="Team.html">Team</a> ID of Home <a
+href="Contestant.html">Contestant</a>, if any</p>
+          
+          
+
+          
+          <div class="method-source-code" id="home_team_id-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">home_team_id</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team_id</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -356,7 +574,7 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="homecontestant_fullname-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">homecontestant_fullname</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">fullname</span>
 <span class="ruby-keyword">end</span></pre>
@@ -389,9 +607,50 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="needs_score-3F-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">needs_score?</span>
         <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">has_score?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new_contestants" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_contestants</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new_contestants-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_contestants</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestant_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
+                                                           <span class="ruby-value">:forfeit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                                                            <span class="ruby-identifier">homeaway</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;A&#39;</span>,
+                                                            <span class="ruby-identifier">contest_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestant_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
+                                                          <span class="ruby-value">:forfeit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                                                            <span class="ruby-identifier">homeaway</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;H&#39;</span>,
+                                                            <span class="ruby-identifier">contest_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -422,7 +681,7 @@ This will be used to display starting time choices for schedulers</p>
 
           
           <div class="method-source-code" id="venue_name-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">venue_name</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">venue_id</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">venue_id</span>).<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>

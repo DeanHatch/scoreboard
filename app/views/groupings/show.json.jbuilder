@@ -1,1 +1,1 @@
-json.extract! @grouping, :id, :groupingname, :grouping_id, :created_at, :updated_at
+json.extract! @grouping, :id, :competition_id, :name, :parent_id, :created_at, :updated_at

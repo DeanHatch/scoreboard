@@ -1,10 +1,17 @@
-class GroupingsController < ApplicationController
+class GroupingsController < NestedController  # formerly ApplicationController
+
+
+  def nav_link_hash()
+	admin_link_hash()
+  end
+
   before_action :set_grouping, only: [:show, :edit, :update, :destroy]
 
   # GET /groupings
   # GET /groupings.json
   def index
-    @groupings = Grouping.all
+	#(1..14).each{|ci| Grouping.where(competition_id: ci).each{|g| g.destroy}; Competition.where(id: ci).each{|c| c.destroy}}
+    @groupings = Grouping.where(competition_id: @competition_id)
   end
 
   # GET /groupings/1
@@ -14,24 +21,29 @@ class GroupingsController < ApplicationController
 
   # GET /groupings/new
   def new
+    @groupings = Grouping.where(competition_id: @competition_id)
+      # ALL does not include the Grouping about to be created.
+      # That is why groupings is assigned first.
     @grouping = Grouping.new
-    @groupings = Grouping.all
+    @grouping.competition_id = @competition_id
   end
 
   # GET /groupings/1/edit
   def edit
-    @groupings = Grouping.all
+	  # list of groupings for drop-down
+    @groupings = Grouping.where(competition_id: @competition_id)
+    @grouping_id = @grouping.id
   end
 
   # POST /groupings
   # POST /groupings.json
   def create
     @grouping = Grouping.new(grouping_params)
-    @groupings = Grouping.all
+    @grouping.competition_id = @competition_id
 
     respond_to do |format|
       if @grouping.save
-        format.html { redirect_to @grouping, notice: 'Grouping was successfully created.' }
+        format.html { redirect_to competition_groupings_url, notice: 'Grouping was successfully created.' }
         format.json { render :show, status: :created, location: @grouping }
       else
         format.html { render :new }
@@ -45,7 +57,7 @@ class GroupingsController < ApplicationController
   def update
     respond_to do |format|
       if @grouping.update(grouping_params)
-        format.html { redirect_to @grouping, notice: 'Grouping was successfully updated.' }
+        format.html { redirect_to competition_groupings_url, notice: 'Grouping was successfully updated.' }
         format.json { render :show, status: :ok, location: @grouping }
       else
         format.html { render :edit }
@@ -59,7 +71,7 @@ class GroupingsController < ApplicationController
   def destroy
     @grouping.destroy
     respond_to do |format|
-      format.html { redirect_to groupings_url, notice: 'Grouping was successfully destroyed.' }
+      format.html { redirect_to competition_grouping_url, notice: 'Grouping was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +84,6 @@ class GroupingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grouping_params
-      params.require(:grouping).permit(:name, :parent_id)
+      params.require(:grouping).permit(:competition_id, :name, :parent_id, :bracket_grouping)
     end
 end

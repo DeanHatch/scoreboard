@@ -1,6 +1,21 @@
-<h1>Editing grouping</h1>
+<h2>Edit Grouping</h2>
+
+<% content_for :info_message do %>
+To change the name of the Grouping, simply type in it&apos;s correct name and press ENTER.
+ To Move the Grouping to within another Grouping, select the name of the new Parent Grouping.
+<br/>To manage the Teams for this Grouping, press the MANAGE button at the bottom.
+<% end %>
+
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @grouping %> |
-<%= link_to 'Back', groupings_path %>
+<hr/>
+
+<h2>Manage Teams for this Grouping</h2>
+		     
+<!-- Pass along the Competition and Grouping objects to construct the URL -->
+<%= button_to 'Manage Teams for this Grouping',
+                     competition_grouping_teams_path(@competition, @grouping),
+		     method: :get %>
+
+<%= link_to 'Back to Groupings', competition_groupings_path %>

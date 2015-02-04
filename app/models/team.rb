@@ -1,6 +1,10 @@
 class Team < ActiveRecord::Base
-	belongs_to :grouping
+		
+	belongs_to :grouping, foreign_key: "grouping_id"
 	
-	validates_associated :grouping
-	validates_presence_of :grouping_id
+	def self.default_comp(comp_id)
+		self.default_scope { (where(competition_id: comp_id) ) }
+	end
+  
+
 end

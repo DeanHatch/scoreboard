@@ -67,7 +67,17 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-fullname">#fullname</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -78,6 +88,28 @@
 
   <section class="description">
     
+<p>A <a href="Bracketcontestant.html">Bracketcontestant</a> will eventually be
+a <a href="Team.html">Team</a>. However, before a specific <a
+href="Team.html">Team</a> is identified as being the <a
+href="Contestant.html">Contestant</a> in a <a
+href="Bracketcontest.html">Bracketcontest</a>, the <a
+href="Contestant.html">Contestant</a> can be generically identified as the
+Winner or Loser of a prior <a href="Bracketcontest.html">Bracketcontest</a>
+or as the  nth (e.g. 1st, 2nd,…) Place within some <a
+href="Grouping.html">Grouping</a>.</p>
+
+<p>Additionally, a Seeding can be assigned to a <a
+href="Bracketcontestant.html">Bracketcontestant</a>.  Seeding is for
+informational purposes only.</p>
+
+<p>At any point in time, all of these identifications of a <a
+href="Bracketcontestant.html">Bracketcontestant</a>  are optional.</p>
+
+<pre>Contestanttype Rules (note that this is *distinct* from the STI *type*):
+Winner/Loser/Place are mutually exclusive.
+If Winner or Loser are specified, then a Bracketcontest must be.
+If Place is specified then both a Place and a Grouping must be.</pre>
+
   </section>
 
   
@@ -89,10 +121,76 @@
     
 
     
-
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Contestanttypes">Contestanttypes
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
     
 
     
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-fullname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fullname</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Override with additional information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fullname-source">
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
+        [(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">seeding</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;#&#39;</span> <span class="ruby-operator">+</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">seeding</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>) ,
+        <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestanttype</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Winner of&quot;</span>
+                        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;???&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Winner&quot;</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Loser of&quot;</span>
+                        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;???&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Loser&quot;</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Place&quot;</span> 
+                        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">place</span>.<span class="ruby-identifier">inspect</span>()) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Place in &quot;</span> <span class="ruby-comment">#+ Grouping.find(self.grouping_id).name</span>
+                <span class="ruby-keyword">else</span> 
+                        <span class="ruby-keyword">nil</span>
+                <span class="ruby-keyword">end</span> ,
+         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teamname</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Game Date:</strong>
+  <strong>Gamedate:</strong>
   <%= @validdate.gamedate %>
 </p>
 
+<p>
+  <strong>Competition:</strong>
+  <%= @validdate.competition_id %>
+</p>
 
-
-<%= link_to 'Ok', venues_path %>
+<%= link_to 'Edit', edit_validdate_path(@validdate) %> |
+<%= link_to 'Back', validdates_path %>

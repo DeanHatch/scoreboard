@@ -1,13 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2014-12-12
-  time: 2014-12-12 19:32:41
+  competition_id: 1
+  type: 
+  date: 2015-01-25
+  time: 1
   venue_id: 1
   status: MyString
+  homecontestant_id: 1
+  awaycontestant_id: 1
 
 two:
-  date: 2014-12-12
-  time: 2014-12-12 19:32:41
+  competition_id: 1
+  type: 
+  date: 2015-01-25
+  time: 1
   venue_id: 1
   status: MyString
+  homecontestant_id: 1
+  awaycontestant_id: 1

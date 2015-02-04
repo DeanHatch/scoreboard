@@ -18,7 +18,7 @@ class CompetitionsControllerTest < ActionController::TestCase
 
   test "should create competition" do
     assert_difference('Competition.count') do
-      post :create, competition: { drawpoints: @competition.drawpoints, forfeitlossscore: @competition.forfeitlossscore, forfeitpoints: @competition.forfeitpoints, forfeitwinscore: @competition.forfeitwinscore, keepscores: @competition.keepscores, losspoints: @competition.losspoints, name: @competition.name, poolgroupseason: @competition.poolgroupseason, sport: @competition.sport, variety: @competition.variety, winpoints: @competition.winpoints }
+      post :create, competition: { drawpoints: @competition.drawpoints, forfeitlossscore: @competition.forfeitlossscore, forfeitpoints: @competition.forfeitpoints, forfeitwinscore: @competition.forfeitwinscore, kepscores: @competition.kepscores, losspoints: @competition.losspoints, name: @competition.name, playoffbracket: @competition.playoffbracket, playoffbracketlabel: @competition.playoffbracketlabel, poolgroupseason: @competition.poolgroupseason, poolgroupseasonlabel: @competition.poolgroupseasonlabel, sport: @competition.sport, variety: @competition.variety, winpoints: @competition.winpoints }
     end
 
     assert_redirected_to competition_path(assigns(:competition))
@@ -35,7 +35,7 @@ class CompetitionsControllerTest < ActionController::TestCase
   end
 
   test "should update competition" do
-    patch :update, id: @competition, competition: { drawpoints: @competition.drawpoints, forfeitlossscore: @competition.forfeitlossscore, forfeitpoints: @competition.forfeitpoints, forfeitwinscore: @competition.forfeitwinscore, keepscores: @competition.keepscores, losspoints: @competition.losspoints, name: @competition.name, poolgroupseason: @competition.poolgroupseason, sport: @competition.sport, variety: @competition.variety, winpoints: @competition.winpoints }
+    patch :update, id: @competition, competition: { drawpoints: @competition.drawpoints, forfeitlossscore: @competition.forfeitlossscore, forfeitpoints: @competition.forfeitpoints, forfeitwinscore: @competition.forfeitwinscore, kepscores: @competition.kepscores, losspoints: @competition.losspoints, name: @competition.name, playoffbracket: @competition.playoffbracket, playoffbracketlabel: @competition.playoffbracketlabel, poolgroupseason: @competition.poolgroupseason, poolgroupseasonlabel: @competition.poolgroupseasonlabel, sport: @competition.sport, variety: @competition.variety, winpoints: @competition.winpoints }
     assert_redirected_to competition_path(assigns(:competition))
   end
 

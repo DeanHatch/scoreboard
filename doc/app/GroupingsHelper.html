@@ -60,7 +60,17 @@
     
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-nested_groupings">#nested_groupings</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -86,6 +96,66 @@
     
 
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-nested_groupings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nested_groupings</span><span
+            class="method-args">(grp_level, grouping)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Produce an Unordered List of Links for Navigation. This may be called
+recursively.</p>
+
+<pre>* ul_opts = HTML options for UL tag
+* li_opts = HTML options for LI tags
+* link_hsh = hash where key is hyperlink text and value is hyperlink target</pre>
+
+<p>Note that if the hash value is a Hash, then this method will recurse for an
+indented list. Return this <a href="Grouping.html">Grouping</a> as a LI
+(listitem) followed by any subgroupings below it as an UnorderedList.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nested_groupings-source">
+            <pre><span class="ruby-comment"># File app/helpers/groupings_helper.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nested_groupings</span>(<span class="ruby-identifier">grp_level</span>, <span class="ruby-identifier">grouping</span>)
+        <span class="ruby-identifier">ul_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav1&quot;</span>}
+        <span class="ruby-identifier">li_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;nav level#{grp_level}&quot;</span>}
+        <span class="ruby-identifier">link_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>}  <span class="ruby-comment"># , target: &quot;_blank&quot;}</span>
+        <span class="ruby-identifier">subgrpitems</span> = <span class="ruby-string">&#39;&#39;</span>
+        <span class="ruby-identifier">my_link_path</span> = <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">edit_competition_grouping_path</span>(<span class="ruby-ivar">@competition</span>, <span class="ruby-identifier">grouping</span>))
+        <span class="ruby-identifier">itemval</span> = <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">my_link_path</span>, <span class="ruby-identifier">link_opts</span>)  <span class="ruby-operator">:</span>  <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-identifier">itemval</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39; (This is a Bracket Grouping)&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">bracket_grouping</span>
+        <span class="ruby-identifier">itemval</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:em</span>, (<span class="ruby-string">&#39; - Teams: &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;, &#39;</span>)))) <span class="ruby-keyword">if</span> <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">has_teams?</span>
+        <span class="ruby-identifier">grpitem</span> = <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:li</span>, <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">itemval</span>), <span class="ruby-identifier">li_opts</span>))
+        <span class="ruby-identifier">subgrpitems</span> = <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">sbgrp</span><span class="ruby-operator">|</span> <span class="ruby-identifier">nested_groupings</span>(<span class="ruby-identifier">grp_level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">sbgrp</span>) }.<span class="ruby-identifier">join</span> )
+        <span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">has_subgroupings?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">grpitem</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:ul</span>, <span class="ruby-identifier">subgrpitems</span>, <span class="ruby-identifier">ul_opts</span>)) <span class="ruby-operator">:</span> <span class="ruby-identifier">grpitem</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

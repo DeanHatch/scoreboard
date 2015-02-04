@@ -19,13 +19,13 @@
     <%= f.label :sport %><br>
     <!-- <%= f.text_field :sport %> -->
     <%= f.select :sport,
-           options_for_select(@sports.collect { |s| [s[0].humanize, s[0]] },
+           options_for_select(Competition.sports.collect { |s| [s[0].humanize, s[0]] },
              selected: @competition.sport), {} %><br>
   </div>
   <div class="field">
     <%= f.label 'Type of competition' %><br>
     <%= collection_radio_buttons(:competition, :variety,
-	                  @varieties.collect { |s| [s[0], s[0].humanize] }, :first, :last) %>
+	                  Competition.varieties.collect { |s| [s[0], s[0].humanize] }, :first, :last) %>
   </div>
   <div class="field">
     <%= f.label 'Pool, group, or season stage (check if it will be used)' %><br>
@@ -34,7 +34,7 @@
   <div class="field">
     <%= f.label :poolgroupseason %><br>
     <%= f.select :poolgroupseasonlabel,
-           options_for_select(@poolgroupseasonlabels.collect { |s| [s.humanize, s] },
+           options_for_select(Competition.poolgroupseasonlabels.collect { |s| [s.humanize, s] },
              selected: @competition.poolgroupseasonlabel), {} %><br>
   </div>
   <div class="field">
@@ -43,7 +43,7 @@
   <div class="field">
     <%= f.label :playoffbracket %><br>
     <%= f.select :playoffbracketlabel,
-           options_for_select(@playoffbracketlabels.collect { |s| [s.humanize, s] },
+           options_for_select(Competition.playoffbracketlabels.collect { |s| [s.humanize, s] },
              selected: @competition.playoffbracketlabel), {} %><br>
   </div>
   </div>

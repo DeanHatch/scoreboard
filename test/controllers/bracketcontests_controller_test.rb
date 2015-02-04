@@ -18,7 +18,7 @@ class BracketcontestsControllerTest < ActionController::TestCase
 
   test "should create bracketcontest" do
     assert_difference('Bracketcontest.count') do
-      post :create, bracketcontest: { date: @bracketcontest.date, status: @bracketcontest.status, time: @bracketcontest.time, venue_id: @bracketcontest.venue_id }
+      post :create, bracketcontest: {  }
     end
 
     assert_redirected_to bracketcontest_path(assigns(:bracketcontest))
@@ -35,7 +35,7 @@ class BracketcontestsControllerTest < ActionController::TestCase
   end
 
   test "should update bracketcontest" do
-    patch :update, id: @bracketcontest, bracketcontest: { date: @bracketcontest.date, status: @bracketcontest.status, time: @bracketcontest.time, venue_id: @bracketcontest.venue_id }
+    patch :update, id: @bracketcontest, bracketcontest: {  }
     assert_redirected_to bracketcontest_path(assigns(:bracketcontest))
   end
 

@@ -1,4 +1,4 @@
-<%= form_for(@regularcontest) do |f| %>
+<%= form_for([@competition, @regularcontest]) do |f| %>
   <% if @regularcontest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@regularcontest.errors.count, "error") %> prohibited this regularcontest from being saved:</h2>
@@ -44,12 +44,20 @@
   
   <fieldset>
    <legend>Home</legend>
-   <%= @homecontestant.teamname %>
+   <%= @homecontestant.fullname %>
+   <% f.fields_for :homecontestant, @homecontestant do |home_form| %>
+     <%= home_form.label :name %>
+     <%= home_form.text_field :homeaway %>
+    <% end %><br>
+    <%= f.select :home_team_id,
+		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		                                selected: nil), 
+		    {prompt: 'TBD'} %>
   </fieldset>
 
   <fieldset>
    <legend>Visitor</legend>
-   <%= @awaycontestant.teamname %>
+   <%= @awaycontestant.fullname %>
   </fieldset>
 
   <div class="actions">

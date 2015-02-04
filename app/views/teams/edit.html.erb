@@ -1,6 +1,12 @@
 <h1>Editing team</h1>
 
-<%= render 'form' %>
+<%= render 'teamform' %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%= button_to 'Remove This Team',
+                      competition_grouping_team_path,
+		      method: :delete,
+		      competition_id: @competition_id,
+		      grouping_id: @grouping_id,
+		      id: @team.id %>
+
+<%= link_to 'Back to Team List', competition_grouping_teams_path %>

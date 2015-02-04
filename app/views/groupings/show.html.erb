@@ -1,11 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-  <% gh = @grouping.hierarchy() ; fragm = ''%>
-  <% gh.each_index {|g| fragm << content_tag(('h'+((g+1).to_s)).to_sym, gh[g]).html_safe } %>
-  <%= fragm.html_safe %>
+<p>
+  <strong>Competition:</strong>
+  <%= @grouping.competition_id %>
+</p>
 
-  <%= content_tag :ul, 'Teams:'  %>
-  <%= content_tag :ul do Team.where(grouping: @grouping).collect {|t| content_tag :li, t.name }.join.html_safe  end %>
+<p>
+  <strong>Name:</strong>
+  <%= @grouping.name %>
+</p>
 
-<%= link_to 'Edit', edit_grouping_path(@grouping) %> |
-<%= link_to 'Back', groupings_path %>
+<p>
+  <strong>Parent:</strong>
+  <%= @grouping.parent_id %>
+</p>
+
+<%= link_to 'Back', competition_groupings_path %>

@@ -3,13 +3,13 @@
   <div class="field">
     <%= label_tag :grouping %><br>
     <%= select_tag :grouping_id,
-		      options_for_select(Grouping.all.select{|g| g.hasTeams?}.
+		      options_for_select(@groupings.select{|g| g.has_teams?}.
 		                                                collect {|g| [ g.hierarchy.join(' - '), g.id ]}) %>
   </div>
   <div class="field">
     <%= label_tag :venue %><br>
     <%= select_tag :venue_id,
-			options_for_select(Venue.all.collect {|v| [ v.name, v.id ] }),
+			options_for_select(@venues.collect {|v| [ v.name, v.id ] }),
 			prompt: "TBD" %>
   </div>
   

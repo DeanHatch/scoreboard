@@ -1,10 +1,10 @@
-class ValiddatesController < ApplicationController
+class ValiddatesController < NestedController # ApplicationController
   before_action :set_validdate, only: [:show, :edit, :update, :destroy]
 
   # GET /validdates
   # GET /validdates.json
   def index
-    @validdates = Validdate.all
+    @validdates = Validdate.where(competition_id: @competition_id)
   end
 
   # GET /validdates/1
@@ -25,10 +25,12 @@ class ValiddatesController < ApplicationController
   # POST /validdates.json
   def create
     @validdate = Validdate.new(validdate_params)
+    @validdate.competition_id = @competition_id
 
     respond_to do |format|
+	      # Note that we return to Venues Controller
       if @validdate.save
-        format.html { redirect_to @validdate, notice: 'Date was successfully added.' }
+        format.html { redirect_to competition_venues_url, notice: 'Validdate was successfully created.' }
         format.json { render :show, status: :created, location: @validdate }
       else
         format.html { render :new }
@@ -41,8 +43,9 @@ class ValiddatesController < ApplicationController
   # PATCH/PUT /validdates/1.json
   def update
     respond_to do |format|
+	      # Note that we return to Venues Controller on successful update
       if @validdate.update(validdate_params)
-        format.html { redirect_to @validdate, notice: 'Validdate was successfully updated.' }
+        format.html { redirect_to competition_venues_url, notice: 'Validdate was successfully updated.' }
         format.json { render :show, status: :ok, location: @validdate }
       else
         format.html { render :edit }
@@ -56,7 +59,8 @@ class ValiddatesController < ApplicationController
   def destroy
     @validdate.destroy
     respond_to do |format|
-      format.html { redirect_to validdates_url, notice: 'Validdate was successfully destroyed.' }
+	      # Note that we return to Venues Controller on successful DELETE
+      format.html { redirect_to competition_venues_url, notice: 'Validdate was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +73,6 @@ class ValiddatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def validdate_params
-      params.require(:validdate).permit(:gamedate)
+      params.require(:validdate).permit(:gamedate, :competition_id)
     end
 end

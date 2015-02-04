@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Competition:</strong>
+  <%= @team.competition_id %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @team.name %>
 </p>
@@ -10,5 +15,5 @@
   <%= @team.grouping_id %>
 </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Edit', edit_competition_team_path(@team) %> |
+<%= link_to 'Back', competition_teams_path %>

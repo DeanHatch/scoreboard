@@ -1,0 +1,19 @@
+<table class="bracket">
+ <tr>
+   <td class="hometeam">
+     <%= bracketcontest.homecontestant.fullname %></td>
+  </tr>
+ <tr>
+   <td class="buml">
+     <%= bracketcontest.name %><br/></td>
+   <td class="winner">winner</td>
+  </tr>
+ <tr>
+   <td class="blml"><%= bracketcontest.display_date %>
+                           <%= bracketcontest.display_time %>
+			   <%= bracketcontest.venue_name %></td>
+  </tr>
+ <tr>
+   <td class="awayteam"><%= bracketcontest.awaycontestant.fullname %></td>
+  </tr>
+</table>

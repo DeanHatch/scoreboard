@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111022712) do
+ActiveRecord::Schema.define(version: 20150204160037) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
     t.integer  "sport"
     t.integer  "variety"
     t.boolean  "poolgroupseason"
-    t.boolean  "keepscores"
+    t.string   "poolgroupseasonlabel"
+    t.boolean  "playoffbracket"
+    t.string   "playoffbracketlabel"
+    t.boolean  "keepscores",           default: true
     t.integer  "winpoints"
     t.integer  "drawpoints"
     t.integer  "losspoints"
@@ -27,53 +30,52 @@ ActiveRecord::Schema.define(version: 20150111022712) do
     t.integer  "forfeitlossscore"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "playoffbracket"
-    t.string   "poolgroupseasonlabel"
-    t.string   "playoffbracketlabel"
   end
 
   create_table "contestants", force: true do |t|
+    t.integer  "competition_id"
+    t.string   "type"
     t.integer  "contest_id"
     t.string   "contest_type"
     t.string   "homeaway"
     t.integer  "team_id"
     t.integer  "score"
     t.boolean  "forfeit"
-    t.string   "contestanttype"
+    t.string   "contestantcode"
     t.integer  "seeding"
     t.integer  "bracketcontest_id"
     t.integer  "grouping_id"
     t.integer  "place"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
   end
 
-  add_index "contestants", ["bracketcontest_id"], name: "index_contestants_on_bracketcontest_id"
-  add_index "contestants", ["contest_id", "contest_type"], name: "index_contestants_on_contest_id_and_contest_type"
-  add_index "contestants", ["grouping_id"], name: "index_contestants_on_grouping_id"
-  add_index "contestants", ["team_id"], name: "index_contestants_on_team_id"
-
   create_table "contests", force: true do |t|
+    t.integer  "competition_id"
+    t.string   "type"
     t.date     "date"
-    t.time     "time"
+    t.integer  "time"
     t.integer  "venue_id"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "homecontestant_id"
     t.integer  "awaycontestant_id"
-    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bracket_id"
+    t.string   "name"
   end
 
   create_table "groupings", force: true do |t|
+    t.integer  "competition_id"
     t.string   "name"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id"
+    t.boolean  "bracket_grouping", default: false, null: false
   end
 
   create_table "teams", force: true do |t|
+    t.integer  "competition_id"
     t.string   "name"
     t.integer  "grouping_id"
     t.datetime "created_at"
@@ -82,12 +84,19 @@ ActiveRecord::Schema.define(version: 20150111022712) do
 
   create_table "validdates", force: true do |t|
     t.date     "gamedate"
+    t.integer  "competition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "venues", force: true do |t|
     t.string   "name"
+    t.integer  "competition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "welcomes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :competition_id %><br>
+    <%= f.number_field :competition_id %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-
   <div class="field">
-    <%= f.label :grouping %><br>
-    <%= f.select :grouping_id,
-           options_for_select(@groupings.collect { |g| [g.name.humanize, g.id] },
-             selected: @team.grouping_id), {} %>
+    <%= f.label :grouping_id %><br>
+    <%= f.number_field :grouping_id %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>

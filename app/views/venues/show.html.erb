@@ -5,4 +5,9 @@
   <%= @venue.name %>
 </p>
 
-<%= link_to 'Ok', venues_path %>
+<p>
+  <strong>Competition:</strong>
+  <%= @venue.competition_id %>
+</p>
+
+<%= link_to 'OK', competition_venues_path %>

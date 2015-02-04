@@ -15,18 +15,10 @@ class CompetitionsController < ApplicationController
   # GET /competitions/new
   def new
     @competition = Competition.new
-    @sports = Competition.sports
-    @varieties = Competition.varieties
-    @poolgroupseasonlabels = Competition.poolgroupseasonlabels
-    @playoffbracketlabels = Competition.playoffbracketlabels
   end
 
   # GET /competitions/1/edit
   def edit
-    @sports = Competition.sports
-    @varieties = Competition.varieties
-    @poolgroupseasonlabels = Competition.poolgroupseasonlabels
-    @playoffbracketlabels = Competition.playoffbracketlabels
   end
 
   # POST /competitions
@@ -36,7 +28,14 @@ class CompetitionsController < ApplicationController
 
     respond_to do |format|
       if @competition.save
-        format.html { redirect_to @competition, notice: 'Competition was successfully created.' }
+	      # Also create a root Grouping object and save it.
+	      # Note that, being the root Grouping, it will not have a parent Grouping.
+	@comp = params[:competition]
+	@competition_id = @competition.id
+	@name = @comp[:name] + ' ' + @comp[:variety].humanize
+        Grouping.new(competition_id: @competition_id, name: @name).save(validate: false)
+	format.html { redirect_to @competition,
+			notice: "Competition was successfully created." }
         format.json { render :show, status: :created, location: @competition }
       else
         format.html { render :new }
@@ -77,6 +76,6 @@ class CompetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
-      params.require(:competition).permit(:name, :sport, :variety, :poolgroupseason, :keepscores, :winpoints, :drawpoints, :losspoints, :forfeitpoints, :forfeitwinscore, :forfeitlossscore)
+      params.require(:competition).permit(:name, :sport, :variety, :poolgroupseason, :poolgroupseasonlabel, :playoffbracket, :playoffbracketlabel, :keepscores, :winpoints, :drawpoints, :losspoints, :forfeitpoints, :forfeitwinscore, :forfeitlossscore)
     end
 end

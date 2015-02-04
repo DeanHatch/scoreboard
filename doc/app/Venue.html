@@ -73,7 +73,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-removeable-3F">#removeable?</a>
+    <li ><a href="#method-c-default_comp">::default_comp</a>
     
   </ul>
 </div>
@@ -103,17 +103,17 @@
     
 
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Instance Methods</h3>
+         <h3>Public Class Methods</h3>
        </header>
 
     
-      <div id="method-i-removeable-3F" class="method-detail ">
+      <div id="method-c-default_comp" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">removeable?</span><span
-            class="method-args">()</span>
+          <span class="method-name">default_comp</span><span
+            class="method-args">(comp_id)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -122,16 +122,15 @@
 
         <div class="method-description">
           
-          <p>Return true iff there are no Contests scheduled nor any already completed
-at this location.</p>
+          
           
           
 
           
-          <div class="method-source-code" id="removeable-3F-source">
-            <pre><span class="ruby-comment"># File app/models/venue.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">removeable?</span>()
-        <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">venue</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>).<span class="ruby-identifier">count</span><span class="ruby-operator">==</span><span class="ruby-value">0</span>
+          <div class="method-source-code" id="default_comp-source">
+            <pre><span class="ruby-comment"># File app/models/venue.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">comp_id</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">comp_id</span>) ) }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
