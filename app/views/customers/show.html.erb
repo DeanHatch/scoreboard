@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @customer.userid %>
+</p>
+
+<p>
+  <strong>Hashed password:</strong>
+  <%= @customer.hashed_password %>
+</p>
+
+<p>
+  <strong>Salt:</strong>
+  <%= @customer.salt %>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

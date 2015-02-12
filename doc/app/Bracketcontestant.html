@@ -73,6 +73,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-contestanttype">#contestanttype</a>
+    
     <li ><a href="#method-i-fullname">#fullname</a>
     
   </ul>
@@ -121,20 +123,6 @@ If Place is specified then both a Place and a Grouping must be.</pre>
     
 
     
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
-      
-        <dt id="Contestanttypes">Contestanttypes
-        
-        <dd>
-        
-      
-      </dl>
-    </section>
-    
 
     
 
@@ -143,6 +131,53 @@ If Place is specified then both a Place and a Grouping must be.</pre>
        <header>
          <h3>Public Instance Methods</h3>
        </header>
+
+    
+      <div id="method-i-contestanttype" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contestanttype</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Override with additional information.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="contestanttype-source">
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contestanttype</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>[<span class="ruby-value">0</span>]
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;W&quot;</span>
+                        <span class="ruby-regexp">/W(\d+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>
+                        <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>(<span class="ruby-value">1</span>)).<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Winner&quot;</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;L&quot;</span>
+                        <span class="ruby-regexp">/L(\d+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>
+                        <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>(<span class="ruby-value">1</span>)).<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Loser&quot;</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;G&quot;</span> 
+                        <span class="ruby-regexp">/G(\d+)P(\d+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>
+                        <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">ordinalize</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39; Place &#39;</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>(<span class="ruby-value">1</span>)).<span class="ruby-identifier">name</span>
+                <span class="ruby-keyword">else</span> 
+                        <span class="ruby-keyword">nil</span>
+                <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-fullname" class="method-detail ">
@@ -164,19 +199,10 @@ If Place is specified then both a Place and a Grouping must be.</pre>
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
         [(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">seeding</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;#&#39;</span> <span class="ruby-operator">+</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">seeding</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>) ,
-        <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestanttype</span>
-                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Winner of&quot;</span>
-                        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;???&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Winner&quot;</span>
-                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Loser of&quot;</span>
-                        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;???&#39;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Loser&quot;</span>
-                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Place&quot;</span> 
-                        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">place</span>.<span class="ruby-identifier">inspect</span>()) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; Place in &quot;</span> <span class="ruby-comment">#+ Grouping.find(self.grouping_id).name</span>
-                <span class="ruby-keyword">else</span> 
-                        <span class="ruby-keyword">nil</span>
-                <span class="ruby-keyword">end</span> ,
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestanttype</span>,
          <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teamname</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>

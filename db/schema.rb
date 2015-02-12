@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204160037) do
+ActiveRecord::Schema.define(version: 20150210020234) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 20150204160037) do
     t.datetime "updated_at"
     t.integer  "bracket_id"
     t.string   "name"
+  end
+
+  create_table "customers", force: true do |t|
+    t.string   "userid"
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "groupings", force: true do |t|

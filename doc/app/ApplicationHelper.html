@@ -198,9 +198,9 @@ Navigation.</p>
 
           
           <div class="method-source-code" id="navPanel-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">navPanel</span>()
-        <span class="ruby-identifier">nav_panel</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">nav_link_hash</span>)
+        <span class="ruby-identifier">nav_panel</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">nav_link_hash</span>, <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">nav_link_opts</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -216,7 +216,7 @@ Navigation.</p>
         
         <div class="method-heading">
           <span class="method-name">nav_panel</span><span
-            class="method-args">(nav_level, link_hsh )</span>
+            class="method-args">(nav_level, link_hsh, link_opts = {class: "nav", target: "_blank"} )</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -241,13 +241,14 @@ indented list.</p>
           <div class="method-source-code" id="nav_panel-source">
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_panel</span>(<span class="ruby-identifier">nav_level</span>,
-                      <span class="ruby-identifier">link_hsh</span> )
+                      <span class="ruby-identifier">link_hsh</span>,
+                      <span class="ruby-identifier">link_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>} )
         <span class="ruby-identifier">navitems</span> = <span class="ruby-string">&#39;&#39;</span>
         <span class="ruby-identifier">ul_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav1&quot;</span>}
         <span class="ruby-identifier">li_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;nav level#{nav_level}&quot;</span>}
-        <span class="ruby-identifier">link_opts</span> = {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>}
+        <span class="ruby-comment">#link_opts = {class: &quot;nav&quot;, target: &quot;_blank&quot;}</span>
         <span class="ruby-identifier">link_hsh</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">lbl</span>, <span class="ruby-identifier">trgt</span><span class="ruby-operator">|</span> <span class="ruby-identifier">trgt</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Hash&quot;</span> <span class="ruby-operator">?</span> 
-                                              <span class="ruby-identifier">navitems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nav_panel</span>(<span class="ruby-identifier">nav_level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">trgt</span>) <span class="ruby-operator">:</span>
+                                              <span class="ruby-identifier">navitems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nav_panel</span>(<span class="ruby-identifier">nav_level</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">trgt</span>, <span class="ruby-identifier">link_opts</span>) <span class="ruby-operator">:</span>
                                               <span class="ruby-identifier">navitems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:li</span>,
                                                                                 <span class="ruby-identifier">link_to</span>( <span class="ruby-identifier">lbl</span>, <span class="ruby-identifier">trgt</span>, <span class="ruby-identifier">link_opts</span>),
                                                                                 <span class="ruby-identifier">li_opts</span>)

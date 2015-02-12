@@ -2,11 +2,29 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
   
+  # Link options hash that opens actions in new tab.
+  def new_tab_opts
+	  {class: "nav", target: "_blank"}
+  end
+  # Link options hash that opens actions in same tab.
+  def same_tab_opts
+	  {class: "nav"}
+  end
+
+  # Default link options hash. Overridde by controllers for this application only if needed.
+  def nav_link_opts()
+	  new_tab_opts()
+  end
+
+
+
   # Default link hash. Should be overridden by controllers for this application.
   def nav_link_hash()
 	  {} # display_link_hash()
   end
+	  
   
   # Link hash for the public display portion of this application.
   # The Display Controller should override this and provide its own navigation link hash.

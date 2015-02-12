@@ -1,8 +1,23 @@
 Rails.application.routes.draw do
 
+
   root 'welcome#index'
   get 'welcome/index'
 
+  #get 'customer', to: 'customers#show'
+  #get 'customer', to: 'customer#index'
+  #get 'customer/login'
+  #get 'customer/logout'
+  #get 'customer/index'
+  
+  resource :customer do
+	  get 'login', on: :member
+	  post 'login', on: :member
+	  get 'greet', on: :member
+	  get 'logout', on: :member
+  end
+  resources :customers
+  
   resources :competitions do
 	  resources :venues
 	  resources :validdates

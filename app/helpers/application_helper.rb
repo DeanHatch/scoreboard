@@ -21,13 +21,14 @@ module ApplicationHelper
   # Note that if the hash value is a Hash, then this method will recurse for
   # an indented list.
   def nav_panel(nav_level,
-			link_hsh )
+			link_hsh,
+	                link_opts = {class: "nav", target: "_blank"} )
 	  navitems = ''
 	  ul_opts = {class: "nav1"}
 	  li_opts = {class: "nav level#{nav_level}"}
-	  link_opts = {class: "nav", target: "_blank"}
+	  #link_opts = {class: "nav", target: "_blank"}
 	  link_hsh.each { |lbl, trgt| trgt.class.name == "Hash" ? 
-						navitems << nav_panel(nav_level + 1, trgt) :
+						navitems << nav_panel(nav_level + 1, trgt, link_opts) :
 						navitems << content_tag(:li,
 										  link_to( lbl, trgt, link_opts),
 										  li_opts)
@@ -38,7 +39,7 @@ module ApplicationHelper
 
   # Start the process to produce a (nested) Unordered List of Links for Navigation.
   def navPanel()
-	  nav_panel(1, controller.nav_link_hash)
+	  nav_panel(1, controller.nav_link_hash, controller.nav_link_opts)
   end
 
 end

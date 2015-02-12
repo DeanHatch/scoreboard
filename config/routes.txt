@@ -1,6 +1,25 @@
                                      Prefix Verb   URI Pattern                                                                               Controller#Action
                                        root GET    /                                                                                         welcome#index
                               welcome_index GET    /welcome/index(.:format)                                                                  welcome#index
+                             login_customer GET    /customer/login(.:format)                                                                 customers#login
+                                            POST   /customer/login(.:format)                                                                 customers#login
+                             greet_customer GET    /customer/greet(.:format)                                                                 customers#greet
+                            logout_customer GET    /customer/logout(.:format)                                                                customers#logout
+                                   customer POST   /customer(.:format)                                                                       customers#create
+                               new_customer GET    /customer/new(.:format)                                                                   customers#new
+                              edit_customer GET    /customer/edit(.:format)                                                                  customers#edit
+                                            GET    /customer(.:format)                                                                       customers#show
+                                            PATCH  /customer(.:format)                                                                       customers#update
+                                            PUT    /customer(.:format)                                                                       customers#update
+                                            DELETE /customer(.:format)                                                                       customers#destroy
+                                  customers GET    /customers(.:format)                                                                      customers#index
+                                            POST   /customers(.:format)                                                                      customers#create
+                                            GET    /customers/new(.:format)                                                                  customers#new
+                                            GET    /customers/:id/edit(.:format)                                                             customers#edit
+                                            GET    /customers/:id(.:format)                                                                  customers#show
+                                            PATCH  /customers/:id(.:format)                                                                  customers#update
+                                            PUT    /customers/:id(.:format)                                                                  customers#update
+                                            DELETE /customers/:id(.:format)                                                                  customers#destroy
                          competition_venues GET    /competitions/:competition_id/venues(.:format)                                            venues#index
                                             POST   /competitions/:competition_id/venues(.:format)                                            venues#create
                       new_competition_venue GET    /competitions/:competition_id/venues/new(.:format)                                        venues#new

@@ -122,6 +122,9 @@
    div.sideMatter { width: 240px;
                    position: absolute;
                        top: 200px;
+                    border: solid;
+              border-width: 1px;
+              border-color: red;
                    display: block; }
 
    a.nav { color: black;
