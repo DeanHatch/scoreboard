@@ -1,2 +1,88 @@
-<h1><%= @team ? @team.name : 'No Team Selected' %></h1>
-<pre><%= params.inspect %></pre>
+<h1><%= @team.name %></h1>
+<h2><%= @team.grouping.fullname %></h2>
+
+<h3>Standings</h3>
+<table class="standings">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Whatever else</th>
+    </tr>
+  </thead>
+
+ <tbody>
+      <!-- Show sorted, unique Teams -->
+    <% @groupingteams.sort{ |a,b| a.name <=> b.name }.each do |team| %>
+      <tr>
+        <td><%= link_to team.name, rustydog_path(@competition.id, team.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+<%= raw(Contest.all.collect{|c| [c.type, c.id, c.homecontestant, c.awaycontestant]}.inspect()) %>
+</p>
+
+<h3>Scores</h3>
+<table class="schedule">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Team Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Location</th>
+      <th>Opponent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <!-- Show sorted, unique Teams -->
+    <!-- % @regularcontestants.each do |rc| cntst = Regularcontest.find(rc.contest_id) % -->
+    <% @contestants.each do |c| cntst = Contest.find(c.contest_id) %>
+      <tr>
+        <td><%= cntst.status %><%= cntst.type %></td>
+        <td><%= c.fullname %></td>
+        <td><%= cntst.display_date %></td>
+        <td><%= cntst.display_time %></td>
+        <td><%= cntst.venue_name %></td>
+        <td><%= c.homeaway=='H' ? "vs" : "at" %>
+	      <%= c.opponent.fullname %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<h3>Schedule</h3>
+<table class="schedule">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Team Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Location</th>
+      <th>Opponent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <!-- Show sorted, unique Teams -->
+    <% @contestants.each do |c| cntst = Contest.find(c.contest_id) %>
+      <tr>
+        <td><%= cntst.status %></td>
+        <td><%= c.fullname %></td>
+        <td><%= cntst.display_date %></td>
+        <td><%= cntst.display_time %></td>
+        <td><%= cntst.venue_name %></td>
+        <td><%= c.homeaway=='H' ? "vs" : "at" %>
+	      <%= c.opponent.fullname %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

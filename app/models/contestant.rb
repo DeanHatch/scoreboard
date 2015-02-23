@@ -7,6 +7,10 @@ class Contestant < ActiveRecord::Base
 	end
 	
 	
+	def self.default_comp(comp_id)
+		self.default_scope { (where(competition_id: comp_id) ) }
+	end
+	
 	 # Returns instance of a descendant of Contestant class that is the
 	 # other contestant in the Contest with this Contestant.
 	def opponent

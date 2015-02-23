@@ -71,7 +71,7 @@ class BracketcontestsController < BracketsController  # formerly  NestedControll
 
     respond_to do |format|
       if @bracketcontest.save
-	#save_contestants()
+	save_contestants()
 	format.html { redirect_to  edit_competition_bracket_bracketcontest_path(@competition, @bracket, @bracketcontest), notice: 'Bracketcontest was successfully created.' }
         format.json { render :show, status: :created, location: @bracketcontest }
       else

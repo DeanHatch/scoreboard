@@ -1,3 +1,5 @@
+require 'navitem.rb'
+
 module ApplicationHelper
 
   def html_headings_for(arr)
@@ -20,17 +22,17 @@ module ApplicationHelper
   #  * link_hsh = hash where key is hyperlink text and value is hyperlink target
   # Note that if the hash value is a Hash, then this method will recurse for
   # an indented list.
-  def nav_panel(nav_level,
-			link_hsh,
-	                link_opts = {class: "nav", target: "_blank"} )
+  def nav_Panel(nav_level,
+			link_array )
 	  navitems = ''
+	  # We have three sets of options: list, list-item, and link.
 	  ul_opts = {class: "nav1"}
 	  li_opts = {class: "nav level#{nav_level}"}
-	  #link_opts = {class: "nav", target: "_blank"}
-	  link_hsh.each { |lbl, trgt| trgt.class.name == "Hash" ? 
-						navitems << nav_panel(nav_level + 1, trgt, link_opts) :
+	  link_array.each { |node| link_opts = {class: node.css_class, target: node.target}
+					    node.class.name == "Array" ? 
+						navitems << nav_Panel(nav_level + 1, node) :
 						navitems << content_tag(:li,
-										  link_to( lbl, trgt, link_opts),
+										  link_to( node.href, node.text, link_opts),
 										  li_opts)
 						}
 	  raw(content_tag(:ul, raw(navitems), ul_opts))
@@ -39,7 +41,10 @@ module ApplicationHelper
 
   # Start the process to produce a (nested) Unordered List of Links for Navigation.
   def navPanel()
-	  nav_panel(1, controller.nav_link_hash, controller.nav_link_opts)
+	  nav_Panel(1, controller.nav_link_array)
   end
-
+  
+  def instructions()
+  end
+  
 end

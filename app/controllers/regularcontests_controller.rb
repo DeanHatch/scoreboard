@@ -146,7 +146,7 @@ class RegularcontestsController < NestedController  # formerly  ApplicationContr
 						if ! arr[jth].nil? and ! arr[-1-jth].nil? 
 							@regularcontest = Regularcontest.new(roundrobin_params)
 							@regularcontest.competition_id = @competition_id
-							@regularcontest.status = 'SCHED'
+							@regularcontest.status = 'SCHEDULED'
 							@regularcontest.awaycontestant.team = arr[-1-jth]
 							@regularcontest.homecontestant.team = arr[jth]
 							@contests << @regularcontest if @regularcontest.save

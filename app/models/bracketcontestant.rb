@@ -21,6 +21,28 @@ class Bracketcontestant < Contestant
 						
 	# Override with additional information.
 	def contestanttype
+		self.contestantcode.nil? ? nil : self.contestantcode[0]
+	end
+						
+						
+	# Prior Bracketcontest referred to by this Contestant.
+	def priorcontest
+		return nil if self.contestantcode.nil?
+		case self.contestantcode[0]
+			when "W"
+				/W(\d+)/ =~ self.contestantcode
+				Bracketcontest.find(Regexp.last_match(1))
+			when "L"
+				/L(\d+)/ =~ self.contestantcode
+				Bracketcontest.find(Regexp.last_match(1))
+			else 
+				nil
+			end
+	end
+						
+						
+	# Human-readable version of coded Contestant.
+	def contestantlabel
 		return nil if self.contestantcode.nil?
 		case self.contestantcode[0]
 			when "W"
@@ -41,7 +63,7 @@ class Bracketcontestant < Contestant
 	# Override with additional information.
 	def fullname
 		[(self.seeding ? '#' + (self.seeding.to_s) : nil) ,
-		self.contestanttype,
+		self.contestantlabel,
 		 self.teamname()].join(' ')
 	end
   

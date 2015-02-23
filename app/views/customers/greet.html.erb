@@ -1,8 +1,37 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Welcome</strong>
+  <%= @customer.name %>
   <%= @customer.userid %>
 </p>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %>
+<p>
+  ****
+  Session ID is:<%= raw(session.id) %>
+</p>
+
+<h2>Your Competitions</h2>
+<h3>(You have <%= @competitions.count() %> of them)</h3>
+
+<%= button_to "Add a Competition", action: "new_competition", method: :get %>
+<br/>
+
+<table>
+  <thead>
+    <tr>
+      <th>Competition ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @competitions.each do |competition| %>
+      <tr>
+        <td><%= competition.id %></td>
+        <td><%= competition.name %>
+		<%= competition.sport %>
+		<%= competition.variety %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

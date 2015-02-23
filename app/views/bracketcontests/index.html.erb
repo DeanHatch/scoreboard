@@ -11,8 +11,11 @@
   <tbody>
     <% @bracketcontests.each do |bracketcontest| %>
       <tr>
-      <%= render partial: 'editable_bracket_contest' , locals: { bracketcontest: bracketcontest }  %>
+       <td>
+      <%= render partial: 'bracketcontests/bracket_contest' ,
+                       locals: { bracketcontest: bracketcontest, final: false, editable: false }  %>
       <br/>
+       </td>
       </tr>
     <% end %>
   </tbody>

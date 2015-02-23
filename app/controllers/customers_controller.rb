@@ -1,22 +1,21 @@
+# In the routes file, Customer is a Singular Resource. A Customer establishes a
+# Session via a login page/action. Subsequent actions are performed on a
+# single Customer, identified by the customer_id in the Session.
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer_from_session, except: [:login, :reset_password]
 
   
-  # Link hash. 
-  def nav_link_hash()
-	  { 'Logout' => :logout_customer} 
+  # Link Array. 
+  def nav_link_array()
+	  session[:customer_id] ?
+	  [ navitem('Change Password' , :change_password_customer),
+	     navitem('Edit Profile' , :edit_customer),
+	     navitem('Manage Competitions' , :competitions, target: "_blank"),
+	     navitem('Logout' , :logout_customer) ]  :
+	  [ navitem('Login' , :login_customer),
+	     navitem('Register' , :new_customer)]
   end
-  
-  # Link options.   Default is new_tab_opts.
-  def nav_link_opts()
-	  same_tab_opts()
-  end
-
-  # GET /customers
-  # GET /customers.json
-  def index
-    @customers = Customer.all
-  end
+ 
 
   # GET /customer/login
   # GET /customers.json ??
@@ -49,13 +48,9 @@ class CustomersController < ApplicationController
 
   # GET /customers/1
   # GET /customers/1.json
-  def show
-  end
-
-  # GET /customers/1
-  # GET /customers/1.json
   def greet
-	  set_customer_from_session()
+	  Competition.default_cust(@customer.id)
+	  @competitions = Competition.all
   end
 
   # GET /customers/new
@@ -63,8 +58,12 @@ class CustomersController < ApplicationController
     @customer = Customer.new
   end
 
-  # GET /customers/1/edit
+  # GET /customer/edit
   def edit
+  end
+
+  # GET /customer/change_password
+  def change_password
   end
 
   # POST /customers
@@ -74,8 +73,8 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: "Customer was successfully created." +
-				"#{customer_params[:password]} #{customer_params[:password_confirmation]}" }
+	format.html { session[:customer_id] = @customer.id
+			   redirect_to(:action => "greet" ) }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -87,11 +86,10 @@ class CustomersController < ApplicationController
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+	  set_customer_from_session()
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' +
-				"PW: #{@customer.password} " +
-				"PWC:#{customer_params[:password_confirmation]}" }
+        format.html { redirect_to greet_customer_path(@customer), notice: 'Changes made.'}
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -100,28 +98,15 @@ class CustomersController < ApplicationController
     end
   end
 
-  # DELETE /customers/1
-  # DELETE /customers/1.json
-  def destroy
-    @customer.destroy
-    respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  # GET /customer/new_competition
+  def new_competition
+	  @competition = Competition.new
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer_from_session
       @customer = Customer.find(session[:customer_id])
-      rescue
-      begin
-      @customer = Customer.find(1)
-      end
-    end
-
-    def set_customer
-      @customer = Customer.find(params[:id])
       rescue
       begin
       @customer = Customer.find(1)
@@ -135,6 +120,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:userid, :password, :password_confirmation, :salt)
+      params.require("customer").permit(:userid, :password, :password_confirmation, :salt,
+							:name, :phone, :website)
     end
 end

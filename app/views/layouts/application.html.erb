@@ -17,6 +17,7 @@
 
 <hr class="message"/>
  <p class="wrapper">
+ <%= notice %>
   <%= yield :info_message %>
  </p>
 <hr class="message"/>
@@ -33,11 +34,12 @@
 <div class="navPanel">
 <!-- Navigation Panel contents are set by Controller. -->
 <!-- application helper method navPanel handles this. -->
+<!-- %= navPanel() % -->
 <%= navPanel() %>
 </div>
 <div class="instructions"><br><br><br>
 <br>
-
+<%= instructions() %>
 </div>
 </div>
    <!-- end of sideMatter -->
@@ -47,8 +49,9 @@
 <div class="header">
 
 <div class="inner-header">
+<!-- %= image_tag("gr_header2.jpg") % -->
 <%= image_tag("netting.png") %>
-<!-- img src="app/assets/images/netting.png" alt=""/ --><strong>Online-Scoreboard.net</strong>
+<strong>Online-Scoreboard.net</strong>
 </div>
 </div>
    <!-- end of header -->
@@ -59,6 +62,8 @@
 <div class="footer">
 Copyright 2007-<%= Date.today.strftime("%Y") %> Mile High Software  --  Today is 
 <%= Date.today.strftime("%A %B %e, %Y") %>
+<br/>
+Hosting provided by 1&amp;1
 </div>
 </body>
 </html>

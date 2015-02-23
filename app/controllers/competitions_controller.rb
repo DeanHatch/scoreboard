@@ -1,3 +1,4 @@
+# A Competition is created from the Customerscontroller.
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
@@ -34,7 +35,10 @@ class CompetitionsController < ApplicationController
 	@competition_id = @competition.id
 	@name = @comp[:name] + ' ' + @comp[:variety].humanize
         Grouping.new(competition_id: @competition_id, name: @name).save(validate: false)
-	format.html { redirect_to @competition,
+	      # Note that the create competition action is initiated from the Customers controller.
+	      # After successful creation of a Competition, return to the
+	      # greet action of the Customers controller.
+	format.html { redirect_to greet_customer_url,
 			notice: "Competition was successfully created." }
         format.json { render :show, status: :created, location: @competition }
       else

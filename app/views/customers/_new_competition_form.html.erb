@@ -1,0 +1,81 @@
+<%= form_for(@competition) do |f| %>
+  <% if @competition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@competition.errors.count, "error") %> prohibited this competition from being saved:</h2>
+
+      <ul>
+      <% @competition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :sport %><br>
+    <!-- <%= f.text_field :sport %> -->
+    <%= f.select :sport,
+           options_for_select(Competition.sports.collect { |s| [s[0].humanize, s[0]] },
+             selected: @competition.sport), {} %><br>
+  </div>
+  <div class="field">
+    <%= f.label 'Type of competition' %><br>
+    <%= collection_radio_buttons(:competition, :variety,
+	                  Competition.varieties.collect { |s| [s[0], s[0].humanize] }, :first, :last) %>
+  </div>
+  <div class="field">
+    <%= f.label 'Pool, group, or season stage (check if it will be used)' %><br>
+    <%= f.check_box :poolgroupseason %>
+  </div>
+  <div class="field">
+    <%= f.label :poolgroupseason %><br>
+    <%= f.select :poolgroupseasonlabel,
+           options_for_select(Competition.poolgroupseasonlabels.collect { |s| [s.humanize, s] },
+             selected: @competition.poolgroupseasonlabel), {} %><br>
+  </div>
+  <div class="field">
+    <%= f.label 'Playoff or Bracket stage (check if it will be used)' %><br>
+    <%= f.check_box :playoffbracket %>
+  <div class="field">
+    <%= f.label :playoffbracket %><br>
+    <%= f.select :playoffbracketlabel,
+           options_for_select(Competition.playoffbracketlabels.collect { |s| [s.humanize, s] },
+             selected: @competition.playoffbracketlabel), {} %><br>
+  </div>
+  </div>
+  <div class="field">
+    <%= f.label :keepscores %><br>
+    <%= f.check_box :keepscores %>
+  </div>
+  <div class="field">
+    <%= f.label :winpoints %><br>
+    <%= f.number_field :winpoints %>
+  </div>
+  <div class="field">
+    <%= f.label :drawpoints %><br>
+    <%= f.number_field :drawpoints %>
+  </div>
+  <div class="field">
+    <%= f.label :losspoints %><br>
+    <%= f.number_field :losspoints %>
+  </div>
+  <div class="field">
+    <%= f.label :forfeitpoints %><br>
+    <%= f.number_field :forfeitpoints %>
+  </div>
+  <div class="field">
+    <%= f.label :forfeitwinscore %><br>
+    <%= f.number_field :forfeitwinscore %>
+  </div>
+  <div class="field">
+    <%= f.label :forfeitlossscore %><br>
+    <%= f.number_field :forfeitlossscore %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

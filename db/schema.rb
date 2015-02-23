@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210020234) do
+ActiveRecord::Schema.define(version: 20150222224521) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150210020234) do
     t.integer  "forfeitlossscore"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
   end
 
   create_table "contestants", force: true do |t|
@@ -43,9 +44,6 @@ ActiveRecord::Schema.define(version: 20150210020234) do
     t.boolean  "forfeit"
     t.string   "contestantcode"
     t.integer  "seeding"
-    t.integer  "bracketcontest_id"
-    t.integer  "grouping_id"
-    t.integer  "place"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,6 +69,9 @@ ActiveRecord::Schema.define(version: 20150210020234) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "website"
   end
 
   create_table "groupings", force: true do |t|

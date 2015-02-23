@@ -3,65 +3,55 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+
+
+  # Default link array. Should be overridden by controllers for this application.
+  def nav_link_array()
+	  [] # display_link_array()
+  end
+
+  def navitem(href, text, options={})
+	  NavItem.new(href, text, options)
+  end
+ 
+
   
-  # Link options hash that opens actions in new tab.
-  def new_tab_opts
-	  {class: "nav", target: "_blank"}
-  end
-  # Link options hash that opens actions in same tab.
-  def same_tab_opts
-	  {class: "nav"}
+  # Link array for the public display portion of this application.
+  # The Display Controller should override this and provide its own navigation link array.
+  def display_link_array()
+	  [navitem('Public Display', :display)] 
   end
 
-  # Default link options hash. Overridde by controllers for this application only if needed.
-  def nav_link_opts()
-	  new_tab_opts()
-  end
-
-
-
-  # Default link hash. Should be overridden by controllers for this application.
-  def nav_link_hash()
-	  {} # display_link_hash()
-  end
-	  
-  
-  # Link hash for the public display portion of this application.
-  # The Display Controller should override this and provide its own navigation link hash.
-  def display_link_hash()
-	  { 'Public Display' => :display  }
-  end
-
-  # Link hash for scorers, who can also open up the
+  # Link array for scorers, who can also open up the
   # public display portion of this application in a separate tab.
-  def scorer_link_hash()
-	  { 'Record/Revise Scores' => :scorer ,
-	'Public Display' => :display  }
+  def scorer_link_array()
+	  [ navitem('Record/Revise Scores' , :scorer) ,
+	navitem('Public Display' , :display ) ]
   end
 
-  # Link hash for schedulers, who can also open up the scorer and the
+  # Link array for schedulers, who can also open up the scorer and the
   # public display portions of this application in a separate tab.
-  def scheduler_link_hash()
-	  { 'Schedule Regular Contests' => :competition_regularcontests,
-	'Schedule Bracket Contests' => :bracketcontests ,
-	'Record/Revise Scores' => :scorer ,
-	'Public Display' => :display  }
+  def scheduler_link_array()
+	  [ navitem('Schedule Regular Contests' , :competition_regularcontests),
+	navitem('Schedule Bracket Contests' , :bracketcontests ),
+	navitem('Record/Revise Scores' , :scorer ),
+	navitem('Public Display' , :display)  ]
   end
   
-  # Link hash for admins, who have access to everything related to the
+  # Link array for admins, who have access to everything related to the
   # application for a Competition.
-  def admin_link_hash()
-	  { 'Manage Dates/Venues' => :competition_venues,
-	'Manage Groupings/Teams' => :competition_groupings,
-	'Schedule Regular Contests' => :competition_regularcontests,
-	'Schedule Bracket Contests' => :bracketcontests ,
-	'Record/Revise Scores' => :scorer ,
-	'Public Display' => :display  }
+  def admin_link_array()
+	  [ navitem('Manage Dates/Venues' , :competition_venues),
+	navitem('Manage Groupings/Teams' , :competition_groupings),
+	navitem('Schedule Regular Contests' , :competition_regularcontests),
+	navitem('Schedule Bracket Contests' , :bracketcontests) ,
+	navitem('Record/Revise Scores' , :scorer) ,
+	navitem('Public Display' , :display, target: "_blank")  ]
 	
-	  { 'Manage Dates/Venues' => :competition_venues,
-	'Manage Groupings/Teams' => :competition_groupings,
-	'Schedule Regular Contests' => :competition_regularcontests,
-	'Schedule Bracket Contests' => :competition_brackets  }
+	  [ navitem('Manage Dates/Venues' , :competition_venues),
+	navitem('Manage Groupings/Teams' , :competition_groupings),
+	navitem('Schedule Regular Contests' , :competition_regularcontests),
+	navitem('Schedule Bracket Contests' , :competition_brackets)  ]
   end
 
 

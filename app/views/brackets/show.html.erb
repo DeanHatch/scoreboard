@@ -2,18 +2,17 @@
 
 <p id="notice"><%= notice %></p>
 
-<p><%= @bracket.all_teams.collect{|t|t.name()}.join(' - ') %></p>
-
-
 <p><%= @bracketcontests.count() %> Bracket Contests have been
  schedule in this Bracket.</p>
 
-<ul><% @bracketcontests.each do |bc| %> <li>
-  <%= render partial: 'bracketcontests/bracket_contest' ,
-       locals: { bracketcontest: bc }  %>
-  </li>
-<% end %></ul>
+<% needed = Bracketcontestant.all.select{|bc| bc.contestanttype=="W"}.collect{|bc| bc.priorcontest} %> 
 
-<%= link_to 'Edit This Bracket', competition_bracket_bracketcontests_path(@competition, @bracket) %>
+<% (@bracketcontests-needed).each do |bc| %> 
+  <%= render partial: 'bracketcontests/bracket_contest' ,
+       locals: { bracketcontest: bc, final: true, editable: true }  %>
+  <br/>
+<% end %>
+
+<%= link_to 'New Bracketcontest', new_competition_bracket_bracketcontest_path(@competition, @bracket) %>
 <br/>
 <%= link_to 'Back to Bracket Home', competition_brackets_path %>

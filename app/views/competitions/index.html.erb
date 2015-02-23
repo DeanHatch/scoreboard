@@ -1,16 +1,14 @@
 <h1>Listing competitions</h1>
+<h2>for <!-- %= @customer.name % --></h2>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Customer ID</th>
+      <th>Competition ID</th>
       <th>Name</th>
-      <th>Sport</th>
-      <th>Variety</th>
-      <th>Poolgroupseason</th>
-      <th>Poolgroupseasonlabel</th>
-      <th>Playoffbracket</th>
-      <th>Playoffbracketlabel</th>
+      <th>Poolgroupseason / Poolgroupseasonlabel</th>
+      <th>Playoffbracket / Playoffbracketlabel</th>
       <th>Keep Scores?</th>
       <th>Winpoints</th>
       <th>Drawpoints</th>
@@ -18,21 +16,22 @@
       <th>Forfeitpoints</th>
       <th>Forfeitwinscore</th>
       <th>Forfeitlossscore</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @competitions.each do |competition| %>
       <tr>
+        <td><%= competition.customer_id %></td>
         <td><%= competition.id %></td>
-        <td><%= competition.name %></td>
-        <td><%= competition.sport %></td>
-        <td><%= competition.variety %></td>
-        <td><%= competition.poolgroupseason %></td>
-        <td><%= competition.poolgroupseasonlabel %></td>
-        <td><%= competition.playoffbracket %></td>
-        <td><%= competition.playoffbracketlabel %></td>
+        <td><%= competition.name %>
+		<%= competition.sport %>
+		<%= competition.variety %></td>
+        <td><%= competition.poolgroupseason %>
+	       <%= competition.poolgroupseasonlabel %></td>
+        <td><%= competition.playoffbracket %>
+	       <%= competition.playoffbracketlabel %></td>
         <td><%= competition.keepscores %></td>
         <td><%= competition.winpoints %></td>
         <td><%= competition.drawpoints %></td>
@@ -42,12 +41,7 @@
         <td><%= competition.forfeitlossscore %></td>
         <td><%= link_to 'Show', competition %></td>
         <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
-        <td><%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Competition', new_competition_path %>

@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= render partial: 'editable_bracket_contest' , locals: { bracketcontest: @bracketcontest }  %>
+<%= render partial: 'bracket_contest' , locals: { bracketcontest: @bracketcontest, final: false, editable:false }  %>
 
-<%= link_to 'Edit', edit_competition_bracket_bracketcontest_path(@competition, @bracket, @bracketcontest) %> |
-<%= link_to 'Back', competition_bracket_bracketcontests_path %>
+<%= link_to 'Ok', competition_bracket_bracketcontests_path %>

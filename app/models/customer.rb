@@ -2,11 +2,15 @@ require 'digest/sha1'
 
 class Customer < ActiveRecord::Base
 	
+	has_many :competitions
+	
+	validates_uniqueness_of :name,
+		message: "has been taken." 
 	validates_presence_of :userid
 	validates_uniqueness_of :userid
 	
 	attr_accessor :password_confirmation
-	validates_presence_of :password
+	#validates_presence_of :password
 	#validates_presence_of :password_confirmation, if: :password.changed?
 	validates_confirmation_of :password
 	

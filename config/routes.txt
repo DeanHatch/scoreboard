@@ -1,9 +1,25 @@
                                      Prefix Verb   URI Pattern                                                                               Controller#Action
                                        root GET    /                                                                                         welcome#index
                               welcome_index GET    /welcome/index(.:format)                                                                  welcome#index
+                       competitions_display GET    /competitions/display(.:format)                                                           display#index
+                                            GET    /competition/:competition_id/display(.:format)                                            display#index
+                                            GET    /competition/:competition_id/display/teams(.:format)                                      display#teams
+                                   rustydog GET    /competition/:competition_id/display/team/:id(.:format)                                   display#team
+                              display_index GET    /display/index(.:format)                                                                  display#index
+                               display_team GET    /display/team(.:format)                                                                   display#team
+                           display_grouping GET    /display/grouping(.:format)                                                               display#grouping
+                              results_index GET    /results/index(.:format)                                                                  results#index
+                            results_rescord PATCH  /results/rescord(.:format)                                                                results#rescord
+                                            PUT    /results/rescord(.:format)                                                                results#rescord
+                            results_scorect PATCH  /results/scorect(.:format)                                                                results#scorect
+                                            PUT    /results/scorect(.:format)                                                                results#scorect
+                               customer_new POST   /customer/new(.:format)                                                                   customers#create
+                   customer_new_competition POST   /customer/new_competition(.:format)                                                       customers#new_competition
                              login_customer GET    /customer/login(.:format)                                                                 customers#login
                                             POST   /customer/login(.:format)                                                                 customers#login
                              greet_customer GET    /customer/greet(.:format)                                                                 customers#greet
+                   change_password_customer GET    /customer/change_password(.:format)                                                       customers#change_password
+                  edit_competition_customer GET    /customer/edit_competition(.:format)                                                      customers#edit_competition
                             logout_customer GET    /customer/logout(.:format)                                                                customers#logout
                                    customer POST   /customer(.:format)                                                                       customers#create
                                new_customer GET    /customer/new(.:format)                                                                   customers#new
@@ -11,15 +27,6 @@
                                             GET    /customer(.:format)                                                                       customers#show
                                             PATCH  /customer(.:format)                                                                       customers#update
                                             PUT    /customer(.:format)                                                                       customers#update
-                                            DELETE /customer(.:format)                                                                       customers#destroy
-                                  customers GET    /customers(.:format)                                                                      customers#index
-                                            POST   /customers(.:format)                                                                      customers#create
-                                            GET    /customers/new(.:format)                                                                  customers#new
-                                            GET    /customers/:id/edit(.:format)                                                             customers#edit
-                                            GET    /customers/:id(.:format)                                                                  customers#show
-                                            PATCH  /customers/:id(.:format)                                                                  customers#update
-                                            PUT    /customers/:id(.:format)                                                                  customers#update
-                                            DELETE /customers/:id(.:format)                                                                  customers#destroy
                          competition_venues GET    /competitions/:competition_id/venues(.:format)                                            venues#index
                                             POST   /competitions/:competition_id/venues(.:format)                                            venues#create
                       new_competition_venue GET    /competitions/:competition_id/venues/new(.:format)                                        venues#new

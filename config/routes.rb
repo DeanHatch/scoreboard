@@ -4,19 +4,37 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
 
-  #get 'customer', to: 'customers#show'
-  #get 'customer', to: 'customer#index'
-  #get 'customer/login'
-  #get 'customer/logout'
-  #get 'customer/index'
-  
-  resource :customer do
-	  get 'login', on: :member
-	  post 'login', on: :member
-	  get 'greet', on: :member
-	  get 'logout', on: :member
+  get 'competitions/display', to: 'display#index'
+  #get 'competitions/display/:competition_id', to: 'display#index'
+  get 'competition/:competition_id/display', to: 'display#index'
+  get 'competition/:competition_id/display/teams', to: 'display#teams'
+  get 'competition/:competition_id/display/team/:id', to: 'display#team', as: :rustydog
+
+    # Should these three be removed?
+  get 'display/index'
+  get 'display/team'
+  get 'display/grouping'
+
+  get 'competitions/results', to: 'results#index'
+  get 'competition/:competition_id/results', to: 'results#index'
+  patch 'competition/:competition_id/results/rescord', to: 'results#rescord'
+  put 'competition/:competition_id/results/rescord', to: 'results#rescord'
+  patch 'competition/:competition_id/results/scorect', to: 'results#scorect'
+  put 'competition/:competition_id/results/scorect', to: 'results#scorect'
+   
+  post 'customer/new', to: 'customers#create'
+  post 'customer/new_competition', to: 'customers#new_competition'
+  resource :customer, except: :destroy do
+	  member do
+		  get 'login'
+		  post 'login'
+		  get 'greet'  # equivalent to member #index
+		  get 'change_password'
+		  get 'edit_competition'
+		  get 'logout'
+		  end
   end
-  resources :customers
+  #resources :customers
   
   resources :competitions do
 	  resources :venues
