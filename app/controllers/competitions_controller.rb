@@ -5,6 +5,7 @@ class CompetitionsController < ApplicationController
   # GET /competitions
   # GET /competitions.json
   def index
+    set_customer()
     @competitions = Competition.all
   end
 
@@ -73,6 +74,17 @@ class CompetitionsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_customer
+      @customer = Customer.find(params[:customer_id])
+      rescue
+      begin
+      @customer = Customer.new()
+      end
+      Competition.default_cust(@customer.id)
+      Competition.default_cust(2)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_competition
       @competition = Competition.find(params[:id])

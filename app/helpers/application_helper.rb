@@ -19,21 +19,23 @@ module ApplicationHelper
   # This may be called recursively.
   #  * ul_opts = HTML options for UL tag
   #  * li_opts = HTML options for LI tags
-  #  * link_hsh = hash where key is hyperlink text and value is hyperlink target
-  # Note that if the hash value is a Hash, then this method will recurse for
+  #  * link_array = Array of navitems
+  # Note that if the Array element value is an Array, then this method will recurse for
   # an indented list.
   def nav_Panel(nav_level,
 			link_array )
 	  navitems = ''
-	  # We have three sets of options: list, list-item, and link.
+	  # We have three sets of options: list options, list-item options, and link options.
 	  ul_opts = {class: "nav1"}
 	  li_opts = {class: "nav level#{nav_level}"}
-	  link_array.each { |node| link_opts = {class: node.css_class, target: node.target}
-					    node.class.name == "Array" ? 
+	  link_array.each { |node| node.class.name == "Array" ? 
 						navitems << nav_Panel(nav_level + 1, node) :
+						begin
+						link_opts = {class: node.css_class, target: node.target}
 						navitems << content_tag(:li,
 										  link_to( node.href, node.text, link_opts),
 										  li_opts)
+						end
 						}
 	  raw(content_tag(:ul, raw(navitems), ul_opts))
   end

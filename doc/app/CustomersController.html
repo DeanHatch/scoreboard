@@ -73,27 +73,23 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-create">#create</a>
+    <li ><a href="#method-i-change_password">#change_password</a>
     
-    <li ><a href="#method-i-destroy">#destroy</a>
+    <li ><a href="#method-i-create">#create</a>
     
     <li ><a href="#method-i-edit">#edit</a>
     
     <li ><a href="#method-i-greet">#greet</a>
     
-    <li ><a href="#method-i-index">#index</a>
-    
     <li ><a href="#method-i-login">#login</a>
     
     <li ><a href="#method-i-logout">#logout</a>
     
-    <li ><a href="#method-i-nav_link_hash">#nav_link_hash</a>
-    
-    <li ><a href="#method-i-nav_link_opts">#nav_link_opts</a>
+    <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
     <li ><a href="#method-i-new">#new</a>
     
-    <li ><a href="#method-i-show">#show</a>
+    <li ><a href="#method-i-new_competition">#new_competition</a>
     
     <li ><a href="#method-i-update">#update</a>
     
@@ -110,6 +106,12 @@
 
   <section class="description">
     
+<p>In the routes file, <a href="Customer.html">Customer</a> is a Singular
+Resource. A <a href="Customer.html">Customer</a> establishes a Session via
+a login page/action. Subsequent actions are performed on a single <a
+href="Customer.html">Customer</a>, identified by the customer_id in the
+Session.</p>
+
   </section>
 
   
@@ -131,6 +133,38 @@
        </header>
 
     
+      <div id="method-i-change_password" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change_password</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /customer/change_password</p>
+          
+          
+
+          
+          <div class="method-source-code" id="change_password-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">change_password</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-create" class="method-detail ">
         
         <div class="method-heading">
@@ -150,56 +184,19 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 72</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">customer_params</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@customer</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Customer was successfully created.&quot;</span> <span class="ruby-operator">+</span>
-                              <span class="ruby-node">&quot;#{customer_params[:password]} #{customer_params[:password_confirmation]}&quot;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>
+                         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;greet&quot;</span> ) }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@customer</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-destroy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">destroy</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>DELETE /customers/1 DELETE /customers/1.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 105</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">destroy</span>
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">customers_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Customer was successfully destroyed.&#39;</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -225,13 +222,13 @@
 
         <div class="method-description">
           
-          <p>GET /customers/1/edit</p>
+          <p>GET /customer/edit</p>
           
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -263,42 +260,10 @@
 
           
           <div class="method-source-code" id="greet-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">greet</span>
-        <span class="ruby-identifier">set_customer_from_session</span>()
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /customers GET /customers.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@customers</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">all</span>
+        <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">default_cust</span>(<span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-ivar">@competitions</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -329,7 +294,7 @@
 
           
           <div class="method-source-code" id="login-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
                 <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">login_params</span>[<span class="ruby-value">:userid</span>], <span class="ruby-identifier">login_params</span>[<span class="ruby-value">:password</span>])
@@ -377,7 +342,7 @@
 
           
           <div class="method-source-code" id="logout-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logout</span>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-keyword">nil</span>
         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Bye.&#39;</span>
@@ -393,10 +358,10 @@
       </div>
 
     
-      <div id="method-i-nav_link_hash" class="method-detail ">
+      <div id="method-i-nav_link_array" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">nav_link_hash</span><span
+          <span class="method-name">nav_link_array</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -406,48 +371,21 @@
 
         <div class="method-description">
           
-          <p>Link hash.</p>
+          <p>Link Array.</p>
           
           
 
           
-          <div class="method-source-code" id="nav_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_hash</span>()
-        { <span class="ruby-string">&#39;Logout&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:logout_customer</span>} 
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-nav_link_opts" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">nav_link_opts</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Link options.   Default is new_tab_opts.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="nav_link_opts-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_opts</span>()
-        <span class="ruby-identifier">same_tab_opts</span>()
+          <div class="method-source-code" id="nav_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] <span class="ruby-operator">?</span>
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Change Password&#39;</span> , <span class="ruby-value">:change_password_customer</span>),
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Edit Profile&#39;</span> , <span class="ruby-value">:edit_customer</span>),
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Competitions&#39;</span> , <span class="ruby-value">:competitions</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>),
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer</span>) ]  <span class="ruby-operator">:</span>
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Login&#39;</span> , <span class="ruby-value">:login_customer</span>),
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Register&#39;</span> , <span class="ruby-value">:new_customer</span>)]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -478,7 +416,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 62</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -492,10 +430,10 @@
       </div>
 
     
-      <div id="method-i-show" class="method-detail ">
+      <div id="method-i-new_competition" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">show</span><span
+          <span class="method-name">new_competition</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -505,14 +443,15 @@
 
         <div class="method-description">
           
-          <p>GET /customers/1 GET /customers/1.json</p>
+          <p>GET /customer/new_competition</p>
           
           
 
           
-          <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+          <div class="method-source-code" id="new_competition-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_competition</span>
+        <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -543,13 +482,12 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+        <span class="ruby-identifier">set_customer_from_session</span>()
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">customer_params</span>)
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@customer</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Customer was successfully updated.&#39;</span> <span class="ruby-operator">+</span>
-                              <span class="ruby-node">&quot;PW: #{@customer.password} &quot;</span> <span class="ruby-operator">+</span>
-                              <span class="ruby-node">&quot;PWC:#{customer_params[:password_confirmation]}&quot;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_path</span>(<span class="ruby-ivar">@customer</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Changes made.&#39;</span>}
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@customer</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }

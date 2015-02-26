@@ -2,12 +2,8 @@
 # allows the user to select one for updating the Bracketcontests contained within.
 # Brackets themselves are not created nor destroyed nor updated by this
 # controller, it merely serves as a routing device. Therefore, it ha only two actions: #index and #show.
-class BracketsController < NestedController
+class BracketsController < AdminController
   before_action :set_bracket, only: :show
-
-  def nav_link_hash()
-	  admin_link_hash()
-  end
 
   # GET /brackets
   # GET /brackets.json

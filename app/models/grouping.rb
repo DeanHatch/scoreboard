@@ -13,6 +13,10 @@ class Grouping < ActiveRecord::Base
 		self.default_scope { (where(competition_id: comp_id) ) }
 	end
   
+	# sending this method to the parent of this Grouping.
+	def self.top_grouping()
+		self.where(parent_id: nil).first
+	end
 
 	# (Recursive) Return an Array with this Grouping appended to the end of the Array returned by
 	# sending this method to the parent of this Grouping.

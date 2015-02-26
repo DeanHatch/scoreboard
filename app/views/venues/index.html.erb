@@ -4,6 +4,9 @@
 <% content_for :info_message do %>
 To add a new Venue, simply type in it&apos;s name and press ENTER.
 <br/>To Change or Remove a Venue, click on the name of the Venue.
+<br/>Session competition_id:<%= raw(session[:competition_id]) %> 
+<br/>params id:<%= raw(params[:competition_id]) %>
+<br/>controller name:<%= raw(controller.controller_name()) %>
 <% end %>
 
 <div class="dividedContent">

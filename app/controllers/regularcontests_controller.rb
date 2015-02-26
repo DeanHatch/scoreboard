@@ -1,10 +1,5 @@
-class RegularcontestsController < NestedController  # formerly  ApplicationController
+class RegularcontestsController < AdminController
   before_action :set_regularcontest, only: [:show, :edit, :update, :destroy]
-
-
-  def nav_link_hash()
-	  admin_link_hash()
-  end
 
 
   # GET /regularcontests

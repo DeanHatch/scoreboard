@@ -1,4 +1,4 @@
-class ValiddatesController < NestedController # ApplicationController
+class ValiddatesController < AdminController
   before_action :set_validdate, only: [:show, :edit, :update, :destroy]
 
   # GET /validdates

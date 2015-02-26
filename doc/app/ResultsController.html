@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Competition - Rails Application Documentation</title>
+<title>class ResultsController - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="NestedController.html">NestedController</a>
   
 </div>
 
@@ -73,11 +73,11 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-default_cust">::default_cust</a>
+    <li ><a href="#method-i-index">#index</a>
     
-    <li ><a href="#method-c-playoffbracketlabels">::playoffbracketlabels</a>
+    <li ><a href="#method-i-rescord">#rescord</a>
     
-    <li ><a href="#method-c-poolgroupseasonlabels">::poolgroupseasonlabels</a>
+    <li ><a href="#method-i-scorect">#scorect</a>
     
   </ul>
 </div>
@@ -85,9 +85,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Competition">
-  <h1 id="class-Competition" class="class">
-    class Competition
+<main role="main" aria-labelledby="class-ResultsController">
+  <h1 id="class-ResultsController" class="class">
+    class ResultsController
   </h1>
 
   <section class="description">
@@ -107,50 +107,16 @@
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Class Methods</h3>
+         <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-c-default_cust" class="method-detail ">
+      <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">default_cust</span><span
-            class="method-args">(cust_id)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Note that since this is not a subclass of NestedModel, we must write our
-own public method to access default_scope.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="default_cust-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">default_cust</span>(<span class="ruby-identifier">cust_id</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">customer_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">cust_id</span>) ) }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-playoffbracketlabels" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">playoffbracketlabels</span><span
+          <span class="method-name">index</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -165,10 +131,9 @@ own public method to access default_scope.</p>
           
 
           
-          <div class="method-source-code" id="playoffbracketlabels-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">playoffbracketlabels</span> 
-        [<span class="ruby-string">&#39;Playoff&#39;</span>, <span class="ruby-string">&#39;Bracket&#39;</span>]
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -180,10 +145,10 @@ own public method to access default_scope.</p>
       </div>
 
     
-      <div id="method-c-poolgroupseasonlabels" class="method-detail ">
+      <div id="method-i-rescord" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">poolgroupseasonlabels</span><span
+          <span class="method-name">rescord</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -198,10 +163,41 @@ own public method to access default_scope.</p>
           
 
           
-          <div class="method-source-code" id="poolgroupseasonlabels-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">poolgroupseasonlabels</span>
-        [<span class="ruby-string">&#39;Pool&#39;</span>, <span class="ruby-string">&#39;Group&#39;</span>, <span class="ruby-string">&#39;Season&#39;</span>]
+          <div class="method-source-code" id="rescord-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rescord</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scorect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scorect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scorect-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scorect</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

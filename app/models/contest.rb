@@ -114,7 +114,7 @@ class Contest < ActiveRecord::Base
 	
 	# True if either Team has a score.
 	def has_score?
-		not self.awaycontestant.score.nil? and (self.homecontestant.score.nil?)
+		not (self.awaycontestant.score.nil? and (self.homecontestant.score.nil?))
 	end
 	
 	# True if neither Team has a score.

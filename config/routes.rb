@@ -3,24 +3,6 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/index'
-
-  get 'competitions/display', to: 'display#index'
-  #get 'competitions/display/:competition_id', to: 'display#index'
-  get 'competition/:competition_id/display', to: 'display#index'
-  get 'competition/:competition_id/display/teams', to: 'display#teams'
-  get 'competition/:competition_id/display/team/:id', to: 'display#team', as: :rustydog
-
-    # Should these three be removed?
-  get 'display/index'
-  get 'display/team'
-  get 'display/grouping'
-
-  get 'competitions/results', to: 'results#index'
-  get 'competition/:competition_id/results', to: 'results#index'
-  patch 'competition/:competition_id/results/rescord', to: 'results#rescord'
-  put 'competition/:competition_id/results/rescord', to: 'results#rescord'
-  patch 'competition/:competition_id/results/scorect', to: 'results#scorect'
-  put 'competition/:competition_id/results/scorect', to: 'results#scorect'
    
   post 'customer/new', to: 'customers#create'
   post 'customer/new_competition', to: 'customers#new_competition'
@@ -35,9 +17,24 @@ Rails.application.routes.draw do
 		  end
   end
   #resources :customers
-  
+
+  get 'competitions/display', to: 'display#choose_customer'
+  get 'competitions/display/:customer_id', to: 'display#choose_competition'
+  get 'competition/:competition_id/display', to: 'display#index', as: :luckydog
+  get 'competition/:competition_id/display/teams', to: 'display#teams'
+  get 'competition/:competition_id/display/grouping/:id(/:xyzzy)', to: 'display#grouping', as: :ryandog
+  get 'competition/:competition_id/display/team/:id', to: 'display#team', as: :rustydog
+
+  get 'competitions/:competition_id/results', to: 'results#index', as: :schmenge
+  patch 'competitions/:competition_id/results/report', to: 'results#report', as: :report_score
+
+  resource :competition do
+	  get 'results', to: 'results#index'
+	  patch 'results/report', to: 'results#report'
+  end
+	  
   resources :competitions do
-	  resources :venues
+	  resources :venues 
 	  resources :validdates
 	  resources :groupings do
 		  resources :teams

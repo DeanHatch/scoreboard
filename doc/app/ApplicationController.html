@@ -73,21 +73,17 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-admin_link_hash">#admin_link_hash</a>
+    <li ><a href="#method-i-admin_link_array">#admin_link_array</a>
     
-    <li ><a href="#method-i-display_link_hash">#display_link_hash</a>
+    <li ><a href="#method-i-display_link_array">#display_link_array</a>
     
-    <li ><a href="#method-i-nav_link_hash">#nav_link_hash</a>
+    <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
-    <li ><a href="#method-i-nav_link_opts">#nav_link_opts</a>
+    <li ><a href="#method-i-navitem">#navitem</a>
     
-    <li ><a href="#method-i-new_tab_opts">#new_tab_opts</a>
+    <li ><a href="#method-i-scheduler_link_array">#scheduler_link_array</a>
     
-    <li ><a href="#method-i-same_tab_opts">#same_tab_opts</a>
-    
-    <li ><a href="#method-i-scheduler_link_hash">#scheduler_link_hash</a>
-    
-    <li ><a href="#method-i-scorer_link_hash">#scorer_link_hash</a>
+    <li ><a href="#method-i-scorer_link_array">#scorer_link_array</a>
     
   </ul>
 </div>
@@ -123,10 +119,10 @@
        </header>
 
     
-      <div id="method-i-admin_link_hash" class="method-detail ">
+      <div id="method-i-admin_link_array" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">admin_link_hash</span><span
+          <span class="method-name">admin_link_array</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -136,26 +132,26 @@
 
         <div class="method-description">
           
-          <p>Link hash for admins, who have access to everything related to the
+          <p>Link array for admins, who have access to everything related to the
 application for a <a href="Competition.html">Competition</a>.</p>
           
           
 
           
-          <div class="method-source-code" id="admin_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 53</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_link_hash</span>()
-        { <span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_venues</span>,
-      <span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_groupings</span>,
-      <span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_regularcontests</span>,
-      <span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bracketcontests</span> ,
-      <span class="ruby-string">&#39;Record/Revise Scores&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:scorer</span> ,
-      <span class="ruby-string">&#39;Public Display&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:display</span>  }
+          <div class="method-source-code" id="admin_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_link_array</span>()
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> , <span class="ruby-value">:competition_venues</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> , <span class="ruby-value">:competition_groupings</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> , <span class="ruby-value">:competition_regularcontests</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:bracketcontests</span>) ,
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Record/Revise Scores&#39;</span> , <span class="ruby-value">:scorer</span>) ,
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:display</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>)  ]
       
-        { <span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_venues</span>,
-      <span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_groupings</span>,
-      <span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_regularcontests</span>,
-      <span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_brackets</span>  }
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> , <span class="ruby-value">:competition_venues</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> , <span class="ruby-value">:competition_groupings</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> , <span class="ruby-value">:competition_regularcontests</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:competition_brackets</span>)  ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -167,10 +163,10 @@ application for a <a href="Competition.html">Competition</a>.</p>
       </div>
 
     
-      <div id="method-i-display_link_hash" class="method-detail ">
+      <div id="method-i-display_link_array" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">display_link_hash</span><span
+          <span class="method-name">display_link_array</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -180,16 +176,16 @@ application for a <a href="Competition.html">Competition</a>.</p>
 
         <div class="method-description">
           
-          <p>Link hash for the public display portion of this application. The Display
-Controller should override this and provide its own navigation link hash.</p>
+          <p>Link array for the public display portion of this application. The Display
+Controller should override this and provide its own navigation link array.</p>
           
           
 
           
-          <div class="method-source-code" id="display_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_link_hash</span>()
-        { <span class="ruby-string">&#39;Public Display&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:display</span>  }
+          <div class="method-source-code" id="display_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_link_array</span>()
+        [<span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span>, <span class="ruby-value">:display</span>)] 
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -201,10 +197,10 @@ Controller should override this and provide its own navigation link hash.</p>
       </div>
 
     
-      <div id="method-i-nav_link_hash" class="method-detail ">
+      <div id="method-i-nav_link_array" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">nav_link_hash</span><span
+          <span class="method-name">nav_link_array</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -214,16 +210,16 @@ Controller should override this and provide its own navigation link hash.</p>
 
         <div class="method-description">
           
-          <p>Default link hash. Should be overridden by controllers for this
+          <p>Default link array. Should be overridden by controllers for this
 application.</p>
           
           
 
           
-          <div class="method-source-code" id="nav_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_hash</span>()
-        {} <span class="ruby-comment"># display_link_hash()</span>
+          <div class="method-source-code" id="nav_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
+        [] <span class="ruby-comment"># display_link_array()</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -235,11 +231,11 @@ application.</p>
       </div>
 
     
-      <div id="method-i-nav_link_opts" class="method-detail ">
+      <div id="method-i-navitem" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">nav_link_opts</span><span
-            class="method-args">()</span>
+          <span class="method-name">navitem</span><span
+            class="method-args">(href, text, options={})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -248,16 +244,15 @@ application.</p>
 
         <div class="method-description">
           
-          <p>Default link options hash. Overridde by controllers for this application
-only if needed.</p>
+          
           
           
 
           
-          <div class="method-source-code" id="nav_link_opts-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_opts</span>()
-        <span class="ruby-identifier">new_tab_opts</span>()
+          <div class="method-source-code" id="navitem-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">navitem</span>(<span class="ruby-identifier">href</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>={})
+        <span class="ruby-constant">NavItem</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">href</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -269,10 +264,10 @@ only if needed.</p>
       </div>
 
     
-      <div id="method-i-new_tab_opts" class="method-detail ">
+      <div id="method-i-scheduler_link_array" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">new_tab_opts</span><span
+          <span class="method-name">scheduler_link_array</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -282,85 +277,19 @@ only if needed.</p>
 
         <div class="method-description">
           
-          <p>Link options hash that opens actions in new tab.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="new_tab_opts-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_tab_opts</span>
-        {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-same_tab_opts" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">same_tab_opts</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Link options hash that opens actions in same tab.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="same_tab_opts-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">same_tab_opts</span>
-        {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-scheduler_link_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">scheduler_link_hash</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Link hash for schedulers, who can also open up the scorer and the public
+          <p>Link array for schedulers, who can also open up the scorer and the public
 display portions of this application in a separate tab.</p>
           
           
 
           
-          <div class="method-source-code" id="scheduler_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">scheduler_link_hash</span>()
-        { <span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:competition_regularcontests</span>,
-      <span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:bracketcontests</span> ,
-      <span class="ruby-string">&#39;Record/Revise Scores&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:scorer</span> ,
-      <span class="ruby-string">&#39;Public Display&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:display</span>  }
+          <div class="method-source-code" id="scheduler_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scheduler_link_array</span>()
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> , <span class="ruby-value">:competition_regularcontests</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:bracketcontests</span> ),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Record/Revise Scores&#39;</span> , <span class="ruby-value">:scorer</span> ),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:display</span>)  ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -372,10 +301,10 @@ display portions of this application in a separate tab.</p>
       </div>
 
     
-      <div id="method-i-scorer_link_hash" class="method-detail ">
+      <div id="method-i-scorer_link_array" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">scorer_link_hash</span><span
+          <span class="method-name">scorer_link_array</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -385,17 +314,17 @@ display portions of this application in a separate tab.</p>
 
         <div class="method-description">
           
-          <p>Link hash for scorers, who can also open up the public display portion of
+          <p>Link array for scorers, who can also open up the public display portion of
 this application in a separate tab.</p>
           
           
 
           
-          <div class="method-source-code" id="scorer_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">scorer_link_hash</span>()
-        { <span class="ruby-string">&#39;Record/Revise Scores&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:scorer</span> ,
-      <span class="ruby-string">&#39;Public Display&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:display</span>  }
+          <div class="method-source-code" id="scorer_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scorer_link_array</span>()
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Record/Revise Scores&#39;</span> , <span class="ruby-value">:scorer</span>) ,
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:display</span> ) ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

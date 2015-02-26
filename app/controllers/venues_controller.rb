@@ -1,10 +1,4 @@
-class VenuesController < NestedController  # formerly ApplicationController
-
-
-  def nav_link_hash()
-	admin_link_hash()
-  end
-
+class VenuesController < AdminController
 
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
 

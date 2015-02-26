@@ -1,4 +1,4 @@
-class BracketcontestsController < BracketsController  # formerly  NestedController  # formerly  ApplicationController
+class BracketcontestsController < BracketsController
 
   before_action :set_bracketcontest, only: [:show, :edit, :update, :destroy]
   before_action :set_bracket # before ALL actions

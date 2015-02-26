@@ -154,7 +154,7 @@
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-comment">#save_contestants()</span>
+      <span class="ruby-identifier">save_contestants</span>()
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>  <span class="ruby-identifier">edit_competition_bracket_bracketcontest_path</span>(<span class="ruby-ivar">@competition</span>, <span class="ruby-ivar">@bracket</span>, <span class="ruby-ivar">@bracketcontest</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bracketcontest was successfully created.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketcontest</span> }
     <span class="ruby-keyword">else</span>

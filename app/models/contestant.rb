@@ -1,5 +1,9 @@
 class Contestant < ActiveRecord::Base
 	
+  belongs_to :contest
+  belongs_to :team
+    
+	
 	 # Returns instance of a descendant of Contest class.
 	 # This contestant is one of the two contestants for the contest.
 	def contest
@@ -16,6 +20,22 @@ class Contestant < ActiveRecord::Base
 	def opponent
 		homeaway=='H' ? self.contest.awaycontestant : self.contest.homecontestant
 	end
+	
+	# A Win is a Win...
+	def win()
+		self.score() ? self.score() > self.opponent.score() : false
+	end
+	
+	# But a Loss is a whole other thing...
+	def loss()
+		self.score() ? self.score() < self.opponent.score() : false
+	end
+	
+	# Draws (when used) are when the scores are equal.
+	def draw()
+		self.score() ? self.score() == self.opponent.score() : false
+	end
+	
 	
   
   def teamname

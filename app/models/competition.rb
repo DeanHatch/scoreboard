@@ -19,6 +19,19 @@ class Competition < ActiveRecord::Base
 	def Competition.default_cust(cust_id)
 		self.default_scope { (where(customer_id: cust_id) ) }
 	end
+	
+	# Display
+	def result_headings()
+		case self.sport
+			when "basketball"
+				["Wins", "Losses", "Pct"]
+			when "soccer"
+				["Wins", "Losses", "Draws", "Points", "GF", "GA", "GD"]
+			else
+				["Wins", "Losses"]
+			end
+		end
+		
   
 
 end

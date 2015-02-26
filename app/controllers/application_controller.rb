@@ -19,23 +19,14 @@ class ApplicationController < ActionController::Base
   # Link array for the public display portion of this application.
   # The Display Controller should override this and provide its own navigation link array.
   def display_link_array()
-	  [navitem('Public Display', :display)] 
+	  [navitem('Public Display', :luckydog)] 
   end
 
   # Link array for scorers, who can also open up the
   # public display portion of this application in a separate tab.
   def scorer_link_array()
-	  [ navitem('Record/Revise Scores' , :scorer) ,
-	navitem('Public Display' , :display ) ]
-  end
-
-  # Link array for schedulers, who can also open up the scorer and the
-  # public display portions of this application in a separate tab.
-  def scheduler_link_array()
-	  [ navitem('Schedule Regular Contests' , :competition_regularcontests),
-	navitem('Schedule Bracket Contests' , :bracketcontests ),
-	navitem('Record/Revise Scores' , :scorer ),
-	navitem('Public Display' , :display)  ]
+	  [ navitem('Report/Correct Scores' , :schmenge) ,
+	navitem('Public Display' , :luckydog, target: "_blank" ) ]
   end
   
   # Link array for admins, who have access to everything related to the
@@ -44,15 +35,9 @@ class ApplicationController < ActionController::Base
 	  [ navitem('Manage Dates/Venues' , :competition_venues),
 	navitem('Manage Groupings/Teams' , :competition_groupings),
 	navitem('Schedule Regular Contests' , :competition_regularcontests),
-	navitem('Schedule Bracket Contests' , :bracketcontests) ,
-	navitem('Record/Revise Scores' , :scorer) ,
-	navitem('Public Display' , :display, target: "_blank")  ]
-	
-	  [ navitem('Manage Dates/Venues' , :competition_venues),
-	navitem('Manage Groupings/Teams' , :competition_groupings),
-	navitem('Schedule Regular Contests' , :competition_regularcontests),
-	navitem('Schedule Bracket Contests' , :competition_brackets)  ]
+	navitem('Schedule Bracket Contests' , :competition_brackets),
+	navitem('Report/Correct Scores' , :schmenge, target: "_blank" ),
+	navitem('Public Display' , :luckydog, target: "_blank")  ]
   end
-
 
 end

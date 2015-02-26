@@ -73,6 +73,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-default_comp">::default_comp</a>
+    
     <li ><a href="#method-i-contest">#contest</a>
     
     <li ><a href="#method-i-fullname">#fullname</a>
@@ -109,6 +111,47 @@
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-default_comp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_comp</span><span
+            class="method-args">(comp_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_comp-source">
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">comp_id</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">comp_id</span>) ) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
@@ -168,7 +211,7 @@ class. This contestant is one of the two contestants for the contest.</p>
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teamname</span>()
 <span class="ruby-keyword">end</span></pre>
@@ -204,7 +247,7 @@ href="Contestant.html">Contestant</a>.</p>
 
           
           <div class="method-source-code" id="opponent-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">opponent</span>
         <span class="ruby-identifier">homeaway</span><span class="ruby-operator">==</span><span class="ruby-string">&#39;H&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contest</span>.<span class="ruby-identifier">awaycontestant</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contest</span>.<span class="ruby-identifier">homecontestant</span>
 <span class="ruby-keyword">end</span></pre>
@@ -237,7 +280,7 @@ href="Contestant.html">Contestant</a>.</p>
 
           
           <div class="method-source-code" id="teamname-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">teamname</span>
         <span class="ruby-identifier">team_id</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">team_id</span>).<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>

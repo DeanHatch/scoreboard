@@ -1,0 +1,7 @@
+<h1>Display#choose_customer</h1>
+<p>Find me in app/views/display/choose_customer.html.erb</p>
+
+<% Customer.all.each do |cust| %>
+  <%= link_to cust.name, "/competitions/display/#{cust.id}" %>
+  <br/>
+<% end %>

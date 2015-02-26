@@ -1,9 +1,4 @@
-class GroupingsController < NestedController  # formerly ApplicationController
-
-
-  def nav_link_array()
-	admin_link_array()
-  end
+class GroupingsController < AdminController  # formerly ApplicationController
 
   before_action :set_grouping, only: [:show, :edit, :update, :destroy]
 

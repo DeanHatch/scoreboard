@@ -1,2 +1,21 @@
-<h1>Display#grouping</h1>
-<p>Find me in app/views/display/grouping.html.erb</p>
+<h1><%= @competition.name %> <%= @competition.sport %> <%= @competition.variety %></h1>
+<h2><%= @grouping.fullname %></h2>
+
+<h3>
+<%= link_to 'Standings', ryandog_path(@competition.id, @grouping.id, "standings") %>
+<%= link_to 'Scores', ryandog_path(@competition.id, @grouping.id, "scores") %>
+<%= link_to 'Schedule', ryandog_path(@competition.id, @grouping.id, "schedule") %>
+<%= (link_to 'Bracket', ryandog_path(@competition.id, @grouping.id, "bracket") ) if @grouping.bracket_grouping %>
+</h3>
+<br/>
+
+<% case @whatsit %>
+<%    when "bracket" %>
+<%=     render partial: 'grouping_bracket'   %>
+<%    when "schedule" %>
+<%=     render partial: 'grouping_schedule'   %>
+<%    when "scores" %>
+<%=     render partial: 'grouping_scores'   %>
+<%    else %>
+<%=     render partial: 'grouping_standings'   %>
+<%    end %>

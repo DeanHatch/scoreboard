@@ -1,0 +1,23 @@
+<h4>Standings</h4>
+
+
+<h3>Standings</h3>
+<table class="standings">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Whatever else</th>
+    </tr>
+  </thead>
+
+ <tbody>
+      <!-- Show sorted, unique Teams -->
+    <% @groupingteams.sort{ |a,b| a.name <=> b.name }.each do |team| %>
+      <tr>
+        <td><%= link_to team.name, rustydog_path(@competition.id, team.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
