@@ -1,0 +1,40 @@
+
+== Online-Scoreboard.net Functional Specification
+
+Overview
+--------
+
+Online-Scoreboard.net is an online service that keeps track of sporting schedules and results.
+
+This spec is not yet complete.  Wording will need to be revised times before it is finalized. The graphics and layout of the screens is shown here merely to illustrate the underlying functionality. The actual look and feel will be developed over time with iterative user feedback.
+
+
+Scenarios
+---------
+
+In designing products, it helps to imagine a few real life stories of how actual (stereotypical) people would use them. Let's look at some scenarios.
+
+***
+
+### Scenario 1: The Harried Parent.
+
+### Scenario 2: The Overworked Organizer.
+
+
+Non Goals
+---------
+
+This version will not support the following features:
+
+
+Web Page Specifications
+-----------------------
+
+### Home Page
+
+
+### Login Page
+
+### Registration Page
+
+
