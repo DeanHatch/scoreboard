@@ -1,3 +1,5 @@
+# This class contains the essentials for a Competition.  All other non-Customer
+# resources are nested within this resource.
 class Competition < ActiveRecord::Base
 	
 	belongs_to :customer
@@ -20,7 +22,8 @@ class Competition < ActiveRecord::Base
 		self.default_scope { (where(customer_id: cust_id) ) }
 	end
 	
-	# Display
+	# Display table headings for Standings for a Grouping or
+	# for a Team's record.
 	def result_headings()
 		case self.sport
 			when "basketball"
@@ -32,6 +35,9 @@ class Competition < ActiveRecord::Base
 			end
 		end
 		
-  
+	# Name, Sport, and Variety of Competition, suitable for a title or heading.
+	def fullname()
+		[self.name(), self.sport().titleize, self.variety().titleize].join(" ")
+	end
 
 end

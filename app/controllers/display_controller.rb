@@ -26,11 +26,6 @@ class DisplayController < NestedController # Formerly < ApplicationController
   def index
   end
 
-  def teams
-	  @teams = Team.all
-	  #Regularcontest.all.select{|rc| rc.homecontestant.nil?}.each{|rc| rc.destroy}
-  end
-
   def team
 	  @team = Team.find(params[:id])
 	  @groupingteams = Team.where(grouping_id: @team.grouping_id)
@@ -42,11 +37,25 @@ class DisplayController < NestedController # Formerly < ApplicationController
   def grouping
 	  @grouping = Grouping.find(params[:id])
 	  @groupingteams = Team.where(grouping_id: @grouping.id)
-	  @whatsit = params[:xyzzy]
+	  what2show = params[:xyzzy]
 	  if @grouping.bracket_grouping		  
 		  @bracket = Bracket.find(params[:id])
 		  @bracketcontests = Bracketcontest.where(bracket_id: @bracket.id)
 	  end
+	  @what_to_render = (case what2show
+				when "bracket" 
+				 'grouping_bracket'   
+				when "schedule" 
+				 'grouping_schedule'   
+				when "scores" 
+				 'grouping_scores'   
+				when "standings" 
+				 'grouping_standings'   
+				else # default if nothing specified 
+					@grouping.has_teams? ? ('grouping_standings') :
+						(@grouping.bracket_grouping ? 'grouping_bracket' : 'grouping_nothing')  
+				end ) # of case
+
   end
      
   private

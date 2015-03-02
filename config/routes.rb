@@ -18,10 +18,9 @@ Rails.application.routes.draw do
   end
   #resources :customers
 
-  get 'competitions/display', to: 'display#choose_customer'
-  get 'competitions/display/:customer_id', to: 'display#choose_competition'
+  get 'competitions/display', to: 'display#choose_customer', as: :choose_display_customer
+  get 'competitions/display/:customer_id', to: 'display#choose_competition', as: :choose_display_competition
   get 'competition/:competition_id/display', to: 'display#index', as: :luckydog
-  get 'competition/:competition_id/display/teams', to: 'display#teams'
   get 'competition/:competition_id/display/grouping/:id(/:xyzzy)', to: 'display#grouping', as: :ryandog
   get 'competition/:competition_id/display/team/:id', to: 'display#team', as: :rustydog
 

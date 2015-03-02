@@ -1,8 +1,8 @@
-<h1>Display#choose_competition</h1>
-<p>Find me in app/views/display/choose_competition.html.erb</p>
+<h1>Display</h1>
+<h2>Which Competition?</h2>
 
 <% Competition.all.each do |comp| %>
   <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
-                   "/competition/#{comp.id}/display" %>
+                   luckydog_path(comp) %>
   <br/>
 <% end %>
