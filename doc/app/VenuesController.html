@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="NestedController.html">NestedController</a>
+  <p class="link"><a href="AdminController.html">AdminController</a>
   
 </div>
 
@@ -80,8 +80,6 @@
     <li ><a href="#method-i-edit">#edit</a>
     
     <li ><a href="#method-i-index">#index</a>
-    
-    <li ><a href="#method-i-nav_link_hash">#nav_link_hash</a>
     
     <li ><a href="#method-i-new">#new</a>
     
@@ -142,7 +140,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@venue</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">venue_params</span>)
   <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
@@ -186,7 +184,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -223,7 +221,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -255,7 +253,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@venues</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
     <span class="ruby-comment"># Need a venue object for form which is now on index page</span>
@@ -264,39 +262,6 @@
   <span class="ruby-ivar">@validdates</span> = <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
     <span class="ruby-comment"># Need a validdate object for form which is now on index page</span>
   <span class="ruby-ivar">@validdate</span> = <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment"># index contains the validdateform</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-nav_link_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">nav_link_hash</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="nav_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_hash</span>()
-      <span class="ruby-identifier">admin_link_hash</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -327,7 +292,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@venue</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -360,7 +325,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -392,7 +357,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">venue_params</span>)

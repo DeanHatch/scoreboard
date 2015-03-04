@@ -122,4 +122,18 @@ class Contest < ActiveRecord::Base
 		not self.has_score?
 	end
 	
+	# Assign score to each Contestant and status to entire Contest.
+	# Save all three records in a single transaction.
+	def record_result(homescore, awayscore, status="COMPLETED")
+		self.homecontestant.score = homescore
+		self.awaycontestant.score = awayscore
+		self.status = status
+		logger.debug "connection: #{Contest.connection.inspect}"
+		Contest.transaction do
+			self.save!
+			self.homecontestant.save!
+			self.awaycontestant.save!
+		end
+	end
+	
 end

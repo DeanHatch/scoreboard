@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class WelcomeController - Rails Application Documentation</title>
+<title>class AdminController - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  <p class="link"><a href="NestedController.html">NestedController</a>
   
 </div>
 
@@ -73,7 +73,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-index">#index</a>
+    <li ><a href="#method-i-login">#login</a>
     
     <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
@@ -83,9 +83,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-WelcomeController">
-  <h1 id="class-WelcomeController" class="class">
-    class WelcomeController
+<main role="main" aria-labelledby="class-AdminController">
+  <h1 id="class-AdminController" class="class">
+    class AdminController
   </h1>
 
   <section class="description">
@@ -111,10 +111,10 @@
        </header>
 
     
-      <div id="method-i-index" class="method-detail ">
+      <div id="method-i-login" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">index</span><span
+          <span class="method-name">login</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -129,10 +129,25 @@
           
 
           
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-keyword">end</span></pre>
+          <div class="method-source-code" id="login-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>()
+                        <span class="ruby-identifier">session</span>[<span class="ruby-value">:competition_id</span>] = <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>
+                        <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+                <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">login_params</span>[<span class="ruby-value">:password</span>])
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@competition</span>
+                        <span class="ruby-identifier">session</span>[<span class="ruby-value">:competition_id</span>] = <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>
+                        <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span>)
+                        <span class="ruby-keyword">else</span>
+                                <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>
+                                <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:password</span>, <span class="ruby-string">&quot;is incorrect. Please try again.&quot;</span>)
+                                <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Oops...&#39;</span>
+                        <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">else</span>
+                      <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>
+              <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>
@@ -162,13 +177,9 @@
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:choose_display_customer</span>) ,
-           <span class="ruby-comment">#navitem(&#39;Report/Correct Scores&#39; , :schmenge) ,</span>
-      <span class="ruby-comment">#navitem(&#39;Manage a Competition&#39; , :competition_venues),,</span>
-      <span class="ruby-comment">#navitem(&#39;Manage a Competition&#39; , :competitions_display),</span>
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Login/Register&#39;</span>, <span class="ruby-string">&#39;/customer/login&#39;</span>) ]
+      <span class="ruby-identifier">admin_link_array</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           

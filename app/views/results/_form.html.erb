@@ -2,10 +2,7 @@
   <fieldset>
     <%= number_field_tag 'awayscore', nil, in: 0...200 %>
     <%= select_tag 'contest_id',
-		      options_for_select(Contest.all.sort{|a,b| a.id <=> b.id}.
-		                                                 select {|c| c.homecontestant.team}.
-		                                                 select {|c| c.awaycontestant.team}.
-		                                                 select {|c| c.needs_score?}.
+		      options_for_select(@contests_without_scores.
 		                                                 collect {|c| [ c.awaycontestant.team.name +
 										' at ' + c.homecontestant.team.name, c.id ]}),
 		    {prompt: 'Pick One'} %>
@@ -23,10 +20,7 @@
   <fieldset>
     <%= number_field_tag 'awayscore', nil, in: 0...200 %>
     <%= select_tag 'contest_id',
-		      options_for_select(Contest.all.sort{|a,b| a.id <=> b.id}.
-		                                                 select {|c| c.homecontestant.team}.
-		                                                 select {|c| c.awaycontestant.team}.
-		                                                 select {|c| c.has_score?}.
+		      options_for_select(@contests_with_scores.
 		                                                 collect {|c| [ c.awaycontestant.team.name +
 										' ' +
 										c.awaycontestant.score.to_s +

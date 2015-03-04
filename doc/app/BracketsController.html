@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="NestedController.html">NestedController</a>
+  <p class="link"><a href="AdminController.html">AdminController</a>
   
 </div>
 
@@ -74,8 +74,6 @@
   <ul class="link-list" role="directory">
     
     <li ><a href="#method-i-index">#index</a>
-    
-    <li ><a href="#method-i-nav_link_hash">#nav_link_hash</a>
     
     <li ><a href="#method-i-show">#show</a>
     
@@ -140,42 +138,9 @@ href="BracketsController.html#method-i-show">show</a>.</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@brackets</span> = <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-nav_link_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">nav_link_hash</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="nav_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_hash</span>()
-        <span class="ruby-identifier">admin_link_hash</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -206,7 +171,7 @@ href="BracketsController.html#method-i-show">show</a>.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
         <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracket_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracket</span>.<span class="ruby-identifier">id</span>)
         <span class="ruby-comment">#@bracket_id = @bracket.id</span>

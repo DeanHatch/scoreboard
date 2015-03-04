@@ -99,6 +99,8 @@
     
     <li ><a href="#method-i-needs_score-3F">#needs_score?</a>
     
+    <li ><a href="#method-i-record_result">#record_result</a>
+    
     <li ><a href="#method-i-venue_name">#venue_name</a>
     
   </ul>
@@ -508,7 +510,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
           <div class="method-source-code" id="has_score-3F-source">
             <pre><span class="ruby-comment"># File app/models/contest.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_score?</span>
-        <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span>)
+        <span class="ruby-keyword">not</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -609,6 +611,49 @@ href="Contestant.html">Contestant</a>, if any</p>
             <pre><span class="ruby-comment"># File app/models/contest.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">needs_score?</span>
         <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">has_score?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-record_result" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">record_result</span><span
+            class="method-args">(homescore, awayscore, status="COMPLETED")</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Assign score to each <a href="Contestant.html">Contestant</a> and status to
+entire <a href="Contest.html">Contest</a>. Save all three records in a
+single transaction.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="record_result-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">record_result</span>(<span class="ruby-identifier">homescore</span>, <span class="ruby-identifier">awayscore</span>, <span class="ruby-identifier">status</span>=<span class="ruby-string">&quot;COMPLETED&quot;</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span> = <span class="ruby-identifier">homescore</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span> = <span class="ruby-identifier">awayscore</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">status</span>
+        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;connection: #{Contest.connection.inspect}&quot;</span>
+        <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save!</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">save!</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">save!</span>
+        <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

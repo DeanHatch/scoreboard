@@ -79,6 +79,10 @@
     
     <li ><a href="#method-c-poolgroupseasonlabels">::poolgroupseasonlabels</a>
     
+    <li ><a href="#method-i-fullname">#fullname</a>
+    
+    <li ><a href="#method-i-result_headings">#result_headings</a>
+    
   </ul>
 </div>
 
@@ -92,6 +96,10 @@
 
   <section class="description">
     
+<p>This class contains the essentials for a <a
+href="Competition.html">Competition</a>.  All other non-Customer resources
+are nested within this resource.</p>
+
   </section>
 
   
@@ -133,7 +141,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="default_cust-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">default_cust</span>(<span class="ruby-identifier">cust_id</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">customer_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">cust_id</span>) ) }
 <span class="ruby-keyword">end</span></pre>
@@ -166,7 +174,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="playoffbracketlabels-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">playoffbracketlabels</span> 
         [<span class="ruby-string">&#39;Playoff&#39;</span>, <span class="ruby-string">&#39;Bracket&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -199,10 +207,93 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="poolgroupseasonlabels-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">poolgroupseasonlabels</span>
         [<span class="ruby-string">&#39;Pool&#39;</span>, <span class="ruby-string">&#39;Group&#39;</span>, <span class="ruby-string">&#39;Season&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-fullname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fullname</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Name, Sport, and Variety of <a href="Competition.html">Competition</a>,
+suitable for a title or heading.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fullname-source">
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>()
+        [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>(), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sport</span>().<span class="ruby-identifier">titleize</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">variety</span>().<span class="ruby-identifier">titleize</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-result_headings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">result_headings</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Display table headings for Standings for a <a
+href="Grouping.html">Grouping</a> or for a Team&#39;s record.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="result_headings-source">
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">result_headings</span>()
+        <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sport</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basketball&quot;</span>
+                        [<span class="ruby-string">&quot;Wins&quot;</span>, <span class="ruby-string">&quot;Losses&quot;</span>, <span class="ruby-string">&quot;Pct&quot;</span>]
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;soccer&quot;</span>
+                        [<span class="ruby-string">&quot;Wins&quot;</span>, <span class="ruby-string">&quot;Losses&quot;</span>, <span class="ruby-string">&quot;Draws&quot;</span>, <span class="ruby-string">&quot;Points&quot;</span>, <span class="ruby-string">&quot;GF&quot;</span>, <span class="ruby-string">&quot;GA&quot;</span>, <span class="ruby-string">&quot;GD&quot;</span>]
+                <span class="ruby-keyword">else</span>
+                        [<span class="ruby-string">&quot;Wins&quot;</span>, <span class="ruby-string">&quot;Losses&quot;</span>]
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>

@@ -13,11 +13,10 @@ This spec is not yet complete.  Wording will need to be revised times before it 
 
 In designing products, it helps to imagine a few real life stories of how actual (stereotypical) people would use them. Let's look at some scenarios.
 
-***
 
-### Scenario 1: The Harried Parent.
+=== Scenario 1: The Harried Parent.
 
-### Scenario 2: The Overworked Organizer.
+=== Scenario 2: The Overworked Organizer.
 
 
 == Non Goals

@@ -18,17 +18,22 @@ class ResultsController < NestedController # Formerly < ApplicationController
   end
 
   def index
+	  contests = Contest.all.sort{|a,b| a.id <=> b.id}.
+					select {|c| c.homecontestant.team}.
+					select {|c| c.awaycontestant.team}
+	  @contests_with_scores = contests.select {|c| c.has_score?}
+	  @contests_without_scores = contests.select {|c| c.needs_score?}
   end
 
   def report
 	  @contest = Contest.find(params[:contest_id])
+	  logger.debug "Converting Contest to: #{@contest.type}"
+	  contest_class = Kernel.const_get(@contest.type)
+	  @contest = contest_class.find(params[:contest_id])
 	  @contest.homecontestant.score = params[:homescore]
-	  @contest.homecontestant.save
-	  @contest.awaycontestant.score = params[:awayscore]
-	  @contest.awaycontestant.save
-	  @contest.save
+	  @contest.record_result(params[:homescore], params[:awayscore])
 	  flash.now[:notice] = 'Wonderful.'
-	  redirect_to(:action => "index", notice: 'Wunderbar.')
+	  redirect_to(:action => "index")
   end
 
   def rescord

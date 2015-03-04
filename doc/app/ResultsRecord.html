@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class NavItem - Rails Application Documentation</title>
+<title>class ResultsRecord - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -81,15 +81,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-NavItem">
-  <h1 id="class-NavItem" class="class">
-    class NavItem
+<main role="main" aria-labelledby="class-ResultsRecord">
+  <h1 id="class-ResultsRecord" class="class">
+    class ResultsRecord
   </h1>
 
   <section class="description">
     
-<p>This is a holder of values which define a Navigation Link Item.</p>
-
   </section>
 
   
@@ -109,9 +107,9 @@
       </header>
 
       
-      <div id="attribute-i-css_class" class="method-detail">
+      <div id="attribute-i-losses" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">css_class</span><span
+          <span class="method-name">losses</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -122,35 +120,9 @@
         </div>
       </div>
       
-      <div id="attribute-i-href" class="method-detail">
+      <div id="attribute-i-wins" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">href</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-target" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">target</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-text" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">text</span><span
+          <span class="method-name">wins</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -175,7 +147,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(href, text, options={class: "nav", target: nil})</span>
+            class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -190,13 +162,10 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/navitem.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">href</span>, <span class="ruby-identifier">text</span>,
-                <span class="ruby-identifier">options</span>={<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>})
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">href</span> = <span class="ruby-identifier">href</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">text</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">css_class</span> = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:css_class</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:css_class</span>] <span class="ruby-operator">:</span> <span class="ruby-string">&quot;nav&quot;</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">target</span> = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:target</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:target</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>)
+            <pre><span class="ruby-comment"># File lib/resultsrecord.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>()
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">losses</span> = <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

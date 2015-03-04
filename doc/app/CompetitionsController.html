@@ -143,7 +143,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">competition_params</span>)
 
@@ -196,7 +196,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -233,7 +233,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -267,6 +267,7 @@ Customerscontroller.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">set_customer</span>()
   <span class="ruby-ivar">@competitions</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -298,7 +299,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -331,7 +332,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -363,7 +364,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">competition_params</span>)

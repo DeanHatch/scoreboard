@@ -75,6 +75,14 @@
     
     <li ><a href="#method-i-index">#index</a>
     
+    <li ><a href="#method-i-login">#login</a>
+    
+    <li ><a href="#method-i-logout">#logout</a>
+    
+    <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
+    
+    <li ><a href="#method-i-report">#report</a>
+    
     <li ><a href="#method-i-rescord">#rescord</a>
     
     <li ><a href="#method-i-scorect">#scorect</a>
@@ -132,8 +140,150 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+        <span class="ruby-identifier">contests</span> = <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">id</span>}.
+                                      <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span>}.
+                                      <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>}
+        <span class="ruby-ivar">@contests_with_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">has_score?</span>}
+        <span class="ruby-ivar">@contests_without_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">needs_score?</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-login" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">login</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /customer/login GET /customers.json ??</p>
+          
+          
+
+          
+          <div class="method-source-code" id="login-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-logout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logout</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /customer/logout GET /customers.json ??</p>
+          
+          
+
+          
+          <div class="method-source-code" id="logout-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logout</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nav_link_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nav_link_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>before_action :set_competition_from_session, except: [:login]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nav_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>
+        <span class="ruby-identifier">scorer_link_array</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">report</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="report-source">
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">report</span>
+        <span class="ruby-ivar">@contest</span> = <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:contest_id</span>])
+        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Converting Contest to: #{@contest.type}&quot;</span>
+        <span class="ruby-identifier">contest_class</span> = <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-ivar">@contest</span>.<span class="ruby-identifier">type</span>)
+        <span class="ruby-ivar">@contest</span> = <span class="ruby-identifier">contest_class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:contest_id</span>])
+        <span class="ruby-ivar">@contest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:homescore</span>]
+        <span class="ruby-ivar">@contest</span>.<span class="ruby-identifier">record_result</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:homescore</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:awayscore</span>])
+        <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Wonderful.&#39;</span>
+        <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -164,7 +314,7 @@
 
           
           <div class="method-source-code" id="rescord-source">
-            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rescord</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -196,7 +346,7 @@
 
           
           <div class="method-source-code" id="scorect-source">
-            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/results_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scorect</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

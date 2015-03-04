@@ -75,6 +75,20 @@
     
     <li ><a href="#method-c-default_comp">::default_comp</a>
     
+    <li ><a href="#method-i-as_contestants">#as_contestants</a>
+    
+    <li ><a href="#method-i-draws">#draws</a>
+    
+    <li ><a href="#method-i-losses">#losses</a>
+    
+    <li ><a href="#method-i-pct">#pct</a>
+    
+    <li ><a href="#method-i-points">#points</a>
+    
+    <li ><a href="#method-i-result_row">#result_row</a>
+    
+    <li ><a href="#method-i-wins">#wins</a>
+    
   </ul>
 </div>
 
@@ -122,15 +136,269 @@
 
         <div class="method-description">
           
-          
+          <p>Since default_scope is private, we use this to allow access.</p>
           
           
 
           
           <div class="method-source-code" id="default_comp-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">comp_id</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">comp_id</span>) ) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-as_contestants" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_contestants</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return an Array of all Contestants for which this is the <a
+href="Team.html">Team</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="as_contestants-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_contestants</span>()
+        <span class="ruby-constant">Contestant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">team</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-draws" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draws</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return count of all Contestants for which this is the <a
+href="Team.html">Team</a> and this score is equal to the opponent&#39;s
+score.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="draws-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draws</span>()
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">draw</span>()}.<span class="ruby-identifier">size</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-losses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">losses</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return count of all Contestants for which this is the <a
+href="Team.html">Team</a> and this score is less than the opponent&#39;s
+score.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="losses-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">losses</span>()
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">loss</span>()}.<span class="ruby-identifier">size</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pct" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pct</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pct-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pct</span>()
+        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>()<span class="ruby-operator">==</span><span class="ruby-value">0</span>) <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>().<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>()<span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">losses</span>()) 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-points" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">points</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Used for soccer results.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="points-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">points</span>()  
+        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>()<span class="ruby-operator">*</span><span class="ruby-value">3</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">draws</span>()) 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-result_row" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">result_row</span><span
+            class="method-args">(competition)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Varies by sport</p>
+          
+          
+
+          
+          <div class="method-source-code" id="result_row-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">result_row</span>(<span class="ruby-identifier">competition</span>)
+        <span class="ruby-keyword">case</span> <span class="ruby-identifier">competition</span>.<span class="ruby-identifier">sport</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basketball&quot;</span>
+                        [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>(), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">losses</span>(), <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%0.3f&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pct</span>())]
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;soccer&quot;</span>
+                        [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>(), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">losses</span>(),  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">draws</span>(), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">points</span>(),
+                         <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>]
+                <span class="ruby-keyword">else</span>
+                        [<span class="ruby-identifier">wins</span>(), <span class="ruby-identifier">losses</span>()]
+                <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-wins" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">wins</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return count of all Contestants for which this is the <a
+href="Team.html">Team</a> and this score is more than the opponent&#39;s
+score.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="wins-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wins</span>()
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">win</span>()}.<span class="ruby-identifier">size</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           

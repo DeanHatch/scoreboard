@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="NestedController.html">NestedController</a>
+  <p class="link"><a href="AdminController.html">AdminController</a>
   
 </div>
 
@@ -84,8 +84,6 @@
     <li ><a href="#method-i-edit">#edit</a>
     
     <li ><a href="#method-i-index">#index</a>
-    
-    <li ><a href="#method-i-nav_link_hash">#nav_link_hash</a>
     
     <li ><a href="#method-i-new">#new</a>
     
@@ -151,7 +149,7 @@
 
           
           <div class="method-source-code" id="cancel-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel</span>
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&#39;CAN&#39;</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -193,7 +191,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@regularcontest</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">regularcontest_params</span>)
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
@@ -239,7 +237,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 115</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -276,7 +274,7 @@
 
           
           <div class="method-source-code" id="dump-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>
       <span class="ruby-comment">#  Grouping.where(&#39;id&gt;0&#39;).each{|g| g.bracket_grouping=false;g.save }</span>
       <span class="ruby-comment">#  Team.where(&#39;id=26&#39;).each{|t| t.destroy }</span>
@@ -317,7 +315,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">venue_id</span>
   <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">date</span>
@@ -355,43 +353,10 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@regularcontests</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">all</span>
   
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-nav_link_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">nav_link_hash</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="nav_link_hash-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_hash</span>()
-        <span class="ruby-identifier">admin_link_hash</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -422,7 +387,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@regularcontest</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
@@ -462,7 +427,7 @@
 
           
           <div class="method-source-code" id="roundrobin-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 133</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">roundrobin</span>
         <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grouping_id</span>])
         <span class="ruby-identifier">arr</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">teams</span>().<span class="ruby-identifier">to_a</span>
@@ -518,7 +483,7 @@
 
           
           <div class="method-source-code" id="rrobin-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 126</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rrobin</span>
   <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">all</span>
   <span class="ruby-ivar">@venues</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">all</span>
@@ -552,7 +517,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -584,7 +549,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 79</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@home_team_id</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:regularcontest</span>)[<span class="ruby-value">:home_team_id</span>]
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team_id</span> = <span class="ruby-ivar">@home_team_id</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@home_team_id</span>

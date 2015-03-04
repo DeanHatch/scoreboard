@@ -8,7 +8,8 @@
 		       ) if bracketcontest.homecontestant.contestanttype=="W"   %>
    </td>
    <td class="hometeam">
-     <%= bracketcontest.homecontestant.fullname %></td>
+     <%= bracketcontest.homecontestant.fullname %>
+     <%= bracketcontest.homecontestant.score %></td>
   </tr>
  <tr>
    <td class="buml">
@@ -29,6 +30,7 @@
    </td>
   </tr>
  <tr>
-   <td class="awayteam"><%= bracketcontest.awaycontestant.fullname %></td>
+   <td class="awayteam"><%= bracketcontest.awaycontestant.fullname %>
+				  <%= bracketcontest.awaycontestant.score %></td>
   </tr>
 </table>

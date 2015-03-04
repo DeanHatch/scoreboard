@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="NestedController.html">NestedController</a>
+  <p class="link"><a href="AdminController.html">AdminController</a>
   
 </div>
 
@@ -80,8 +80,6 @@
     <li ><a href="#method-i-edit">#edit</a>
     
     <li ><a href="#method-i-index">#index</a>
-    
-    <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
     <li ><a href="#method-i-new">#new</a>
     
@@ -142,7 +140,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">grouping_params</span>)
   <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
@@ -186,7 +184,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -223,7 +221,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
         <span class="ruby-comment"># list of groupings for drop-down</span>
   <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
@@ -258,43 +256,10 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
       <span class="ruby-comment">#(1..14).each{|ci| Grouping.where(competition_id: ci).each{|g| g.destroy}; Competition.where(id: ci).each{|c| c.destroy}}</span>
   <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-nav_link_array" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">nav_link_array</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
-      <span class="ruby-identifier">admin_link_array</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -325,7 +290,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
     <span class="ruby-comment"># ALL does not include the Grouping about to be created.</span>
@@ -362,7 +327,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -394,7 +359,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">grouping_params</span>)

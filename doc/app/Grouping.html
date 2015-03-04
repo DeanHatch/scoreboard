@@ -75,6 +75,8 @@
     
     <li ><a href="#method-c-default_comp">::default_comp</a>
     
+    <li ><a href="#method-c-top_grouping">::top_grouping</a>
+    
     <li ><a href="#method-i-all_subgroupings">#all_subgroupings</a>
     
     <li ><a href="#method-i-all_teams">#all_teams</a>
@@ -162,6 +164,40 @@ Standings.</p>
       </div>
 
     
+      <div id="method-c-top_grouping" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">top_grouping</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>sending this method to the parent of this <a
+href="Grouping.html">Grouping</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="top_grouping-source">
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">top_grouping</span>()
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">parent_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
     </section>
   
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
@@ -191,7 +227,7 @@ href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="all_subgroupings-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_subgroupings</span>()
         (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">subgroupings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">sg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sg</span>.<span class="ruby-identifier">all_subgroupings</span>()}).<span class="ruby-identifier">flatten</span>
 <span class="ruby-keyword">end</span></pre>
@@ -227,7 +263,7 @@ the case where there is one or the other or both.</p>
 
           
           <div class="method-source-code" id="all_teams-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_teams</span>()
         (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">teams</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">sg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sg</span>.<span class="ruby-identifier">all_teams</span>()}).<span class="ruby-identifier">flatten</span>
 <span class="ruby-keyword">end</span></pre>
@@ -261,7 +297,7 @@ href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hierarchy</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -295,7 +331,7 @@ href="Grouping.html">Grouping</a> that identifies this as its Parent.</p>
 
           
           <div class="method-source-code" id="has_subgroupings-3F-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_subgroupings?</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">count</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -329,7 +365,7 @@ identifies this as its <a href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="has_teams-3F-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_teams?</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">count</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -364,7 +400,7 @@ parent of this <a href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="hierarchy-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hierarchy</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent_id</span>).<span class="ruby-identifier">hierarchy</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>  <span class="ruby-operator">:</span> [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -397,7 +433,7 @@ parent of this <a href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="subgroupings-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">subgroupings</span>()
         <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">parent_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -431,7 +467,7 @@ href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="teams-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">teams</span>()
         <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>

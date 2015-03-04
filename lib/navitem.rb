@@ -1,3 +1,4 @@
+# This is a holder of values which define a Navigation Link Item.
 class NavItem < Object
 	attr_accessor :href, :text, :css_class, :target
 	

@@ -73,13 +73,19 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-choose_competition">#choose_competition</a>
+    
+    <li ><a href="#method-i-choose_customer">#choose_customer</a>
+    
     <li ><a href="#method-i-grouping">#grouping</a>
     
     <li ><a href="#method-i-index">#index</a>
     
-    <li ><a href="#method-i-team">#team</a>
+    <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
-    <li ><a href="#method-i-teams">#teams</a>
+    <li ><a href="#method-i-nav_link_to_grouping">#nav_link_to_grouping</a>
+    
+    <li ><a href="#method-i-team">#team</a>
     
   </ul>
 </div>
@@ -115,6 +121,70 @@
        </header>
 
     
+      <div id="method-i-choose_competition" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_competition</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="choose_competition-source">
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_competition</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-choose_customer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_customer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="choose_customer-source">
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_customer</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-grouping" class="method-detail ">
         
         <div class="method-heading">
@@ -134,8 +204,29 @@
 
           
           <div class="method-source-code" id="grouping-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">grouping</span>
+        <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">what2show</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:xyzzy</span>]
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">bracket_grouping</span>                  
+                <span class="ruby-ivar">@bracket</span> = <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+                <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracket_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracket</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@what_to_render</span> = (<span class="ruby-keyword">case</span> <span class="ruby-identifier">what2show</span>
+                              <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;bracket&quot;</span> 
+                               <span class="ruby-string">&#39;grouping_bracket&#39;</span>   
+                              <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;schedule&quot;</span> 
+                               <span class="ruby-string">&#39;grouping_schedule&#39;</span>   
+                              <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;scores&quot;</span> 
+                               <span class="ruby-string">&#39;grouping_scores&#39;</span>   
+                              <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;standings&quot;</span> 
+                               <span class="ruby-string">&#39;grouping_standings&#39;</span>   
+                              <span class="ruby-keyword">else</span> <span class="ruby-comment"># default if nothing specified </span>
+                                      <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">has_teams?</span> <span class="ruby-operator">?</span> (<span class="ruby-string">&#39;grouping_standings&#39;</span>) <span class="ruby-operator">:</span>
+                                              (<span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">bracket_grouping</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;grouping_bracket&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;grouping_nothing&#39;</span>)  
+                              <span class="ruby-keyword">end</span> ) <span class="ruby-comment"># of case</span>
+
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -166,8 +257,79 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nav_link_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nav_link_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Array of <a href="Grouping.html">Grouping</a> links can have nested Arrays
+of <a href="Grouping.html">Grouping</a> links, but it all starts at the
+top. No navigation if the <a href="Competition.html">Competition</a> has
+not yet been established.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nav_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
+        <span class="ruby-ivar">@competition</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">top_grouping</span>) <span class="ruby-operator">:</span> []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-nav_link_to_grouping" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nav_link_to_grouping</span><span
+            class="method-args">(grp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>(Recursive) The navigation link to this grouping is followed by an Array of
+navigation links to each subgrouping within this grouping.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="nav_link_to_grouping-source">
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-identifier">grp</span>)
+        [<span class="ruby-identifier">navitem</span>(<span class="ruby-identifier">grp</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">ryandog_path</span>(<span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">grp</span>.<span class="ruby-identifier">id</span>))] <span class="ruby-operator">&lt;&lt;</span>
+          <span class="ruby-identifier">grp</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">sg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-identifier">sg</span>)}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -198,46 +360,13 @@
 
           
           <div class="method-source-code" id="team-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">team</span>
         <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
         <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping_id</span>)
-        <span class="ruby-comment">#@regularcontestants = Regularcontestant.where(team_id: params[:id])</span>
-        <span class="ruby-ivar">@contestants</span> = <span class="ruby-constant">Contestant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-teams" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">teams</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="teams-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">teams</span>
-        <span class="ruby-ivar">@teams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">all</span>
-        <span class="ruby-comment">#Regularcontest.all.select{|rc| rc.homecontestant.nil?}.each{|rc| rc.destroy}</span>
+        <span class="ruby-ivar">@groupingteamhash</span> = {}
+        <span class="ruby-ivar">@groupingteams</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gt</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@groupingteamhash</span>[<span class="ruby-identifier">gt</span>] = <span class="ruby-identifier">gt</span>.<span class="ruby-identifier">as_contestants</span>() }
+        <span class="ruby-ivar">@contestants</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">as_contestants</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
