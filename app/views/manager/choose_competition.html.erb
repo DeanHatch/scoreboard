@@ -1,0 +1,8 @@
+<h1>Display</h1>
+<h2>Which Competition?</h2>
+
+<% Competition.all.each do |comp| %>
+  <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
+                   luckydog_path(comp) %>
+  <br/>
+<% end %>

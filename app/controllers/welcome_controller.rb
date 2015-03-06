@@ -4,8 +4,8 @@ class WelcomeController < ApplicationController
 	  [ navitem('Public Display' , :choose_display_customer) ,
   	     #navitem('Report/Correct Scores' , :schmenge) ,
 	#navitem('Manage a Competition' , :competition_venues),,
-	#navitem('Manage a Competition' , :competitions_display),
-	navitem('Login/Register', '/customer/login') ]
+	navitem('Manage a Competition' , :choose_manager_customer),
+	navitem('Customer Login/Register', '/customer/login') ]
   end
 
 def index

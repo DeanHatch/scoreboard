@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
 	navitem('Public Display' , :luckydog, target: "_blank" ) ]
   end
   
-  # Link array for admins, who have access to everything related to the
+  # Link array for Managers, who have access to everything related to the
   # application for a Competition.
-  def admin_link_array()
+  def manager_link_array()
 	  [ navitem('Manage Dates/Venues' , :competition_venues),
 	navitem('Manage Groupings/Teams' , :competition_groupings),
 	navitem('Schedule Regular Contests' , :competition_regularcontests),

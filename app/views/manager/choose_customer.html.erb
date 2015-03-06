@@ -1,0 +1,7 @@
+<h1>Display</h1>
+<h2>Which Customer&apos;s Competition?</h2>
+
+<% Customer.all.each do |cust| %>
+  <%= link_to cust.name, choose_display_competition_path(cust) %>
+  <br/>
+<% end %>

@@ -1,4 +1,4 @@
-class RegularcontestsController < AdminController
+class RegularcontestsController < ManagerController
   before_action :set_regularcontest, only: [:show, :edit, :update, :destroy]
 
 

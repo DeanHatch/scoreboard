@@ -1,4 +1,4 @@
-class ValiddatesController < AdminController
+class ValiddatesController < ManagerController
   before_action :set_validdate, only: [:show, :edit, :update, :destroy]
 
   # GET /validdates

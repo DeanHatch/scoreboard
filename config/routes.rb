@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 	  get 'results', to: 'results#index'
 	  patch 'results/report', to: 'results#report'
   end
+  
+  get 'competitions/manage', to: 'manager#choose_customer', as: :choose_manager_customer
+  get 'competitions/manage/:customer_id', to: 'manager#choose_competition', as: :choose_manager_competition
+  get 'competitions/:competition_id/manage', to: 'manager#index', as: :competition_manager
 	  
   resources :competitions do
 	  resources :venues 

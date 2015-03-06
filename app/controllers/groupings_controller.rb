@@ -1,4 +1,4 @@
-class GroupingsController < AdminController  # formerly ApplicationController
+class GroupingsController < ManagerController  # formerly ApplicationController
 
   before_action :set_grouping, only: [:show, :edit, :update, :destroy]
 

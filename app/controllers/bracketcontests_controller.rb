@@ -15,7 +15,7 @@ class BracketcontestsController < BracketsController
     end
 
   def nav_link_hash()
-	  admin_link_hash()
+	  manager_link_hash()
   end
 
   # GET /bracketcontests
