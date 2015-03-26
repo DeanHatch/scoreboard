@@ -5,12 +5,12 @@ class BracketcontestsController < BracketsController
 
   def set_bracket
 	@bracket_id = params[:bracket_id]
-	return(redirect_to(competition_brackets_url)) unless @bracket_id
+	return(redirect_to(brackets_url)) unless @bracket_id
 	begin
 	@bracket = Bracket.find(@bracket_id)
 	Bracketcontest.default_bracket(@bracket_id)
 	rescue
-	return redirect_to(competition_brackets_url)
+	return redirect_to(brackets_url)
 	end
     end
 
@@ -71,10 +71,11 @@ class BracketcontestsController < BracketsController
 
     respond_to do |format|
       if @bracketcontest.save
-	save_contestants()
-	format.html { redirect_to  edit_competition_bracket_bracketcontest_path(@competition, @bracket, @bracketcontest), notice: 'Bracketcontest was successfully created.' }
-        format.json { render :show, status: :created, location: @bracketcontest }
-      else
+	      save_contestants()
+	      flash[:notice] = 'Bracketcontest was successfully created.' 
+	      format.html { redirect_to  edit_bracket_bracketcontest_path(@bracket, @bracketcontest)}
+	      format.json { render :show, status: :created, location: @bracketcontest }
+	else
         format.html { render :new }
         format.json { render json: @bracketcontest.errors, status: :unprocessable_entity }
       end
@@ -87,7 +88,8 @@ class BracketcontestsController < BracketsController
     respond_to do |format|
       if @bracketcontest.update(bracketcontest_params)
 	save_contestants()
-        format.html { redirect_to  [@competition, @bracket, @bracketcontest], notice: 'Bracketcontest was successfully updated.' }
+	flash[:notice] = 'Bracketcontest was successfully updated.' 
+        format.html { redirect_to  [@bracket, @bracketcontest]}
         format.json { render :show, status: :ok, location: @bracketcontest }
       else
         format.html { render :edit }
@@ -101,7 +103,8 @@ class BracketcontestsController < BracketsController
   def destroy
     @bracketcontest.destroy
     respond_to do |format|
-      format.html { redirect_to bracketcontests_url, notice: 'Bracketcontest was successfully destroyed.' }
+	flash[:notice] = 'Bracketcontest was successfully created.' 
+      format.html { redirect_to bracketcontests_url }
       format.json { head :no_content }
     end
   end

@@ -1,20 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  sport: 1
-  variety: 1
-  poolgroupseason: false
-  poolgroupseasonlabel: MyString
-  playoffbracket: false
-  playoffbracketlabel: MyString
-  kepscores: false
-  winpoints: 1
+soccer:
+  name: My Soccer Tournament
+  sport: soccer
+  variety: tournament
+  poolgroupseason: true
+  poolgroupseasonlabel: Pool
+  playoffbracket: true
+  playoffbracketlabel: Bracket
+  keepscores: true
+  winpoints: 3
   drawpoints: 1
-  losspoints: 1
-  forfeitpoints: 1
+  losspoints: 0
+  forfeitpoints: 0
   forfeitwinscore: 1
-  forfeitlossscore: 1
+  forfeitlossscore: 0
 
 two:
   name: MyString
@@ -24,7 +24,7 @@ two:
   poolgroupseasonlabel: MyString
   playoffbracket: false
   playoffbracketlabel: MyString
-  kepscores: false
+  keepscores: false
   winpoints: 1
   drawpoints: 1
   losspoints: 1

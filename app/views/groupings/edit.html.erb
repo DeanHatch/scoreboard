@@ -15,7 +15,7 @@ To change the name of the Grouping, simply type in it&apos;s correct name and pr
 		     
 <!-- Pass along the Competition and Grouping objects to construct the URL -->
 <%= button_to 'Manage Teams for this Grouping',
-                     competition_grouping_teams_path(@competition, @grouping),
+                     grouping_teams_path(@grouping),
 		     method: :get %>
 
-<%= link_to 'Back to Groupings', competition_groupings_path %>
+<%= link_to 'Back to Groupings', groupings_path %>

@@ -9,11 +9,8 @@ one:
   team_id: 1
   score: 1
   forfeit: false
-  contestanttype: MyString
+  contestantcode: MyString
   seeding: 1
-  bracketcontest_id: 1
-  grouping_id: 1
-  place: 1
 
 two:
   competition_id: 1
@@ -24,8 +21,5 @@ two:
   team_id: 1
   score: 1
   forfeit: false
-  contestanttype: MyString
+  contestantcode: MyString
   seeding: 1
-  bracketcontest_id: 1
-  grouping_id: 1
-  place: 1

@@ -1,4 +1,4 @@
-class GroupingsController < ManagerController  # formerly ApplicationController
+class GroupingsController < ManagersController  # formerly ApplicationController
 
   before_action :set_grouping, only: [:show, :edit, :update, :destroy]
 
@@ -38,7 +38,8 @@ class GroupingsController < ManagerController  # formerly ApplicationController
 
     respond_to do |format|
       if @grouping.save
-        format.html { redirect_to competition_groupings_url, notice: 'Grouping was successfully created.' }
+	      flash[:notice] = 'Grouping was successfully created.'
+        format.html { redirect_to groupings_url}
         format.json { render :show, status: :created, location: @grouping }
       else
         format.html { render :new }
@@ -51,8 +52,9 @@ class GroupingsController < ManagerController  # formerly ApplicationController
   # PATCH/PUT /groupings/1.json
   def update
     respond_to do |format|
+	      flash[:notice] = 'Grouping was successfully updated.'
       if @grouping.update(grouping_params)
-        format.html { redirect_to competition_groupings_url, notice: 'Grouping was successfully updated.' }
+        format.html { redirect_to groupings_url}
         format.json { render :show, status: :ok, location: @grouping }
       else
         format.html { render :edit }
@@ -66,8 +68,9 @@ class GroupingsController < ManagerController  # formerly ApplicationController
   def destroy
     @grouping.destroy
     respond_to do |format|
-      format.html { redirect_to competition_grouping_url, notice: 'Grouping was successfully destroyed.' }
-      format.json { head :no_content }
+	      flash[:notice] = 'Team was successfully removed.'
+	      format.html { redirect_to grouping_url}
+	      format.json { head :no_content }
     end
   end
 

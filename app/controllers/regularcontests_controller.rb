@@ -1,4 +1,4 @@
-class RegularcontestsController < ManagerController
+class RegularcontestsController < ManagersController
   before_action :set_regularcontest, only: [:show, :edit, :update, :destroy]
 
 
@@ -12,14 +12,6 @@ class RegularcontestsController < ManagerController
   # GET /regularcontests
   # GET /regularcontests.json
   def dump
-	#  Grouping.where('id>0').each{|g| g.bracket_grouping=false;g.save }
-	#  Team.where('id=26').each{|t| t.destroy }
-	#  Bracketcontest.where(homecontestant_id: nil).each{|rc| rc.destroy }
-	#  Bracketcontestant.all.each{|rc| rc.destroy }
-	#  Bracketcontest.all.each{|rc| rc.destroy }
-	#  Bracketcontestant.where('contest_id=82').each{|bc| bc.seeding=bc.team_id; bc.save }
-	#  Bracketcontest.where('id=82').each{|bc| bc.competition_id=17; bc.bracket_grouping_id=13; bc.save }
-	#  Regularcontest.where('id<92').each{|rc| rc.destroy }
     @regularcontests = Regularcontest.all
   end
 
@@ -58,9 +50,10 @@ class RegularcontestsController < ManagerController
 
     respond_to do |format|
       if @regularcontest.save
-        format.html { redirect_to [@competition, @regularcontest], notice: 'Regularcontest was successfully created.' }
-       # format.html { redirect_to competition_regularcontests_url, notice: 'Regularcontest was successfully created.' }
-        format.json { render :show, status: :created, location: @regularcontest }
+	      flash[:notice] = 'Regularcontest was successfully created.' 
+	      format.html { redirect_to [@competition, @regularcontest]}
+	      # format.html { redirect_to competition_regularcontests_url, notice: 'Regularcontest was successfully created.' }
+	      format.json { render :show, status: :created, location: @regularcontest }
       else
         format.html { render :new }
         format.json { render json: @regularcontest.errors, status: :unprocessable_entity }
@@ -80,7 +73,8 @@ class RegularcontestsController < ManagerController
     @regularcontest.awaycontestant.save if @regularcontest.awaycontestant
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
-        format.html { redirect_to [@competition, @regularcontest], notice: 'Contest was successfully updated.'}
+	      flash[:notice] = 'Regularcontest was successfully updated.' 
+        format.html { redirect_to [@competition, @regularcontest]}
         format.json { render :show, status: :ok, location: @regularcontest }
       else
         format.html { render :edit }
@@ -95,7 +89,8 @@ class RegularcontestsController < ManagerController
     @regularcontest.status = 'CAN'
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
-        format.html { redirect_to @regularcontest, notice: 'Contest was cancelled.' }
+	      flash[:notice] = 'Regularcontest was successfully cancelled.' 
+        format.html { redirect_to @regularcontest }
         format.json { render :show, status: :ok, location: @regularcontest }
       else
         format.html { render :edit }
@@ -110,7 +105,8 @@ class RegularcontestsController < ManagerController
   def destroy
     @regularcontest.destroy
     respond_to do |format|
-      format.html { redirect_to regularcontests_url, notice: 'Regularcontest was successfully destroyed.' }
+	      flash[:notice] = 'Regularcontest was successfully deleted.' 
+      format.html { redirect_to regularcontests_url }
       format.json { head :no_content }
     end
   end

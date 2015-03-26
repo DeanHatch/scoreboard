@@ -25,8 +25,8 @@
         <td><%= bracketcontest.awaycontestant.id if bracketcontest.awaycontestant %>
         -- <%= bracketcontest.homecontestant.id if bracketcontest.homecontestant %></td>
         <td><%= bracketcontest.venue_name  %></td>
-        <td><%= link_to 'Show', competition_bracketcontest_path(@competition, bracketcontest)  %></td>
-        <td><%= link_to 'Edit', edit_competition_bracketcontest_path(@competition, bracketcontest) %></td>
+        <td><%= link_to 'Show', bracketcontest_path(bracketcontest)  %></td>
+        <td><%= link_to 'Edit', edit_bracketcontest_path(bracketcontest) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New bracketcontest', new_competition_bracketcontest_path %>
+<%= link_to 'New bracketcontest', new_bracketcontest_path %>

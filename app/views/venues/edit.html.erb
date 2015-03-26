@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= button_to 'Remove This Venue', [@competition, @venue], method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Skip This and Go Back to the List', competition_venues_path %><br/>
+<%= button_to 'Remove This Venue', @venue,
+                       method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Skip This and Go Back to the List', venues_path %><br/>

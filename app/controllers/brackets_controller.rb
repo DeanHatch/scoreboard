@@ -2,7 +2,7 @@
 # allows the user to select one for updating the Bracketcontests contained within.
 # Brackets themselves are not created nor destroyed nor updated by this
 # controller, it merely serves as a routing device. Therefore, it ha only two actions: #index and #show.
-class BracketsController < ManagerController
+class BracketsController < ManagersController
   before_action :set_bracket, only: :show
 
   # GET /brackets

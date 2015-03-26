@@ -3,7 +3,7 @@
 one:
   competition_id: 1
   name: MyString
-  parent_id: 1
+  parent_id: 0
 
 two:
   competition_id: 1

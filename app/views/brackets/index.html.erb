@@ -11,7 +11,7 @@
     <% @brackets.each do |bracket| %>
       <tr>
         <td>
-	<%= link_to bracket.fullname, competition_bracket_path(@competition, bracket) %>
+	<%= link_to bracket.fullname, bracket_path(bracket) %>
 	<%= select_tag('pcode', options_for_select(bracket.all_participant_codes())) if 
 	     bracket.all_subgroupings.select{|sg|sg.has_teams?}.count>0 %>...
 	</td>

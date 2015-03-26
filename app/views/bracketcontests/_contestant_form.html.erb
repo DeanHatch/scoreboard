@@ -1,6 +1,5 @@
-<!-- %= form_for competition_bracket_bracketcontests_path(@competition, @bracket, @bracketcontest) do |f| % -->
 <h3><%= @bracket.hierarchy.join(' ') %></h3>
-<%= form_for ([@competition, @bracket, @bracketcontest]) do |f| %>
+<%= form_for ([@bracket, @bracketcontest]) do |f| %>
   <% if @bracketcontest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bracketcontest.errors.count, "error") %> prohibited this bracketcontest from being saved:</h2>

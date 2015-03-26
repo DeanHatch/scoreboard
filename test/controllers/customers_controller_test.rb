@@ -5,10 +5,11 @@ class CustomersControllerTest < ActionController::TestCase
     @customer = customers(:one)
   end
 
-  test "should get index" do
-    get :index
+  test "should get greet" do
+    get :greet
     assert_response :success
-    assert_not_nil assigns(:customers)
+    assert_not_nil assigns(:customer)
+    assert_not_nil assigns(:competitions)
   end
 
   test "should get new" do
@@ -18,10 +19,15 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post :create, customer: { hashed_password: @customer.hashed_password, salt: @customer.salt, userid: @customer.userid }
+      post :create, customer: { userid: "user@id.com",
+					password: "yabba",
+					password_confirmation: "yabba",
+					name: "Fred Flintstone",
+					phone: "(111) 555-1212",
+					websitee: "www.id.com" }
     end
 
-    assert_redirected_to customer_path(assigns(:customer))
+    assert_redirected_to edit_customer_path
   end
 
   test "should show customer" do
@@ -35,15 +41,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should update customer" do
-    patch :update, id: @customer, customer: { hashed_password: @customer.hashed_password, salt: @customer.salt, userid: @customer.userid }
-    assert_redirected_to customer_path(assigns(:customer))
-  end
-
-  test "should destroy customer" do
-    assert_difference('Customer.count', -1) do
-      delete :destroy, id: @customer
-    end
-
-    assert_redirected_to customers_path
+    patch :update, id: @customer, customer: { name: "Bedrock Bowling League" }
+    assert_redirected_to greet_customer_path(@customer)
   end
 end

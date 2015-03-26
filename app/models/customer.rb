@@ -10,8 +10,6 @@ class Customer < ActiveRecord::Base
 	validates_uniqueness_of :userid
 	
 	attr_accessor :password_confirmation
-	#validates_presence_of :password
-	#validates_presence_of :password_confirmation, if: :password.changed?
 	validates_confirmation_of :password
 	
 	validate :password_non_blank
@@ -33,7 +31,6 @@ class Customer < ActiveRecord::Base
 	
 	def password=(pwd)
 		@password = pwd
-		#@password = 'DRH'
 		return if pwd.blank?
 		create_new_salt
 		self.hashed_password = Customer.encrypted_password(self.password, self.salt)

@@ -1,0 +1,8 @@
+<h1>Report Scores for a Competition</h1>
+<h2>Next, Which Competition?</h2>
+
+<% Competition.all.each do |comp| %>
+  <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
+                   competition_results_path(comp) %>
+  <br/>
+<% end %>

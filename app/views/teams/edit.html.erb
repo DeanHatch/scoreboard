@@ -3,10 +3,9 @@
 <%= render 'teamform' %>
 
 <%= button_to 'Remove This Team',
-                      competition_grouping_team_path,
+                      grouping_team_path,
 		      method: :delete,
-		      competition_id: @competition_id,
 		      grouping_id: @grouping_id,
 		      id: @team.id %>
 
-<%= link_to 'Back to Team List', competition_grouping_teams_path %>
+<%= link_to 'Back to Team List', grouping_teams_path %>

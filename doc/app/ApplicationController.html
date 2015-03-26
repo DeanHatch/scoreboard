@@ -73,9 +73,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-admin_link_array">#admin_link_array</a>
-    
     <li ><a href="#method-i-display_link_array">#display_link_array</a>
+    
+    <li ><a href="#method-i-manager_link_array">#manager_link_array</a>
     
     <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
@@ -117,45 +117,6 @@
        </header>
 
     
-      <div id="method-i-admin_link_array" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">admin_link_array</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Link array for admins, who have access to everything related to the
-application for a <a href="Competition.html">Competition</a>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="admin_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_link_array</span>()
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> , <span class="ruby-value">:competition_venues</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> , <span class="ruby-value">:competition_groupings</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> , <span class="ruby-value">:competition_regularcontests</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:competition_brackets</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores&#39;</span> , <span class="ruby-value">:schmenge</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:luckydog</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>)  ]
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-display_link_array" class="method-detail ">
         
         <div class="method-heading">
@@ -179,6 +140,45 @@ Controller should override this and provide its own navigation link array.</p>
             <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_link_array</span>()
         [<span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span>, <span class="ruby-value">:luckydog</span>)] 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-manager_link_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">manager_link_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Link array for Managers, who have access to everything related to the
+application for a <a href="Competition.html">Competition</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="manager_link_array-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">manager_link_array</span>()
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> , <span class="ruby-value">:competition_venues</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> , <span class="ruby-value">:competition_groupings</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> , <span class="ruby-value">:competition_regularcontests</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:competition_brackets</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores&#39;</span> , <span class="ruby-value">:schmenge</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:luckydog</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>)  ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

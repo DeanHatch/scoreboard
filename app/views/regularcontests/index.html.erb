@@ -2,9 +2,9 @@
 
 <br>
 
-<%= button_to 'Schedule a Single Contest', new_competition_regularcontest_path, method: :get %><br/>
+<%= button_to 'Schedule a Single Contest', new_regularcontest_path, method: :get %><br/>
 <%= button_to 'Schedule a Round Robin for a Group',
-                      rrobin_competition_regularcontests_path,
+                      rrobin_regularcontests_path,
                       method: :get %>
 <!-- %= button_to 'Schedule a Round Robin for a Group', 
        controller: "regularcontests", action: "rrobin", method: :get % -->
@@ -31,8 +31,8 @@
         <td><%= regularcontest.awaycontestant.fullname if regularcontest.awaycontestant %>
         at <%= regularcontest.homecontestant.fullname if regularcontest.homecontestant %></td>
         <td><%= regularcontest.venue_name  %></td>
-        <td><%= link_to 'Show', competition_regularcontest_path(@competition, regularcontest)  %></td>
-        <td><%= link_to 'Edit', edit_competition_regularcontest_path(@competition, regularcontest) %></td>
+        <td><%= link_to 'Show', regularcontest_path(regularcontest)  %></td>
+        <td><%= link_to 'Edit', edit_regularcontest_path(regularcontest) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Regularcontest', new_competition_regularcontest_path %>
+<%= link_to 'New Regularcontest', new_regularcontest_path %>

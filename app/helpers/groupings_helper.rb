@@ -14,7 +14,7 @@ module GroupingsHelper
 	  li_opts = {class: "nav level#{grp_level}"}
 	  link_opts = {class: "nav"}  # , target: "_blank"}
 	  subgrpitems = ''
-	  my_link_path = raw(edit_competition_grouping_path(@competition, grouping))
+	  my_link_path = raw(edit_grouping_path(grouping))
 	  itemval = grouping.parent_id ? link_to( grouping.name, my_link_path, link_opts)  :  grouping.name
 	  itemval << ' (This is a Bracket Grouping)' if grouping.bracket_grouping
 	  itemval << raw(content_tag(:em, (' - Teams: ' + grouping.teams.collect{|t| t.name}.join(', ')))) if grouping.has_teams?

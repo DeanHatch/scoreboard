@@ -1,4 +1,4 @@
-class ValiddatesController < ManagerController
+class ValiddatesController < ManagersController
   before_action :set_validdate, only: [:show, :edit, :update, :destroy]
 
   # GET /validdates
@@ -30,7 +30,8 @@ class ValiddatesController < ManagerController
     respond_to do |format|
 	      # Note that we return to Venues Controller
       if @validdate.save
-        format.html { redirect_to competition_venues_url, notice: 'Validdate was successfully created.' }
+	flash[:notice] = 'Validdate was successfully created.' 
+        format.html { redirect_to venues_url}
         format.json { render :show, status: :created, location: @validdate }
       else
         format.html { render :new }
@@ -45,7 +46,8 @@ class ValiddatesController < ManagerController
     respond_to do |format|
 	      # Note that we return to Venues Controller on successful update
       if @validdate.update(validdate_params)
-        format.html { redirect_to competition_venues_url, notice: 'Validdate was successfully updated.' }
+	flash[:notice] = 'Validdate was successfully updated.' 
+        format.html { redirect_to venues_url}
         format.json { render :show, status: :ok, location: @validdate }
       else
         format.html { render :edit }
@@ -60,8 +62,9 @@ class ValiddatesController < ManagerController
     @validdate.destroy
     respond_to do |format|
 	      # Note that we return to Venues Controller on successful DELETE
-      format.html { redirect_to competition_venues_url, notice: 'Validdate was successfully destroyed.' }
-      format.json { head :no_content }
+	flash[:notice] = 'Validdate was successfully destroyed.' 
+	format.html { redirect_to venues_url}
+	format.json { head :no_content }
     end
   end
 

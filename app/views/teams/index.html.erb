@@ -3,7 +3,7 @@
 Teams</h2>
 <h3> <%= @grouping.hierarchy.join(' - ') %> </h3>
 
-<%= button_to 'New Team', new_competition_grouping_team_path,
+<%= button_to 'New Team', new_grouping_team_path,
                                        method: :get %>
 
 <table>
@@ -17,7 +17,7 @@ Teams</h2>
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><%= link_to team.name, edit_competition_grouping_team_path(@competition, @grouping, team) %></td>
+        <td><%= link_to team.name, edit_grouping_team_path(@grouping, team) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +25,4 @@ Teams</h2>
 
 <br>
 
-<%= link_to 'Back to Groupings', competition_groupings_path %>
+<%= link_to 'Back to Groupings', groupings_path %>

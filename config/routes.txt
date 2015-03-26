@@ -8,6 +8,7 @@
                              greet_customer GET    /customer/greet(.:format)                                                                 customers#greet
                    change_password_customer GET    /customer/change_password(.:format)                                                       customers#change_password
                   edit_competition_customer GET    /customer/edit_competition(.:format)                                                      customers#edit_competition
+         set_competition_passwords_customer GET    /customer/set_competition_passwords(.:format)                                             customers#set_competition_passwords
                             logout_customer GET    /customer/logout(.:format)                                                                customers#logout
                                    customer POST   /customer(.:format)                                                                       customers#create
                                new_customer GET    /customer/new(.:format)                                                                   customers#new
@@ -15,23 +16,39 @@
                                             GET    /customer(.:format)                                                                       customers#show
                                             PATCH  /customer(.:format)                                                                       customers#update
                                             PUT    /customer(.:format)                                                                       customers#update
-                       competitions_display GET    /competitions/display(.:format)                                                           display#choose_customer
-                                            GET    /competitions/display/:customer_id(.:format)                                              display#choose_competition
-                                            GET    /competition/:competition_id/display(.:format)                                            display#index
-                                            GET    /competition/:competition_id/display/teams(.:format)                                      display#teams
+                           customer_session POST   /customer_session(.:format)                                                               customer_sessions#create
+                       new_customer_session GET    /customer_session/new(.:format)                                                           customer_sessions#new
+                                            DELETE /customer_session(.:format)                                                               customer_sessions#destroy
+                    choose_display_customer GET    /competitions/display(.:format)                                                           display#choose_customer
+                 choose_display_competition GET    /competitions/display/:customer_id(.:format)                                              display#choose_competition
+                                   luckydog GET    /competition/:competition_id/display(.:format)                                            display#index
                                     ryandog GET    /competition/:competition_id/display/grouping/:id(/:xyzzy)(.:format)                      display#grouping
                                    rustydog GET    /competition/:competition_id/display/team/:id(.:format)                                   display#team
-                                   schmenge GET    /competitions/:competition_id/results(.:format)                                           results#index
+                    choose_results_customer GET    /competitions/results(.:format)                                                           results#choose_customer
+                 choose_results_competition GET    /competitions/results/:customer_id(.:format)                                              results#choose_competition
+                        competition_results GET    /competitions/:competition_id/results(.:format)                                           results#index
                                report_score PATCH  /competitions/:competition_id/results/report(.:format)                                    results#report
-                        results_competition GET    /competition/results(.:format)                                                            results#index
-                 results_report_competition PATCH  /competition/results/report(.:format)                                                     results#report
-                                competition POST   /competition(.:format)                                                                    competitions#create
-                            new_competition GET    /competition/new(.:format)                                                                competitions#new
-                           edit_competition GET    /competition/edit(.:format)                                                               competitions#edit
-                                            GET    /competition(.:format)                                                                    competitions#show
-                                            PATCH  /competition(.:format)                                                                    competitions#update
-                                            PUT    /competition(.:format)                                                                    competitions#update
-                                            DELETE /competition(.:format)                                                                    competitions#destroy
+                              login_manager GET    /manager/login(.:format)                                                                  managers#login
+                                            POST   /manager/login(.:format)                                                                  managers#login
+                              greet_manager GET    /manager/greet(.:format)                                                                  managers#greet
+                    change_password_manager GET    /manager/change_password(.:format)                                                        managers#change_password
+          set_competition_passwords_manager GET    /manager/set_competition_passwords(.:format)                                              managers#set_competition_passwords
+                             logout_manager GET    /manager/logout(.:format)                                                                 managers#logout
+                                new_manager GET    /manager/new(.:format)                                                                    managers#new
+                               edit_manager GET    /manager/edit(.:format)                                                                   managers#edit
+                                    manager GET    /manager(.:format)                                                                        managers#show
+                                            PATCH  /manager(.:format)                                                                        managers#update
+                                            PUT    /manager(.:format)                                                                        managers#update
+                    choose_manager_customer GET    /competitions/manage(.:format)                                                            manager#choose_customer
+                 choose_manager_competition GET    /competitions/manage/:customer_id(.:format)                                               manager#choose_competition
+                        competition_manager GET    /competitions/:competition_id/manage(.:format)                                            manager#index
+                  login_competition_manager GET    /competitions/:competition_id/manage/login(.:format)                                      manager#login
+               validate_competition_manager PATCH  /competitions/:competition_id/manage/validate(.:format)                                   manager#validate
+              competition_manager_passwords GET    /competitions/:competition_id/manage/passwords(.:format)                                  manager#passwords
+              competition_manager_managerpw PATCH  /competitions/:competition_id/manage/managerpw(.:format)                                  manager#managerpw
+         competition_manager_clearmanagerpw PATCH  /competitions/:competition_id/manage/clearmanagerpw(.:format)                             manager#clearmanagerpw
+               competition_manager_scorerpw PATCH  /competitions/:competition_id/manage/scorerpw(.:format)                                   manager#scorerpw
+          competition_manager_clearscorerpw PATCH  /competitions/:competition_id/manage/clearscorerpw(.:format)                              manager#clearscorerpw
                          competition_venues GET    /competitions/:competition_id/venues(.:format)                                            venues#index
                                             POST   /competitions/:competition_id/venues(.:format)                                            venues#create
                       new_competition_venue GET    /competitions/:competition_id/venues/new(.:format)                                        venues#new
@@ -94,9 +111,9 @@ updtaway_competition_bracket_bracketcontest PATCH  /competitions/:competition_id
                                             DELETE /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#destroy
                                competitions GET    /competitions(.:format)                                                                   competitions#index
                                             POST   /competitions(.:format)                                                                   competitions#create
-                                            GET    /competitions/new(.:format)                                                               competitions#new
-                                            GET    /competitions/:id/edit(.:format)                                                          competitions#edit
-                                            GET    /competitions/:id(.:format)                                                               competitions#show
+                            new_competition GET    /competitions/new(.:format)                                                               competitions#new
+                           edit_competition GET    /competitions/:id/edit(.:format)                                                          competitions#edit
+                                competition GET    /competitions/:id(.:format)                                                               competitions#show
                                             PATCH  /competitions/:id(.:format)                                                               competitions#update
                                             PUT    /competitions/:id(.:format)                                                               competitions#update
                                             DELETE /competitions/:id(.:format)                                                               competitions#destroy

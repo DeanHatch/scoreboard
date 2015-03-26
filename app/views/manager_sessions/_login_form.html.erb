@@ -1,0 +1,24 @@
+<%= form_for @manager, url: validate_competition_manager_path(@manager.id) do |f| %>
+  <% if @manager.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@manager.errors.count, "error") %> kept you from logging in:</h2>
+
+      <ul>
+      <% @manager.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :manager_id, @manager.id, :size => 40 %>
+  </div>
+  <div class="field">
+    <%= f.label :hashed_manager_password, 'Password' %>
+    <%= f.password_field :manager_password, :size => 40 %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Login' %>
+  </div>
+<% end %>

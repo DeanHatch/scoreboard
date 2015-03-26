@@ -37,7 +37,7 @@ module ApplicationHelper
   def navPanel()
 	  nav_Panel(1, controller.nav_link_array)
   end
-  
+   
   def instructions()
   end
   

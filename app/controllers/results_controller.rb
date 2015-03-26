@@ -2,7 +2,7 @@ class ResultsController < NestedController # Formerly < ApplicationController
 #  before_action :set_competition_from_session, except: [:login]
 
   def nav_link_array
-	  scorer_link_array()
+	  @competition ? scorer_link_array() : []
   end
   
  
@@ -16,6 +16,9 @@ class ResultsController < NestedController # Formerly < ApplicationController
   # GET /customers.json ??
   def logout
   end
+  
+    
+
 
   def index
 	  contests = Contest.all.sort{|a,b| a.id <=> b.id}.
@@ -44,6 +47,18 @@ class ResultsController < NestedController # Formerly < ApplicationController
 
 
   private
+ 
+     def set_customer
+	@customer_id = params[:customer_id]
+	return(redirect_to(competitions_display_url)) unless @customer_id
+	begin
+	@customer = Customer.find(@customer_id)
+	Competition.default_cust(@customer_id)
+	rescue
+	return redirect_to(competitions_display_url)
+	end
+    end
+ 
     # Use callbacks to share common setup or constraints between actions.
     def set_competition_from_session
       @competition = Competition.find(session[:competition_id])

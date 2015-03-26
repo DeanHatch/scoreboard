@@ -1,6 +1,6 @@
 class DisplayController < NestedController # Formerly < ApplicationController
      before_action :set_competition, except: [:choose_customer, :choose_competition]
-     before_action :set_customer, only: [:choose_competition]
+     #before_action :set_customer, only: [:choose_competition]
 
     # Array of Grouping links can have nested Arrays of Grouping links,
     # but it all starts at the top. No navigation if the Competition has not
@@ -12,15 +12,8 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	   # (Recursive) The navigation link to this grouping is followed by an Array of
 	   # navigation links to each subgrouping within this grouping.
   def nav_link_to_grouping(grp)
-	  [navitem(grp.name, ryandog_path(@competition.id, grp.id))] <<
+	  [navitem(grp.name, display_grouping_path(@competition.id, grp.id))] <<
 	    grp.subgroupings.collect{|sg| nav_link_to_grouping(sg)}
-  end
-  
-
-  def choose_customer
-  end
-
-  def choose_competition
   end
 
   def index
@@ -59,6 +52,14 @@ class DisplayController < NestedController # Formerly < ApplicationController
   end
      
   private
+  
+     def set_competition
+	@competition_id = params[:competition_id]
+	super(@competition_id)
+	return(redirect_to(competitions_display_url)) unless @competition_id
+    end
+
+  
      def set_customer
 	@customer_id = params[:customer_id]
 	return(redirect_to(competitions_display_url)) unless @customer_id

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222224521) do
+ActiveRecord::Schema.define(version: 20150315205151) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150222224521) do
     t.string   "poolgroupseasonlabel"
     t.boolean  "playoffbracket"
     t.string   "playoffbracketlabel"
-    t.boolean  "keepscores",           default: true
+    t.boolean  "keepscores",              default: true
     t.integer  "winpoints"
     t.integer  "drawpoints"
     t.integer  "losspoints"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20150222224521) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"
+    t.string   "hashed_manager_password"
+    t.string   "hashed_scorer_password"
+    t.string   "salt"
   end
 
   create_table "contestants", force: true do |t|

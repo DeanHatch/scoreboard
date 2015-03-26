@@ -1,11 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+<% MYSALT = "seasalt" unless defined?(MYSALT) %>
 one:
-  userid: MyString
-  hashed_password: MyString
-  salt: MyString
+  id: 1
+  userid: customer@domain.com
+  salt: <%= MYSALT %>
+  hashed_password: <%= Customer.encrypted_password("secretpw", MYSALT) %>
+  name: County Recreation Department
+  phone: (000) 000-0000
+  website: www.countyrecdept.com
 
 two:
-  userid: MyString
-  hashed_password: MyString
-  salt: MyString
+  id: 2
+  userid: dummy@dummy.com
+  salt: <%= MYSALT %>
+  hashed_password: <%= Customer.encrypted_password("anothersecretpw", MYSALT) %>
+  name: Events Host
+  phone: (000) 000-0000
+  website: www.eventshost.com

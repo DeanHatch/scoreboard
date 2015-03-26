@@ -1,4 +1,4 @@
-class TeamsController < ManagerController
+class TeamsController < ManagersController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :set_grouping
 
@@ -35,10 +35,9 @@ class TeamsController < ManagerController
 
     respond_to do |format|
       if @team.save
-	#@grouping = Grouping.find(params[:grouping_id])
-        #format.html { redirect_to [@competition, @grouping], notice: 'Team was successfully created.' }
-	format.html { redirect_to competition_grouping_teams_path, notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: @team }
+	      flash[:notice] = 'Team was successfully created.'
+	      format.html { redirect_to grouping_teams_path }
+	      format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new }
         format.json { render json: @team.errors, status: :unprocessable_entity }
@@ -51,8 +50,9 @@ class TeamsController < ManagerController
   def update
     respond_to do |format|
       if @team.update(team_params)
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team }
+	      flash[:notice] = 'Team was successfully updated.'
+	      format.html { redirect_to @team }
+	      format.json { render :show, status: :ok, location: @team }
       else
         format.html { render :edit }
         format.json { render json: @team.errors, status: :unprocessable_entity }
@@ -65,8 +65,9 @@ class TeamsController < ManagerController
   def destroy
     @team.destroy
     respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
+	      flash[:notice] = 'Team was successfully deleted.'
+	      format.html { redirect_to teams_url}
+	      format.json { head :no_content }
     end
   end
 

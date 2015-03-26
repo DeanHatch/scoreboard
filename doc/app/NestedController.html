@@ -73,6 +73,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-failure_redirect">#failure_redirect</a>
+    
     <li ><a href="#method-i-set_competition">#set_competition</a>
     
   </ul>
@@ -88,6 +90,18 @@
 
   <section class="description">
     
+<p>Controllers which operate on resources nested within <a
+href="Competition.html">Competition</a> inherit from this controller class,
+either directly or indirectly. The primary functionality added by this
+class is to ensure that all activity takes place within a single <a
+href="Competition.html">Competition</a>. Two filters are used to achieve
+this. A before_action ensures that a <a
+href="Competition.html">Competition</a> has been specified for all actions
+except the two involved in selecting the <a
+href="Competition.html">Competition</a>. A second before_action filter is
+used to  limit the Competitions available for choosing to only those for a
+single <a href="Customer.html">Customer</a>.</p>
+
   </section>
 
   
@@ -109,6 +123,45 @@
        </header>
 
     
+      <div id="method-i-failure_redirect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">failure_redirect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This specifies the url to redirect to if a <a
+href="Competition.html">Competition</a> has not been specified, or if an
+invalid <a href="Competition.html">Competition</a>  has been specified.
+That is, the url to redirect to if <a
+href="NestedController.html#method-i-set_competition">set_competition</a>
+fails. It will be a different redirect for different controllers, so it
+will be overridden in  descendant classes.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="failure_redirect-source">
+            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">failure_redirect</span>()
+   <span class="ruby-identifier">competitions_url</span>
+   <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-set_competition" class="method-detail ">
         
         <div class="method-heading">
@@ -122,16 +175,18 @@
 
         <div class="method-description">
           
-          
+          <p>If a <a href="Competition.html">Competition</a> has been specified, then
+set the scope for all nested resources to that <a
+href="Competition.html">Competition</a>.</p>
           
           
 
           
           <div class="method-source-code" id="set_competition-source">
-            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 3</span>
- <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_competition</span>
+            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 27</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_competition</span>()
     <span class="ruby-ivar">@competition_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:competition_id</span>]
-    <span class="ruby-keyword">return</span>(<span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">competitions_url</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@competition_id</span>
+    <span class="ruby-keyword">return</span>(<span class="ruby-identifier">redirect_to</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">failure_redirect</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@competition_id</span>
     <span class="ruby-keyword">begin</span>
     <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@competition_id</span>)
     <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
@@ -145,7 +200,7 @@
     <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
     <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
     <span class="ruby-keyword">rescue</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">competitions_url</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">failure_redirect</span>)
     <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

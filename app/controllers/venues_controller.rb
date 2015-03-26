@@ -1,4 +1,4 @@
-class VenuesController < ManagerController
+class VenuesController < ManagersController
 
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
@@ -36,8 +36,9 @@ class VenuesController < ManagerController
 
     respond_to do |format|
       if @venue.save
-        format.html { redirect_to competition_venues_url, notice: 'Venue was successfully created.' }
-        format.json { render :show, status: :created, location: @venue }
+	      flash[:notice] = 'Venue was successfully created.' 
+	      format.html { redirect_to venues_url}
+	      format.json { render :show, status: :created, location: @venue }
       else
         format.html { render :new }
         format.json { render json: @venue.errors, status: :unprocessable_entity }
@@ -50,7 +51,8 @@ class VenuesController < ManagerController
   def update
     respond_to do |format|
       if @venue.update(venue_params)
-        format.html { redirect_to competition_venues_url, notice: 'Venue was successfully updated.' }
+	      flash[:notice] = 'Venue was successfully updated.' 
+        format.html { redirect_to venues_url}
         format.json { render :show, status: :ok, location: @venue }
       else
         format.html { render :edit }
@@ -64,8 +66,9 @@ class VenuesController < ManagerController
   def destroy
     @venue.destroy
     respond_to do |format|
-      format.html { redirect_to competition_venues_url, notice: 'Venue was successfully destroyed.' }
-      format.json { head :no_content }
+	      flash[:notice] = 'Venue was successfully removed.' 
+	      format.html { redirect_to venues_url }
+	      format.json { head :no_content }
     end
   end
 

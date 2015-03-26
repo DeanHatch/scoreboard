@@ -1,0 +1,15 @@
+<h1>ManagerSessions#new</h1>
+<p>Find me in app/views/manager_sessions/new.html.erb</p>
+
+
+<h1><%= @manager.name %></h1>
+<h2>Manager Login Page</h2>
+
+<% content_for :info_message do %>
+You need to enter the Manager Password for this Competition
+in order to Manage this Competition.
+<% end %>
+
+<%= render 'login_form' %>
+
+

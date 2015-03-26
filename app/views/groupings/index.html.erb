@@ -6,7 +6,7 @@
 If you need to change something about a Grouping, click on its name.   
 <% end %>
 
-<%= button_to 'Add New Grouping', new_competition_grouping_path, method: :get %>
+<%= button_to 'Add New Grouping', new_grouping_path, method: :get %>
 
 <% topgroup = @groupings.select{|g| g.parent_id.nil?}.first %>
 <%= content_tag(:ul, nested_groupings(1, topgroup), {class: "nav1"} ) %>
