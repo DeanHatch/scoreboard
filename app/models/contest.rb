@@ -5,6 +5,7 @@
 # attempts to maintain the integrity of the associations.  This is because
 # two *has_one* associations is not the same as one *has_two*association.
 class Contest < ActiveRecord::Base
+	belongs_to :competition
 	belongs_to :venue
 	
 	validates_associated :venue

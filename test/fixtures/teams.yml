@@ -1,11 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  competition_id: 1
-  name: MyString
-  grouping_id: 1
+heat:
+  competition: bball
+  name: Heat
+  grouping: bballcon11
 
-two:
-  competition_id: 1
-  name: MyString
-  grouping_id: 1
+thunder:
+  competition: bball
+  name: Thunder
+  grouping: bballcon11
+
+lightning:
+  competition: bball
+  name: Lightning
+  grouping: bballcon11
+
+hailstones:
+  competition: bball
+  name: Hail Stones
+  grouping: bballcon11
+
+blizzard:
+  competition: bball
+  name: blizzard
+  grouping: bballcon11

@@ -26,7 +26,8 @@ class ValiddatesControllerTest < ActionController::TestCase
 
   test "should show validdate" do
     get :show, id: @validdate
-    assert_response :success
+    #assert_response :success
+     assert_redirected_to venues_path
   end
 
   test "should get edit" do

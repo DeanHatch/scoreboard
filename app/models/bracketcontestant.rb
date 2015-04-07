@@ -15,9 +15,6 @@
 #   If Place is specified then both a Place and a Grouping must be.
 # 
 class Bracketcontestant < Contestant
-	
-	belongs_to :bracketcontest
-	belongs_to :team
 						
 	# Override with additional information.
 	def contestanttype

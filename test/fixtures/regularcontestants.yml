@@ -4,8 +4,34 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+gameoneH: 
+  type: Regularcontestant
+  competition: bball
+  contest: gameone
+  homeaway: H
+  team: heat
+  score: 15
 #
-two: {}
-#  column: value
+gameoneA: 
+  type: Regularcontestant
+  competition: bball
+  contest: gameone
+  homeaway: A
+  team: thunder
+  score: 16
+
+gametwoH: 
+  type: Regularcontestant
+  competition: bball
+  contest: gametwo
+  homeaway: H
+  team: lightning
+  score: 17
+#
+gametwoA: 
+  type: Regularcontestant
+  competition: bball
+  contest: gametwo
+  homeaway: A
+  team: hailstones
+  score: 13

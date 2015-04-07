@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# We define two Customers: AlwaysRight and SqueakyWheel
 
 <% MYSALT = "seasalt" unless defined?(MYSALT) %>
-one:
-  id: 1
+alwaysright:
   userid: customer@domain.com
   salt: <%= MYSALT %>
   hashed_password: <%= Customer.encrypted_password("secretpw", MYSALT) %>
@@ -10,8 +10,7 @@ one:
   phone: (000) 000-0000
   website: www.countyrecdept.com
 
-two:
-  id: 2
+squeakywheel:
   userid: dummy@dummy.com
   salt: <%= MYSALT %>
   hashed_password: <%= Customer.encrypted_password("anothersecretpw", MYSALT) %>

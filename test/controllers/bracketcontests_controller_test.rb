@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BracketcontestsControllerTest < ActionController::TestCase
   setup do
-    @bracketcontest = bracketcontests(:one)
+    @bracketcontest = bracketcontests(:gameone)
   end
 
   test "should get index" do

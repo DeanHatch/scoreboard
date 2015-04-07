@@ -10,13 +10,14 @@ Rails.application.routes.draw do
   get 'display/:competition_id/grouping/:id(/:xyzzy)', to: 'display#grouping', as: :display_grouping
   get 'display/:competition_id/team/:id', to: 'display#team', as: :display_team
    
-  post 'customer/new', to: 'customers#create'
-  post 'customer/new_competition', to: 'customers#new_competition'
+  #post 'customer/new', to: 'customers#create'
   resource :customer, except: :destroy do
 	  member do
-		  get 'greet'  # equivalent to member #index
+		  get 'greet'  # analgous to member #index
 		  get 'change_password'
 		  patch 'update_password'
+		  get 'new_competition'
+		  post 'create_competition'
 		  get 'edit_competition'
 		  get 'set_competition_passwords'
 		  end

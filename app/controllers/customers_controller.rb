@@ -39,8 +39,8 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-	format.html { session[:customer_id] = @customer.id
-			   redirect_to(:action => "edit" ) }
+	      session[:customer_id] = @customer.id
+	      format.html { redirect_to(:action => "edit" ) }
       else
         format.html { render :new }
       end
@@ -51,7 +51,8 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to greet_customer_path(@customer), notice: 'Changes made.'}
+	      flash[:notice] = 'Changes made.'
+        format.html { redirect_to greet_customer_path}
       else
         format.html { render :edit }
       end
@@ -66,9 +67,11 @@ class CustomersController < ApplicationController
   def update_password
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to greet_customer_path(@customer), notice: 'Password CHANGED!'}
+	      flash[:notice] = 'Password CHANGED!'
+	      format.html { redirect_to greet_customer_path}
       else
-        format.html { render :change_password }
+	      flash[:notice] = 'Password NOT Changed!!!'
+	      format.html { render :change_password }
       end
     end
   end
@@ -76,6 +79,12 @@ class CustomersController < ApplicationController
   # GET /customer/new_competition
   def new_competition
 	  @competition = Competition.new
+  end
+
+
+  # POST /customer/create_competition
+  def create_competition
+	  #@competition = Competition.new
   end
 
 
@@ -94,7 +103,8 @@ class CustomersController < ApplicationController
       @customer = Customer.find(session[:customer_id])
       rescue
       begin
-      @customer = Customer.find(1)
+	@customer = Customer.new
+	#@customer = Customer.find(1)
       end
     end
 
@@ -108,4 +118,10 @@ class CustomersController < ApplicationController
       params.require(:customer).permit(:userid, :password, :password_confirmation,
 							:name, :phone, :website)
     end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def competition_params
+      params.require(:competition).permit(:name, :sport, :variety, :poolgroupseason, :poolgroupseasonlabel, :playoffbracket, :playoffbracketlabel, :keepscores, :winpoints, :drawpoints, :losspoints, :forfeitpoints, :forfeitwinscore, :forfeitlossscore)
+    end
+
 end

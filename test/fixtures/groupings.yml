@@ -1,11 +1,42 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  competition_id: 1
-  name: MyString
-  parent_id: 0
+soccer:
+  competition: soccer
+  name: Top Grouping
+  # parent_id not specified for root Grouping within Competition
 
-two:
-  competition_id: 1
-  name: MyString
-  parent_id: 1
+bballroot:
+  competition: bball
+  name: Tournament
+  # parent_id not specified for root Grouping within Competition
+  
+bballdiv1:
+  competition: bball
+  name: Upper Division
+  grouping: :bballroot
+  bracket_grouping: true
+ 
+bballcon11:
+  competition: bball
+  name: Gold Conference
+  grouping: :bballdiv1
+ 
+bballcon12:
+  competition: bball
+  name: Silver Conference
+  grouping: bballdiv1
+ 
+bballdiv2:
+  competition: bball
+  name: Lower Division
+  grouping: bballroot
+ 
+bballcon21:
+  competition: bball
+  name: Gold Conference
+  grouping: bballdiv2
+ 
+bballcon22:
+  competition: bball
+  name: Silver Conference
+  grouping: bballdiv2

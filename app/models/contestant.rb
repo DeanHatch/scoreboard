@@ -1,15 +1,9 @@
 class Contestant < ActiveRecord::Base
 	
-  belongs_to :contest
-  belongs_to :team
+	belongs_to :competition
+	belongs_to :contest
+	belongs_to :team
     
-	
-	 # Returns instance of a descendant of Contest class.
-	 # This contestant is one of the two contestants for the contest.
-	def contest
-		Object.const_get(self.contest_type).find(self.contest_id)
-	end
-	
 	
 	def self.default_comp(comp_id)
 		self.default_scope { (where(competition_id: comp_id) ) }

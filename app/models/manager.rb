@@ -2,8 +2,6 @@
 # the functions for Managing a Competition.  This makes a Manager
 # synonomous with a Competition and facilitates authentication.
 class Manager < Competition
-	
-
 		
 	def self.authenticate(mgrid, mgrpw)
 		logger.info("finding Mgr ID: #{mgrid}")

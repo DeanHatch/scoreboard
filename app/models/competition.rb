@@ -1,7 +1,6 @@
 require 'digest/sha1'
 
-# This class contains the essentials for a Competition.  All other non-Customer
-# resources are nested within this resource.
+# This class contains the essentials for a Competition
 class Competition < ActiveRecord::Base
 	
 	belongs_to :customer
@@ -92,6 +91,21 @@ class Competition < ActiveRecord::Base
 		@manager_password = nil
 		self.hashed_manager_password = nil
 	end
+	
+	  # Override by adding creation of a root Grouping if this save
+	  # is a creation save ass opposed to an update save.
+	def save
+		news_to_me = self.new_record?
+		super()
+		create_root_grouping() if news_to_me
+	end
+	
+	  # Used when creating a new Competition.
+	def create_root_grouping()
+		name = self.name + ' ' + self.variety.humanize
+		Grouping.new(competition_id: self.id, name: name).save(validate: false)
+	end
+	
 	
 	
 	# scorer_password is included on the HTML form and is sent with

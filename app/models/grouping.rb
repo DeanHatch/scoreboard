@@ -2,13 +2,17 @@
 #  Playoffs, as well as limiting or organizing the display of Results and Standings.
 class Grouping < ActiveRecord::Base
 	
-	belongs_to :grouping, foreign_key: "parent_id"
+	belongs_to :competition, foreign_key: "competition_id"
+	validates_presence_of :competition_id
 	
-	has_many :bracketcontests, foreign_key: "bracket_grouping_id"
-	
-	#validates_associated :grouping
-	validates_presence_of :parent_id
-	
+	belongs_to :grouping, foreign_key: "parent_id", class_name: "Grouping" 
+	validates_presence_of :parent_id # ignore when creating root Grouping for a Competition
+	has_many :groupings, foreign_key: "parent_id",
+					class_name: "Grouping" # making default explicit
+
+	has_many :teams, foreign_key: "grouping_id",
+					class_name: "Team"  # making default explicit
+
 	def self.default_comp(comp_id)
 		self.default_scope { (where(competition_id: comp_id) ) }
 	end
@@ -31,17 +35,13 @@ class Grouping < ActiveRecord::Base
 	
 	# Return the Collection of Groupings that identify this as their Parent.
 	def subgroupings()
-		Grouping.where(parent_id: self)
+		self.groupings()
+		#Grouping.where(parent_id: self)
 	end
 	
 	# Return true iff there exists at least one Grouping that identifies this as its Parent.
 	def has_subgroupings?()
 		self.subgroupings.count>0
-	end
-	
-	# Return the Collection of Teams that identify this as their Grouping.
-	def teams()
-		Team.where(grouping: self)
 	end
 	
 	# Return true iff there exists at least one Team that identifies this as its Grouping.

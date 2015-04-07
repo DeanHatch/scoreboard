@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 soccer:
+  customer: alwaysright
   name: My Soccer Tournament
   sport: soccer
   variety: tournament
@@ -16,18 +17,19 @@ soccer:
   forfeitwinscore: 1
   forfeitlossscore: 0
 
-two:
-  name: MyString
-  sport: 1
-  variety: 1
-  poolgroupseason: false
-  poolgroupseasonlabel: MyString
-  playoffbracket: false
-  playoffbracketlabel: MyString
-  keepscores: false
-  winpoints: 1
-  drawpoints: 1
-  losspoints: 1
-  forfeitpoints: 1
-  forfeitwinscore: 1
-  forfeitlossscore: 1
+bball:
+  customer: squeakywheel
+  name: My Summer Basketball League
+  sport: basketball
+  variety: league
+  poolgroupseason: true
+  poolgroupseasonlabel: league
+  playoffbracket: true
+  playoffbracketlabel: playoffs
+  keepscores: true
+  winpoints: 0
+  drawpoints: 0
+  losspoints: 0
+  forfeitpoints: 0
+  forfeitwinscore: 15
+  forfeitlossscore: 0

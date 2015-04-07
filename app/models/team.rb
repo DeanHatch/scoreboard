@@ -1,6 +1,11 @@
 class Team < ActiveRecord::Base
-		
+	
+	belongs_to :competition, foreign_key: "competition_id"
+	validates_presence_of :competition_id
+	
 	belongs_to :grouping, foreign_key: "grouping_id"
+	validates_presence_of :grouping_id # ignore when creating root Grouping for a Competition
+		
 	
 	# Since default_scope is private, we use this to allow access.
 	def self.default_comp(comp_id)

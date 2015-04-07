@@ -4,8 +4,19 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+gameone: 
+  type: Bracketcontest
+  competition: bball
+  venue: maingym
+  date: 2015-01-27
+  time: 120
+  status: SCHEDULED
 #
-two: {}
-#  column: value
+gametwo: 
+  type: Bracketcontest
+  competition: bball
+  venue: auxgym
+  date: 2015-01-27
+  time: 120
+  status: SCHEDULED
+  

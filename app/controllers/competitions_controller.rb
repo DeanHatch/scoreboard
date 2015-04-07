@@ -32,15 +32,12 @@ class CompetitionsController < ApplicationController
       if @competition.save
 	      # Also create a root Grouping object and save it.
 	      # Note that, being the root Grouping, it will not have a parent Grouping.
-	@comp = params[:competition]
-	@competition_id = @competition.id
-	@name = @comp[:name] + ' ' + @comp[:variety].humanize
-        Grouping.new(competition_id: @competition_id, name: @name).save(validate: false)
-	      # Note that the create competition action is initiated from the Customers controller.
+	      # Note that this is done by the model in the #save method.
+	      # Remember that the create competition action is initiated from the Customers controller.
 	      # After successful creation of a Competition, return to the
 	      # greet action of the Customers controller.
-	format.html { redirect_to greet_customer_url,
-			notice: "Competition was successfully created." }
+	flash[notice] = "Competition was successfully created."
+	format.html { redirect_to greet_customer_url }
         format.json { render :show, status: :created, location: @competition }
       else
         format.html { render :new }

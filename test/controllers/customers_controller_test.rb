@@ -2,7 +2,8 @@ require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
   setup do
-    @customer = customers(:one)
+    @customer = customers(:alwaysright)
+    session[:customer_id] = @customer
   end
 
   test "should get greet" do
@@ -13,6 +14,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
+    session[:customer_id] = nil
     get :new
     assert_response :success
   end
@@ -24,7 +26,7 @@ class CustomersControllerTest < ActionController::TestCase
 					password_confirmation: "yabba",
 					name: "Fred Flintstone",
 					phone: "(111) 555-1212",
-					websitee: "www.id.com" }
+					website: "www.id.com" }
     end
 
     assert_redirected_to edit_customer_path
@@ -41,7 +43,9 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should update customer" do
-    patch :update, id: @customer, customer: { name: "Bedrock Bowling League" }
-    assert_redirected_to greet_customer_path(@customer)
+	  patch :update, id: @customer,
+			customer: { name: "Bedrock Bowling League" },
+			session: { customer_id: @customer }
+    assert_redirected_to greet_customer_path
   end
 end
