@@ -10,7 +10,8 @@ class CustomersController < ApplicationController
 	  session[:customer_id] ?
 	  [ navitem('Change Password' , :change_password_customer),
 	     navitem('Edit Profile' , :edit_customer),
-	     navitem('Manage Competitions' , choose_competition_manager_path(@customer), target: "_blank"),
+	     navitem('Create a New Competition' , :new_competition_customer),
+	     navitem('Manage My Competitions' , choose_competition_manager_path(@customer), target: "_blank"),
 	     navitem('Logout' , :logout_customer_session) ]  :
 	  [ navitem('Login' , :new_customer_session),
 	     navitem('Register' , :new_customer)]
@@ -84,7 +85,16 @@ class CustomersController < ApplicationController
 
   # POST /customer/create_competition
   def create_competition
-	  #@competition = Competition.new
+	  @competition = Competition.new(competition_params)
+	  @competition.customer = @customer
+	  respond_to do |format|
+		  if @competition.save
+			  flash[:notice] = 'You have a New Competition'
+			  format.html { redirect_to(:action => "greet" ) }
+		else
+			format.html {  redirect_to(:action => "new_competition") }
+		end
+	end
   end
 
 
