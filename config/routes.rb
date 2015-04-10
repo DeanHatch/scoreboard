@@ -3,6 +3,13 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/index'
+  get 'what_we_do', to: 'welcome#what_we_do'
+  get 'whats_new', to: 'welcome#whats_new'
+  get 'contact_us', to: 'welcome#contact_us'
+  get 'pricing', to: 'welcome#pricing'
+  get 'for_org', to: 'welcome#for_org'
+  get 'for_fans', to: 'welcome#for_fans'
+  get 'demos', to: 'welcome#demos'
   
   get 'display', to: 'display#choose_customer', as: :choose_display_customer
   get 'display/customer/:customer_id', to: 'display#choose_competition', as: :choose_display_competition

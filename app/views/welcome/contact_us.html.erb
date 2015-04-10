@@ -1,0 +1,27 @@
+
+   <div class="wrapper">
+    <form action="./message/mail.php" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="subject" value="Note from Visitor">
+        <input type="hidden" name="to" value="dean.hatch@milehighsoftware.com">
+     <dl>
+      <dt>Your Name:</dt>
+      <dd><input style="width:250px;" name="Name" type="text"
+                 class="single"/></dd>
+      <dt>Your E-mail Address:</dt>
+      <dd><input style="width:250px;" name="fromaddr" type="text"
+                 class="single"/></dd>
+      <dt>Your Message to us:</dt>
+      <dd><textarea style="width:250px; height:150px;"
+                     name="message"></textarea></dd>
+
+      <br/>
+
+      <dd><input class="submit_user" name="submit_button"
+                 value="Send" type="submit"/></dd>
+     </dl>
+     <p class="note"><strong class="alert">Note</strong>:
+               We need your email address so we can respond to you.</p>
+    </form>
+   </div>
+
+ 

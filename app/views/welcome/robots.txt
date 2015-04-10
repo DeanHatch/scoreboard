@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /classes/
+Disallow: /customer/
+Disallow: /images/
+Disallow: /logs/
+Disallow: /message/
+Disallow: /record/
+Disallow: /schedule/
+Disallow: /superman/

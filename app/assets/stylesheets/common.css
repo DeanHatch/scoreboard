@@ -113,11 +113,11 @@
    div.prettyShort {overflow: auto;
                       height: 300px;}
 
-   div.footer { width: 720px;
+   div.footer { width: 520px;
                   margin: 0 auto;
                  float: right;
                 color: #777;
-               padding: 10px 0 20px 220px;}
+               padding: 10px 100px 20px 100px;}
 
    div.sideMatter { width: 240px;
                    position: absolute;
