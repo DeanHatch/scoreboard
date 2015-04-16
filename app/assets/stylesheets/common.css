@@ -3,6 +3,9 @@
                margin: 0;
            text-align: center;}
    body { background-color: black; }
+
+  label { font: normal 8pt Verdana, Arial, Helvetica, sans-serif; }
+
    p, h1, h2, h3, h4, h5, h6 {
              display: block;
        margin-bottom: 0;
@@ -70,7 +73,7 @@
    div.header {	width: 940px;
 
                height: 120px;
-                  top: 40;
+                  top: 40px;
                margin: 20px 0;
               padding: 20px 0;
              position: absolute;
@@ -117,6 +120,9 @@
                   margin: 0 auto;
                  float: right;
                 color: #777;
+                color: yellow;
+            font: normal 11px/140% Verdana, Arial, Helvetica, sans-serif;
+          font-size: 10pt;
                padding: 10px 100px 20px 100px;}
 
    div.sideMatter { width: 240px;
@@ -226,7 +232,8 @@ a.printLink {  color: red;
 
 a.hostLink {  color: red;
               text-align: center;
-          font-size: 8pt;}
+            font: normal 11px/140% Verdana, Arial, Helvetica, sans-serif;
+          font-size: 10pt;}
 
 a.loginLink {  color: red;
           text-align: center;

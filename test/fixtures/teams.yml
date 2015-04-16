@@ -15,12 +15,17 @@ lightning:
   name: Lightning
   grouping: bballcon11
 
+storm:
+  competition: bball
+  name: Storm
+  grouping: bballcon11
+
 hailstones:
   competition: bball
   name: Hail Stones
-  grouping: bballcon11
+  grouping: bballcon12
 
 blizzard:
   competition: bball
   name: blizzard
-  grouping: bballcon11
+  grouping: bballcon12

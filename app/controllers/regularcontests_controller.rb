@@ -50,8 +50,8 @@ class RegularcontestsController < ManagersController
 
     respond_to do |format|
       if @regularcontest.save
-	      flash[:notice] = 'Regularcontest was successfully created.' 
-	      format.html { redirect_to [@competition, @regularcontest]}
+	      flash[:notice] = 'Contest was successfully created.' 
+	      format.html { redirect_to :regularcontests}
 	      # format.html { redirect_to competition_regularcontests_url, notice: 'Regularcontest was successfully created.' }
 	      format.json { render :show, status: :created, location: @regularcontest }
       else
@@ -73,8 +73,8 @@ class RegularcontestsController < ManagersController
     @regularcontest.awaycontestant.save if @regularcontest.awaycontestant
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
-	      flash[:notice] = 'Regularcontest was successfully updated.' 
-        format.html { redirect_to [@competition, @regularcontest]}
+	      flash[:notice] = 'Contest was successfully updated.' 
+        format.html { redirect_to :regularcontests}
         format.json { render :show, status: :ok, location: @regularcontest }
       else
         format.html { render :edit }

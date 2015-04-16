@@ -5,6 +5,9 @@
 # attempts to maintain the integrity of the associations.  This is because
 # two *has_one* associations is not the same as one *has_two*association.
 class Contest < ActiveRecord::Base
+	
+	include Comparable
+	
 	belongs_to :competition
 	belongs_to :venue
 	
@@ -66,6 +69,19 @@ class Contest < ActiveRecord::Base
 								    contest_id: self.id)
 	end
 	
+	
+	def <=>(other_contest)
+		(return other_contest.date.nil? ? 0 : -1) if self.date.nil?
+		return 1 if other_contest.date.nil?
+		return -1 if other_contest.date > self.date
+		return 1 if other_contest.date < self.date
+		   # Past here, both dates not nil and are equal
+		(return other_contest.time.nil? ? 0 : -1) if self.time.nil?
+		return 1 if other_contest.time.nil?
+		return -1 if other_contest.time > self.time
+		return 1 if other_contest.time < self.time
+		0
+	end
 	
 	
 	# Convenience method. Display "TBD" for nil.

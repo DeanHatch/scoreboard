@@ -3,10 +3,8 @@
 <table class="standings">
   <thead>
     <tr>
-      <th>Team Name</th>
-      <th>Wins</th>
-      <th>Losses</th>
-      <th>Whatever else</th>
+      <th>Team</th>
+      <%= raw(@competition.result_headings.collect{|rh| raw(content_tag(:th, rh))}.join(" ") ) %>
     </tr>
   </thead>
 
@@ -15,6 +13,7 @@
     <% @groupingteams.sort{ |a,b| a.name <=> b.name }.each do |team| %>
       <tr>
         <td><%= link_to team.name, display_team_path(@competition.id, team.id) %></td>
+      <%= raw(team.result_row(@competition).collect{|rr| raw(content_tag(:td, rr))}.join(" ") ) %>
       </tr>
     <% end %>
   </tbody>

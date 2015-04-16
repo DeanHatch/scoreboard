@@ -2,11 +2,13 @@ require 'test_helper'
 
 class CompetitionsControllerTest < ActionController::TestCase
   setup do
+    @customer = customers(:alwaysright)
+    session[:customer_id] = @customer.id
     @competition = competitions(:soccer)
   end
 
   test "should get index" do
-    get :index
+    get :index, customer_id: @customer.id
     assert_response :success
     assert_not_nil assigns(:competitions)
   end

@@ -6,6 +6,7 @@ class Team < ActiveRecord::Base
 	belongs_to :grouping, foreign_key: "grouping_id"
 	validates_presence_of :grouping_id # ignore when creating root Grouping for a Competition
 		
+	validates_presence_of :name
 	
 	# Since default_scope is private, we use this to allow access.
 	def self.default_comp(comp_id)
@@ -15,6 +16,11 @@ class Team < ActiveRecord::Base
 	# Return an Array of all Contestants for which this is the Team.
 	def as_contestants()
 		Contestant.where(team: self)
+	end
+
+	# Return an Array of all Contestants for which this is the Team.
+	def contests()
+		self.as_contestants.collect{|c| c.contest }
 	end
 
 	# Return count of all Contestants for which this is the Team

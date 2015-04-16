@@ -2,7 +2,8 @@ require 'test_helper'
 
 class GroupingsControllerTest < ActionController::TestCase
   setup do
-    @grouping = groupings(:one)
+    @grouping = groupings(:bballcon11)
+    session[:manager_id] = competitions(:bball).id()
   end
 
   test "should get index" do
@@ -17,11 +18,14 @@ class GroupingsControllerTest < ActionController::TestCase
   end
 
   test "should create grouping" do
-    assert_difference('Grouping.count') do
-      post :create, grouping: { competition_id: @grouping.competition_id, name: @grouping.name, parent_id: @grouping.parent_id }
+	# Note that the count must be on the unscoped model
+	# because that is what will be counted before the #create method
+    assert_difference('Grouping.unscoped.count') do
+      post :create, grouping: { competition_id: @grouping.competition_id,
+	name: "Something New", parent_id: @grouping.parent_id }
     end
 
-    assert_redirected_to grouping_path(assigns(:grouping))
+    assert_redirected_to groupings_path # (assigns(:grouping))
   end
 
   test "should show grouping" do
@@ -35,8 +39,9 @@ class GroupingsControllerTest < ActionController::TestCase
   end
 
   test "should update grouping" do
-    patch :update, id: @grouping, grouping: { competition_id: @grouping.competition_id, name: @grouping.name, parent_id: @grouping.parent_id }
-    assert_redirected_to grouping_path(assigns(:grouping))
+    patch :update, id: @grouping, grouping: { competition_id: @grouping.competition_id,
+	name: @grouping.name, parent_id: @grouping.parent_id }
+    assert_redirected_to groupings_path # (assigns(:grouping))
   end
 
   test "should destroy grouping" do

@@ -9,11 +9,14 @@ class ManagersControllerTest < ActionController::TestCase
 	   #  1) Load Customer
 	   #  2) Load Competition
 	   #  3) Log Manager in to that Competition
-	 cust = customers(:one)
+	 cust = customers(:alwaysright)
 	 cust.save!
 	 competition = competitions(:soccer)
 	 competition.customer_id = cust.id
 	 competition.save!
+	 @cust_id = cust.id
+	 @comp_id = competition.id
+	 session[:manager_id] = @comp_id
   end
  
   test "should get choose_customer_manager" do
@@ -21,11 +24,11 @@ class ManagersControllerTest < ActionController::TestCase
   end
 
   test "should get choose_competition_manager" do
-	get :choose_competition, customer_id: customers(:one).id
+	get :choose_competition, customer_id: @cust_id
   end
 
   test "should get greet_manager" do
-	get :greet, {} , {:manager_id => competitions(:soccer).id}
+	get :greet, {} , {:manager_id => @comp_id}
 	assert_response :success
   end
 
@@ -35,7 +38,7 @@ class ManagersControllerTest < ActionController::TestCase
   end
 
   test "should get passwords" do
-	get :passwords, {} , {:manager_id => competitions(:soccer).id}
+	get :passwords, {} , {:manager_id => @comp_id}
 	assert_response :success
   end
 
@@ -43,13 +46,13 @@ class ManagersControllerTest < ActionController::TestCase
 	patch :change_manager_password,
 		{manager: { password: "yabba",
 				password_confirmation: "yabba"} },
-		{:manager_id => competitions(:soccer).id}
+		{:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
   test "should patch clear_manager_password_manager" do
 	patch :clear_manager_password,
-		{} , {:manager_id => competitions(:soccer).id}
+		{} , {:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
@@ -57,13 +60,13 @@ class ManagersControllerTest < ActionController::TestCase
 	patch :change_scorer_password,
 		{manager: { password: "yabba",
 				password_confirmation: "yabba"} },
-		{:manager_id => competitions(:soccer).id}
+		{:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
   test "should patch clear_scorer_password_manager" do
 	patch :clear_scorer_password,
-		{} , {:manager_id => competitions(:soccer).id}
+		{} , {:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 

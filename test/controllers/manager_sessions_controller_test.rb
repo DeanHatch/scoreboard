@@ -9,7 +9,7 @@ class ManagerSessionsControllerTest < ActionController::TestCase
 	   #  1) Load Customer
 	   #  2) Load Competition
 	   #  3) Log Manager in to that Competition
-	 cust = customers(:one)
+	 cust = customers(:alwaysright)
 	 cust.save!
 	 competition = competitions(:soccer)
 	 competition.customer_id = cust.id

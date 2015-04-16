@@ -1,73 +1,70 @@
 class TeamsController < ManagersController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-  before_action :set_grouping
+  before_action :set_grouping, only: [:index, :new, :create]
 
-  # GET /teams
-  # GET /teams.json
+  # Only show Teams for this Grouping
+  # GET /grouping/1/teams
   def index
-    @teams = Team.where(competition_id: @competition_id, grouping_id: @grouping.id)
+    @teams = Team.where(competition: @competition, grouping: @grouping)
   end
 
   # GET /teams/1
-  # GET /teams/1.json
   def show
+    @grouping = @team.grouping()
   end
 
-  # GET /teams/new
+  # GET /grouping/1/teams/new
   def new
     @team = Team.new
-    @team.competition_id = @competition_id
-    @team.grouping_id = @grouping_id
-    @groupings = Grouping.where(competition_id: @competition_id)
-  end
-
-  # GET /teams/1/edit
-  def edit
-    @groupings = Grouping.where(competition_id: @competition_id)
+    @team.competition = @competition
+    @team.grouping = @grouping
   end
 
   # POST /teams
-  # POST /teams.json
   def create
     @team = Team.new(team_params)
-    @team.competition_id = @competition.id
-    @team.grouping_id = @grouping.id
+    @team.competition = @competition
+    @team.grouping = @grouping
 
     respond_to do |format|
       if @team.save
-	      flash[:notice] = 'Team was successfully created.'
+	      flash[:notice] = 'Team was successfully added.'
 	      format.html { redirect_to grouping_teams_path }
-	      format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  # GET /teams/1/edit
+  def edit
+	     # User can change the Grouping
+    @groupings = Grouping.where(competition: @competition)
+  end
+
   # PATCH/PUT /teams/1
-  # PATCH/PUT /teams/1.json
   def update
+      # get Grouping BEFORE Update in case it changes.
+      # We need the old Grouping for the redirect.
+    grouping_id = @team.grouping.id
     respond_to do |format|
       if @team.update(team_params)
 	      flash[:notice] = 'Team was successfully updated.'
-	      format.html { redirect_to @team }
-	      format.json { render :show, status: :ok, location: @team }
+	      format.html { redirect_to( {action: :index , :grouping_id => grouping_id}) }
       else
         format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /teams/1
-  # DELETE /teams/1.json
   def destroy
+      # get Grouping BEFORE Destroy for the redirect.
+    grouping_id = @team.grouping.id
     @team.destroy
     respond_to do |format|
-	      flash[:notice] = 'Team was successfully deleted.'
-	      format.html { redirect_to teams_url}
-	      format.json { head :no_content }
+	      flash[:notice] = 'Team was successfully removed.'
+	      format.html { redirect_to ( {action: :index , :grouping_id => grouping_id})}
     end
   end
 

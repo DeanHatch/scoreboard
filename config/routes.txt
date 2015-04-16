@@ -1,119 +1,111 @@
-                                     Prefix Verb   URI Pattern                                                                               Controller#Action
-                                       root GET    /                                                                                         welcome#index
-                              welcome_index GET    /welcome/index(.:format)                                                                  welcome#index
-                               customer_new POST   /customer/new(.:format)                                                                   customers#create
-                   customer_new_competition POST   /customer/new_competition(.:format)                                                       customers#new_competition
-                             login_customer GET    /customer/login(.:format)                                                                 customers#login
-                                            POST   /customer/login(.:format)                                                                 customers#login
-                             greet_customer GET    /customer/greet(.:format)                                                                 customers#greet
-                   change_password_customer GET    /customer/change_password(.:format)                                                       customers#change_password
-                  edit_competition_customer GET    /customer/edit_competition(.:format)                                                      customers#edit_competition
-         set_competition_passwords_customer GET    /customer/set_competition_passwords(.:format)                                             customers#set_competition_passwords
-                            logout_customer GET    /customer/logout(.:format)                                                                customers#logout
-                                   customer POST   /customer(.:format)                                                                       customers#create
-                               new_customer GET    /customer/new(.:format)                                                                   customers#new
-                              edit_customer GET    /customer/edit(.:format)                                                                  customers#edit
-                                            GET    /customer(.:format)                                                                       customers#show
-                                            PATCH  /customer(.:format)                                                                       customers#update
-                                            PUT    /customer(.:format)                                                                       customers#update
-                           customer_session POST   /customer_session(.:format)                                                               customer_sessions#create
-                       new_customer_session GET    /customer_session/new(.:format)                                                           customer_sessions#new
-                                            DELETE /customer_session(.:format)                                                               customer_sessions#destroy
-                    choose_display_customer GET    /competitions/display(.:format)                                                           display#choose_customer
-                 choose_display_competition GET    /competitions/display/:customer_id(.:format)                                              display#choose_competition
-                                   luckydog GET    /competition/:competition_id/display(.:format)                                            display#index
-                                    ryandog GET    /competition/:competition_id/display/grouping/:id(/:xyzzy)(.:format)                      display#grouping
-                                   rustydog GET    /competition/:competition_id/display/team/:id(.:format)                                   display#team
-                    choose_results_customer GET    /competitions/results(.:format)                                                           results#choose_customer
-                 choose_results_competition GET    /competitions/results/:customer_id(.:format)                                              results#choose_competition
-                        competition_results GET    /competitions/:competition_id/results(.:format)                                           results#index
-                               report_score PATCH  /competitions/:competition_id/results/report(.:format)                                    results#report
-                              login_manager GET    /manager/login(.:format)                                                                  managers#login
-                                            POST   /manager/login(.:format)                                                                  managers#login
-                              greet_manager GET    /manager/greet(.:format)                                                                  managers#greet
-                    change_password_manager GET    /manager/change_password(.:format)                                                        managers#change_password
-          set_competition_passwords_manager GET    /manager/set_competition_passwords(.:format)                                              managers#set_competition_passwords
-                             logout_manager GET    /manager/logout(.:format)                                                                 managers#logout
-                                new_manager GET    /manager/new(.:format)                                                                    managers#new
-                               edit_manager GET    /manager/edit(.:format)                                                                   managers#edit
-                                    manager GET    /manager(.:format)                                                                        managers#show
-                                            PATCH  /manager(.:format)                                                                        managers#update
-                                            PUT    /manager(.:format)                                                                        managers#update
-                    choose_manager_customer GET    /competitions/manage(.:format)                                                            manager#choose_customer
-                 choose_manager_competition GET    /competitions/manage/:customer_id(.:format)                                               manager#choose_competition
-                        competition_manager GET    /competitions/:competition_id/manage(.:format)                                            manager#index
-                  login_competition_manager GET    /competitions/:competition_id/manage/login(.:format)                                      manager#login
-               validate_competition_manager PATCH  /competitions/:competition_id/manage/validate(.:format)                                   manager#validate
-              competition_manager_passwords GET    /competitions/:competition_id/manage/passwords(.:format)                                  manager#passwords
-              competition_manager_managerpw PATCH  /competitions/:competition_id/manage/managerpw(.:format)                                  manager#managerpw
-         competition_manager_clearmanagerpw PATCH  /competitions/:competition_id/manage/clearmanagerpw(.:format)                             manager#clearmanagerpw
-               competition_manager_scorerpw PATCH  /competitions/:competition_id/manage/scorerpw(.:format)                                   manager#scorerpw
-          competition_manager_clearscorerpw PATCH  /competitions/:competition_id/manage/clearscorerpw(.:format)                              manager#clearscorerpw
-                         competition_venues GET    /competitions/:competition_id/venues(.:format)                                            venues#index
-                                            POST   /competitions/:competition_id/venues(.:format)                                            venues#create
-                      new_competition_venue GET    /competitions/:competition_id/venues/new(.:format)                                        venues#new
-                     edit_competition_venue GET    /competitions/:competition_id/venues/:id/edit(.:format)                                   venues#edit
-                          competition_venue GET    /competitions/:competition_id/venues/:id(.:format)                                        venues#show
-                                            PATCH  /competitions/:competition_id/venues/:id(.:format)                                        venues#update
-                                            PUT    /competitions/:competition_id/venues/:id(.:format)                                        venues#update
-                                            DELETE /competitions/:competition_id/venues/:id(.:format)                                        venues#destroy
-                     competition_validdates GET    /competitions/:competition_id/validdates(.:format)                                        validdates#index
-                                            POST   /competitions/:competition_id/validdates(.:format)                                        validdates#create
-                  new_competition_validdate GET    /competitions/:competition_id/validdates/new(.:format)                                    validdates#new
-                 edit_competition_validdate GET    /competitions/:competition_id/validdates/:id/edit(.:format)                               validdates#edit
-                      competition_validdate GET    /competitions/:competition_id/validdates/:id(.:format)                                    validdates#show
-                                            PATCH  /competitions/:competition_id/validdates/:id(.:format)                                    validdates#update
-                                            PUT    /competitions/:competition_id/validdates/:id(.:format)                                    validdates#update
-                                            DELETE /competitions/:competition_id/validdates/:id(.:format)                                    validdates#destroy
-                 competition_grouping_teams GET    /competitions/:competition_id/groupings/:grouping_id/teams(.:format)                      teams#index
-                                            POST   /competitions/:competition_id/groupings/:grouping_id/teams(.:format)                      teams#create
-              new_competition_grouping_team GET    /competitions/:competition_id/groupings/:grouping_id/teams/new(.:format)                  teams#new
-             edit_competition_grouping_team GET    /competitions/:competition_id/groupings/:grouping_id/teams/:id/edit(.:format)             teams#edit
-                  competition_grouping_team GET    /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#show
-                                            PATCH  /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#update
-                                            PUT    /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#update
-                                            DELETE /competitions/:competition_id/groupings/:grouping_id/teams/:id(.:format)                  teams#destroy
-                      competition_groupings GET    /competitions/:competition_id/groupings(.:format)                                         groupings#index
-                                            POST   /competitions/:competition_id/groupings(.:format)                                         groupings#create
-                   new_competition_grouping GET    /competitions/:competition_id/groupings/new(.:format)                                     groupings#new
-                  edit_competition_grouping GET    /competitions/:competition_id/groupings/:id/edit(.:format)                                groupings#edit
-                       competition_grouping GET    /competitions/:competition_id/groupings/:id(.:format)                                     groupings#show
-                                            PATCH  /competitions/:competition_id/groupings/:id(.:format)                                     groupings#update
-                                            PUT    /competitions/:competition_id/groupings/:id(.:format)                                     groupings#update
-                                            DELETE /competitions/:competition_id/groupings/:id(.:format)                                     groupings#destroy
-   dump_competition_bracket_bracketcontests GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/dump(.:format)         bracketcontests#dump
-edithome_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/edithome(.:format) bracketcontests#edithome
-updthome_competition_bracket_bracketcontest PATCH  /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updthome(.:format) bracketcontests#updthome
-                                            PUT    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updthome(.:format) bracketcontests#updthome
-editaway_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/editaway(.:format) bracketcontests#editaway
-updtaway_competition_bracket_bracketcontest PATCH  /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updtaway(.:format) bracketcontests#updtaway
-                                            PUT    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/updtaway(.:format) bracketcontests#updtaway
-        competition_bracket_bracketcontests GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests(.:format)              bracketcontests#index
-                                            POST   /competitions/:competition_id/brackets/:bracket_id/bracketcontests(.:format)              bracketcontests#create
-     new_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/new(.:format)          bracketcontests#new
-    edit_competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id/edit(.:format)     bracketcontests#edit
-         competition_bracket_bracketcontest GET    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#show
-                                            PATCH  /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#update
-                                            PUT    /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#update
-                                            DELETE /competitions/:competition_id/brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#destroy
-                       competition_brackets GET    /competitions/:competition_id/brackets(.:format)                                          brackets#index
-                        competition_bracket GET    /competitions/:competition_id/brackets/:id(.:format)                                      brackets#show
-           dump_competition_regularcontests GET    /competitions/:competition_id/regularcontests/dump(.:format)                              regularcontests#dump
-         rrobin_competition_regularcontests GET    /competitions/:competition_id/regularcontests/rrobin(.:format)                            regularcontests#rrobin
-     roundrobin_competition_regularcontests POST   /competitions/:competition_id/regularcontests/roundrobin(.:format)                        regularcontests#roundrobin
-                competition_regularcontests GET    /competitions/:competition_id/regularcontests(.:format)                                   regularcontests#index
-                                            POST   /competitions/:competition_id/regularcontests(.:format)                                   regularcontests#create
-             new_competition_regularcontest GET    /competitions/:competition_id/regularcontests/new(.:format)                               regularcontests#new
-            edit_competition_regularcontest GET    /competitions/:competition_id/regularcontests/:id/edit(.:format)                          regularcontests#edit
-                 competition_regularcontest GET    /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#show
-                                            PATCH  /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#update
-                                            PUT    /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#update
-                                            DELETE /competitions/:competition_id/regularcontests/:id(.:format)                               regularcontests#destroy
-                               competitions GET    /competitions(.:format)                                                                   competitions#index
-                                            POST   /competitions(.:format)                                                                   competitions#create
-                            new_competition GET    /competitions/new(.:format)                                                               competitions#new
-                           edit_competition GET    /competitions/:id/edit(.:format)                                                          competitions#edit
-                                competition GET    /competitions/:id(.:format)                                                               competitions#show
-                                            PATCH  /competitions/:id(.:format)                                                               competitions#update
-                                            PUT    /competitions/:id(.:format)                                                               competitions#update
-                                            DELETE /competitions/:id(.:format)                                                               competitions#destroy
+                            Prefix Verb   URI Pattern                                                  Controller#Action
+                              root GET    /                                                            welcome#index
+                     welcome_index GET    /welcome/index(.:format)                                     welcome#index
+                        what_we_do GET    /what_we_do(.:format)                                        welcome#what_we_do
+                         whats_new GET    /whats_new(.:format)                                         welcome#whats_new
+                        contact_us GET    /contact_us(.:format)                                        welcome#contact_us
+                           pricing GET    /pricing(.:format)                                           welcome#pricing
+                           for_org GET    /for_org(.:format)                                           welcome#for_org
+                          for_fans GET    /for_fans(.:format)                                          welcome#for_fans
+                             demos GET    /demos(.:format)                                             welcome#demos
+           choose_display_customer GET    /display(.:format)                                           display#choose_customer
+        choose_display_competition GET    /display/customer/:customer_id(.:format)                     display#choose_competition
+               display_competition GET    /display/:competition_id(.:format)                           display#index
+                  display_grouping GET    /display/:competition_id/grouping/:id(/:xyzzy)(.:format)     display#grouping
+                      display_team GET    /display/:competition_id/team/:id(.:format)                  display#team
+                    greet_customer GET    /customer/greet(.:format)                                    customers#greet
+          change_password_customer GET    /customer/change_password(.:format)                          customers#change_password
+          update_password_customer PATCH  /customer/update_password(.:format)                          customers#update_password
+          new_competition_customer GET    /customer/new_competition(.:format)                          customers#new_competition
+       create_competition_customer POST   /customer/create_competition(.:format)                       customers#create_competition
+         edit_competition_customer GET    /customer/edit_competition(.:format)                         customers#edit_competition
+set_competition_passwords_customer GET    /customer/set_competition_passwords(.:format)                customers#set_competition_passwords
+                          customer POST   /customer(.:format)                                          customers#create
+                      new_customer GET    /customer/new(.:format)                                      customers#new
+                     edit_customer GET    /customer/edit(.:format)                                     customers#edit
+                                   GET    /customer(.:format)                                          customers#show
+                                   PATCH  /customer(.:format)                                          customers#update
+                                   PUT    /customer(.:format)                                          customers#update
+           logout_customer_session GET    /customer_session/logout(.:format)                           customer_sessions#logout
+                  customer_session POST   /customer_session(.:format)                                  customer_sessions#create
+              new_customer_session GET    /customer_session/new(.:format)                              customer_sessions#new
+             login_manager_session GET    /manager_session/login/:manager_id(.:format)                 manager_sessions#new
+            logout_manager_session GET    /manager_session/logout(.:format)                            manager_sessions#logout
+                   manager_session POST   /manager_session(.:format)                                   manager_sessions#create
+           choose_customer_manager GET    /manager/choose_customer(.:format)                           managers#choose_customer
+        choose_competition_manager GET    /manager/choose_competition_for/:customer_id(.:format)       managers#choose_competition
+                     greet_manager GET    /manager/greet(.:format)                                     managers#greet
+                 passwords_manager GET    /manager/passwords(.:format)                                 managers#passwords
+   change_manager_password_manager PATCH  /manager/change_manager_password(.:format)                   managers#change_manager_password
+    clear_manager_password_manager PATCH  /manager/clear_manager_password(.:format)                    managers#clear_manager_password
+    change_scorer_password_manager PATCH  /manager/change_scorer_password(.:format)                    managers#change_scorer_password
+     clear_scorer_password_manager PATCH  /manager/clear_scorer_password(.:format)                     managers#clear_scorer_password
+                       new_manager GET    /manager/new(.:format)                                       managers#new
+                      edit_manager GET    /manager/edit(.:format)                                      managers#edit
+                           manager GET    /manager(.:format)                                           managers#show
+                                   PATCH  /manager(.:format)                                           managers#update
+                                   PUT    /manager(.:format)                                           managers#update
+                            venues GET    /venues(.:format)                                            venues#index
+                                   POST   /venues(.:format)                                            venues#create
+                         new_venue GET    /venues/new(.:format)                                        venues#new
+                        edit_venue GET    /venues/:id/edit(.:format)                                   venues#edit
+                             venue GET    /venues/:id(.:format)                                        venues#show
+                                   PATCH  /venues/:id(.:format)                                        venues#update
+                                   PUT    /venues/:id(.:format)                                        venues#update
+                                   DELETE /venues/:id(.:format)                                        venues#destroy
+                        validdates GET    /validdates(.:format)                                        validdates#index
+                                   POST   /validdates(.:format)                                        validdates#create
+                     new_validdate GET    /validdates/new(.:format)                                    validdates#new
+                    edit_validdate GET    /validdates/:id/edit(.:format)                               validdates#edit
+                         validdate GET    /validdates/:id(.:format)                                    validdates#show
+                                   PATCH  /validdates/:id(.:format)                                    validdates#update
+                                   PUT    /validdates/:id(.:format)                                    validdates#update
+                                   DELETE /validdates/:id(.:format)                                    validdates#destroy
+                    grouping_teams GET    /groupings/:grouping_id/teams(.:format)                      teams#index
+                                   POST   /groupings/:grouping_id/teams(.:format)                      teams#create
+                 new_grouping_team GET    /groupings/:grouping_id/teams/new(.:format)                  teams#new
+                         edit_team GET    /teams/:id/edit(.:format)                                    teams#edit
+                              team GET    /teams/:id(.:format)                                         teams#show
+                                   PATCH  /teams/:id(.:format)                                         teams#update
+                                   PUT    /teams/:id(.:format)                                         teams#update
+                                   DELETE /teams/:id(.:format)                                         teams#destroy
+                         groupings GET    /groupings(.:format)                                         groupings#index
+                                   POST   /groupings(.:format)                                         groupings#create
+                      new_grouping GET    /groupings/new(.:format)                                     groupings#new
+                     edit_grouping GET    /groupings/:id/edit(.:format)                                groupings#edit
+                          grouping GET    /groupings/:id(.:format)                                     groupings#show
+                                   PATCH  /groupings/:id(.:format)                                     groupings#update
+                                   PUT    /groupings/:id(.:format)                                     groupings#update
+                                   DELETE /groupings/:id(.:format)                                     groupings#destroy
+              dump_regularcontests GET    /regularcontests/dump(.:format)                              regularcontests#dump
+            rrobin_regularcontests GET    /regularcontests/rrobin(.:format)                            regularcontests#rrobin
+        roundrobin_regularcontests POST   /regularcontests/roundrobin(.:format)                        regularcontests#roundrobin
+                   regularcontests GET    /regularcontests(.:format)                                   regularcontests#index
+                                   POST   /regularcontests(.:format)                                   regularcontests#create
+                new_regularcontest GET    /regularcontests/new(.:format)                               regularcontests#new
+               edit_regularcontest GET    /regularcontests/:id/edit(.:format)                          regularcontests#edit
+                    regularcontest GET    /regularcontests/:id(.:format)                               regularcontests#show
+                                   PATCH  /regularcontests/:id(.:format)                               regularcontests#update
+                                   PUT    /regularcontests/:id(.:format)                               regularcontests#update
+                                   DELETE /regularcontests/:id(.:format)                               regularcontests#destroy
+      dump_bracket_bracketcontests GET    /brackets/:bracket_id/bracketcontests/dump(.:format)         bracketcontests#dump
+   edithome_bracket_bracketcontest GET    /brackets/:bracket_id/bracketcontests/:id/edithome(.:format) bracketcontests#edithome
+   updthome_bracket_bracketcontest PATCH  /brackets/:bracket_id/bracketcontests/:id/updthome(.:format) bracketcontests#updthome
+                                   PUT    /brackets/:bracket_id/bracketcontests/:id/updthome(.:format) bracketcontests#updthome
+   editaway_bracket_bracketcontest GET    /brackets/:bracket_id/bracketcontests/:id/editaway(.:format) bracketcontests#editaway
+   updtaway_bracket_bracketcontest PATCH  /brackets/:bracket_id/bracketcontests/:id/updtaway(.:format) bracketcontests#updtaway
+                                   PUT    /brackets/:bracket_id/bracketcontests/:id/updtaway(.:format) bracketcontests#updtaway
+           bracket_bracketcontests GET    /brackets/:bracket_id/bracketcontests(.:format)              bracketcontests#index
+                                   POST   /brackets/:bracket_id/bracketcontests(.:format)              bracketcontests#create
+        new_bracket_bracketcontest GET    /brackets/:bracket_id/bracketcontests/new(.:format)          bracketcontests#new
+       edit_bracket_bracketcontest GET    /brackets/:bracket_id/bracketcontests/:id/edit(.:format)     bracketcontests#edit
+            bracket_bracketcontest GET    /brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#show
+                                   PATCH  /brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#update
+                                   PUT    /brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#update
+                                   DELETE /brackets/:bracket_id/bracketcontests/:id(.:format)          bracketcontests#destroy
+                          brackets GET    /brackets(.:format)                                          brackets#index
+                           bracket GET    /brackets/:id(.:format)                                      brackets#show
+           choose_results_customer GET    /competitions/results(.:format)                              results#choose_customer
+        choose_results_competition GET    /competitions/results/:customer_id(.:format)                 results#choose_competition
+               competition_results GET    /competitions/:competition_id/results(.:format)              results#index
+                      report_score PATCH  /competitions/:competition_id/results/report(.:format)       results#report

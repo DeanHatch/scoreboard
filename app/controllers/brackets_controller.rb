@@ -6,16 +6,13 @@ class BracketsController < ManagersController
   before_action :set_bracket, only: :show
 
   # GET /brackets
-  # GET /brackets.json
   def index
     @brackets = Bracket.all
   end
 
   # GET /brackets/1
-  # GET /brackets/1.json
   def show
-	  @bracketcontests = Bracketcontest.where(bracket_id: @bracket.id)
-	  #@bracket_id = @bracket.id
+	  @bracketcontests = Bracketcontest.where(bracket: @bracket)
   end
 
 

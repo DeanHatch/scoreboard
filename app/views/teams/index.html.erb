@@ -17,7 +17,7 @@ Teams</h2>
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><%= link_to team.name, edit_grouping_team_path(@grouping, team) %></td>
+        <td><%= link_to team.name, edit_team_path(team) %></td>
       </tr>
     <% end %>
   </tbody>

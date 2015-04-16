@@ -62,4 +62,14 @@ class Grouping < ActiveRecord::Base
 		(self.teams << self.subgroupings.collect{|sg| sg.all_teams()}).flatten
 	end
 	
+	def as_bracket()
+		(bracket = Bracket.find(self.id)) ? bracket : Bracket.new()
+	end
+	
+	
+	# Return an Array of all Contests for which any Team
+	# in this Grouping is the Team.
+	def contests()
+		(self.all_teams.collect{|c| c.contests } + self.as_bracket.bracketcontests).flatten.uniq
+	end
 end

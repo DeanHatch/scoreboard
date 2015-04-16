@@ -5,7 +5,6 @@ class GroupingsController < ManagersController  # formerly ApplicationController
   # GET /groupings
   # GET /groupings.json
   def index
-	#(1..14).each{|ci| Grouping.where(competition_id: ci).each{|g| g.destroy}; Competition.where(id: ci).each{|c| c.destroy}}
     @groupings = Grouping.where(competition_id: @competition_id)
   end
 
@@ -31,19 +30,16 @@ class GroupingsController < ManagersController  # formerly ApplicationController
   end
 
   # POST /groupings
-  # POST /groupings.json
   def create
     @grouping = Grouping.new(grouping_params)
-    @grouping.competition_id = @competition_id
-
+    @grouping.competition = @competition
+    
     respond_to do |format|
       if @grouping.save
 	      flash[:notice] = 'Grouping was successfully created.'
         format.html { redirect_to groupings_url}
-        format.json { render :show, status: :created, location: @grouping }
       else
         format.html { render :new }
-        format.json { render json: @grouping.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,10 +51,8 @@ class GroupingsController < ManagersController  # formerly ApplicationController
 	      flash[:notice] = 'Grouping was successfully updated.'
       if @grouping.update(grouping_params)
         format.html { redirect_to groupings_url}
-        format.json { render :show, status: :ok, location: @grouping }
       else
         format.html { render :edit }
-        format.json { render json: @grouping.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,8 +63,7 @@ class GroupingsController < ManagersController  # formerly ApplicationController
     @grouping.destroy
     respond_to do |format|
 	      flash[:notice] = 'Team was successfully removed.'
-	      format.html { redirect_to grouping_url}
-	      format.json { head :no_content }
+	      format.html { redirect_to groupings_url}
     end
   end
 

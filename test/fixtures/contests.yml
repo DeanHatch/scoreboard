@@ -1,23 +1,30 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  competition_id: 1
-  type: 
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+rcgameone: 
+  type: Regularcontest
+  competition: bball
+  venue: maingym
   date: 2015-01-25
-  time: 1
-  venue_id: 1
-  status: MyString
-  homecontestant_id: 1
-  awaycontestant_id: 1
-
-two:
-  competition_id: 1
-  type: 
+  time: 120
+  status: SCHEDULED
+#
+rcgametwo: 
+  type: Regularcontest
+  competition: bball
+  venue: auxgym
   date: 2015-01-25
-  time: 1
-  venue_id: 1
-  status: MyString
-  homecontestant_id: 1
-  awaycontestant_id: 1
-
+  time: 120
+  status: SCHEDULED
+  #
+bcgameone: 
+  type: Bracketcontest
+  competition: bball
+  venue: auxgym
+  date: 2015-01-27
+  time: 120
+  status: SCHEDULED
   

@@ -1,4 +1,6 @@
-<%= form_for([@grouping, @team]) do |f| %>
+<%= form_for @team, url: team_path(@team),
+			method: :delete,
+               data: { confirm: "Are you sure? For real?  Once it's Gone, it's GONE." } do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -10,15 +12,11 @@
       </ul>
     </div>
   <% end %>
-
-  <fieldset>
-   <legend><%= "Change the Name of #{@team.name}" %></legend>
-  <div class="field">
-    <%= f.label 'Team Name' %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= submit_tag("Change It") %>
+  
+ <fieldset>
+   <legend><%= "Remove #{@team.name} From the Competition" %></legend>
+   <div class="actions">
+    <%= submit_tag("Remove It!") %>
   </div>
   </fieldset>
 <% end %>

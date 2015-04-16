@@ -1,4 +1,4 @@
-<%= form_for([@grouping, @team]) do |f| %>
+<%= form_for(@team) do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -11,14 +11,18 @@
     </div>
   <% end %>
 
-  <fieldset>
-   <legend><%= "Change the Name of #{@team.name}" %></legend>
+ <fieldset>
+   <legend><%= "Move #{@team.name} to a Different Grouping" %></legend>
   <div class="field">
-    <%= f.label 'Team Name' %>
-    <%= f.text_field :name %>
+    <%= f.label "Move to " %>
+     <%= f.select :grouping_id,
+		      options_for_select(Grouping.all.collect {|g| [ g.fullname, g.id ] },
+		                                selected: @team.grouping_id), 
+		    {prompt: 'Which?'} %>
   </div>
+    
   <div class="actions">
-    <%= submit_tag("Change It") %>
+    <%= submit_tag("Move It!") %>
   </div>
   </fieldset>
 <% end %>

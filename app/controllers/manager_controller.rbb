@@ -1,4 +1,4 @@
-class ManagerController < NestedController  # formerly ApplicationController
+class ManagerControllerr < NestedController  # formerly ApplicationController
   before_action :validate_competition, except: [:login]
 
   def nav_link_array()

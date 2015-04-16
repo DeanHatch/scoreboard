@@ -2,17 +2,21 @@ require 'test_helper'
 
 class BracketcontestsControllerTest < ActionController::TestCase
   setup do
+    session[:manager_id] = competitions(:bball).id()
+    @bracket = groupings(:bballdiv1)
     @bracketcontest = bracketcontests(:gameone)
   end
 
   test "should get index" do
-    get :index
+    p Bracket.all.size()
+    p Bracketcontest.all.size()
+    get :index, bracket_id: @bracket.id
     assert_response :success
     assert_not_nil assigns(:bracketcontests)
   end
 
   test "should get new" do
-    get :new
+    get :new, bracket_id: @bracket.id
     assert_response :success
   end
 
@@ -25,7 +29,7 @@ class BracketcontestsControllerTest < ActionController::TestCase
   end
 
   test "should show bracketcontest" do
-    get :show, id: @bracketcontest
+    get :show, id: @bracketcontest, bracket_id: @bracket.id
     assert_response :success
   end
 

@@ -8,7 +8,9 @@ class TeamTest < ActiveSupport::TestCase
 	#
    test "teams fixtures are valid" do
 	   [:heat, :thunder, :lightning, :blizzard].each { |t| assert teams(t).valid? }
-	   newteam = Team.new() # no Competition or Grouping
+	   newteam = Team.new() # no Competition or Grouping or Name
+	   assert ! newteam.valid?
+	   newteam.name = "Dynomite" # no Grouping or Competition
 	   assert ! newteam.valid?
 	   newteam.competition = competitions(:bball) # still no Grouping
 	   assert ! newteam.valid?
@@ -20,8 +22,10 @@ class TeamTest < ActiveSupport::TestCase
 
 	#
    test "teams wins are correct" do
-	   [:thunder, :lightning].each { |t| assert_equal 1, teams(t).wins }
-	   [:heat, :hailstones].each { |t| assert_equal 1, teams(t).losses }
+	   [:thunder].each { |t| assert_equal 2, teams(t).wins }
+	   [:heat].each { |t| assert_equal 2, teams(t).losses }
+	   [:lightning].each { |t| assert_equal 1, teams(t).wins }
+	   [:hailstones].each { |t| assert_equal 1, teams(t).losses }
    end
 
 end

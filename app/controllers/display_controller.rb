@@ -29,18 +29,21 @@ class DisplayController < NestedController # Formerly < ApplicationController
 
   def grouping
 	  @grouping = Grouping.find(params[:id])
-	  @groupingteams = Team.where(grouping_id: @grouping.id)
+	  @groupingteams = Team.where(grouping: @grouping)
+	  @contests = @grouping.contests()
 	  what2show = params[:xyzzy]
 	  if @grouping.bracket_grouping		  
 		  @bracket = Bracket.find(params[:id])
-		  @bracketcontests = Bracketcontest.where(bracket_id: @bracket.id)
+		  @bracketcontests = Bracketcontest.where(bracket: @bracket)
 	  end
 	  @what_to_render = (case what2show
 				when "bracket" 
 				 'grouping_bracket'   
 				when "schedule" 
+				 @contests = @contests.select{|c| c.needs_score?}.sort
 				 'grouping_schedule'   
 				when "scores" 
+				 @contests = @contests.select{|c| c.has_score?}.sort
 				 'grouping_scores'   
 				when "standings" 
 				 'grouping_standings'   

@@ -1,25 +1,56 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  competition_id: 1
-  type: 
-  contest_id: 1
-  contest_type: MyString
-  homeaway: MyString
-  team_id: 1
-  score: 1
-  forfeit: false
-  contestantcode: MyString
-  seeding: 1
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+rcgameoneH: 
+  type: Regularcontestant
+  competition: bball
+  contest: rcgameone
+  homeaway: H
+  team: heat
+  score: 15
+#
+rcgameoneA: 
+  type: Regularcontestant
+  competition: bball
+  contest: rcgameone
+  homeaway: A
+  team: thunder
+  score: 16
 
-two:
-  competition_id: 1
-  type: 
-  contest_id: 1
-  contest_type: MyString
-  homeaway: MyString
-  team_id: 1
-  score: 1
-  forfeit: false
-  contestantcode: MyString
-  seeding: 1
+rcgametwoH: 
+  type: Regularcontestant
+  competition: bball
+  contest: rcgametwo
+  homeaway: H
+  team: lightning
+  score: 17
+#
+rcgametwoA: 
+  type: Regularcontestant
+  competition: bball
+  contest: rcgametwo
+  homeaway: A
+  team: hailstones
+  score: 13
+
+
+#
+bcgameoneH: 
+  type: Bracketcontestant
+  competition: bball
+  contest: bcgameone
+  homeaway: H
+  team: heat
+  score: 15
+#
+bcgameoneA: 
+  type: Bracketcontestant
+  competition: bball
+  contest: bcgameone
+  homeaway: A
+  team: thunder
+  score: 16
+

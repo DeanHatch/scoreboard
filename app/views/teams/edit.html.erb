@@ -1,11 +1,9 @@
-<h1>Editing team</h1>
+<h1>Editing the Team named <%= @team.name %></h1>
+<h1> in <%= @team.grouping.fullname %></h1>
 
 <%= render 'teamform' %>
+<%= render 'moveteamform' %>
+<%= render 'dropteamform' %>
 
-<%= button_to 'Remove This Team',
-                      grouping_team_path,
-		      method: :delete,
-		      grouping_id: @grouping_id,
-		      id: @team.id %>
-
-<%= link_to 'Back to Team List', grouping_teams_path %>
+<br/>
+<%= link_to 'Skip This and Go Back to Team List', grouping_teams_path(@team.grouping) %> 

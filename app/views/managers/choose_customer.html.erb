@@ -2,6 +2,7 @@
 <h2>First, Which Customer&apos;s Competition?</h2>
 
 <% Customer.all.each do |cust| %>
-  <%= link_to cust.name, choose_manager_competition_path(cust) %>
+  <!-- %= link_to cust.name, choose_manager_competition_path(cust) % -->
+  <%= link_to cust.name, choose_competition_manager_path(cust) %>
   <br/>
 <% end %>

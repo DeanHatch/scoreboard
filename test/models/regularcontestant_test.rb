@@ -7,14 +7,14 @@ class RegularcontestantTest < ActiveSupport::TestCase
     
 	#
    test "regularcontestants fixtures are valid" do
-	   [:gameoneH, :gameoneA, :gametwoH, :gametwoA].each { |rc| assert regularcontestants(rc).valid? }
+	   [:rcgameoneH, :rcgameoneA, :rcgametwoH, :rcgametwoA].each { |rc| assert contestants(rc).valid? }
    end
     
 	#
    test "regularcontestant opponents are working" do
-	   assert_equal regularcontestants(:gameoneH).opponent , regularcontestants(:gameoneA)
-	   assert_equal regularcontestants(:gametwoA).opponent , regularcontestants(:gametwoH)
-	   assert_not_equal regularcontestants(:gameoneH).opponent , regularcontestants(:gametwoA)
+	   assert_equal contestants(:rcgameoneH).opponent , contestants(:rcgameoneA)
+	   assert_equal contestants(:rcgametwoA).opponent , contestants(:rcgametwoH)
+	   assert_not_equal contestants(:rcgameoneH).opponent , contestants(:rcgametwoA)
    end
 
 end
