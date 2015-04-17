@@ -104,7 +104,7 @@ class BracketcontestsController < BracketsController
     @bracketcontest.destroy
     respond_to do |format|
 	flash[:notice] = 'Bracketcontest was successfully created.' 
-      format.html { redirect_to bracketcontests_url }
+      format.html { redirect_to bracket_bracketcontests_url }
       format.json { head :no_content }
     end
   end

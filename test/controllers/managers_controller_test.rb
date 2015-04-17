@@ -33,6 +33,7 @@ class ManagersControllerTest < ActionController::TestCase
   end
 
   test "should redirect get greet_manager" do
+	session[:manager_id] = nil
 	get :greet # session has no manager_id
 	assert_redirected_to choose_customer_manager_path
   end
@@ -44,29 +45,29 @@ class ManagersControllerTest < ActionController::TestCase
 
   test "should patch change_password_manager" do
 	patch :change_manager_password,
-		{manager: { password: "yabba",
+		{competition: { password: "yabba",
 				password_confirmation: "yabba"} },
 		{:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
-  test "should patch clear_manager_password_manager" do
+  test "should patch clear_manager_password" do
 	patch :clear_manager_password,
 		{} , {:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
-  test "should patch change_scorer_password_manager" do
+  test "should patch change_scorer_password" do
 	patch :change_scorer_password,
-		{manager: { password: "yabba",
+		{competition: { password: "yabba",
 				password_confirmation: "yabba"} },
 		{:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
-  test "should patch clear_scorer_password_manager" do
+  test "should patch clear_scorer_password" do
 	patch :clear_scorer_password,
-		{} , {:manager_id => @comp_id}
+		{manager: {}} , {:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 

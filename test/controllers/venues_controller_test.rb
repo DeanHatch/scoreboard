@@ -2,7 +2,8 @@ require 'test_helper'
 
 class VenuesControllerTest < ActionController::TestCase
   setup do
-    @venue = venues(:one)
+    @venue = venues(:maingym)
+    session[:manager_id] = competitions(:bball).id
   end
 
   test "should get index" do
@@ -21,7 +22,7 @@ class VenuesControllerTest < ActionController::TestCase
       post :create, venue: { competition_id: @venue.competition_id, name: @venue.name }
     end
 
-    assert_redirected_to venue_path(assigns(:venue))
+    assert_redirected_to venues_path # (assigns(:venue))
   end
 
   test "should show venue" do
@@ -36,7 +37,7 @@ class VenuesControllerTest < ActionController::TestCase
 
   test "should update venue" do
     patch :update, id: @venue, venue: { competition_id: @venue.competition_id, name: @venue.name }
-    assert_redirected_to venue_path(assigns(:venue))
+    assert_redirected_to venues_path # (assigns(:venue))
   end
 
   test "should destroy venue" do

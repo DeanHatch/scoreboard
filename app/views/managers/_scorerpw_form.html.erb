@@ -1,4 +1,4 @@
-<%= form_for @competition, url: competition_manager_scorerpw_path(@competition), method: :patch do |f| %>
+<%= form_for @competition, url:change_scorer_password_manager_path, method: :patch do |f| %>
   <% if @competition.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@competition.errors.count, "error") %> prohibited this competition from being saved:</h2>

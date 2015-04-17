@@ -3,6 +3,7 @@ require 'test_helper'
 class ValiddatesControllerTest < ActionController::TestCase
   setup do
     @validdate = validdates(:one)
+    session[:manager_id] = competitions(:bball).id
   end
 
   test "should get index" do
@@ -17,17 +18,17 @@ class ValiddatesControllerTest < ActionController::TestCase
   end
 
   test "should create validdate" do
-    assert_difference('Validdate.count') do
+    assert_difference('Validdate.unscoped.count') do
       post :create, validdate: { competition_id: @validdate.competition_id, gamedate: @validdate.gamedate }
     end
 
-    assert_redirected_to validdate_path(assigns(:validdate))
+    assert_redirected_to venues_path
   end
 
   test "should show validdate" do
     get :show, id: @validdate
-    #assert_response :success
-     assert_redirected_to venues_path
+    assert_response :success
+    #assert_redirected_to venues_path
   end
 
   test "should get edit" do
@@ -37,7 +38,7 @@ class ValiddatesControllerTest < ActionController::TestCase
 
   test "should update validdate" do
     patch :update, id: @validdate, validdate: { competition_id: @validdate.competition_id, gamedate: @validdate.gamedate }
-    assert_redirected_to validdate_path(assigns(:validdate))
+    assert_redirected_to venues_path
   end
 
   test "should destroy validdate" do
@@ -45,6 +46,6 @@ class ValiddatesControllerTest < ActionController::TestCase
       delete :destroy, id: @validdate
     end
 
-    assert_redirected_to validdates_path
+    assert_redirected_to venues_path
   end
 end

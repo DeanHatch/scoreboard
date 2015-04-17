@@ -2,7 +2,11 @@ require 'test_helper'
 
 class RegularcontestsControllerTest < ActionController::TestCase
   setup do
-    @regularcontest = regularcontests(:one)
+      # Remember that there are no Regularcontest fixtures
+      # so we get our Regularcontests from the Contests fixtures.
+      # This is a testing consequence of Single Table Inheritance.
+    @regularcontest = contests(:rcgameone)
+    session[:manager_id] = competitions(:bball).id()
   end
 
   test "should get index" do
@@ -18,10 +22,10 @@ class RegularcontestsControllerTest < ActionController::TestCase
 
   test "should create regularcontest" do
     assert_difference('Regularcontest.count') do
-      post :create, regularcontest: {  }
+      post :create, regularcontest: { status: "SCHEDULED" }
     end
 
-    assert_redirected_to regularcontest_path(assigns(:regularcontest))
+    assert_redirected_to regularcontests_path # (assigns(:regularcontest))
   end
 
   test "should show regularcontest" do
@@ -35,8 +39,8 @@ class RegularcontestsControllerTest < ActionController::TestCase
   end
 
   test "should update regularcontest" do
-    patch :update, id: @regularcontest, regularcontest: {  }
-    assert_redirected_to regularcontest_path(assigns(:regularcontest))
+    patch :update, id: @regularcontest, regularcontest: {  status: "SCHEDULED" }
+    assert_redirected_to regularcontests_path # (assigns(:regularcontest))
   end
 
   test "should destroy regularcontest" do

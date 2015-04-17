@@ -3,8 +3,8 @@ require 'test_helper'
 class BracketcontestsControllerTest < ActionController::TestCase
   setup do
     session[:manager_id] = competitions(:bball).id()
-    @bracket = groupings(:bballdiv1)
-    @bracketcontest = bracketcontests(:gameone)
+    @bracket = Bracket.find(groupings(:bballdiv1).id()) # cannot use groupings fixtures
+    @bracketcontest = contests(:bcgameone)
   end
 
   test "should get index" do
@@ -22,32 +22,39 @@ class BracketcontestsControllerTest < ActionController::TestCase
 
   test "should create bracketcontest" do
     assert_difference('Bracketcontest.count') do
-      post :create, bracketcontest: {  }
+      post :create,   bracket_id: @bracket.id,
+        bracketcontest: { status: "SCHEDULED" }, 
+	homecontestant: {contestantcode: @bracket.all_participant_codes().first() }, 
+	awaycontestant: {contestantcode: @bracket.all_participant_codes().first() }
     end
 
-    assert_redirected_to bracketcontest_path(assigns(:bracketcontest))
+    # should edit the newly created Bracketcontest
+    assert_redirected_to(:action => "edit", :id => assigns(:bracketcontest))
   end
 
   test "should show bracketcontest" do
-    get :show, id: @bracketcontest, bracket_id: @bracket.id
+    get :show, id: @bracketcontest.id, bracket_id: @bracket.id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @bracketcontest
+    get :edit, id: @bracketcontest, bracket_id: @bracket.id
     assert_response :success
   end
 
   test "should update bracketcontest" do
-    patch :update, id: @bracketcontest, bracketcontest: {  }
-    assert_redirected_to bracketcontest_path(assigns(:bracketcontest))
+    patch :update, id: @bracketcontest, bracket_id: @bracket.id,
+        bracketcontest: { status: "SCHEDULED" }, 
+	homecontestant: {contestantcode: @bracket.all_participant_codes().first() }, 
+	awaycontestant: {contestantcode: @bracket.all_participant_codes().first() }
+    assert_redirected_to bracket_bracketcontest_path # (assigns(:bracketcontest))
   end
 
   test "should destroy bracketcontest" do
     assert_difference('Bracketcontest.count', -1) do
-      delete :destroy, id: @bracketcontest
+      delete :destroy, id: @bracketcontest, bracket_id: @bracket.id 
     end
 
-    assert_redirected_to bracketcontests_path
+    assert_redirected_to bracket_bracketcontests_path
   end
 end

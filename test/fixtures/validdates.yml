@@ -2,8 +2,8 @@
 
 one:
   gamedate: 2015-01-15
-  competition_id: 1
+  competition: bball
 
 two:
   gamedate: 2015-01-15
-  competition_id: 1
+  competition: soccer
