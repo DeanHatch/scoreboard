@@ -19,7 +19,7 @@ class TeamsControllerTest < ActionController::TestCase
   end
 
   test "should create team" do
-    assert_difference('Team.count') do
+    assert_difference('Team.unscoped.count') do
       post :create, grouping_id: @grouping.id, team: { competition_id: @team.competition_id, grouping_id: @team.grouping_id, name: @team.name }
     end
 

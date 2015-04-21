@@ -1,11 +1,12 @@
 <%= form_tag(:report_score, method: "patch") do %>
   <fieldset>
-    <%= number_field_tag 'awayscore', nil, in: 0...200 %>
+   <legend>Report a Score</legend>
+    <%= number_field_tag 'awayscoree', nil, in: 0...200 %>
     <%= select_tag 'contest_id',
 		      options_for_select(@contests_without_scores.
 		                                                 collect {|c| [ c.awaycontestant.team.name +
 										' at ' + c.homecontestant.team.name, c.id ]}),
-		    {prompt: 'Pick One'} %>
+		    {prompt: 'Which Contest?'} %>
 
     <%= number_field_tag 'homescore', nil, in: 0...200 %>
     <br/>
@@ -18,6 +19,7 @@
 
 <%= form_tag(:report_score, method: "patch") do %>
   <fieldset>
+   <legend>Correct a Score</legend>
     <%= number_field_tag 'awayscore', nil, in: 0...200 %>
     <%= select_tag 'contest_id',
 		      options_for_select(@contests_with_scores.
@@ -28,7 +30,7 @@
 										c.homecontestant.score.to_s +
 										' ' +
 										c.homecontestant.team.name, c.id ]}),
-		    {prompt: 'Pick One'} %>
+		    {prompt: 'Change Which Score?', :onchange => 'document.getElementById("awayscore").innerHTML="99";'} %>
 
     <%= number_field_tag 'homescore', nil, in: 0...200 %>
     <br/>

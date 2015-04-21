@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupingsControllerTest < ActionController::TestCase
   setup do
-    @grouping = groupings(:bballcon11)
+    @grouping = groupings(:bballdiv1)
     session[:manager_id] = competitions(:bball).id()
   end
 

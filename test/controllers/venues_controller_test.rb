@@ -18,7 +18,8 @@ class VenuesControllerTest < ActionController::TestCase
   end
 
   test "should create venue" do
-    assert_difference('Venue.count') do
+      # Use unscoped count to get ALL Venues, not just those for one Competition
+    assert_difference('Venue.unscoped.count') do
       post :create, venue: { competition_id: @venue.competition_id, name: @venue.name }
     end
 

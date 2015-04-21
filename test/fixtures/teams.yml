@@ -1,5 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+fcone:
+  competition: soccer
+  name: FC One
+  grouping: soccerdiv1
+
+fctwo:
+  competition: soccer
+  name: FC Two
+  grouping: soccerdiv1
+
+
 heat:
   competition: bball
   name: Heat

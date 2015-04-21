@@ -5,8 +5,8 @@ class RegularcontestsControllerTest < ActionController::TestCase
       # Remember that there are no Regularcontest fixtures
       # so we get our Regularcontests from the Contests fixtures.
       # This is a testing consequence of Single Table Inheritance.
-    @regularcontest = contests(:rcgameone)
     session[:manager_id] = competitions(:bball).id()
+    @regularcontest = contests(:rcgameone)
   end
 
   test "should get index" do

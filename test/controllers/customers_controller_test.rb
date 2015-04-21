@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
   setup do
-    @customer = customers(:alwaysright)
+    @customer = customers(:squeakywheel)
     session[:customer_id] = @customer
   end
 

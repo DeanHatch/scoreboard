@@ -1,5 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+mainfield:
+  name: Main Field
+  competition: soccer
+
+auxfield:
+  name: Auxiliary Field
+  competition: soccer
+
 maingym:
   name: Main Gym
   competition: bball
@@ -7,3 +15,12 @@ maingym:
 auxgym:
   name: Auxiliary Gym
   competition: bball
+
+
+swmainfield:
+  name: SW Main Field
+  competition: swsoccer
+
+swauxfield:
+  name: SW Auxiliary Field
+  competition: swsoccer

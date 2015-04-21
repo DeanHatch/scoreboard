@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ValiddatesControllerTest < ActionController::TestCase
   setup do
-    @validdate = validdates(:one)
+    @validdate = validdates(:bballone)
     session[:manager_id] = competitions(:bball).id
   end
 

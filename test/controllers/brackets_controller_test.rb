@@ -3,7 +3,7 @@ require 'test_helper'
 class BracketsControllerTest < ActionController::TestCase
   setup do
     session[:manager_id] = competitions(:bball).id()
-    @bracket = groupings(:bballdiv1)
+    @bracket = Bracket.find(groupings(:bballdiv1).id())
   end
 
   test "should get index" do

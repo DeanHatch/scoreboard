@@ -1,9 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  gamedate: 2015-01-15
+soccerone:
+  gamedate: 2015-05-15
+  competition: soccer
+
+soccertwo:
+  gamedate: 2015-05-16
+  competition: soccer
+
+bballone:
+  gamedate: 2015-05-15
   competition: bball
 
-two:
-  gamedate: 2015-01-15
-  competition: soccer
+bballtwo:
+  gamedate: 2015-05-16
+  competition: bball
+
+swsoccerone:
+  gamedate: 2015-05-15
+  competition: swsoccer
+
+swsoccertwo:
+  gamedate: 2015-05-16
+  competition: swsoccer

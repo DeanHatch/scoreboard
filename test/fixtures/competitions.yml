@@ -17,6 +17,8 @@ soccer:
   forfeitwinscore: 1
   forfeitlossscore: 0
 
+
+  # Following two Competitions belong to Customer SqueakyWheel
 bball:
   customer: squeakywheel
   name: My Summer Basketball League
@@ -32,4 +34,22 @@ bball:
   losspoints: 0
   forfeitpoints: 0
   forfeitwinscore: 15
+  forfeitlossscore: 0
+
+  # Soccer Competition for SqueakyWheel Customer
+swsoccer:
+  customer:  squeakywheel
+  name: Another Soccer Tournament
+  sport: soccer
+  variety: tournament
+  poolgroupseason: true
+  poolgroupseasonlabel: Group
+  playoffbracket: true
+  playoffbracketlabel: Bracket
+  keepscores: true
+  winpoints: 3
+  drawpoints: 1
+  losspoints: 0
+  forfeitpoints: 0
+  forfeitwinscore: 1
   forfeitlossscore: 0
