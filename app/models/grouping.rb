@@ -6,7 +6,7 @@ class Grouping < ActiveRecord::Base
 	validates_presence_of :competition_id
 	
 	belongs_to :grouping, foreign_key: "parent_id", class_name: "Grouping" 
-	validates_presence_of :parent_id # ignore when creating root Grouping for a Competition
+	#validates_presence_of :parent_id # ignore when creating root Grouping for a Competition
 	has_many :groupings, foreign_key: "parent_id",
 					class_name: "Grouping" # making default explicit
 
@@ -52,18 +52,18 @@ class Grouping < ActiveRecord::Base
 	# Groupings directly within this Grouping plus Groupings within any descendants of
 	# this Grouping.
 	def all_subgroupings()
-		(self.subgroupings << self.subgroupings.collect{|sg| sg.all_subgroupings()}).flatten
+		(self.subgroupings + self.subgroupings.collect{|sg| sg.all_subgroupings()}).flatten
 	end
 	
 	# Teams directly within this Grouping plus Teams within any descendants of
 	# this Grouping. Ordinarily there will be one or the other but not both. This
 	# will handle the case where there is one or the other or both.
 	def all_teams()
-		(self.teams << self.subgroupings.collect{|sg| sg.all_teams()}).flatten
+		(self.teams + self.subgroupings.collect{|sg| sg.all_teams()}).flatten
 	end
 	
 	def as_bracket()
-		(bracket = Bracket.find(self.id)) ? bracket : Bracket.new()
+		 self.bracket_grouping ? Bracket.find(self.id): Bracket.new() 
 	end
 	
 	

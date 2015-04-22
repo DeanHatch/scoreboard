@@ -12,11 +12,13 @@ Online-Scoreboard.net is an online service that keeps track of sporting schedule
 
 There are four roles involved with the service. They are presented here in *increasing* order of authority.
 
-*  Public Display Viewers - These are the fans of the teams that are participating in the contests. 
-   Collectively, all the contests and teams and groups of teams are called a "Competition." These people can view
+*  Public Display Viewers - These are the fans and coaches of the teams that are
+   participating in the contests or anyone else who is interested in the contests. 
+   Collectively, all the contests and teams and groups of teams are called a "Competition." Viewer can view
    a Competition but they cannot change any of the scores or schedules or anything else.
-*  Scorers - These people can view everything and they can record scores for any of the contests in
-   the Competition. They cannot, however, schedule or re-schedule any of the contests or manage the
+*  Scorers - These people can view everything and they can also record scores for any of the contests in
+   the Competition. They Scorers can also correct scores, if needed.
+   They cannot, however, schedule or re-schedule any of the contests or manage the
    Teams or the Groupings of the Teams.
 *  Managers - Managers can manage the Groupings and the Teams within the Groupings. They can also
    schedule Contests or re-schedule Contests. Once a Competition has been created, a Manager can
@@ -158,10 +160,7 @@ to add the Venue to the list. Each Venue in the list will be a link to the Venue
 for that Venue. If the name of the Venue needs to be corrected or the Venue needs to be deleted,
 the user will click on the Venue name to bring up the Venue Edit Page for that Venue.
 
-
-=== Venue Edit Page
-
-This Manager Page will allow the Manager to change or correct the name
+The Venue Edit Page will allow the Manager to change or correct the name
 of the chosen Venue. It will also allow the Manager to delete the Venue, but only
 if the Venue has not yet had any Contests scheduled at it.
 

@@ -15,12 +15,16 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  
+  <% if @grouping.parent_id %>
   <div class="field">
     <%= f.label :parent %><br>
     <%= f.select :parent_id,
-           options_for_select(@groupings.collect { |g| [g.hierarchy.join(' | '), g.id] },
+           options_for_select(@groupings.select{|g| g != @grouping}.collect { |g| [g.hierarchy.join(' | '), g.id] },
              selected: @grouping.parent_id), {} %>
   </div>
+  <% end %>
+
   <div class="field">
     Check if this is a Bracket Grouping:
     <%= f.check_box :bracket_grouping %>

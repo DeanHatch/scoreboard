@@ -20,6 +20,7 @@ class GroupingsController < ManagersController  # formerly ApplicationController
       # That is why groupings is assigned first.
     @grouping = Grouping.new
     @grouping.competition_id = @competition_id
+    @grouping.grouping = Grouping.top_grouping() # assign default
   end
 
   # GET /groupings/1/edit

@@ -74,8 +74,8 @@
 
                height: 120px;
                   top: 40px;
-               margin: 20px 0;
-              padding: 20px 0;
+               margin: 20px 0 20px 0;
+              padding: 20px 0 0 0;
              position: absolute;
               z-index: 4;}
    div.inner-header {

@@ -1,7 +1,7 @@
 <%= form_tag(:report_score, method: "patch") do %>
   <fieldset>
    <legend>Report a Score</legend>
-    <%= number_field_tag 'awayscoree', nil, in: 0...200 %>
+    <%= number_field_tag 'awayscore', nil, in: 0...200 %>
     <%= select_tag 'contest_id',
 		      options_for_select(@contests_without_scores.
 		                                                 collect {|c| [ c.awaycontestant.team.name +
@@ -17,10 +17,26 @@
 <br/>
 <br/>
 
+<!-- use this regex: / \d+ - \d+ / -->
+<script>
+function myFunction() {
+    var el = document.getElementById("fixcontest_id")
+    var idx = el.selectedIndex;
+    var str = el.options[idx].text;
+    var patt = new RegExp(/\d+ - \d+/);
+    var res = patt.exec(str);
+    var nnpatt = new RegExp(/\d+/g);
+    var aw = nnpatt.exec(res);
+    var hm = nnpatt.exec(res);
+    document.getElementById("fixhomescore").value = hm;
+    document.getElementById("fixawayscore").value = aw;
+}
+</script>
+
 <%= form_tag(:report_score, method: "patch") do %>
   <fieldset>
    <legend>Correct a Score</legend>
-    <%= number_field_tag 'awayscore', nil, in: 0...200 %>
+    <%= number_field_tag 'awayscore', nil, in: 0...200, id: 'fixawayscore' %>
     <%= select_tag 'contest_id',
 		      options_for_select(@contests_with_scores.
 		                                                 collect {|c| [ c.awaycontestant.team.name +
@@ -30,9 +46,10 @@
 										c.homecontestant.score.to_s +
 										' ' +
 										c.homecontestant.team.name, c.id ]}),
-		    {prompt: 'Change Which Score?', :onchange => 'document.getElementById("awayscore").innerHTML="99";'} %>
+		    {prompt: 'Change Which Score?', id: 'fixcontest_id',
+		    :onchange => 'myFunction()'} %>
 
-    <%= number_field_tag 'homescore', nil, in: 0...200 %>
+    <%= number_field_tag 'homescore', nil, in: 0...200, id: 'fixhomescore' %>
     <br/>
     <%= submit_tag("Correct this Score") %>
   </fieldset>
