@@ -51,7 +51,7 @@
     <% end %><br>
     <%= f.select :home_team_id,
 		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
-		                                selected: nil), 
+		                                selected: @homecontestant.team_id), 
 		    {prompt: 'TBD'} %>
   </fieldset>
 

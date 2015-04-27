@@ -39,7 +39,7 @@
 
   <tbody>
       <!-- Show sorted, unique Teams -->
-    <% @contestants.select{|c| c.contest.has_score?}.each do |c| cntst = Contest.find(c.contest_id) %>
+    <% @contestants.select{|c| c.contest.has_score?}.sort{|a,b| a.contest <=> b.contest}.each do |c| cntst = c.contest %>
       <tr>
         <td><%= cntst.display_date %></td>
         <td><%= c.win ? "W" : (c.loss ? "L" : "D") %></td>
@@ -68,7 +68,7 @@
 
   <tbody>
       <!-- Show sorted, unique Teams -->
-    <% @contestants.select{|c| c.contest.needs_score?}.each do |c| cntst = Contest.find(c.contest_id) %>
+    <% @contestants.select{|c| c.contest.needs_score?}.sort{|a,b| a.contest <=> b.contest}.each do |c| cntst = c.contest %>
       <tr>
          <td><%= c.fullname %></td>
         <td><%= cntst.display_date %></td>

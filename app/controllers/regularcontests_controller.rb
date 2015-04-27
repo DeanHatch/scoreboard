@@ -5,7 +5,7 @@ class RegularcontestsController < ManagersController
   # GET /regularcontests
   # GET /regularcontests.json
   def index
-    @regularcontests = Regularcontest.all
+    @regularcontests = Regularcontest.all.sort
     
   end
   
