@@ -47,7 +47,9 @@ class RegularcontestsController < ManagersController
   def create
     @regularcontest = Regularcontest.new(regularcontest_params)
     @regularcontest.competition_id = @competition_id
-
+    
+    process_teams()
+ 
     respond_to do |format|
       if @regularcontest.save
 	      flash[:notice] = 'Contest was successfully created.' 
@@ -65,12 +67,7 @@ class RegularcontestsController < ManagersController
   # PATCH/PUT /regularcontests/1
   # PATCH/PUT /regularcontests/1.json
   def update
-    @home_team_id = params.require(:regularcontest)[:home_team_id]
-    @regularcontest.homecontestant.team_id = @home_team_id if @home_team_id
-    @regularcontest.homecontestant.save if @regularcontest.homecontestant
-    @away_team_id = params.require(:regularcontest)[:away_team_id]
-    @regularcontest.awaycontestant.team_id = @away_team_id if @away_team_id
-    @regularcontest.awaycontestant.save if @regularcontest.awaycontestant
+    process_teams()
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
 	      flash[:notice] = 'Contest was successfully updated.' 
@@ -166,4 +163,14 @@ class RegularcontestsController < ManagersController
 		permit(:date, :time, :venue_id, :status)
 
     end
+
+  def process_teams()
+    @home_team_id = params.require(:regularcontest)[:home_team_id]
+    @regularcontest.homecontestant.team_id = @home_team_id if @home_team_id
+    @regularcontest.homecontestant.save if @regularcontest.homecontestant
+    @away_team_id = params.require(:regularcontest)[:away_team_id]
+    @regularcontest.awaycontestant.team_id = @away_team_id if @away_team_id
+    @regularcontest.awaycontestant.save if @regularcontest.awaycontestant
+ end
+
 end

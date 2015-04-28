@@ -58,6 +58,14 @@
   <fieldset>
    <legend>Visitor</legend>
    <%= @awaycontestant.fullname %>
+   <% f.fields_for :awaycontestant, @awaycontestant do |away_form| %>
+     <%= away_form.label :name %>
+     <%= away_form.text_field :homeaway %>
+    <% end %><br>
+    <%= f.select :away_team_id,
+		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		                                selected: @awaycontestant.team_id), 
+		    {prompt: 'TBD'} %>
   </fieldset>
 
   <div class="actions">
