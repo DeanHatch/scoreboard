@@ -101,7 +101,7 @@ The overall layout will be the same for nearly all the Web Pages. The layout wil
 of a banner at the top, a Navigation Panel on the left, main content to the right of the 
 Navigation Panel, and brief footer information at the bottom. The Navigation Panel will 
 have links which will vary based on the context. Instructions may be provided below
-the navigation links. In the main content, a stus message and other informational
+the navigation links. In the main content, a status message and other informational
 messages will be displayed in a separate section at the top of the main content.
 
 Exceptions to this overall layout will be noted in this specification.
@@ -123,8 +123,11 @@ and password to login.
 Also present on the page is a link to the Registration Page (below) for people
 who are not yet Customers.
 
-=== Registration Page
+=== Registration Pages
 
+Customer-to-be has a spot to enter their email address (which will be their userid)
+and a login password. They will need to enter this password a second time to confirm.
+A second Registration Page will capture some more particulars about the new Customer.
 
 === Manager Access Page
 
