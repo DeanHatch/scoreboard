@@ -1,0 +1,8 @@
+
+<% if @competition %>
+<% content_for :page_title do %>
+<%= @competition.fullname %> Director&apos;s Page 
+<% end %> 
+<% end %>
+
+<%= render template: "layouts/application" %>

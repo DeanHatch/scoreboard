@@ -6,19 +6,16 @@
 
 <title>functionalSpecs - RDoc Documentation</title>
 
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
-
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="file">
@@ -61,28 +58,27 @@
     <li><a href="#label-Online-Scoreboard.net+Functional+Specification">Online-Scoreboard.net Functional Specification</a>
     <li><a href="#label-Overview">Overview</a>
     <li><a href="#label-Scenarios">Scenarios</a>
-    <li><a href="#label-Scenario+1%3A+The+Harried+Parent.">Scenario 1: The Harried Parent.</a>
-    <li><a href="#label-Scenario+2%3A+The+Overworked+Organizer.">Scenario 2: The Overworked Organizer.</a>
-    <li><a href="#label-Scenario+3%3A+The+Masterful+Manager.">Scenario 3: The Masterful Manager.</a>
-    <li><a href="#label-Scenario+4%3A+The+Fat-Cat+Promoter.">Scenario 4: The Fat-Cat Promoter.</a>
-    <li><a href="#label-Scenario+5%3A+The+Next+Tournament.">Scenario 5: The Next Tournament.</a>
+    <li><a href="#label-Scenario+1-3A+The+Harried+Parent.">Scenario 1: The Harried Parent.</a>
+    <li><a href="#label-Scenario+2-3A+The+Overworked+Organizer.">Scenario 2: The Overworked Organizer.</a>
+    <li><a href="#label-Scenario+3-3A+The+Masterful+Manager.">Scenario 3: The Masterful Manager.</a>
+    <li><a href="#label-Scenario+4-3A+The+Fat-Cat+Promoter.">Scenario 4: The Fat-Cat Promoter.</a>
+    <li><a href="#label-Scenario+5-3A+The+Next+Tournament.">Scenario 5: The Next Tournament.</a>
     <li><a href="#label-Non+Goals">Non Goals</a>
     <li><a href="#label-Web+Page+Specifications">Web Page Specifications</a>
-    <li><a href="#label-Home+Page">Home Page</a>
-    <li><a href="#label-Login%2FRegister+Page">Login/Register Page</a>
+    <li><a href="#label-Home+Pages">Home Pages</a>
+    <li><a href="#label-Login-2FRegister+Page">Login/Register Page</a>
     <li><a href="#label-Registration+Page">Registration Page</a>
     <li><a href="#label-Manager+Access+Page">Manager Access Page</a>
-    <li><a href="#label-Dates%2FVenues+Page">Dates/Venues Page</a>
-    <li><a href="#label-Venue+Edit+Page">Venue Edit Page</a>
-    <li><a href="#label-Groupings+Page">Groupings Page</a>
-    <li><a href="#label-Team+Page">Team Page</a>
-    <li><a href="#label-Regular+Contests+Page">Regular Contests Page</a>
+    <li><a href="#label-Dates-2FVenues+Pages">Dates/Venues Pages</a>
+    <li><a href="#label-Groupings+Pages">Groupings Pages</a>
+    <li><a href="#label-Team+Pages">Team Pages</a>
+    <li><a href="#label-Regular+Contests+Pages">Regular Contests Pages</a>
     <li><a href="#label-Brackets+Page">Brackets Page</a>
-    <li><a href="#label-Bracket+Contests+Page">Bracket Contests Page</a>
+    <li><a href="#label-Bracket+Contests+Pages">Bracket Contests Pages</a>
     <li><a href="#label-Scorer+Access+Page">Scorer Access Page</a>
     <li><a href="#label-Scorer+Page">Scorer Page</a>
     <li><a href="#label-Public+Display+Competition+Selection+Page">Public Display Competition Selection Page</a>
-    <li><a href="#label-Public+Display+%28Standings%2FSchedules%2FScores%2FBracket%29+Page">Public Display (Standings/Schedules/Scores/Bracket) Page</a>
+    <li><a href="#label-Public+Display+-28Standings-2FSchedules-2FScores-2FBracket-29+Page">Public Display (Standings/Schedules/Scores/Bracket) Page</a>
   </ul>
 </div>
 
@@ -103,10 +99,10 @@
 
 <main role="main" aria-label="Page functionalSpecs.rdoc">
 
-<h1 id="label-Online-Scoreboard.net+Functional+Specification">Online-Scoreboard.net Functional Specification<span><a href="#label-Online-Scoreboard.net+Functional+Specification">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+<h1 id="label-Online-Scoreboard.net+Functional+Specification">Online-Scoreboard.net Functional Specification<span><a href="#label-Online-Scoreboard.net+Functional+Specification">&para;</a> <a href="#top">&uarr;</a></span></h1>
 <hr>
 
-<h2 id="label-Overview">Overview<span><a href="#label-Overview">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-Overview">Overview<span><a href="#label-Overview">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <pre>This functional specification is still in development
 and will need to be revised several times before it is finalized.
@@ -120,16 +116,16 @@ schedules and results.</p>
 <p>There are four roles involved with the service. They are presented here in
 <strong>increasing</strong> order of authority.</p>
 <ul><li>
-<p>Public Display Viewers - These are the fans of the teams that are
-participating in the contests.  Collectively, all the contests and teams
-and groups of teams are called a “Competition.” These people can view a
-Competition but they cannot change any of the scores or schedules or
-anything else.</p>
+<p>Public Display Viewers - These are the fans and coaches of the teams that
+are participating in the contests or anyone else who is interested in the
+contests.  Collectively, all the contests and teams and groups of teams are
+called a “Competition.” Viewer can view a Competition but they cannot
+change any of the scores or schedules or anything else.</p>
 </li><li>
-<p>Scorers - These people can view everything and they can record scores for
-any of the contests in the Competition. They cannot, however, schedule or
-re-schedule any of the contests or manage the Teams or the Groupings of the
-Teams.</p>
+<p>Scorers - These people can view everything and they can also record scores
+for any of the contests in the Competition. They Scorers can also correct
+scores, if needed. They cannot, however, schedule or re-schedule any of the
+contests or manage the Teams or the Groupings of the Teams.</p>
 </li><li>
 <p>Managers - Managers can manage the Groupings and the Teams within the
 Groupings. They can also schedule Contests or re-schedule Contests. Once a
@@ -144,14 +140,14 @@ limit Manager access and setting or changing a password to limit Scorer
 access.</p>
 </li></ul>
 
-<h2 id="label-Scenarios">Scenarios<span><a href="#label-Scenarios">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-Scenarios">Scenarios<span><a href="#label-Scenarios">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <p>Scenarios help illustrate how people in the various roles would use the
 system.</p>
 
 <p>Take a gander at these scenarios:</p>
 
-<h3 id="label-Scenario+1%3A+The+Harried+Parent.">Scenario 1: The Harried Parent.<span><a href="#label-Scenario+1%3A+The+Harried+Parent.">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scenario+1-3A+The+Harried+Parent.">Scenario 1: The Harried Parent.<span><a href="#label-Scenario+1-3A+The+Harried+Parent.">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Pam drops off her son, Trevor, at the entrance to the Kalispell “Big Sky”
 Basketball Megaplex to join his team for their tournament. After parking
@@ -172,22 +168,22 @@ dollars has gotten her nothing and demands her money back.</p>
 <p>What her hour and a half of driving and ten bucks has gotten her is  a five
 minute explanation of the tournament No-Refund policy.</p>
 
-<h3 id="label-Scenario+2%3A+The+Overworked+Organizer.">Scenario 2: The Overworked Organizer.<span><a href="#label-Scenario+2%3A+The+Overworked+Organizer.">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scenario+2-3A+The+Overworked+Organizer.">Scenario 2: The Overworked Organizer.<span><a href="#label-Scenario+2-3A+The+Overworked+Organizer.">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Sam has his hands full trying to keep up with updating the scores on the
 printed schedules taped to the walls throughout the facility.</p>
 
-<h3 id="label-Scenario+3%3A+The+Masterful+Manager.">Scenario 3: The Masterful Manager.<span><a href="#label-Scenario+3%3A+The+Masterful+Manager.">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scenario+3-3A+The+Masterful+Manager.">Scenario 3: The Masterful Manager.<span><a href="#label-Scenario+3-3A+The+Masterful+Manager.">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Cam</p>
 
-<h3 id="label-Scenario+4%3A+The+Fat-Cat+Promoter.">Scenario 4: The Fat-Cat Promoter.<span><a href="#label-Scenario+4%3A+The+Fat-Cat+Promoter.">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scenario+4-3A+The+Fat-Cat+Promoter.">Scenario 4: The Fat-Cat Promoter.<span><a href="#label-Scenario+4-3A+The+Fat-Cat+Promoter.">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Leo</p>
 
-<h3 id="label-Scenario+5%3A+The+Next+Tournament.">Scenario 5: The Next Tournament.<span><a href="#label-Scenario+5%3A+The+Next+Tournament.">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scenario+5-3A+The+Next+Tournament.">Scenario 5: The Next Tournament.<span><a href="#label-Scenario+5-3A+The+Next+Tournament.">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<h2 id="label-Non+Goals">Non Goals<span><a href="#label-Non+Goals">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-Non+Goals">Non Goals<span><a href="#label-Non+Goals">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <p>This version will not support the following features, although it is
 anticipated that they might become features in a subsequent version in the
@@ -226,7 +222,7 @@ as upcoming Contests.</p>
 <p>Read the user&#39;s mind.</p>
 </li></ul>
 
-<h2 id="label-Web+Page+Specifications">Web Page Specifications<span><a href="#label-Web+Page+Specifications">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-Web+Page+Specifications">Web Page Specifications<span><a href="#label-Web+Page+Specifications">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <p>The overall layout will be the same for nearly all the Web Pages. The
 layout will consist of a banner at the top, a Navigation Panel on the left,
@@ -239,16 +235,17 @@ of the main content.</p>
 
 <p>Exceptions to this overall layout will be noted in this specification.</p>
 
-<h3 id="label-Home+Page">Home Page<span><a href="#label-Home+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Home+Pages">Home Pages<span><a href="#label-Home+Pages">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>This page will serve as a welcome page to wandering visitors. It will
-provide an introduction to the service and encourage visitors to dive
-deeper into the service.</p>
+<p>This collection of pages will serve as a welcome to wandering visitors. It
+will provide an introduction to the service and encourage visitors to dive
+deeper into the service.  Visitors will be given the opportunity to become
+Customers.</p>
 
 <p>Navigation links point to the “Public Display” page, the “Scorer” page, the
 “Manager” page,  or to the “Login/Register” page.</p>
 
-<h3 id="label-Login%2FRegister+Page">Login/Register Page<span><a href="#label-Login%2FRegister+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Login-2FRegister+Page">Login/Register Page<span><a href="#label-Login-2FRegister+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Customer has a spot to enter their email address (which serves as their
 userid) and password to login.</p>
@@ -256,9 +253,9 @@ userid) and password to login.</p>
 <p>Also present on the page is a link to the Registration Page (below) for
 people who are not yet Customers.</p>
 
-<h3 id="label-Registration+Page">Registration Page<span><a href="#label-Registration+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Registration+Page">Registration Page<span><a href="#label-Registration+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<h3 id="label-Manager+Access+Page">Manager Access Page<span><a href="#label-Manager+Access+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Manager+Access+Page">Manager Access Page<span><a href="#label-Manager+Access+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>The Customer who owns a Competition can set a password in order to restrict
 access to the Manager functions for that Competition.  If such a password
@@ -274,12 +271,12 @@ the other Manager pages plus a link to the Scorer Page and a link to the
 Public Display Page. The Scorer Page link and the Public Display Page link 
 will open up new tabs in the browser.</p>
 
-<h3 id="label-Dates%2FVenues+Page">Dates/Venues Page<span><a href="#label-Dates%2FVenues+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Dates-2FVenues+Pages">Dates/Venues Pages<span><a href="#label-Dates-2FVenues+Pages">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>In addition to the Navigation Panel on the left, this Manager Page  will
-have two parts to its main content. These two parts will be a List of Dates
-and a List of Venues. Each list will be used to create drop-down lists  for
-the scheduling of Contests.</p>
+<p>In addition to the Navigation Panel on the left, the Main Date/Venue Page 
+will have two parts to its main content. These two parts will be a List of
+Dates and a List of Venues. Each list will be used to create drop-down
+lists  for the scheduling of Contests.</p>
 
 <p>The left side of the main content will be a list of Valid Dates for holding
 Contests in this Competition. At the top of the list will be a selection
@@ -294,33 +291,45 @@ to the Venue Edit Page for that Venue. If the name of the Venue needs to be
 corrected or the Venue needs to be deleted, the user will click on the
 Venue name to bring up the Venue Edit Page for that Venue.</p>
 
-<h3 id="label-Venue+Edit+Page">Venue Edit Page<span><a href="#label-Venue+Edit+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
-
-<p>This Manager Page will allow the Manager to change or correct the name of
+<p>The Venue Edit Page will allow the Manager to change or correct the name of
 the chosen Venue. It will also allow the Manager to delete the Venue, but
 only if the Venue has not yet had any Contests scheduled at it.</p>
 
-<h3 id="label-Groupings+Page">Groupings Page<span><a href="#label-Groupings+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Groupings+Pages">Groupings Pages<span><a href="#label-Groupings+Pages">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>This Manager Page</p>
+<p>These Manager Pages allow the Manager to create Groupings and Subgroupings
+within Groupings and show the Teams that are in each Grouping. The
+particulars of each Grouping (e.g.  its name, the Grouping it belongs to,
+etc.) can be changed on the Change Grouping page. There needs to be a link
+to a page for managing the Teams in the Grouping.</p>
 
-<h3 id="label-Team+Page">Team Page<span><a href="#label-Team+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Team+Pages">Team Pages<span><a href="#label-Team+Pages">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>This Manager Page</p>
+<p>This Manager Page allow the Manager to Create Teams in Groupings, Move a
+Team from one Grouping to another, and to change the name of a Team.</p>
 
-<h3 id="label-Regular+Contests+Page">Regular Contests Page<span><a href="#label-Regular+Contests+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Regular+Contests+Pages">Regular Contests Pages<span><a href="#label-Regular+Contests+Pages">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>This Manager Page</p>
+<p>These Manager Pages help the Manager schedule Season, Pool, or Group play
+contests. Individual Contests can be scheduled or a Complete Round Robin
+Schedule can be created. Optionally, Date(s)  and/or Locations (Venues) can
+be specified for the Round Robin. Scheduled Contests can also have their
+particulars (e.g. date/time, location, teams) changed on one of the
+Scheduling pages.</p>
 
-<h3 id="label-Brackets+Page">Brackets Page<span><a href="#label-Brackets+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Brackets+Page">Brackets Page<span><a href="#label-Brackets+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>This Manager Page</p>
+<p>This Manager Page helps the Manager do what?.</p>
 
-<h3 id="label-Bracket+Contests+Page">Bracket Contests Page<span><a href="#label-Bracket+Contests+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Bracket+Contests+Pages">Bracket Contests Pages<span><a href="#label-Bracket+Contests+Pages">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>This Manager Page</p>
+<p>These Manager Pages help the Manager schedule Bracket or Playoff contests.
+Individual Contests can be scheduled or a Complete Bracket Schedule can be
+created. Optionally, Date(s)  and/or Locations (Venues) can be specified
+for the Round Robin. Scheduled Contests can also have their particulars
+(e.g. date/time, location, teams) changed on one of the Scheduling pages.</p>
 
-<h3 id="label-Scorer+Access+Page">Scorer Access Page<span><a href="#label-Scorer+Access+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scorer+Access+Page">Scorer Access Page<span><a href="#label-Scorer+Access+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>The Customer who owns a Competition or the Manager of a Competition can set
 a password in order to restrict access to the Scorer function for that
@@ -330,7 +339,7 @@ user to access the Scorer Page for the Competition.</p>
 
 <p>If no password has been set, then this page will be bypassed.</p>
 
-<h3 id="label-Scorer+Page">Scorer Page<span><a href="#label-Scorer+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Scorer+Page">Scorer Page<span><a href="#label-Scorer+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Two lists of Contests will be displayed on this page.</p>
 
@@ -347,11 +356,11 @@ A numeric entry box will be provided for each team in the Contest so that
 the user can correct the score for that Contest and press a Submit button. 
 The score for only one Contest at a time can be corrected this way.</p>
 
-<h3 id="label-Public+Display+Competition+Selection+Page">Public Display Competition Selection Page<span><a href="#label-Public+Display+Competition+Selection+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Public+Display+Competition+Selection+Page">Public Display Competition Selection Page<span><a href="#label-Public+Display+Competition+Selection+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>Cannot leave this page until a Competition is selected.</p>
 
-<h3 id="label-Public+Display+%28Standings%2FSchedules%2FScores%2FBracket%29+Page">Public Display (Standings/Schedules/Scores/Bracket) Page<span><a href="#label-Public+Display+%28Standings%2FSchedules%2FScores%2FBracket%29+Page">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3 id="label-Public+Display+-28Standings-2FSchedules-2FScores-2FBracket-29+Page">Public Display (Standings/Schedules/Scores/Bracket) Page<span><a href="#label-Public+Display+-28Standings-2FSchedules-2FScores-2FBracket-29+Page">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>All the information for a Competition is presented on this page. The user
 can view different portions of the Competition by selecting a single Team
@@ -370,7 +379,7 @@ version of the display.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

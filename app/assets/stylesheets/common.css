@@ -1,7 +1,10 @@
+     /* Global styling */
+
    html, body {height: 100%;
                padding: 0;
                margin: 0;
            text-align: center;}
+
    body { background-color: black; }
 
   label { font: normal 8pt Verdana, Arial, Helvetica, sans-serif; }
@@ -13,48 +16,73 @@
       padding-bottom: 5px;
          padding-top: 5px;
         border-style: none;}
-   .current { font-weight: bold; }
-   a { color: red; }
+
    p, dt, dd, td, th {
             font: normal 11px/140% Verdana, Arial, Helvetica, sans-serif;
            color: #666;}
-   h1 {   font: bold 14px/140% Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-         color: black;}
-   h2 {   font: bold 12px/140% Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-         color: black;}
-   h3 {   font: bold 11px/140% Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-         color: black;}
-   h4 {   font: bold 10px/140% Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-         color: black;}
-   h5 {   font: bold 9px/140% Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-         color: black;}
-   h6 {   font: bold 8px/140% Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-         color: black;}
+
+     /* ??? */
+   .current { font-weight: bold; }
+
+
+     /* All links in RED */
+
+   a { color: red; }
+
+
+     /* Headings differ from each other only in font size */
+
+   h1, h2, h3, h4, h5, h6 { text-align: center;
+                                 color: black;}
+   h1 {   font: bold 14px/140% Verdana, Arial, Helvetica, sans-serif;}
+
+   h2 {   font: bold 12px/140% Verdana, Arial, Helvetica, sans-serif;}
+
+   h3 {   font: bold 11px/140% Verdana, Arial, Helvetica, sans-serif;}
+
+   h4 {   font: bold 10px/140% Verdana, Arial, Helvetica, sans-serif;}
+
+   h5 {   font: bold 9px/140% Verdana, Arial, Helvetica, sans-serif;}
+
+   h6 {   font: bold 8px/140% Verdana, Arial, Helvetica, sans-serif;}
+
+
+
+
+     /*  */
    div.container { width: 940px;
                   margin: 0 auto;
                 position: relative;
                  z-index: 2;}
+
+   div.loginContent { position: relative;
+                       top: 3;
+                  margin: 3 0;width: 25px;
+             background-color: orange;
+                 z-index: 4;}
+
+
+
+     /*  */
+
    div.mainContent { width: 520px;
                        height: 100%;
                        top: 0;
                   margin: 0 auto;
                  float: right;
-               padding: 200px 100px 50px 100px;
+               padding: 160px 100px 50px 100px;
              background-color: white;
 
                  z-index: 2;}
+
+
    div.dividedContent { width: 100%;
                        top: 0;
                   margin: 0 auto;
              background-color: white;
 
                  z-index: 3;}
+
    div.leftContent { position: relative;
                  width: 49%;
                        top: 0;
@@ -63,6 +91,7 @@
              background-color: white;
 
                  z-index: 4;}
+
    div.rightContent { position: relative;
                  width: 49%;
                        top: 0;
@@ -70,11 +99,15 @@
                  float: left;
              background-color: white;
                  z-index: 4;}
+
+
+     /*  */
+
    div.header {	width: 940px;
 
                height: 120px;
-                  top: 40px;
-               margin: 20px 0 20px 0;
+                  top: 20px;
+               margin: 0px 0 20px 0;
               padding: 20px 0 0 0;
              position: absolute;
               z-index: 4;}
@@ -127,7 +160,7 @@
 
    div.sideMatter { width: 240px;
                    position: absolute;
-                       top: 200px;
+                       top: 160px;
                     border: solid;
               border-width: 1px;
               border-color: red;
