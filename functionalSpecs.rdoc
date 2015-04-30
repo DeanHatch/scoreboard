@@ -78,7 +78,7 @@ might become features in a subsequent version in the near future:
 
 * Restrict Dates/Times that a particular Venue can be scheduled.
 * Restrict Dates/Times that a particular Team can be scheduled.
-* Forfeits will not be automatically handled.
+* Automatically handle of Forfeits.
 * Automatically distribute Round-Robin Contests over a range of Dates and Times.
 * Schedule Officials at Contests.
 * A display, suitable for showing on a screen at a tournament, showing Standings/Brackets
@@ -193,7 +193,10 @@ their particulars (e.g. date/time, location, teams) changed on one of the Schedu
 
 === Brackets Page
 
-This Manager Page helps the Manager do what?. 
+This Manager Page displays the list of Groupings which can have
+Bracket Contests and allows the Manager choose which Grouping to work on. 
+The Bracket Contests Pages (next) are then confined to Teams from the
+selected Bracket Grouping.
 
 === Bracket Contests Pages
 
