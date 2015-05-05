@@ -107,6 +107,15 @@ Rails.application.routes.draw do
   patch 'competitions/:competition_id/results/report', to: 'results#report', as: :report_score
 
 
+  resource :result_session, only: [:new, :create]  do
+	  member do
+		    # Since an HTTP DELETE request via a #link_to method is
+		    # somewhat dicey, and since the DELETE would only be 
+		    # deleting a session we handle this with an HTTP GET
+		  get 'logout'
+		  end
+  end
+
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

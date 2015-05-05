@@ -1,0 +1,2 @@
+module ResultSessionsHelper
+end

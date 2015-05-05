@@ -1,5 +1,5 @@
 class ResultsController < NestedController # Formerly < ApplicationController
-#  before_action :set_competition_from_session, except: [:login]
+  before_action :set_competition_from_session, except: [:login]
 
   def nav_link_array
 	  @competition ? scorer_link_array() : []
@@ -19,7 +19,8 @@ class ResultsController < NestedController # Formerly < ApplicationController
   
     
 
-
+    # Create two lists of Contests, one of Contests with
+    # scores and one of Contests without scores.
   def index
 	  contests = Contest.all.sort{|a,b| a.id <=> b.id}.
 					select {|c| c.homecontestant.team}.
@@ -28,22 +29,28 @@ class ResultsController < NestedController # Formerly < ApplicationController
 	  @contests_without_scores = contests.select {|c| c.needs_score?}
   end
 
+    # PATCH for reporting a score or correcting a score.
+    # Note that we can report the score of any type of
+    # Contest, so one of the first things we need to do is
+    # to determine the correct subclass of Contest.
   def report
 	  @contest = Contest.find(params[:contest_id])
 	  logger.debug "Converting Contest to: #{@contest.type}"
 	  contest_class = Kernel.const_get(@contest.type)
 	  @contest = contest_class.find(params[:contest_id])
 	  @contest.homecontestant.score = params[:homescore]
+	    # model will handle the details and delegations
 	  @contest.record_result(params[:homescore], params[:awayscore])
 	  flash.now[:notice] = 'Wonderful.'
+	  flash[:notice] = 'Wonderful.'
 	  redirect_to(:action => "index")
   end
 
-  def rescord
-  end
+  #~ def rescord
+  #~ end
 
-  def scorect
-  end
+  #~ def scorect
+  #~ end
 
 
   private
@@ -65,6 +72,7 @@ class ResultsController < NestedController # Formerly < ApplicationController
       rescue
       begin
       @competition = Competition.new()
+      redirect_to(:action => "login")
       end
     end
 

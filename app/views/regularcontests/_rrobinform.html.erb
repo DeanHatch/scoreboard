@@ -6,11 +6,20 @@
 		      options_for_select(@groupings.select{|g| g.has_teams?}.
 		                                                collect {|g| [ g.hierarchy.join(' - '), g.id ]}) %>
   </div>
+  
   <div class="field">
     <%= label_tag :venue %><br>
     <%= select_tag :venue_id,
 			options_for_select(@venues.collect {|v| [ v.name, v.id ] }),
 			prompt: "TBD" %>
+  </div>
+  
+  <div class="field">
+    <%= label_tag "Date(s)" %><br>
+    <%= select_tag(:gamedates,
+		options_from_collection_for_select(Validdate.all,:gamedate, :gamedate),
+		 multiple: true, include_blank: true,  prompt: "Do something" )
+		%>
   </div>
   
   <div class="actions">

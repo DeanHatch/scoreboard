@@ -36,14 +36,9 @@ class ApplicationController < ActionController::Base
 	navitem('Schedule Regular Contests' , :regularcontests),
 	navitem('Schedule Bracket Contests' , :brackets),
 	navitem('Set Manager/Scorer Passwords' , :passwords_manager),
+	navitem('Logout' , :logout_manager_session),
 	#navitem('Report/Correct Scores' , :competition_results, target: "_blank" ),
-	navitem('Public Display' , :choose_display_customer, target: "_blank")  ]
-  end
-  def manager_link_arrayy()
-	  [ navitem('Manage Dates/Venues' , :venues),
-	navitem('Manage Groupings/Teams' , :groupings),
-	navitem('Schedule Regular Contests' , :regularcontests),
-	navitem('Schedule Bracket Contests' , :brackets)  ]
+	navitem('View This Competition' , display_competition_path(@competition), target: "_blank")  ]
   end
 
 end

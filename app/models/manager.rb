@@ -3,6 +3,14 @@
 # synonomous with a Competition and facilitates authentication.
 class Manager < Competition
 		
+	def self.needs_no_authentication(mgrid)
+		logger.info("finding Mgr ID: #{mgrid}")
+		mgr = self.find(mgrid)
+		logger.info("Mgr ID after find: #{mgr.id}")
+		  # Return TRUE if Manager exists and has no password!
+		mgr and mgr.hashed_manager_password.nil?
+	end
+		
 	def self.authenticate(mgrid, mgrpw)
 		logger.info("finding Mgr ID: #{mgrid}")
 		logger.info("mgrpw: #{mgrpw.inspect()}")
