@@ -13,7 +13,13 @@ class ManagersController < NestedController
   end
   
 	# Display list of Customers for user to select one
+	# unless we ended up here after a Competition has
+	# been chosen and the Manager authenticated.
+	# This could happen if the normal sequence of
+	# linked pages is not followed (e.g. with a bookmark or the
+	# browser's BACK functionality.
      def choose_customer()
+        redirect_to :greet_manager if session[:manager_id]
     end
  
   
@@ -92,9 +98,9 @@ class ManagersController < NestedController
 	  if session[:manager_id].nil?
 		  redirect_to choose_customer_manager_path
 	  else
-		  competition = Competition.find(session[:manager_id])
-		  competition_id = competition.id
-		  set_competition(competition_id)
+		  @competition = Competition.find(session[:manager_id])
+		  @competition_id = @competition.id
+		  set_competition(@competition_id)
 	  end
   end
  

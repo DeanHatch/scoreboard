@@ -1,24 +1,12 @@
-class ResultsController < NestedController # Formerly < ApplicationController
-  before_action :set_competition_from_session, except: [:login]
+class ScorersController < NestedController # Formerly < ApplicationController
+  before_action :set_scorer_from_session,
+			except: [:choose_customer, :choose_competition]
 
   def nav_link_array
-	  @competition ? scorer_link_array() : []
+	  @scorer ? scorer_link_array() : []
   end
   
  
-
-  # GET /customer/login
-  # GET /customers.json ??
-  def login
-  end
-
-  # GET /customer/logout
-  # GET /customers.json ??
-  def logout
-  end
-  
-    
-
     # Create two lists of Contests, one of Contests with
     # scores and one of Contests without scores.
   def index
@@ -46,43 +34,28 @@ class ResultsController < NestedController # Formerly < ApplicationController
 	  redirect_to(:action => "index")
   end
 
-  #~ def rescord
-  #~ end
-
-  #~ def scorect
-  #~ end
-
-
+  
   private
  
-     def set_customer
-	@customer_id = params[:customer_id]
-	return(redirect_to(competitions_display_url)) unless @customer_id
-	begin
-	@customer = Customer.find(@customer_id)
-	Competition.default_cust(@customer_id)
-	rescue
-	return redirect_to(competitions_display_url)
-	end
-    end
- 
     # Use callbacks to share common setup or constraints between actions.
-    def set_competition_from_session
-      @competition = Competition.find(session[:competition_id])
+    def set_scorer_from_session
+      @scorer = Scorer.find(session[:scorer_id])
       rescue
       begin
-      @competition = Competition.new()
-      redirect_to(:action => "login")
+        logger.info("Scorer #{session[:scorer_id]} not found...")
+      @scorer = Scorer.new()
+      redirect_to(:action => "choose_customer")
       end
+    logger.info("Scorer #{session[:scorer_id]} WAS found...")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def login_params
-      params.require("/competition/login").permit(:password)
+      params.require("/scorer/login").permit(:password)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def competition_params
-      params.require("competition").permit(:password)
+    def scorer_params
+      params.require("scorer").permit(:password)
     end
 end

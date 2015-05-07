@@ -1,10 +1,10 @@
-<%= form_for @competition, url: validate_competition_manager_path(@competition.id) do |f| %>
-  <% if @competition.errors.any? %>
+<%= form_for :scorer_session, url: {action: :create} do |f| %>
+  <% if @scorer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@competition.errors.count, "error") %> kept you from logging in:</h2>
+      <h2><%= pluralize(@scorer.errors.count, "error") %> kept you from logging in:</h2>
 
       <ul>
-      <% @competition.errors.full_messages.each do |message| %>
+      <% @scorer.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.hidden_field :competition_id, @competition.id, :size => 40 %>
+    <%= hidden_field_tag 'scorer_session[scorer_id]', @scorer_id %>
   </div>
   <div class="field">
     <%= f.label :hashed_scorer_password, 'Password' %>

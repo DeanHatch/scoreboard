@@ -101,13 +101,9 @@ Rails.application.routes.draw do
   end # of brackets resource
 
 
-  get 'competitions/results', to: 'results#choose_customer', as: :choose_results_customer
-  get 'competitions/results/:customer_id', to: 'results#choose_competition', as: :choose_results_competition
-  get 'competitions/:competition_id/results', to: 'results#index', as: :competition_results
-  patch 'competitions/:competition_id/results/report', to: 'results#report', as: :report_score
-
-
-  resource :result_session, only: [:new, :create]  do
+  
+  get "scorer_session/login/:scorer_id", to: "scorer_sessions#new", as: :login_scorer_session
+  resource :scorer_session, only: [:create]  do
 	  member do
 		    # Since an HTTP DELETE request via a #link_to method is
 		    # somewhat dicey, and since the DELETE would only be 
@@ -115,7 +111,14 @@ Rails.application.routes.draw do
 		  get 'logout'
 		  end
   end
-
+  get 'scorer/choose_customer',
+		to: 'scorers#choose_customer'
+  get 'scorer/choose_competition_for/:customer_id',
+		to: 'scorers#choose_competition',
+		as: :scorer_choose_competition
+  get 'scorer/index',  to: 'scorers#index'
+  patch 'scorer/report',  to: 'scorers#report'
+ 
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

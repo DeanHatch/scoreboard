@@ -3,6 +3,6 @@
 
 <% Competition.all.each do |comp| %>
   <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
-                   competition_results_path(comp) %>
+                   login_scorer_session_path(comp) %>
   <br/>
 <% end %>

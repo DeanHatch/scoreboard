@@ -1,4 +1,4 @@
-<%= form_tag(:report_score, method: "patch") do %>
+<%= form_tag(:scorer_report, method: "patch") do %>
   <fieldset>
    <legend>Report a Score</legend>
     <%= number_field_tag 'awayscore', nil, in: 0...200 %>
@@ -17,23 +17,7 @@
 <br/>
 <br/>
 
-<!-- use this regex: / \d+ - \d+ / -->
-<script>
-function myFunction() {
-    var el = document.getElementById("fixcontest_id")
-    var idx = el.selectedIndex;
-    var str = el.options[idx].text;
-    var patt = new RegExp(/\d+ - \d+/);
-    var res = patt.exec(str);
-    var nnpatt = new RegExp(/\d+/g);
-    var aw = nnpatt.exec(res);
-    var hm = nnpatt.exec(res);
-    document.getElementById("fixhomescore").value = hm;
-    document.getElementById("fixawayscore").value = aw;
-}
-</script>
-
-<%= form_tag(:report_score, method: "patch") do %>
+<%= form_tag(:scorer_report, method: "patch") do %>
   <fieldset>
    <legend>Correct a Score</legend>
     <%= number_field_tag 'awayscore', nil, in: 0...200, id: 'fixawayscore' %>
@@ -47,7 +31,7 @@ function myFunction() {
 										' ' +
 										c.homecontestant.team.name, c.id ]}),
 		    {prompt: 'Change Which Score?', id: 'fixcontest_id',
-		    :onchange => 'myFunction()'} %>
+		    :onchange => 'updateScoreFieldsForCorrecting()'} %>
 
     <%= number_field_tag 'homescore', nil, in: 0...200, id: 'fixhomescore' %>
     <br/>

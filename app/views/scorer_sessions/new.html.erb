@@ -1,0 +1,13 @@
+<h1>ScorerSessions#new</h1>
+<p>Find me in app/views/scorer_sessions/new.html.erb</p>
+
+<h1><%= @scorer.name %></h1>
+<h2>Scorer Login Page</h2>
+
+<% content_for :info_message do %>
+You need to enter the Scorer Password for this Competition
+in order to Record Results this Competition.
+<% end %>
+
+<%= render 'login_form' %>
+

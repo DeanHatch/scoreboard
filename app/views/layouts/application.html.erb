@@ -40,9 +40,12 @@
 <!-- %= navPanel() % -->
 <%= navPanel() %>
 </div>
-<div class="instructions"><br><br><br>
-<br>
+<div class="instructions">
 <%= instructions() %>
+  <% if content_for(:instructions) %>
+      Instructions<br/>
+      <%= yield :instructions %>
+  <% end %>
 </div>
 </div>
    <!-- end of sideMatter -->
@@ -52,11 +55,13 @@
 <div class="header">
 
 <div class="inner-header">
+<a href="<%= welcome_index_path() %>">
 <%= image_tag("netting2.jpg") %>
 <!-- %= image_tag("netting.png") % -->
 <!-- %= image_tag("gr_header2.jpg") % -->
 <!-- %= image_tag("umd_logo.png") % -->
 <strong>Online-Scoreboard.net</strong>
+</a>
 </div>
 </div>
    <!-- end of header -->
