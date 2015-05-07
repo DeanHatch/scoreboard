@@ -5,7 +5,7 @@ class ScorerSessionsController < ApplicationController
       session[:scorer_id] = @scorer_id
       flash[:notice] = 'Welcome.'
       #redirect_to greet_scorer_path
-      redirect_to competition_scorers_path(@scorer_id)
+      redirect_to :scorer_index
     else
       @scorer = Scorer.find(@scorer_id)
     end
