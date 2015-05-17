@@ -69,6 +69,15 @@ class Contest < ActiveRecord::Base
 								    contest_id: self.id)
 	end
 	
+	def save_all!()
+	  Contest.transaction do
+	    self.homecontestant.save!
+	    self.homecontestant_id = self.homecontestant.id
+	    self.awaycontestant.save!
+	    self.awaycontestant_id = self.awaycontestant.id
+	    self.save!
+	  end
+	end
 	
 	def <=>(other_contest)
 		(return other_contest.date.nil? ? 0 : -1) if self.date.nil?
@@ -146,11 +155,7 @@ class Contest < ActiveRecord::Base
 		self.awaycontestant.score = awayscore
 		self.status = status
 		logger.debug "connection: #{Contest.connection.inspect}"
-		Contest.transaction do
-			self.save!
-			self.homecontestant.save!
-			self.awaycontestant.save!
-		end
+		self.save_all!
 	end
 	
 end

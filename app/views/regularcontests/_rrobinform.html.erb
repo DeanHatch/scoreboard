@@ -4,7 +4,7 @@
     <%= label_tag :grouping %><br>
     <%= select_tag :grouping_id,
 		      options_for_select(@groupings.select{|g| g.has_teams?}.
-		                                                collect {|g| [ g.hierarchy.join(' - '), g.id ]}) %>
+		                                                collect {|g| [ g.hierarchy.join(' - ') + g.all_teams.size.to_s, g.id ]}) %>
   </div>
   
   <div class="field">
@@ -15,7 +15,7 @@
   </div>
   
   <div class="field">
-    <%= label_tag "Date(s)" %><br>
+    <%= label_tag "Date(s) " + Validdate.all.size.to_s %><br>
     <%= select_tag(:gamedates,
 		options_from_collection_for_select(Validdate.all,:gamedate, :gamedate),
 		 multiple: true, include_blank: true,  prompt: "Do something" )

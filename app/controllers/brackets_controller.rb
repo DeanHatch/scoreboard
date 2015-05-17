@@ -3,7 +3,7 @@
 # Brackets themselves are not created nor destroyed nor updated by this
 # controller, it merely serves as a routing device. Therefore, it ha only two actions: #index and #show.
 class BracketsController < ManagersController
-  before_action :set_bracket, only: :show
+  before_action :set_bracket, only: [:show, :complete]
 
   # GET /brackets
   def index
@@ -13,6 +13,13 @@ class BracketsController < ManagersController
   # GET /brackets/1
   def show
 	  @bracketcontests = Bracketcontest.where(bracket: @bracket)
+  end
+
+
+  # GET /brackets/1
+  def complete
+    @bracket.complete_se_matchups()
+    redirect_to bracket_path(@bracket)
   end
 
 

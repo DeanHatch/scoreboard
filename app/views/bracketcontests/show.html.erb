@@ -2,4 +2,4 @@
 
 <%= render partial: 'bracket_contest' , locals: { bracketcontest: @bracketcontest, final: false, editable:false }  %>
 
-<%= link_to 'Ok', bracket_bracketcontests_path %>
+<%= link_to 'Ok', bracket_path(@bracket) %>

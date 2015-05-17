@@ -18,20 +18,6 @@ class BracketcontestsController < BracketsController
 	  manager_link_hash()
   end
 
-  # GET /bracketcontests
-  # GET /bracketcontests.json
-  def index
-    @bracketcontests = Bracketcontest.all
-  end
-  
-  # GET /regularcontests
-  # GET /regularcontests.json
-  def dump
-	#  Team.where('id=26').each{|t| t.destroy }
-	#  Bracketcontest.where(homecontestant_id: nil).each{|rc| rc.destroy }
-	#  Regularcontest.where('id<92').each{|rc| rc.destroy }
-    @bracketcontests = Bracketcontest.all
-  end
 
   # GET /bracketcontests/1
   # GET /bracketcontests/1.json

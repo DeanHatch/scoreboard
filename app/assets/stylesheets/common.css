@@ -277,6 +277,15 @@ table.bracket {text-align: right;
              font-variant: small-caps;
                    border: 0;
                   padding: 0 0 0px 0px;
+margin-left: 0;
+margin-right: 0;
+  width: 100%;
+                 background-color: #eeeeee;}
+table.brackett {text-align: right;
+                font-size: 10pt;
+             font-variant: small-caps;
+                   border: 0;
+                  padding: 0 0 0px 0px;
 margin-left: auto;
 margin-right: auto;
                  background-color: #eeeeee;}

@@ -121,6 +121,16 @@ class RegularcontestsController < ManagersController
   def roundrobin
 	  @grouping = Grouping.find(params[:grouping_id])
 	  arr = @grouping.teams().to_a
+	  @contests = Array.new() 
+	    # balannce home/away
+	  arr.combination(2).each_with_index{|c,i| @contests << (i % 2 == 0 ? schedule_with(c) : schedule_with(c.reverse) ) }
+  end
+
+  # POST/regularcontests/roundrobin
+  # POST /regularcontests/roundrobin.json
+  def roundrobin2
+	  @grouping = Grouping.find(params[:grouping_id])
+	  arr = @grouping.teams().to_a
 	  # Add BYE (nil Team) if necessary, to create an Array 
 	  # with an even number of elements.
 	  # We will not keep those Contests with a nil Team.
@@ -130,6 +140,7 @@ class RegularcontestsController < ManagersController
 	  # team from the end of the array.
 	  # We need to think about flipping Home/Away, possibly.
 	  # Maybe "if jth.modulo(2)==1 "
+	  # .combination(2).each_with_index{|c,i| i % 2 == 0 ? c : c.reverse }
 	  0.upto(arr.size-2) { |idx| 0.upto((arr.size/2)-1) { |jth| 
 						if ! arr[jth].nil? and ! arr[-1-jth].nil? 
 							@regularcontest = Regularcontest.new(roundrobin_params)
@@ -164,6 +175,15 @@ class RegularcontestsController < ManagersController
 
     end
 
+  def schedule_with(teampair)
+    regularcontest = Regularcontest.new(roundrobin_params)
+    regularcontest.competition = @competition
+    regularcontest.status = 'SCHEDULED'
+    regularcontest.awaycontestant.team = teampair[1]
+    regularcontest.homecontestant.team = teampair[0]
+    regularcontest.save ? regularcontest : nil  # returns nil if not saved
+  end
+							
   def process_teams()
     @home_team_id = params.require(:regularcontest)[:home_team_id]
     @regularcontest.homecontestant.team_id = @home_team_id if @home_team_id
