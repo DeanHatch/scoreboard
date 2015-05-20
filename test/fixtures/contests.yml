@@ -23,7 +23,7 @@ rcgametwo:
 bcgameone: 
   type: Bracketcontest
   competition: bball
-  bracket: bballdiv1
+  bracketgrouping: bballdiv1
   venue: auxgym
   name: The Big Game
   date: 2015-01-27

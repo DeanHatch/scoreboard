@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 	  [ navitem('Manage Dates/Venues' , :venues),
 	navitem('Manage Groupings/Teams' , :groupings),
 	navitem('Schedule Regular Contests' , :regularcontests),
-	navitem('Schedule Bracket Contests' , :brackets),
+	navitem('Schedule Bracket Contests' , :bracketgroupings),
 	navitem('Set Manager/Scorer Passwords' , :passwords_manager),
 	navitem('Logout' , :logout_manager_session),
 	#navitem('Report/Correct Scores' , competition_scorers_path(@competition), target: "_blank" ),

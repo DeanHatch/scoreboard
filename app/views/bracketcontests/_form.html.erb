@@ -1,5 +1,5 @@
-<h3><%= @bracket.hierarchy.join(' ') %></h3>
-<%= form_for ([@bracket, @bracketcontest]) do |f| %>
+<h3><%= @bracketgrouping.hierarchy.join(' ') %></h3>
+<%= form_for ([@bracketgrouping, @bracketcontest]) do |f| %>
   <% if @bracketcontest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bracketcontest.errors.count, "error") %> prohibited this bracketcontest from being saved:</h2>
@@ -49,7 +49,7 @@
    <legend>Home Team</legend>
    <%= @homecontestant.fullname %><br/>
    <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
-   <%= contestant_fields.select :contestantcode, options_for_select(@bracket.all_participant_codes(),
+   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
 		                                selected: @homecontestant.contestantcode), 
 		    {prompt: 'Which'} %><br/>
 <br/>
@@ -64,7 +64,7 @@
    <legend>Visitor</legend>
    <%= @awaycontestant.fullname %><br/>
    <%= fields_for :awaycontestant, @bracketcontest.awaycontestant do |contestant_fields| %>
-   <%= contestant_fields.select :contestantcode, options_for_select(@bracket.all_participant_codes(),
+   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
 		                                selected: @awaycontestant.contestantcode), 
 		    {prompt: 'Which'} %><br/>
 <br/>

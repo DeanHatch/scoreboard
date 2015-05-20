@@ -50,7 +50,7 @@ class NestedController  < ApplicationController
 	Contestant.default_comp(competition_id)
 	Regularcontest.default_comp(competition_id)
 	Regularcontestant.default_comp(competition_id)
-	Bracket.default_comp(competition_id)
+	Bracketgrouping.default_comp(competition_id)
 	Bracketcontest.default_comp(competition_id)
 	rescue
 	return redirect_to(self.failure_redirect)

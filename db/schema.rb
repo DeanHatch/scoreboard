@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331123717) do
+ActiveRecord::Schema.define(version: 20150520012841) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150331123717) do
     t.integer  "awaycontestant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bracket_id"
+    t.integer  "bracketgrouping_id"
     t.string   "name"
   end
 

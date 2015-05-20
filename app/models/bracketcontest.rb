@@ -3,17 +3,17 @@
 # for example.
 class Bracketcontest < Contest
 	
-	belongs_to :bracket, foreign_key: "bracket_id"
+	belongs_to :bracketgrouping, foreign_key: "bracketgrouping_id"
 	
 	validates :competition_id,
-		     :bracket_id,
+		     :bracketgrouping_id,
 		     :homecontestant,
 		     :awaycontestant,
 		     presence: true
 	
 	# Provide controlled public access to private class method.
-  def self.default_bracket(bracket_id)
-	  self.default_scope { (where(bracket_id: bracket_id) ) }
+  def self.default_bracketgrouping(bracketgrouping_id)
+	  self.default_scope { (where(bracketgrouping_id: bracketgrouping_id) ) }
   end
   
   

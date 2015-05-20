@@ -1,17 +1,17 @@
-#  This class defines a Bracket for the purpose of collecting Bracketcontests.
-#  A Bracket is a Grouping that has its bracket_grouping value set to true.
-#  Each Bracket is the Grouping within which the Bracketcontests will be played.
-class Bracket < Grouping
+#  This class defines a Bracketgrouping for the purpose of collecting Bracketcontests.
+#  A Bracketgrouping is a Grouping that has its bracket_grouping value set to true.
+#  Each Bracketgrouping is the Grouping within which the Bracketcontests will be played.
+class Bracketgrouping < Grouping
 	
 	has_many :bracketcontests
 	
-	def Bracket.all()
+	def Bracketgrouping.all()
 		super.where(bracket_grouping: true)
 	end
 	
 	def all_participant_codes()
 		apc = Hash.new
-		Bracketcontest.where(bracket: self).
+		Bracketcontest.where(bracketgrouping: self).
 				each{|bc| apc[bc.name + ' Winner']="W#{bc.id}";
 						apc[bc.name + ' Loser']="L#{bc.id}"}
 		(self.all_subgroupings << self).select{|g|g.has_teams?}.
@@ -22,7 +22,7 @@ class Bracket < Grouping
 	
     
      # Complete SingleElimination Matchups.
-     # Number of seeds is number of Teams in this Bracket Grouping
+     # Number of seeds is number of Teams in this Bracketgrouping
     def complete_se_matchups()
       for_pair(se_matchups(self.all_teams.size()))
     end
@@ -43,7 +43,7 @@ class Bracket < Grouping
     # 
   def for_pair(bc_array)
     bracketcontest = Bracketcontest.new() # also creates Bracketcontestants
-    bracketcontest.bracket = self
+    bracketcontest.bracketgrouping = self
     bracketcontest.competition = self.competition
     bracketcontest.status = 'SCHEDULED'
       # Assign Home Contestant.

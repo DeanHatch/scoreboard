@@ -33,8 +33,8 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	  @contests = @grouping.contests()
 	  what2show = params[:xyzzy]
 	  if @grouping.bracket_grouping		  
-		  @bracket = Bracket.find(params[:id])
-		  @bracketcontests = Bracketcontest.where(bracket: @bracket)
+		  @bracketgrouping = Bracketgrouping.find(params[:id])
+		  @bracketcontests = Bracketcontest.where(bracketgrouping: @bracketgrouping)
 		   logger.info("Bracket Contests: #{@bracketcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
 		  @priorcontests = Bracketcontestant.all().select{|bc| bc.priorcontest()}.collect{|bc| bc.priorcontest()}
 		   logger.info("Prior Contests: #{@priorcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")

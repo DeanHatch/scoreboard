@@ -1,16 +1,16 @@
-class BracketcontestsController < BracketsController
+class BracketcontestsController < BracketgroupingsController
 
   before_action :set_bracketcontest, only: [:show, :edit, :update, :destroy]
-  before_action :set_bracket # before ALL actions
+  before_action :set_bracketgrouping # before ALL actions
 
-  def set_bracket
-	@bracket_id = params[:bracket_id]
-	return(redirect_to(brackets_url)) unless @bracket_id
+  def set_bracketgrouping
+	@bracketgrouping_id = params[:bracketgrouping_id]
+	return(redirect_to(bracketgroupings_url)) unless @bracketgrouping_id
 	begin
-	@bracket = Bracket.find(@bracket_id)
-	Bracketcontest.default_bracket(@bracket_id)
+	@bracketgrouping = Bracketgrouping.find(@bracketgrouping_id)
+	Bracketcontest.default_bracketgrouping(@bracketgrouping_id)
 	rescue
-	return redirect_to(brackets_url)
+	return redirect_to(bracketgroupings_url)
 	end
     end
 
@@ -28,7 +28,7 @@ class BracketcontestsController < BracketsController
   def new
     @bracketcontest = Bracketcontest.new
     @bracketcontest.competition_id = @competition_id
-    @bracketcontest.bracket_id = @bracket_id
+    @bracketcontest.bracketgrouping_id = @bracketgrouping_id
     @selectedvenue = nil
     @selecteddate = nil
     @selectedtime = nil
@@ -53,13 +53,13 @@ class BracketcontestsController < BracketsController
   def create
     @bracketcontest = Bracketcontest.new(bracketcontest_params)
     @bracketcontest.competition_id = @competition_id
-    @bracketcontest.bracket_id = @bracket_id
+    @bracketcontest.bracketgrouping_id = @bracketgrouping_id
 
     respond_to do |format|
       if @bracketcontest.save
 	      save_contestants()
 	      flash[:notice] = 'Bracketcontest was successfully created.' 
-	      format.html { redirect_to  edit_bracket_bracketcontest_path(@bracket, @bracketcontest)}
+	      format.html { redirect_to  edit_bracketgrouping_bracketcontest_path(@bracketgrouping, @bracketcontest)}
 	      format.json { render :show, status: :created, location: @bracketcontest }
 	else
         format.html { render :new }
@@ -75,7 +75,7 @@ class BracketcontestsController < BracketsController
       if @bracketcontest.update(bracketcontest_params)
 	save_contestants()
 	flash[:notice] = 'Bracketcontest was successfully updated.' 
-        format.html { redirect_to  [@bracket, @bracketcontest]}
+        format.html { redirect_to  [@bracketgrouping, @bracketcontest]}
         format.json { render :show, status: :ok, location: @bracketcontest }
       else
         format.html { render :edit }
@@ -84,16 +84,6 @@ class BracketcontestsController < BracketsController
     end
   end
 
-  # DELETE /bracketcontests/1
-  # DELETE /bracketcontests/1.json
-  def destroy
-    @bracketcontest.destroy
-    respond_to do |format|
-	flash[:notice] = 'Bracketcontest was successfully created.' 
-      format.html { redirect_to bracket_bracketcontests_url }
-      format.json { head :no_content }
-    end
-  end
 
     # Use callbacks to share common setup or constraints between actions.
   private

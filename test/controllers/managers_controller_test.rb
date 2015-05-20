@@ -29,6 +29,7 @@ class ManagersControllerTest < ActionController::TestCase
   end
 
   test "should get choose_competition_manager" do
+	 session[:manager_id] = nil # not yet selected
 	get :choose_competition, customer_id: @cust_id
   end
 

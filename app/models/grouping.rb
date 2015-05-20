@@ -63,7 +63,7 @@ class Grouping < ActiveRecord::Base
 	end
 	
 	def as_bracket()
-		 self.bracket_grouping ? Bracket.find(self.id): Bracket.new() 
+		 self.bracket_grouping ? Bracketgrouping.find(self.id): Bracketgrouping.new() 
 	end
 	
 	

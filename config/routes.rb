@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   end
   
   
-  resources :brackets, only: [:index, :show] do
+  resources :bracketgroupings, only: [:index, :show] do
 	get 'complete', on: :member
 	  # httpverb /competitions/:competition_id/brackets/...
 	  resources :bracketcontests, only: [:show, :new, :edit, :create, :update]  do
@@ -97,7 +97,7 @@ Rails.application.routes.draw do
 		  patch 'updtaway', on: :member
 		  put 'updtaway', on: :member
 	  end # of bracketcontests resource
-  end # of brackets resource
+  end # of bracketgroupings resource
 
 
   

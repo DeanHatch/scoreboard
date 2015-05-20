@@ -3,29 +3,21 @@ require 'test_helper'
 class BracketcontestsControllerTest < ActionController::TestCase
   setup do
     session[:manager_id] = competitions(:bball).id()
-    @bracket = Bracket.find(groupings(:bballdiv1).id()) # cannot use groupings fixtures
+    @bracketgrouping = Bracketgrouping.find(groupings(:bballdiv1).id()) # cannot use groupings fixtures
     @bracketcontest = contests(:bcgameone)
   end
 
-  test "should get index" do
-    p Bracket.all.size()
-    p Bracketcontest.all.size()
-    get :index, bracket_id: @bracket.id
-    assert_response :success
-    assert_not_nil assigns(:bracketcontests)
-  end
-
   test "should get new" do
-    get :new, bracket_id: @bracket.id
+    get :new, bracketgrouping_id: @bracketgrouping.id
     assert_response :success
   end
 
   test "should create bracketcontest" do
     assert_difference('Bracketcontest.count') do
-      post :create,   bracket_id: @bracket.id,
+      post :create,   bracketgrouping_id: @bracketgrouping.id,
         bracketcontest: { status: "SCHEDULED" }, 
-	homecontestant: {contestantcode: @bracket.all_participant_codes().first() }, 
-	awaycontestant: {contestantcode: @bracket.all_participant_codes().first() }
+	homecontestant: {contestantcode: @bracketgrouping.all_participant_codes().first() }, 
+	awaycontestant: {contestantcode: @bracketgrouping.all_participant_codes().first() }
     end
 
     # should edit the newly created Bracketcontest
@@ -33,28 +25,21 @@ class BracketcontestsControllerTest < ActionController::TestCase
   end
 
   test "should show bracketcontest" do
-    get :show, id: @bracketcontest.id, bracket_id: @bracket.id
+    get :show, id: @bracketcontest.id, bracketgrouping_id: @bracketgrouping.id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @bracketcontest, bracket_id: @bracket.id
+    get :edit, id: @bracketcontest, bracketgrouping_id: @bracketgrouping.id
     assert_response :success
   end
 
   test "should update bracketcontest" do
-    patch :update, id: @bracketcontest, bracket_id: @bracket.id,
+    patch :update, id: @bracketcontest, bracketgrouping_id: @bracketgrouping.id,
         bracketcontest: { status: "SCHEDULED" }, 
-	homecontestant: {contestantcode: @bracket.all_participant_codes().first() }, 
-	awaycontestant: {contestantcode: @bracket.all_participant_codes().first() }
-    assert_redirected_to bracket_bracketcontest_path # (assigns(:bracketcontest))
+	homecontestant: {contestantcode: @bracketgrouping.all_participant_codes().first() }, 
+	awaycontestant: {contestantcode: @bracketgrouping.all_participant_codes().first() }
+    assert_redirected_to bracketgrouping_bracketcontest_path # (assigns(:bracketcontest))
   end
 
-  test "should destroy bracketcontest" do
-    assert_difference('Bracketcontest.count', -1) do
-      delete :destroy, id: @bracketcontest, bracket_id: @bracket.id 
-    end
-
-    assert_redirected_to bracket_bracketcontests_path
-  end
 end

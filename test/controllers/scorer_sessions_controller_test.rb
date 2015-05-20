@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ManagerSessionsControllerTest < ActionController::TestCase
+class ScorerSessionsControllerTest < ActionController::TestCase
 
  setup do
 	   # Customer must exist for Competition foreign key.
@@ -22,15 +22,20 @@ class ManagerSessionsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-	  manager = Manager.find_by_name(competitions(:bball).name)
-	  get :new, { manager_id: manager.id }
-    assert_redirected_to greet_manager_path
+	  scorer = Scorer.find_by_name(competitions(:bball).name)
+	  get :new, { scorer_id: scorer.id }
+    assert_redirected_to :scorer_index
   end
 
-  test "should post create" do
-    manager = competitions(:bball)
-    post :create, manager_session: { password: 'secretpw', manager_id: manager.id }
-    assert_redirected_to greet_manager_path
+  test "should get create" do
+    scorer = competitions(:bball)
+    post :create, scorer_session: { password: 'secretpw', scorer_id: scorer.id }
+    assert_redirected_to :scorer_index
+  end
+
+  test "should get logout" do
+    get :logout
+    assert_redirected_to :root
   end
 
 end

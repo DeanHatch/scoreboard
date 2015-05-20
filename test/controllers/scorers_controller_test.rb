@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class ManagerSessionsControllerTest < ActionController::TestCase
+class ScorersControllerTest < ActionController::TestCase
 
- setup do
+  setup do
 	   # Customer must exist for Competition foreign key.
 	   # Manager inherits from Competition.
 	   # Steps are:
@@ -19,18 +19,14 @@ class ManagerSessionsControllerTest < ActionController::TestCase
 	 competition = competitions(:bball)
 	 competition.customer_id = cust.id
 	 competition.save!
+	 @cust_id = cust.id
+	 @comp_id = competition.id
+	 session[:scorer_id] = @comp_id
   end
-
-  test "should get new" do
-	  manager = Manager.find_by_name(competitions(:bball).name)
-	  get :new, { manager_id: manager.id }
-    assert_redirected_to greet_manager_path
-  end
-
-  test "should post create" do
-    manager = competitions(:bball)
-    post :create, manager_session: { password: 'secretpw', manager_id: manager.id }
-    assert_redirected_to greet_manager_path
+ 
+  test "should get index" do
+    get :index
+    assert_response :success
   end
 
 end
