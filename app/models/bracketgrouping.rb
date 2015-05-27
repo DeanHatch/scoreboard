@@ -4,6 +4,7 @@
 class Bracketgrouping < Grouping
 	
 	has_many :bracketcontests
+	has_many :bracketcontestants, through: :bracketcontests
 	
 	def Bracketgrouping.all()
 		super.where(bracket_grouping: true)
@@ -44,6 +45,8 @@ class Bracketgrouping < Grouping
   def for_pair(bc_array)
     bracketcontest = Bracketcontest.new() # also creates Bracketcontestants
     bracketcontest.bracketgrouping = self
+    bracketcontest.homecontestant.bracketgrouping = self
+    bracketcontest.awaycontestant.bracketgrouping = self
     bracketcontest.competition = self.competition
     bracketcontest.status = 'SCHEDULED'
       # Assign Home Contestant.

@@ -16,6 +16,11 @@
 # 
 class Bracketcontestant < Contestant
 						
+	
+	belongs_to :bracketcontest, foreign_key: "contest_id"
+
+	belongs_to :bracketgrouping, foreign_key: "bracketgrouping_id"
+
 	# Override with additional information.
 	def contestanttype
 		self.contestantcode.nil? ? nil : self.contestantcode[0]

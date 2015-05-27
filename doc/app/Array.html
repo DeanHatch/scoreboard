@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Bracket - Rails Application Documentation</title>
+<title>class Array - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -73,7 +73,11 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-all_from">::all_from</a>
+    <li ><a href="#method-i-bottom_half">#bottom_half</a>
+    
+    <li ><a href="#method-i-half_size">#half_size</a>
+    
+    <li ><a href="#method-i-top_half">#top_half</a>
     
   </ul>
 </div>
@@ -81,9 +85,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Bracket">
-  <h1 id="class-Bracket" class="class">
-    class Bracket
+<main role="main" aria-labelledby="class-Array">
+  <h1 id="class-Array" class="class">
+    class Array
   </h1>
 
   <section class="description">
@@ -103,17 +107,17 @@
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Class Methods</h3>
+         <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-c-all_from" class="method-detail ">
+      <div id="method-i-bottom_half" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">all_from</span><span
-            class="method-args">(bgrouping)</span>
+          <span class="method-name">bottom_half</span><span
+            class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -122,15 +126,76 @@
 
         <div class="method-description">
           
-          <p>Bracket(s) is(are) instantiated by controller via this class method</p>
+          
           
           
 
           
-          <div class="method-source-code" id="all_from-source">
-            <pre><span class="ruby-comment"># File lib/bracket.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all_from</span>(<span class="ruby-identifier">bgrouping</span>)
-<span class="ruby-keyword">end</span></pre>
+          <div class="method-source-code" id="bottom_half-source">
+            <pre><span class="ruby-comment"># File lib/tourney.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bottom_half</span>; <span class="ruby-keyword">self</span>[<span class="ruby-identifier">half_size</span>, <span class="ruby-identifier">half_size</span>]; <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-half_size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">half_size</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="half_size-source">
+            <pre><span class="ruby-comment"># File lib/tourney.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">half_size</span>; <span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">1</span>; <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-top_half" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">top_half</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="top_half-source">
+            <pre><span class="ruby-comment"># File lib/tourney.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">top_half</span>; <span class="ruby-keyword">self</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">half_size</span>]; <span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>

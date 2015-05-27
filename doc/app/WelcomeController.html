@@ -130,7 +130,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-keyword">end</span></pre>
           </div>
@@ -164,11 +164,10 @@
           <div class="method-source-code" id="nav_link_array-source">
             <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:choose_display_customer</span>) ,
-           <span class="ruby-comment">#navitem(&#39;Report/Correct Scores&#39; , :schmenge) ,</span>
-      <span class="ruby-comment">#navitem(&#39;Manage a Competition&#39; , :competition_venues),,</span>
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage a Competition&#39;</span> , <span class="ruby-value">:choose_manager_customer</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Customer Login/Register&#39;</span>, <span class="ruby-string">&#39;/customer/login&#39;</span>) ]
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View a Competition&#39;</span> , <span class="ruby-value">:choose_display_customer</span>) ,
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores&#39;</span> , <span class="ruby-value">:scorer_choose_customer</span>) ,
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage a Competition&#39;</span> , <span class="ruby-value">:choose_customer_manager</span>),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Customer Login/Register&#39;</span>, <span class="ruby-value">:new_customer_session</span>) ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

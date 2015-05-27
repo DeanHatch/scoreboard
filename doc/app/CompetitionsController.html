@@ -151,15 +151,12 @@ Customerscontroller.</p>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">save</span>
             <span class="ruby-comment"># Also create a root Grouping object and save it.</span>
             <span class="ruby-comment"># Note that, being the root Grouping, it will not have a parent Grouping.</span>
-      <span class="ruby-ivar">@comp</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:competition</span>]
-      <span class="ruby-ivar">@competition_id</span> = <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>
-      <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@comp</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@comp</span>[<span class="ruby-value">:variety</span>].<span class="ruby-identifier">humanize</span>
-      <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>, <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name</span>).<span class="ruby-identifier">save</span>(<span class="ruby-identifier">validate</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
-            <span class="ruby-comment"># Note that the create competition action is initiated from the Customers controller.</span>
+            <span class="ruby-comment"># Note that this is done by the model in the #save method.</span>
+            <span class="ruby-comment"># Remember that the create competition action is initiated from the Customers controller.</span>
             <span class="ruby-comment"># After successful creation of a Competition, return to the</span>
             <span class="ruby-comment"># greet action of the Customers controller.</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_url</span>,
-                      <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Competition was successfully created.&quot;</span> }
+      <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">notice</span>] = <span class="ruby-string">&quot;Competition was successfully created.&quot;</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_url</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
@@ -196,7 +193,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -364,7 +361,7 @@ Customerscontroller.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">competition_params</span>)

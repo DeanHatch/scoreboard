@@ -1,10 +1,8 @@
-<% if @grouping.bracket_grouping %>
 
-  <% priorcontests = Bracketcontestant.all.select{|bc| bc.contestanttype=="W"}.collect{|bc| bc.priorcontest} %> 
+<h4><%=@bracket.numrounds() %> Rounds</h4>
+<hr/>
+<div class="bracket">
+<%= raw(bc_to_div(@bfirst)) %>
+</div>
+<hr/>
 
-  <% (@bracketcontests-priorcontests).each do |bc| %> 
-    <%= render partial: 'bracketcontests/bracket_contest' ,
-		locals: { bracketcontest: bc, final: true, editable: false }  %>
-    <br/>
-   <% end %>
-<% end # of if bracket_grouping ... %>

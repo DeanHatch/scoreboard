@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class BracketsController - Rails Application Documentation</title>
+<title>class BracketgroupingsController - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="ManagerController.html">ManagerController</a>
+  <p class="link"><a href="ManagersController.html">ManagersController</a>
   
 </div>
 
@@ -73,6 +73,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-complete">#complete</a>
+    
     <li ><a href="#method-i-index">#index</a>
     
     <li ><a href="#method-i-show">#show</a>
@@ -83,20 +85,20 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-BracketsController">
-  <h1 id="class-BracketsController" class="class">
-    class BracketsController
+<main role="main" aria-labelledby="class-BracketgroupingsController">
+  <h1 id="class-BracketgroupingsController" class="class">
+    class BracketgroupingsController
   </h1>
 
   <section class="description">
     
-<p>This controller displays the available <a href="Bracket.html">Bracket</a>
-Groupings and allows the user to select one for updating the
-Bracketcontests contained within. Brackets themselves are not created nor
-destroyed nor updated by this controller, it merely serves as a routing
-device. Therefore, it ha only two actions: <a
-href="BracketsController.html#method-i-index">index</a> and <a
-href="BracketsController.html#method-i-show">show</a>.</p>
+<p>This controller displays the available Bracketgroupings and allows the user
+to select one for updating the Bracketcontests contained within.
+Bracketgroupings themselves are not created nor destroyed nor updated by
+this controller, it merely serves as a routing device. Therefore, it ha
+only two actions: <a
+href="BracketgroupingsController.html#method-i-index">index</a> and <a
+href="BracketgroupingsController.html#method-i-show">show</a>.</p>
 
   </section>
 
@@ -119,6 +121,40 @@ href="BracketsController.html#method-i-show">show</a>.</p>
        </header>
 
     
+      <div id="method-i-complete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">complete</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /bracketgroupings/1</p>
+          
+          
+
+          
+          <div class="method-source-code" id="complete-source">
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">complete</span>
+  <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">complete_se_matchups</span>()
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">bracketgrouping_path</span>(<span class="ruby-ivar">@bracketgrouping</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
@@ -132,15 +168,15 @@ href="BracketsController.html#method-i-show">show</a>.</p>
 
         <div class="method-description">
           
-          <p>GET /brackets GET /brackets.json</p>
+          <p>GET /bracketgroupings</p>
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@brackets</span> = <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@bracketgroupings</span> = <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -165,16 +201,15 @@ href="BracketsController.html#method-i-show">show</a>.</p>
 
         <div class="method-description">
           
-          <p>GET /brackets/1 GET /brackets/1.json</p>
+          <p>GET /bracketgroupings/1</p>
           
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/brackets_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-        <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracket_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracket</span>.<span class="ruby-identifier">id</span>)
-        <span class="ruby-comment">#@bracket_id = @bracket.id</span>
+        <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketgrouping</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

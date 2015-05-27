@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Bracket - Rails Application Documentation</title>
+<title>class Object - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link">BasicObject
   
 </div>
 
@@ -73,7 +73,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-all_from">::all_from</a>
+    <li ><a href="#method-i-se_matchups">#se_matchups</a>
     
   </ul>
 </div>
@@ -81,9 +81,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Bracket">
-  <h1 id="class-Bracket" class="class">
-    class Bracket
+<main role="main" aria-labelledby="class-Object">
+  <h1 id="class-Object" class="class">
+    class Object
   </h1>
 
   <section class="description">
@@ -103,17 +103,17 @@
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Class Methods</h3>
+         <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-c-all_from" class="method-detail ">
+      <div id="method-i-se_matchups" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">all_from</span><span
-            class="method-args">(bgrouping)</span>
+          <span class="method-name">se_matchups</span><span
+            class="method-args">(numseeds)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -122,14 +122,22 @@
 
         <div class="method-description">
           
-          <p>Bracket(s) is(are) instantiated by controller via this class method</p>
+          <p>SingleElimination Matchups. Takes the number of seeds (i.e. Teams)</p>
           
           
 
           
-          <div class="method-source-code" id="all_from-source">
-            <pre><span class="ruby-comment"># File lib/bracket.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all_from</span>(<span class="ruby-identifier">bgrouping</span>)
+          <div class="method-source-code" id="se_matchups-source">
+            <pre><span class="ruby-comment"># File lib/tourney.rb, line 34</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">se_matchups</span>(<span class="ruby-identifier">numseeds</span>)
+   <span class="ruby-identifier">seeds</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numseeds</span>).<span class="ruby-identifier">to_a</span>
+   <span class="ruby-identifier">numrounds</span> = <span class="ruby-constant">Math</span>.<span class="ruby-identifier">log2</span>(<span class="ruby-identifier">numseeds</span>).<span class="ruby-identifier">ceil</span>
+   <span class="ruby-identifier">matchups</span> = (<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">numrounds</span>).<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">seeds</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, <span class="ruby-identifier">unused</span><span class="ruby-operator">|</span>
+     <span class="ruby-identifier">lpot</span> = <span class="ruby-value">2</span> <span class="ruby-operator">**</span> (<span class="ruby-constant">Math</span>.<span class="ruby-identifier">log2</span>(<span class="ruby-identifier">memo</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">ceil</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+     <span class="ruby-identifier">top_half</span> = <span class="ruby-identifier">memo</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">lpot</span>]
+     <span class="ruby-identifier">bottom_half</span> = <span class="ruby-identifier">memo</span>[<span class="ruby-identifier">lpot</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">memo</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)]
+     <span class="ruby-identifier">top_half</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">bottom_half</span>).<span class="ruby-identifier">reverse</span>
+   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

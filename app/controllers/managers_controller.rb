@@ -22,6 +22,10 @@ class ManagersController < NestedController
         redirect_to :greet_manager if session[:manager_id]
     end
  
+     def choose_competition()
+        session[:manager_id] = nil
+    end
+ 
   
   # Display page where Manager can set or clear
   # either the Manager Password or the Scorer Password.
@@ -98,9 +102,14 @@ class ManagersController < NestedController
 	  if session[:manager_id].nil?
 		  redirect_to choose_customer_manager_path
 	  else
-		  @competition = Competition.find(session[:manager_id])
-		  @competition_id = @competition.id
-		  set_competition(@competition_id)
+	    begin
+	    @competition = Competition.find(session[:manager_id])
+	    @competition_id = @competition.id
+	    set_competition(@competition_id)
+	    rescue
+	      session[:manager_id] = nil
+	      redirect_to choose_customer_manager_path
+	    end
 	  end
   end
  

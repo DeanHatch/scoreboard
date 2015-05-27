@@ -73,11 +73,15 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-default_bracket">::default_bracket</a>
+    <li ><a href="#method-c-default_bracketgrouping">::default_bracketgrouping</a>
     
     <li ><a href="#method-i-advance_contestants">#advance_contestants</a>
     
+    <li ><a href="#method-i-loser_code">#loser_code</a>
+    
     <li class="calls-super" ><a href="#method-i-record_result">#record_result</a>
+    
+    <li ><a href="#method-i-winner_code">#winner_code</a>
     
   </ul>
 </div>
@@ -117,11 +121,11 @@ Bracketcontests, for example.</p>
        </header>
 
     
-      <div id="method-c-default_bracket" class="method-detail ">
+      <div id="method-c-default_bracketgrouping" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">default_bracket</span><span
-            class="method-args">(bracket_id)</span>
+          <span class="method-name">default_bracketgrouping</span><span
+            class="method-args">(bracketgrouping_id)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -135,10 +139,10 @@ Bracketcontests, for example.</p>
           
 
           
-          <div class="method-source-code" id="default_bracket-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_bracket</span>(<span class="ruby-identifier">bracket_id</span>)
- <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracket_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bracket_id</span>) ) }
+          <div class="method-source-code" id="default_bracketgrouping-source">
+            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_bracketgrouping</span>(<span class="ruby-identifier">bracketgrouping_id</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bracketgrouping_id</span>) ) }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -179,13 +183,47 @@ href="Bracketcontest.html">Bracketcontest</a>.</p>
 
           
           <div class="method-source-code" id="advance_contestants-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">advance_contestants</span>()
-        <span class="ruby-identifier">all_priors</span> = <span class="ruby-constant">Bracketcontestant</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span><span class="ruby-identifier">bc</span>.<span class="ruby-identifier">priorcontest</span><span class="ruby-operator">==</span><span class="ruby-keyword">self</span>}
-        <span class="ruby-comment">#logger.debug &quot;Prior(s): #{all_priors.collect{|bc| bc.contestantcode}.inspect()}&quot;</span>
-        <span class="ruby-identifier">winning_team</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">win</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>
-        <span class="ruby-identifier">losing_team</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">loss</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>
-        <span class="ruby-identifier">all_priors</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">contestanttype</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;W&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">team</span> = <span class="ruby-identifier">winning_team</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">losing_team</span>; <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">save!</span> }
+  <span class="ruby-identifier">all_priors</span> = <span class="ruby-constant">Bracketcontestant</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span><span class="ruby-identifier">bc</span>.<span class="ruby-identifier">priorcontest</span><span class="ruby-operator">==</span><span class="ruby-keyword">self</span>}
+  <span class="ruby-comment">#logger.debug &quot;Prior(s): #{all_priors.collect{|bc| bc.contestantcode}.inspect()}&quot;</span>
+  <span class="ruby-identifier">winning_team</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">win</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>
+  <span class="ruby-identifier">losing_team</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">loss</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>
+  <span class="ruby-identifier">all_priors</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">contestanttype</span><span class="ruby-operator">==</span><span class="ruby-string">&quot;W&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">team</span> = <span class="ruby-identifier">winning_team</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">losing_team</span>; <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">save!</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-loser_code" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">loser_code</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the contestantcode for the Loser of this <a
+href="Bracketcontest.html">Bracketcontest</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="loser_code-source">
+            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">loser_code</span>()
+  <span class="ruby-string">&quot;L&quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -227,10 +265,44 @@ href="Bracketcontest.html">Bracketcontest</a>.</p>
 
           
           <div class="method-source-code" id="record_result-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">record_result</span>(<span class="ruby-identifier">homescore</span>, <span class="ruby-identifier">awayscore</span>, <span class="ruby-identifier">status</span>=<span class="ruby-string">&quot;COMPLETED&quot;</span>)
-        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">homescore</span>, <span class="ruby-identifier">awayscore</span>, <span class="ruby-identifier">status</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">advance_contestants</span>()
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">homescore</span>, <span class="ruby-identifier">awayscore</span>, <span class="ruby-identifier">status</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">advance_contestants</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-winner_code" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">winner_code</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the contestantcode for the Winner of this <a
+href="Bracketcontest.html">Bracketcontest</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="winner_code-source">
+            <pre><span class="ruby-comment"># File app/models/bracketcontest.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">winner_code</span>()
+  <span class="ruby-string">&quot;W&quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

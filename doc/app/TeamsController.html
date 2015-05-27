@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="ManagerController.html">ManagerController</a>
+  <p class="link"><a href="ManagersController.html">ManagersController</a>
   
 </div>
 
@@ -134,27 +134,24 @@
 
         <div class="method-description">
           
-          <p>POST /teams POST /teams.json</p>
+          <p>POST /teams</p>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">team_params</span>)
-  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>
-  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping_id</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">competition</span> = <span class="ruby-ivar">@competition</span>
+  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping</span> = <span class="ruby-ivar">@grouping</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-comment">#@grouping = Grouping.find(params[:grouping_id])</span>
-      <span class="ruby-comment">#format.html { redirect_to [@competition, @grouping], notice: &#39;Team was successfully created.&#39; }</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">competition_grouping_teams_path</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Team was successfully created.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span> }
+            <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Team was successfully added.&#39;</span>
+            <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">grouping_teams_path</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -181,18 +178,20 @@
 
         <div class="method-description">
           
-          <p>DELETE /teams/1 DELETE /teams/1.json</p>
+          <p>DELETE /teams/1</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+    <span class="ruby-comment"># get Grouping BEFORE Destroy for the redirect.</span>
+  <span class="ruby-identifier">grouping_id</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">teams_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Team was successfully destroyed.&#39;</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
+            <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Team was successfully removed.&#39;</span>
+            <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> ( {<span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-value">:index</span> , <span class="ruby-value">:grouping_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">grouping_id</span>})}
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -224,9 +223,10 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+           <span class="ruby-comment"># User can change the Grouping</span>
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -251,7 +251,8 @@
 
         <div class="method-description">
           
-          <p>GET /teams GET /teams.json</p>
+          <p>Only show Teams for this <a href="Grouping.html">Grouping</a> GET
+/grouping/1/teams</p>
           
           
 
@@ -259,7 +260,7 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@teams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>, <span class="ruby-identifier">grouping_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@teams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition</span>, <span class="ruby-identifier">grouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grouping</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -284,7 +285,7 @@
 
         <div class="method-description">
           
-          <p>GET /teams/new</p>
+          <p>GET /grouping/1/teams/new</p>
           
           
 
@@ -293,9 +294,8 @@
             <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
-  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping_id</span> = <span class="ruby-ivar">@grouping_id</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">competition</span> = <span class="ruby-ivar">@competition</span>
+  <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping</span> = <span class="ruby-ivar">@grouping</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -320,14 +320,15 @@
 
         <div class="method-description">
           
-          <p>GET /teams/1 GET /teams/1.json</p>
+          <p>GET /teams/1</p>
           
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-ivar">@grouping</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -352,21 +353,23 @@
 
         <div class="method-description">
           
-          <p>PATCH/PUT /teams/1 PATCH/PUT /teams/1.json</p>
+          <p>PATCH/PUT /teams/1</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+    <span class="ruby-comment"># get Grouping BEFORE Update in case it changes.</span>
+    <span class="ruby-comment"># We need the old Grouping for the redirect.</span>
+  <span class="ruby-identifier">grouping_id</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">team_params</span>)
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@team</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Team was successfully updated.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span> }
+            <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Team was successfully updated.&#39;</span>
+            <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>( {<span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-value">:index</span> , <span class="ruby-value">:grouping_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">grouping_id</span>}) }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

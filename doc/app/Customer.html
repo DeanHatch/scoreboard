@@ -153,7 +153,7 @@
 
           
           <div class="method-source-code" id="authenticate-source">
-            <pre><span class="ruby-comment"># File app/models/customer.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/models/customer.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">userid</span>, <span class="ruby-identifier">password</span>)
         <span class="ruby-identifier">cust</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_by_userid</span>(<span class="ruby-identifier">userid</span>)
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">cust</span>
@@ -201,7 +201,7 @@
 
           
           <div class="method-source-code" id="password-source">
-            <pre><span class="ruby-comment"># File app/models/customer.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/models/customer.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">password</span>
         <span class="ruby-ivar">@password</span>
 <span class="ruby-keyword">end</span></pre>
@@ -234,10 +234,9 @@
 
           
           <div class="method-source-code" id="password-3D-source">
-            <pre><span class="ruby-comment"># File app/models/customer.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/models/customer.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">password=</span>(<span class="ruby-identifier">pwd</span>)
         <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">pwd</span>
-        <span class="ruby-comment">#@password = &#39;DRH&#39;</span>
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">blank?</span>
         <span class="ruby-identifier">create_new_salt</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hashed_password</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">password</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">salt</span>)

@@ -5,7 +5,7 @@
 <%= (link_to 'Standings', display_grouping_path(@competition.id, @grouping.id, "standings") ) if @grouping.has_teams?  %>
 <%= (link_to 'Scores', display_grouping_path(@competition.id, @grouping.id, "scores") ) if @grouping.has_teams? %>
 <%= (link_to 'Schedule', display_grouping_path(@competition.id, @grouping.id, "schedule") ) if @grouping.has_teams? %>
-<%= (link_to 'Bracket', display_grouping_path(@competition.id, @grouping.id, "bracket") ) if @grouping.bracket_grouping %>
+<%= (link_to 'Bracket', display_grouping_path(@competition.id, @grouping.id, "bracket") ) if @grouping.bracket_grouping and @bracket %>
 </h3>
 <br/>
 

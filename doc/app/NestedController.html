@@ -73,6 +73,10 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-choose_competition">#choose_competition</a>
+    
+    <li ><a href="#method-i-choose_customer">#choose_customer</a>
+    
     <li ><a href="#method-i-failure_redirect">#failure_redirect</a>
     
     <li ><a href="#method-i-set_competition">#set_competition</a>
@@ -123,6 +127,77 @@ single <a href="Customer.html">Customer</a>.</p>
        </header>
 
     
+      <div id="method-i-choose_competition" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_competition</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Once a <a href="Customer.html">Customer</a> has been identified, the
+response prompts the user to choose which of the Customer&#39;s
+Competitions to use.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="choose_competition-source">
+            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_competition</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-choose_customer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_customer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Competitions are nested within Customers. If a subclass of <a
+href="NestedController.html">NestedController</a> does not have a <a
+href="Competition.html">Competition</a> specified then the correct response
+to the request is to prompt for a <a href="Customer.html">Customer</a>
+identifier and then prompt user to choose which of that customer&#39;s
+Competitions to use.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="choose_customer-source">
+            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_customer</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-failure_redirect" class="method-detail ">
         
         <div class="method-heading">
@@ -166,7 +241,7 @@ will be overridden in  descendant classes.</p>
         
         <div class="method-heading">
           <span class="method-name">set_competition</span><span
-            class="method-args">()</span>
+            class="method-args">(competition_id)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -183,22 +258,21 @@ href="Competition.html">Competition</a>.</p>
 
           
           <div class="method-source-code" id="set_competition-source">
-            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 27</span>
- <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_competition</span>()
-    <span class="ruby-ivar">@competition_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:competition_id</span>]
-    <span class="ruby-keyword">return</span>(<span class="ruby-identifier">redirect_to</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">failure_redirect</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@competition_id</span>
+            <pre><span class="ruby-comment"># File app/controllers/nested_controller.rb, line 41</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_competition</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-ivar">@competition_id</span> = <span class="ruby-identifier">competition_id</span>
+    <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">competition_id</span>)
     <span class="ruby-keyword">begin</span>
-    <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Team</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Contestant</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Regularcontestant</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
-    <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-ivar">@competition_id</span>)
+    <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Team</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Contestant</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Regularcontestant</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
+    <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">competition_id</span>)
     <span class="ruby-keyword">rescue</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">redirect_to</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">failure_redirect</span>)
     <span class="ruby-keyword">end</span>
