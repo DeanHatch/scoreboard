@@ -10,7 +10,7 @@ class SupportEmailer < ActionMailer::Base
     @paramhash = paramhash
     logger.info "Param Hash is: "+paramhash.inspect()
     @greeting = "Hi"
-
+    logger.info "Sending Mail to: "+paramhash["fromaddr"]
    mail to: paramhash["fromaddr"]
   end
 end
