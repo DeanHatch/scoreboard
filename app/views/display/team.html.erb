@@ -6,25 +6,21 @@
   <thead>
     <tr>
       <th>Team</th>
-      <%= raw(@competition.result_headings.collect{|rh| raw(content_tag(:th, rh))}.join(" ") ) %>
+      <%= standings_headers(@competition) %>
     </tr>
   </thead>
 
  <tbody>
       <!-- Show sorted, unique Teams -->
-    <!-- % @groupingteams.sort{ |a,b| a.name <=> b.name }.each do |team| % -->
-    <% @groupingteams.sort{ |a,b| a.pct() <=> b.pct() }.reverse.each do |team| %>
+    <% @groupingteams.sort{ |a,b| @competition.compare_teams(a, b) }.each do |team| %>
       <tr>
         <td><%= link_to team.name, display_team_path(@competition.id, team.id) %></td>
-      <%= raw(team.result_row(@competition).collect{|rr| raw(content_tag(:td, rr))}.join(" ") ) %>
+      <%=  standings_row(@competition, team) %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<p>
-<% raw(Contest.all.collect{|c| [c.type, c.id, c.homecontestant, c.awaycontestant]}.inspect()) %>
-</p>
 
 <h3>Scores</h3>
 <table class="schedule">

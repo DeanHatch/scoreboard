@@ -12,8 +12,8 @@ class Bracketcontest < Contest
 		     presence: true
 	
 	# Provide controlled public access to private class method.
-  def self.default_bracketgrouping(bracketgrouping_id)
-	  self.default_scope { (where(bracketgrouping_id: bracketgrouping_id) ) }
+  def self.default_bracketgrouping(bracketgrouping)
+	  self.default_scope { (where(bracketgrouping: bracketgrouping) ) }
   end
   
   
@@ -42,7 +42,7 @@ class Bracketcontest < Contest
 	# Advance teams if this Bracketcontest is referred to by the contestants of a
 	# subsequent Bracketcontest.
   def advance_contestants()
-    all_priors = Bracketcontestant.all.select{|bc|bc.priorcontest==self}
+    all_priors = Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest==self}
     #logger.debug "Prior(s): #{all_priors.collect{|bc| bc.contestantcode}.inspect()}"
     winning_team = self.homecontestant.win ? self.homecontestant.team : self.awaycontestant.team
     losing_team = self.homecontestant.loss ? self.homecontestant.team : self.awaycontestant.team

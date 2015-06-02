@@ -77,6 +77,8 @@
     
     <li ><a href="#method-i-change_scorer_password">#change_scorer_password</a>
     
+    <li ><a href="#method-i-choose_competition">#choose_competition</a>
+    
     <li ><a href="#method-i-choose_customer">#choose_customer</a>
     
     <li ><a href="#method-i-clear_manager_password">#clear_manager_password</a>
@@ -146,7 +148,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="change_manager_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 36</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_manager_password</span>()
          <span class="ruby-identifier">manager_pw_params</span>
          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -189,7 +191,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="change_scorer_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_scorer_password</span>()
       <span class="ruby-identifier">p</span> <span class="ruby-identifier">scorer_pw_params</span>.<span class="ruby-identifier">inspect</span>()
       <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -201,6 +203,39 @@ Validations.</p>
                       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;passwords&quot;</span> }
               <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-choose_competition" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_competition</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="choose_competition-source">
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 25</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_competition</span>()
+    <span class="ruby-identifier">session</span>[<span class="ruby-value">:manager_id</span>] = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -268,7 +303,7 @@ the browser&#39;s BACK functionality.</p>
 
           
           <div class="method-source-code" id="clear_manager_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 50</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_manager_password</span>()
          <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">clear_manager_password</span>()
          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -310,7 +345,7 @@ the browser&#39;s BACK functionality.</p>
 
           
           <div class="method-source-code" id="clear_scorer_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 78</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_scorer_password</span>()
          <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">clear_scorer_password</span>()
          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -352,7 +387,7 @@ the browser&#39;s BACK functionality.</p>
 
           
           <div class="method-source-code" id="greet-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">greet</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -422,7 +457,7 @@ href="Scorer.html">Scorer</a> Password.</p>
 
           
           <div class="method-source-code" id="passwords-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">passwords</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>

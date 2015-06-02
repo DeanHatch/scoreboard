@@ -61,13 +61,33 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link">Object
   
 </div>
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-bottom">#bottom</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-lower_mid">#lower_mid</a>
+    
+    <li ><a href="#method-i-top">#top</a>
+    
+    <li ><a href="#method-i-upper_mid">#upper_mid</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -78,6 +98,28 @@
 
   <section class="description">
     
+<p>Objects of this class give details of the display of a <a
+href="Bracketcontest.html">Bracketcontest</a> and also link to the
+Bracketcontests in the immediately prior round which lead into this <a
+href="Bracketcontest.html">Bracketcontest</a>.</p>
+
+<p>Note that there might be more than one <a href="Bracket.html">Bracket</a>
+for a <a href="Bracketgrouping.html">Bracketgrouping</a>.</p>
+
+<p>Attributes are:</p>
+<dl class="rdoc-list label-list"><dt>roundnum
+<dd>
+<p>total depth of the tree minus the depth of this node</p>
+</dd><dt>homeside
+<dd>
+<p>Link to <a href="Bracketpairing.html">Bracketpairing</a>, the winner of
+which is the Home <a href="Team.html">Team</a> for this pairing</p>
+</dd><dt>awayside
+<dd>
+<p>Link to a <a href="Bracketpairing.html">Bracketpairing</a>, the winner of
+which is the Away <a href="Team.html">Team</a> for this pairing</p>
+</dd></dl>
+
   </section>
 
   
@@ -91,8 +133,284 @@
     
 
     
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-awayside" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">awayside</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-homeside" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">homeside</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-roundnum" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">roundnum</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(bracket, rnum, bcontest)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The containing <a href="Bracket.html">Bracket</a> object passes itself as a
+parameter so that this object can add itself to its parent&#39;s
+collection.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">bracket</span>, <span class="ruby-identifier">rnum</span>, <span class="ruby-identifier">bcontest</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roundnum</span> = <span class="ruby-identifier">rnum</span>
+  <span class="ruby-ivar">@bcontest</span> = <span class="ruby-identifier">bcontest</span>
+  <span class="ruby-identifier">bracket</span>.<span class="ruby-identifier">pairings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homeside</span> = (<span class="ruby-identifier">bcontest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">contestanttype</span>() <span class="ruby-operator">==</span> <span class="ruby-string">&quot;W&quot;</span> <span class="ruby-operator">?</span>
+                              <span class="ruby-constant">Bracketpairing</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bracket</span>, <span class="ruby-identifier">rnum</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>, <span class="ruby-identifier">bcontest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">priorcontest</span>()) <span class="ruby-operator">:</span>
+                              <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awayside</span> = (<span class="ruby-identifier">bcontest</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">contestanttype</span>() <span class="ruby-operator">==</span> <span class="ruby-string">&quot;W&quot;</span> <span class="ruby-operator">?</span>
+                              <span class="ruby-constant">Bracketpairing</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bracket</span>, <span class="ruby-identifier">rnum</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>, <span class="ruby-identifier">bcontest</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">priorcontest</span>()) <span class="ruby-operator">:</span>
+                              <span class="ruby-keyword">nil</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-bottom" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bottom</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Text of the bottom portion of the <a
+href="Bracketpairing.html">Bracketpairing</a>, that is, the Away <a
+href="Team.html">Team</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="bottom-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bottom</span>()
+  [<span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">fullname</span>(), <span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span>().<span class="ruby-identifier">inspect</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">inspect</span>()
+  [<span class="ruby-string">&quot;(&quot;</span>, <span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">name</span>(), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awayside</span>.<span class="ruby-identifier">inspect</span>(), <span class="ruby-string">&quot;at&quot;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homeside</span>.<span class="ruby-identifier">inspect</span>(),<span class="ruby-string">&quot;)&quot;</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-lower_mid" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lower_mid</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Text in the middle of the pairing is two parts. This is the second of the
+two.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="lower_mid-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">lower_mid</span>()
+   <span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">venue_name</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-top" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">top</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Text of the top portion of the <a
+href="Bracketpairing.html">Bracketpairing</a>, that is, the Home <a
+href="Team.html">Team</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="top-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">top</span>()
+  [<span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">fullname</span>(), <span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span>().<span class="ruby-identifier">inspect</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-upper_mid" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">upper_mid</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Text of the middle is two parts. This is the first of the two.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="upper_mid-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">upper_mid</span>()
+  [<span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">name</span>(), <span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">display_date</span>(), <span class="ruby-ivar">@bcontest</span>.<span class="ruby-identifier">display_time</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

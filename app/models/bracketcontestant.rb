@@ -25,7 +25,13 @@ class Bracketcontestant < Contestant
 	def contestanttype
 		self.contestantcode.nil? ? nil : self.contestantcode[0]
 	end
-						
+
+	
+	# Provide controlled public access to private class method.
+  def self.default_bracketgrouping(bracketgrouping)
+	  self.default_scope { (where(bracketgrouping: bracketgrouping) ) }
+  end
+
 						
 	# Prior Bracketcontest referred to by this Contestant.
 	def priorcontest

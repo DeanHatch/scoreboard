@@ -178,8 +178,8 @@ application for a <a href="Competition.html">Competition</a>.</p>
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Regular Contests&#39;</span> , <span class="ruby-value">:regularcontests</span>),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:bracketgroupings</span>),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Set Manager/Scorer Passwords&#39;</span> , <span class="ruby-value">:passwords_manager</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_manager_session</span>),
-      <span class="ruby-comment">#navitem(&#39;Report/Correct Scores&#39; , competition_scorers_path(@competition), target: &quot;_blank&quot; ),</span>
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_manager_session</span>) ,
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores for This Competition&#39;</span> , <span class="ruby-identifier">login_scorer_session_path</span>(<span class="ruby-ivar">@competition</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View This Competition&#39;</span> , <span class="ruby-identifier">display_competition_path</span>(<span class="ruby-ivar">@competition</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>)  ]
 <span class="ruby-keyword">end</span></pre>
           </div>

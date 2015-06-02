@@ -73,6 +73,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-default_bracketgrouping">::default_bracketgrouping</a>
+    
     <li ><a href="#method-i-contestantlabel">#contestantlabel</a>
     
     <li ><a href="#method-i-contestanttype">#contestanttype</a>
@@ -131,6 +133,47 @@ If Place is specified then both a Place and a Grouping must be.</pre>
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-default_bracketgrouping" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_bracketgrouping</span><span
+            class="method-args">(bracketgrouping)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Provide controlled public access to private class method.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_bracketgrouping-source">
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_bracketgrouping</span>(<span class="ruby-identifier">bracketgrouping</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bracketgrouping</span>) ) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
@@ -156,7 +199,7 @@ If Place is specified then both a Place and a Grouping must be.</pre>
 
           
           <div class="method-source-code" id="contestantlabel-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">contestantlabel</span>
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>[<span class="ruby-value">0</span>]
@@ -203,7 +246,7 @@ If Place is specified then both a Place and a Grouping must be.</pre>
 
           
           <div class="method-source-code" id="contestanttype-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">contestanttype</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>[<span class="ruby-value">0</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -236,7 +279,7 @@ If Place is specified then both a Place and a Grouping must be.</pre>
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
         [(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">seeding</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;#&#39;</span> <span class="ruby-operator">+</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">seeding</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>) ,
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantlabel</span>,
@@ -272,7 +315,7 @@ If Place is specified then both a Place and a Grouping must be.</pre>
 
           
           <div class="method-source-code" id="priorcontest-source">
-            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/models/bracketcontestant.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">priorcontest</span>
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestantcode</span>[<span class="ruby-value">0</span>]

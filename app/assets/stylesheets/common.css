@@ -348,7 +348,7 @@ td.awayteam {text-align: right;
 
 
 div.bracket {text-align: right;
-              font-size: 10pt;
+              font-size: 8pt;
           
   font-family: verdana, arial, helvetica, sans-serif;
            font-variant: small-caps;
@@ -372,7 +372,7 @@ div.bracket {text-align: right;
     div.btopcontents {
 	position: absolute;
 	bottom: 0px;
-	height: 15px;
+	height: 12px;
 	width: 100%;
 	text-align: right;
 	}
@@ -410,41 +410,41 @@ div.bracket {text-align: right;
 
 
   div.r1 {position: relative;
-	         width: 150px;
-	        height: 75px;
+	         width: 200px;
+	        height: 100px;
          padding-right: 1px;
     }
 
   div.r1pair {position: relative;
-	         width: 150px;
-	        height: 75px;
+	         width: 200px;
+	        height: 100px;
          padding-right: 1px;
     }
 
 
 
   div.r2 {position: relative;
-	         width: 300px;
-	        height: 150px;
+	         width: 400px;
+	        height: 200px;
          padding-right: 1px;
     }
 
   div.r2h {position: absolute;
-	         width: 150px;
-	        height: 75px;
+	         width: 200px;
+	        height: 100px;
 	        left: 0px;
 	        top: 0px;
     }
   div.r2a {position: absolute;
-	         width: 150px;
-	        height: 75px;
+	         width: 200px;
+	        height: 100px;
 	        left: 0px;
-	        top: 76px;
+	        top: 101px;
 }
   div.r2pair {position: relative;
-	        width: 150px;
-	        height: 150px;
-	        left: 151px;
+	        width: 200px;
+	        height: 200px;
+	        left: 201px;
 	        top: 0px;
          padding-right: 1px;
     }
@@ -452,29 +452,29 @@ div.bracket {text-align: right;
 
 
   div.r3 {position: relative;
-	         width: 450px;
-	        height: 300px;
+	         width: 600px;
+	        height: 400px;
          padding-right: 1px;
     }
 
   div.r3h {position: absolute;
-	         width: 300px;
-	        height: 150px;
+	         width: 400px;
+	        height: 200px;
 	        left: 0px;
 	        top: 0px;
          padding-right: 1px;
     }
   div.r3a {position: absolute;
-	         width: 300px;
-	        height: 150px;
+	         width: 400px;
+	        height: 200px;
 	        left: 0px;
-	        top: 150px;
+	        top: 200px;
          padding-right: 1px;
     }
   div.r3pair {position: relative;
-	        width: 150px;
-	        height: 300px;
-	        left: 302px;
+	        width: 200px;
+	        height: 400px;
+	        left: 402px;
 	        top: 0px;
          padding-right: 1px;
     }
@@ -482,29 +482,29 @@ div.bracket {text-align: right;
 
 
   div.r4 {position: relative;
-	         width: 600px;
-	        height: 600px;
+	         width: 800px;
+	        height: 800px;
          padding-right: 1px;
     }
 
   div.r4h {position: absolute;
-	         width: 450px;
-	        height: 300px;
+	         width: 600px;
+	        height: 400px;
 	        left: 0px;
 	        top: 0px;
          padding-right: 1px;
     }
   div.r4a {position: absolute;
-	         width: 450px;
-	        height: 300px;
+	         width: 600px;
+	        height: 400px;
 	        left: 0px;
-	        top: 300px;
+	        top: 400px;
          padding-right: 1px;
     }
   div.r4pair {position: relative;
-	        width: 150px;
-	        height: 600px;
-	        left: 453px;
+	        width: 200px;
+	        height: 800px;
+	        left: 603px;
 	        top: 0px;
          padding-right: 1px;
     }
@@ -512,29 +512,29 @@ div.bracket {text-align: right;
 
 
   div.r5 {position: relative;
-	         width: 750px;
-	        height: 1200px;
+	         width: 1000px;
+	        height: 1600px;
          padding-right: 1px;
     }
 
   div.r5h {position: absolute;
-	         width: 600px;
-	        height: 600px;
+	         width: 800px;
+	        height: 800px;
 	        left: 0px;
 	        top: 0px;
          padding-right: 1px;
     }
   div.r5a {position: absolute;
-	         width: 600px;
-	        height: 600px;
+	         width: 800px;
+	        height: 800px;
 	        left: 0px;
-	        top: 600px;
+	        top: 800px;
          padding-right: 1px;
     }
   div.r5pair {position: relative;
-	        width: 150px;
-	        height: 1200px;
-	        left: 603px;
+	        width: 200px;
+	        height: 1600px;
+	        left: 803px;
 	        top: 0px;
          padding-right: 1px;
     }

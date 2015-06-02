@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'what_we_do', to: 'welcome#what_we_do'
   get 'whats_new', to: 'welcome#whats_new'
   get 'contact_us', to: 'welcome#contact_us'
+  get 'send_us_a_message', to: 'welcome#send_us_a_message'
+  get 'thanks_for_the_message', to: 'welcome#thanks_for_the_message'
   get 'pricing', to: 'welcome#pricing'
   get 'for_org', to: 'welcome#for_org'
   get 'for_fans', to: 'welcome#for_fans'

@@ -40,8 +40,10 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-	      session[:customer_id] = @customer.id
-	      format.html { redirect_to(:action => "edit" ) }
+        #CustomerMailer.welcome(@customer.userid).deliver_later
+	CustomerEmailer.welcome(@customer.userid)
+	session[:customer_id] = @customer.id
+	format.html { redirect_to(:action => "edit" ) }
       else
         format.html { render :new }
       end
@@ -52,7 +54,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-	      flash[:notice] = 'Changes made.'
+	flash[:notice] = 'Changes made.'
         format.html { redirect_to greet_customer_path}
       else
         format.html { render :edit }

@@ -44,6 +44,35 @@ class Competition < ActiveRecord::Base
 				["Wins", "Losses"]
 			end
 		end
+
+	
+	# Varies by sport
+	def result_row()
+		case self.sport
+			when "basketball"
+				[:wins, :losses, :display_pct]
+			when "soccer"
+				[:wins, :losses,  :draws, :points,
+				 :goals_for, :goals_against, :goal_diff]
+			else
+				[:wins, :losses]
+			end
+	end
+
+	
+	# Varies by sport
+	def compare_teams(a, b)
+		case self.sport
+			when "basketball"
+			  b.send(:pct) <=> a.send(:pct)
+			when "soccer"
+			  b.send(:points) == a.send(:points) ? 
+			    b.send(:goal_diff) <=> a.send(:goal_diff) :
+			    b.send(:points) <=> a.send(:points)
+			else
+			  b.send(:pct) <=> a.send(:pct)
+			end
+	end
 		
 	# Name, Sport, and Variety of Competition, suitable for a title or heading.
 	def fullname()

@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link">Object
   
 </div>
 
@@ -73,7 +73,11 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-all_from">::all_from</a>
+    <li ><a href="#method-c-all_for">::all_for</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-numrounds">#numrounds</a>
     
   </ul>
 </div>
@@ -88,6 +92,29 @@
 
   <section class="description">
     
+<p>This class facilitates the display of <a href="Bracket.html">Bracket</a>
+contests, visually linking them together so that the advancement of winners
+is clearly obvious. In order to achieve this result, this class acts as a
+container for a number of <a href="Bracketpairing.html">Bracketpairing</a>
+objects. This container organizes the pairs and provides access to the
+“root” pairing, which is the terminal pairing (i.e. “championship” or last
+round or whatever pairing from which neither <a href="Team.html">Team</a>
+advances) and also provides the number of rounds of pairings. The number of
+rounds is the maximum depth of the binary tree.</p>
+
+<p>Note that there might be more than one <a href="Bracket.html">Bracket</a>
+for a <a href="Bracketgrouping.html">Bracketgrouping</a>.</p>
+
+<p>Attributes are:</p>
+<dl class="rdoc-list label-list"><dt>pairings
+<dd>
+<p>Array of all <a href="Bracketpairing.html">Bracketpairing</a> objects in
+this <a href="Bracket.html">Bracket</a></p>
+</dd><dt>terminalpairing
+<dd>
+<p>“root” of the “tree”</p>
+</dd></dl>
+
   </section>
 
   
@@ -101,6 +128,40 @@
     
 
     
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-pairings" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pairings</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-terminalpairing" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">terminalpairing</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
 
     
      <section id="public-class-5Buntitled-5D-method-details" class="method-section">
@@ -109,10 +170,10 @@
        </header>
 
     
-      <div id="method-c-all_from" class="method-detail ">
+      <div id="method-c-all_for" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">all_from</span><span
+          <span class="method-name">all_for</span><span
             class="method-args">(bgrouping)</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -122,14 +183,111 @@
 
         <div class="method-description">
           
-          <p>Bracket(s) is(are) instantiated by controller via this class method</p>
+          <p>Each <a href="Bracket.html">Bracket</a> is instantiated by a controller via
+this class method. This method first finds all terminal pairings for the
+the given <a href="Bracketgrouping.html">Bracketgrouping</a>, and then
+creates a <a href="Bracket.html">Bracket</a> for each one.</p>
           
           
 
           
-          <div class="method-source-code" id="all_from-source">
-            <pre><span class="ruby-comment"># File lib/bracket.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all_from</span>(<span class="ruby-identifier">bgrouping</span>)
+          <div class="method-source-code" id="all_for-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all_for</span>(<span class="ruby-identifier">bgrouping</span>)
+   <span class="ruby-identifier">bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-identifier">bgrouping</span>)
+   <span class="ruby-identifier">bracketcontestants</span> = (<span class="ruby-identifier">bracketcontests</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span><span class="ruby-identifier">bc</span>.<span class="ruby-identifier">homecontestant</span>})<span class="ruby-operator">+</span>
+                          (<span class="ruby-identifier">bracketcontests</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span><span class="ruby-identifier">bc</span>.<span class="ruby-identifier">awaycontestant</span>})
+   <span class="ruby-identifier">priorcontests</span> = <span class="ruby-identifier">bracketcontestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">priorcontest</span>()}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">priorcontest</span>()}
+   <span class="ruby-identifier">terminalcontests</span> = <span class="ruby-identifier">bracketcontests</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">priorcontests</span>
+   <span class="ruby-identifier">terminalcontests</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">tc</span><span class="ruby-operator">|</span> <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tc</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(bcontest)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The instantiation of a <a href="Bracket.html">Bracket</a> begins with the
+terminal (“root”) pairing and grabs each prior <a
+href="Bracketcontest.html">Bracketcontest</a> within the <a
+href="Bracketgrouping.html">Bracketgrouping</a>, where a prior <a
+href="Bracketcontest.html">Bracketcontest</a> is defined as one whose
+winner moves on to this the currently considered pairing.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">bcontest</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pairings</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">numrounds</span> = <span class="ruby-value">1</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">terminalpairing</span> = <span class="ruby-constant">Bracketpairing</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">1</span>, <span class="ruby-identifier">bcontest</span>)
+  <span class="ruby-identifier">nr</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">numrounds</span>()
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pairings</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">roundnum</span> = <span class="ruby-identifier">nr</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">-</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">roundnum</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-numrounds" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">numrounds</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>During construction of the collection of pairings, the round numbers start
+with the “root”, or terminalpairing, at 1. After construction, the round
+numbers are all adjusted so that the most extreme leaf is at 1 and the
+terminal pairing is at the depth of the tree. This method returns the
+maximum round number found,  so it works both before adjustment and after
+adjustment.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="numrounds-source">
+            <pre><span class="ruby-comment"># File lib/bracket.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">numrounds</span>()
+  <span class="ruby-ivar">@numrounds</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pairings</span>.<span class="ruby-identifier">max_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">roundnum</span>}.<span class="ruby-identifier">roundnum</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
