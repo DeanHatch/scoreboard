@@ -1,4 +1,4 @@
-class SupportEmailer < ActionMailer::Base
+class SupportEmailer < ActionMailer  # ::Base
   default from: "support@online-scoreboard.net"
 
   # Subject can be set in your I18n file at config/locales/en.yml
