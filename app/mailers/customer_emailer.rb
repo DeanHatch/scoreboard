@@ -10,6 +10,6 @@ class CustomerEmailer < ActionMailer::Base
     @greeting = "Hi"
 
     #mail to: "to@example.org"
-    mail to: "dean.hatch@milehighsoftware.com"
+    mail to: recipient
   end
 end

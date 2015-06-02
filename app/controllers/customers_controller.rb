@@ -41,7 +41,7 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         #CustomerMailer.welcome(@customer.userid).deliver_later
-	CustomerEmailer.welcome(@customer.userid)
+	CustomerEmailer.welcome(@customer.userid).deliver
 	session[:customer_id] = @customer.id
 	format.html { redirect_to(:action => "edit" ) }
       else
