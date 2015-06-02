@@ -1,5 +1,5 @@
 class SupportEmailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "support@online-scoreboard.net"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -11,6 +11,6 @@ class SupportEmailer < ActionMailer::Base
     logger.info "Param Hash is: "+paramhash.inspect()
     @greeting = "Hi"
     logger.info "Sending Mail to: "+paramhash["fromaddr"]
-   mail to: paramhash["fromaddr"]
+    mail to: paramhash["fromaddr"]
   end
 end

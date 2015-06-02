@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
   
   def send_us_a_message()
     SupportEmailer.rant(params)
-    #redirect_to :thanks_for_the_message
+    redirect_to :thanks_for_the_message
   end
   
 end
