@@ -64,12 +64,12 @@ class Team < ActiveRecord::Base
 	
 	# Used for Soccer Results.
 	def goals_for()
-	  self.as_regular_contestants.select{|c| c.score}.collect{|c| c.score}.inject{|gf, c| gf + c}
+	  self.as_regular_contestants.select{|c| c.score}.collect{|c| c.score}.inject{|gf, c| gf + c} || 0
 	end
 	
-	# Used fo Soccer Results.
+	# Used for Soccer Results.
 	def goals_against()
-	  self.as_regular_contestants.select{|c| c.opponent.score}.collect{|c| c.opponent.score}.inject{|gf, c| gf + c}
+	  self.as_regular_contestants.select{|c| c.opponent.score}.collect{|c| c.opponent.score}.inject{|gf, c| gf + c} || 0
 	end
 	
 	# Goal Differential used in Soccer Results.
