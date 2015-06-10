@@ -1,9 +1,9 @@
 
 <h4><%=@bracket.numrounds() %> Rounds</h4>
-<hr/>
 
       <!-- Show Each Bracket -->
     <% @brackets.each do |brckt| %>
+<hr/>
 <div class="bracket">
 <%= raw(bc_to_div(brckt.terminalpairing)) %>
 </div>
