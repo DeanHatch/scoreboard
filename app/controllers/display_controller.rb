@@ -41,6 +41,7 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	  end
 	  @what_to_render = (case what2show
 				when "bracket" 
+				  @brackets = Bracket.all_for(@grouping)
  				  @bracketgrouping = Bracketgrouping.find(params[:id])
 				  @bracketcontests = Bracketcontest.where(bracketgrouping: @bracketgrouping)
 				  logger.info("Bracket Contests: #{@bracketcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
