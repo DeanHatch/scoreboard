@@ -4,7 +4,7 @@
     <%= label_tag :grouping %><br>
     <%= select_tag :grouping_id,
 		      options_for_select(@groupings.select{|g| g.has_teams?}.
-		                                                collect {|g| [ g.hierarchy.join(' - ') + g.all_teams.size.to_s, g.id ]}) %>
+		                                                collect {|g| [ g.hierarchy.join(' - '), g.id ]}) %>
   </div>
   
   <div class="field">

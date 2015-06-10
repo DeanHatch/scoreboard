@@ -37,7 +37,7 @@ class Bracket < Object
     # the currently considered pairing.
   def initialize(bcontest)
     self.pairings = []
-    self.numrounds = 1
+    #self.numrounds = 1
     self.terminalpairing = Bracketpairing.new(self, 1, bcontest)
     nr = self.numrounds()
     self.pairings.each{|p| p.roundnum = nr+1-p.roundnum}

@@ -58,8 +58,7 @@ class DisplayController < NestedController # Formerly < ApplicationController
 				when "standings" 
 				 'grouping_standings'   
 				else # default if nothing specified 
-					@grouping.has_teams? ? ('grouping_standings') :
-						(@grouping.bracket_grouping ? 'grouping_bracket' : 'grouping_nothing')  
+					@grouping.has_teams? ? 'grouping_standings' : 'grouping_nothing'
 				end ) # of case
 
   end
