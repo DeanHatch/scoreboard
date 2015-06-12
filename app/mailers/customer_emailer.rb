@@ -6,7 +6,12 @@ class CustomerEmailer < ActionMailer::Base
   #
   #   en.customer_emailer.welcome.subject
   #
-  def welcome(recipient)
+  def welcome(customer)
+    @greeting = "Hi"
+    @customer = customer
+    mail to: customer.userid
+  end
+  def welcomee(recipient)
     @greeting = "Hi"
 
     #mail to: "to@example.org"

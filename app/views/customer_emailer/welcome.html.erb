@@ -1,5 +1,22 @@
 <h1>Welcome to Online-Scoreboard.net!</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/customer_emailer/welcome.html.erb
+<%= @customer.name %>,
+welcome to Online-Scoreboard.net! This is the place where you can manage schedules, post results, and keep teams and fans informed with up to the minute scores and schedules. 
+</p>
+
+<p>
+Use this link to log on: <%= new_customer_session_url %>
+</p>
+
+<p>
+(You might want to bookmark that one.) 
+</p>
+
+<p>
+Welcome aboard! 
+</p>
+
+<p>
+P.S. I have attached a Guide to this email that will help you get started. 
 </p>

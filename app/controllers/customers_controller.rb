@@ -36,14 +36,14 @@ class CustomersController < ApplicationController
 
   # POST /customers
   def create
-    @customer = Customer.new(new_customer_params)
+    @customer = Customer.new(customer_params)
 
     respond_to do |format|
       if @customer.save
         #CustomerMailer.welcome(@customer.userid).deliver_later
-	CustomerEmailer.welcome(@customer.userid).deliver
+	CustomerEmailer.welcome(@customer).deliver
 	session[:customer_id] = @customer.id
-	format.html { redirect_to(:action => "edit" ) }
+	format.html {  redirect_to greet_customer_path }
       else
         format.html { render :new }
       end

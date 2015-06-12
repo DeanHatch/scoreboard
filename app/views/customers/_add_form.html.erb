@@ -16,6 +16,19 @@
     <%= f.email_field :userid, :size => 80 %>
   </div>
   <div class="field">
+    <%= f.label :name, 'Organization Name' %>
+    <%= f.text_field :name, :size => 60 %>
+  </div>
+  <fieldset>
+  <div class="field">
+    <%= f.label :phone, 'Phone' %>
+    <%= f.telephone_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :website, 'Your Organization Web Site Home Page:' %>
+    <%= f.url_field :website %>
+  </div>
+  <div class="field">
     <%= f.label :hashed_password, 'Password' %>
     <%= f.password_field :password, :size => 40 %>
   </div>
