@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526121457) do
+ActiveRecord::Schema.define(version: 20150615185100) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150526121457) do
     t.string   "name"
     t.string   "phone"
     t.string   "website"
+    t.string   "reg_confirm_token"
   end
 
   create_table "groupings", force: true do |t|

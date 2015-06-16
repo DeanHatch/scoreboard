@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>registration_confirmation - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Design+for+Confirmation+of+Customer+Registration">Design for Confirmation of Customer Registration</a>
+    <li><a href="#label-What-27s+Needed">What&#39;s Needed</a>
+    <li><a href="#label-Customer+Model">Customer Model</a>
+    <li><a href="#label-Customer+Emailer+and+Customer+Emailer+Views">Customer Emailer and Customer Emailer Views</a>
+    <li><a href="#label-Customers+Controller">Customers Controller</a>
+    <li><a href="#label-Customer+Views">Customer Views</a>
+    <li><a href="#label-Tests">Tests</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../sdlc/design/registration_confirmation_rdoc.html">registration_confirmation</a>
+  
+    <li><a href="../../sdlc/functionalSpecs_rdoc.html">functionalSpecs</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page sdlc/design/registration_confirmation.rdoc">
+
+<h2 id="label-Design+for+Confirmation+of+Customer+Registration">Design for Confirmation of Customer Registration<span><a href="#label-Design+for+Confirmation+of+Customer+Registration">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Customers are identified by their email addresses, which are provided at
+Customer Registration. To confirm that an email address is valid and
+correct, an email will be sent to each new Customer as they register.  The
+email will welcome the Customer to the service. The email will include a
+link the Customer must follow to complete the Registration. The link will
+include a token which must match the token, stored with the Customer
+record, that was generated for the email. Tokens will be unique.  Until the
+link has been followed, the Customer may not create any Competitions.</p>
+
+<h3 id="label-What-27s+Needed">What&#39;s Needed<span><a href="#label-What-27s+Needed">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>This enhancement will affect each aspect of the M-V-C framework.</p>
+
+<p>Here&#39;s what needs to be added/changed:</p>
+
+<h4 id="label-Customer+Model">Customer Model<span><a href="#label-Customer+Model">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>A string column needs to be added to the model to hold the confirmation
+token.</p>
+
+<h4 id="label-Customer+Emailer+and+Customer+Emailer+Views">Customer Emailer and Customer Emailer Views<span><a href="#label-Customer+Emailer+and+Customer+Emailer+Views">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The Welcome emailer and the two (html and text) Welcome email views need 
+to be changed to include a link and instructions to the Customer that they
+must follow the link to complete their Registration.</p>
+
+<h4 id="label-Customers+Controller">Customers Controller<span><a href="#label-Customers+Controller">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>This is where the bulk of the changes need to be made.</p>
+
+<p>*</p>
+
+<h4 id="label-Customer+Views">Customer Views<span><a href="#label-Customer+Views">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<h3 id="label-Tests">Tests<span><a href="#label-Tests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Public Display Viewers - These are</p>
+</li><li>
+<p>Customers - Customers are the owners of Competitions and, as such, can
+create a Competition and once a Competition is created, the owner can do
+anything to the Competition, including setting or changing a password to
+limit Manager access and setting or changing a password to limit Scorer
+access.</p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

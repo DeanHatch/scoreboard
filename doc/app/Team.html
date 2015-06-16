@@ -2,23 +2,20 @@
 
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 
-<title>class Team - Rails Application Documentation</title>
-
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
+<title>class Team - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="class">
@@ -392,7 +389,7 @@ score.</p>
 
         <div class="method-description">
           
-          <p>Used fo Soccer Results.</p>
+          <p>Used for Soccer Results.</p>
           
           
 
@@ -400,7 +397,7 @@ score.</p>
           <div class="method-source-code" id="goals_against-source">
             <pre><span class="ruby-comment"># File app/models/team.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">goals_against</span>()
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">inject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gf</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">inject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gf</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>} <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -433,7 +430,7 @@ score.</p>
           <div class="method-source-code" id="goals_for-source">
             <pre><span class="ruby-comment"># File app/models/team.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">goals_for</span>()
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">inject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gf</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">inject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gf</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>} <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -630,7 +627,7 @@ score.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

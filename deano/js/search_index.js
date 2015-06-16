@@ -1,1 +1,0 @@
-var search_data = {"index":{"searchIndex":["functionalspecs"],"longSearchIndex":[""],"info":[["functionalSpecs","","functionalSpecs_rdoc.html","","<p>Online-Scoreboard.net Functional Specification\n<p>Overview\n\n<pre>This functional specification is still in development ...</pre>\n"]]}}

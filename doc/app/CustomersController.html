@@ -2,23 +2,20 @@
 
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 
-<title>class CustomersController - Rails Application Documentation</title>
-
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
+<title>class CustomersController - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="class">
@@ -154,7 +151,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="change_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_password</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -188,12 +185,14 @@ Session.</p>
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">new_customer_params</span>)
+  <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">customer_params</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">save</span>
-            <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>
-            <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;edit&quot;</span> ) }
+      <span class="ruby-comment">#CustomerMailer.welcome(@customer.userid).deliver_later</span>
+      <span class="ruby-constant">CustomerEmailer</span>.<span class="ruby-identifier">welcome</span>(<span class="ruby-ivar">@customer</span>).<span class="ruby-identifier">deliver</span>
+      <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_path</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
     <span class="ruby-keyword">end</span>
@@ -228,7 +227,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="create_competition-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 87</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_competition</span>
         <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">competition_params</span>)
         <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">customer</span> = <span class="ruby-ivar">@customer</span>
@@ -336,7 +335,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="logout-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 101</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logout</span>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-keyword">nil</span>
         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Bye.&#39;</span>
@@ -444,7 +443,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="new_competition-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_competition</span>
         <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -477,11 +476,11 @@ Session.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">customer_params</span>)
-            <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Changes made.&#39;</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Changes made.&#39;</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_path</span>}
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
@@ -517,7 +516,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="update_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_password</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">customer_params</span>)
@@ -547,7 +546,7 @@ Session.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

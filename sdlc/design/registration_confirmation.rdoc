@@ -1,0 +1,42 @@
+== Design for Confirmation of Customer Registration
+
+Customers are identified by their email addresses, which are provided at Customer Registration.
+To confirm that an email address is valid
+and correct, an email will be sent to each new Customer as they register. 
+The email will welcome the Customer to the service.
+The email will include a link the Customer must follow to complete the Registration.
+The link will include a token which must match the token, stored with the Customer record,
+that was generated for the email. Tokens will be unique. 
+Until the link has been followed, the Customer may not create any Competitions.
+
+=== What's Needed
+
+
+This enhancement will affect each aspect of the M-V-C framework.
+
+Here's what needs to be added/changed:
+
+==== Customer Model
+A string column needs to be added to the model to hold the confirmation token.
+
+==== Customer Emailer and Customer Emailer Views
+The Welcome emailer and the two (html and text) Welcome email views need 
+to be changed to include a link and instructions to the Customer that they
+must follow the link to complete their Registration.
+
+==== Customers Controller
+This is where the bulk of the changes need to be made.
+
+* 
+
+==== Customer Views
+
+
+=== Tests
+
+*  Public Display Viewers - These are 
+*  Customers - Customers are the owners of Competitions and, as such, can create a Competition
+   and once a Competition is created, the owner can do anything to the Competition,
+   including setting or changing a password to limit Manager access and
+   setting or changing a password to limit Scorer access.
+
