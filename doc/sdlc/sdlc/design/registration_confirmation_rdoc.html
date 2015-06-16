@@ -61,7 +61,11 @@
     <li><a href="#label-Customer+Emailer+and+Customer+Emailer+Views">Customer Emailer and Customer Emailer Views</a>
     <li><a href="#label-Customers+Controller">Customers Controller</a>
     <li><a href="#label-Customer+Views">Customer Views</a>
+    <li><a href="#label-routes.rb">routes.rb</a>
     <li><a href="#label-Tests">Tests</a>
+    <li><a href="#label-Unit+Tests">Unit Tests</a>
+    <li><a href="#label-Functional+Tests">Functional Tests</a>
+    <li><a href="#label-Other+Tests-3F">Other Tests?</a>
   </ul>
 </div>
 
@@ -104,7 +108,10 @@ link has been followed, the Customer may not create any Competitions.</p>
 <h4 id="label-Customer+Model">Customer Model<span><a href="#label-Customer+Model">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
 <p>A string column needs to be added to the model to hold the confirmation
-token.</p>
+token. The initialize method gives this string its value and saves it with
+the rest of the record. The model should also have a confirmed? method
+which is <strong>true</strong> iff the confirmation token is
+<strong>nil</strong>.</p>
 
 <h4 id="label-Customer+Emailer+and+Customer+Emailer+Views">Customer Emailer and Customer Emailer Views<span><a href="#label-Customer+Emailer+and+Customer+Emailer+Views">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
@@ -115,21 +122,50 @@ must follow the link to complete their Registration.</p>
 <h4 id="label-Customers+Controller">Customers Controller<span><a href="#label-Customers+Controller">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
 <p>This is where the bulk of the changes need to be made.</p>
-
-<p>*</p>
+<ul><li>
+<p>At end of create action in customers controller, the Customer is NOT logged
+in (i.e.  customer id is not kept in session.)</p>
+</li><li>
+<p>Create a confirm action to accept/verify confirmation token and set
+confirmation token to <strong>nil</strong>.</p>
+</li><li>
+<p>Correctly specified confirm action should result in Customer being logged
+in.</p>
+</li><li>
+<p>Navigation items on left should only appear if confirmed.</p>
+</li></ul>
 
 <h4 id="label-Customer+Views">Customer Views<span><a href="#label-Customer+Views">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
+<p>An additional view must be provided to inform the Customer that they need
+to (or did) complete their Registration Confirmation.</p>
+
+<h4 id="label-routes.rb">routes.rb<span><a href="#label-routes.rb">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Add route to confirmation action in customers controller.</p>
+
 <h3 id="label-Tests">Tests<span><a href="#label-Tests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<h4 id="label-Unit+Tests">Unit Tests<span><a href="#label-Unit+Tests">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p>Public Display Viewers - These are</p>
+<p>New Customer must have a non-nil confirmation token.</p>
 </li><li>
-<p>Customers - Customers are the owners of Competitions and, as such, can
-create a Competition and once a Competition is created, the owner can do
-anything to the Competition, including setting or changing a password to
-limit Manager access and setting or changing a password to limit Scorer
-access.</p>
+<p>New Customer confirmed? == <strong>false</strong>.</p>
+</li><li>
+<p>Setting confirmation token to <strong>nil</strong> results in confirmed? ==
+<strong>true</strong>.</p>
 </li></ul>
+
+<h4 id="label-Functional+Tests">Functional Tests<span><a href="#label-Functional+Tests">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p>Customer creation results in email.</p>
+</li><li>
+<p>Valid confirm results in <strong>nil</strong> confirmation token.</p>
+</li><li>
+<p>Valid confirm results in logged in Customer (i.e. customer id in session.)</p>
+</li></ul>
+
+<h4 id="label-Other+Tests-3F">Other Tests?<span><a href="#label-Other+Tests-3F">&para;</a> <a href="#top">&uarr;</a></span></h4>
 </main>
 
 

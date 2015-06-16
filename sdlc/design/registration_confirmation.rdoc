@@ -18,6 +18,9 @@ Here's what needs to be added/changed:
 
 ==== Customer Model
 A string column needs to be added to the model to hold the confirmation token.
+The #initialize method gives this string its value and saves it with the rest of the record.
+The model should also have a #confirmed? method which is *true* iff the confirmation
+token is *nil*.
 
 ==== Customer Emailer and Customer Emailer Views
 The Welcome emailer and the two (html and text) Welcome email views need 
@@ -27,16 +30,33 @@ must follow the link to complete their Registration.
 ==== Customers Controller
 This is where the bulk of the changes need to be made.
 
-* 
-
+* At end of #create action in customers controller, the Customer is NOT logged in
+  (i.e.  customer id is not kept in session.)
+* Create a #confirm action to accept/verify confirmation token and
+  set confirmation token to *nil*.
+* Correctly specified #confirm action should result in Customer being logged in.
+* Navigation items on left should only appear if confirmed.
+ 
 ==== Customer Views
+An additional view must be provided to inform the Customer that they need to (or did)
+complete their Registration Confirmation.
 
+
+==== routes.rb
+Add route to confirmation action in customers controller.
 
 === Tests
 
-*  Public Display Viewers - These are 
-*  Customers - Customers are the owners of Competitions and, as such, can create a Competition
-   and once a Competition is created, the owner can do anything to the Competition,
-   including setting or changing a password to limit Manager access and
-   setting or changing a password to limit Scorer access.
+==== Unit Tests
+*  New Customer must have a non-nil confirmation token.
+*  New Customer #confirmed? == *false*.
+* Setting confirmation token to *nil* results in #confirmed? == *true*.
 
+
+==== Functional Tests
+*  Customer creation results in email.
+*  Valid #confirm results in *nil* confirmation token.
+* Valid #confirm results in logged in Customer (i.e. customer id in session.)
+
+
+==== Other Tests?
