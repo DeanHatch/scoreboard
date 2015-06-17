@@ -4,21 +4,28 @@
 class CustomersController < ApplicationController
   before_action :set_customer_from_session, except: [:new, :create, :confirm, :reset_password]
 
-  
-  # Link Array. 
-  def nav_link_array()
-    fullnav =  [ navitem('Change Password' , :change_password_customer),
+  def fullnav()
+      [ navitem('Change Password' , :change_password_customer),
 	     navitem('Edit Profile' , :edit_customer),
 	     navitem('Create a New Competition' , :new_competition_customer),
 	     navitem('Manage My Competitions' , choose_competition_manager_path(@customer), target: "_blank"),
 	     navitem('Logout' , :logout_customer_session) ] 
-    unconfirmed = [ fullnav.last() ]
-    loggedout = [ navitem('Login' , :new_customer_session),
-	     navitem('Register' , :new_customer)]
+  end
+
+  def unconfirmed()
+      [ navitem('Logout' , :logout_customer_session) ] 
+  end
+
+  def loggedout()
+      [ navitem('Logout' , :logout_customer_session) ] 
+  end
+  
+  # Link Array. 
+  def nav_link_array()
         # Can be one of three states: 1) logged-in and confirmed, 2) logged-in and unconfirmed, 3) not logged in.
     session[:customer_id] ? 
-          (Customer.find(session[:customer_id]).confirmed? ? fullnav : unconfirmed) :
-	   loggedout
+          (Customer.find(session[:customer_id]).confirmed? ? fullnav() : unconfirmed()) :
+	   loggedout()
   end
  
 
