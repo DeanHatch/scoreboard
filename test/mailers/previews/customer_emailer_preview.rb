@@ -3,7 +3,7 @@ class CustomerEmailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/customer_emailer/welcome
   def welcome
-    CustomerEmailer.welcome
+    CustomerEmailer.welcome(Customer.new())
   end
 
 end

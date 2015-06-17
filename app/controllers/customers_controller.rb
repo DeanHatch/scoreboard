@@ -2,27 +2,32 @@
 # Session via a login page/action. Subsequent actions are performed on a
 # single Customer, identified by the customer_id in the Session.
 class CustomersController < ApplicationController
-  before_action :set_customer_from_session, except: [:new, :create, :reset_password]
+  before_action :set_customer_from_session, except: [:new, :create, :confirm, :reset_password]
 
   
   # Link Array. 
   def nav_link_array()
-	  session[:customer_id] ?
-	  [ navitem('Change Password' , :change_password_customer),
+    fullnav =  [ navitem('Change Password' , :change_password_customer),
 	     navitem('Edit Profile' , :edit_customer),
 	     navitem('Create a New Competition' , :new_competition_customer),
 	     navitem('Manage My Competitions' , choose_competition_manager_path(@customer), target: "_blank"),
-	     navitem('Logout' , :logout_customer_session) ]  :
-	  [ navitem('Login' , :new_customer_session),
+	     navitem('Logout' , :logout_customer_session) ] 
+    unconfirmed = [ fullnav.last() ]
+    loggedout = [ navitem('Login' , :new_customer_session),
 	     navitem('Register' , :new_customer)]
+        # Can be one of three states: 1) logged-in and confirmed, 2) logged-in and unconfirmed, 3) not logged in.
+    session[:customer_id] ? 
+          (Customer.find(session[:customer_id]).confirmed? ? fullnav : unconfirmed) :
+	   loggedout
   end
  
 
   # GET /customers/1
   # GET /customers/1.json
   def greet
-	  Competition.default_cust(@customer.id)
-	  @competitions = Competition.all
+    Competition.default_cust(@customer.id)
+    @competitions = Competition.all
+    flash[:notice] = 'You need to confirm your Registration.' unless @customer.confirmed?
   end
 
   # GET /customers/new
@@ -46,6 +51,21 @@ class CustomersController < ApplicationController
 	format.html {  redirect_to greet_customer_path }
       else
         format.html { render :new }
+      end
+    end
+  end
+
+  # GET /customer/:id/confirm/:reg_confirm_token
+  def confirm
+    respond_to do |format|
+      @customer = Customer.find(params[:id])
+      if @customer.reg_confirm_token == params[:reg_confirm_token]
+        session[:customer_id] = @customer.id
+        @customer.reg_confirm_token = nil
+        @customer.save!()
+        format.html {redirect_to(:action => "greet" ) }
+        else
+         format.html {  redirect_to greet_customer_path }
       end
     end
   end
@@ -129,6 +149,11 @@ class CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:userid, :password, :password_confirmation,
 							:name, :phone, :website)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def confirm_params
+      params.require(:customer).permit(:reg_confirm_token)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

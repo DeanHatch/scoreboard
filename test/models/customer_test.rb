@@ -25,4 +25,20 @@ class CustomerTest < ActiveSupport::TestCase
 	   cust2.name = 'x'+customers(:alwaysright).name # distinct
 	   assert ! cust2.valid? , "Duplicate Userid Should Not Have Been Allowed!"
    end
+  # 
+   test "new customer must have conf token" do
+     cust2 = Customer.new
+     assert ! cust2.reg_confirm_token.nil? , "New Customer Must Have Confirmation Token!"
+   end
+  # 
+   test "new customer must not be confirmed" do
+     cust2 = Customer.new
+     assert ! cust2.confirmed? , "New Customer Must Not Be Confirmed!"
+   end
+  # 
+   test "nil confirm token means Customer is confirmed" do
+     cust2 = Customer.new
+     cust2.reg_confirm_token = nil
+     assert cust2.confirmed? , "Nilled confirm token means Customer is Confirmed!"
+   end
 end

@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20150615185100) do
     t.integer  "seeding"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bracketgrouping_id"
   end
 
   create_table "contests", force: true do |t|

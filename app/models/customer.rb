@@ -14,6 +14,19 @@ class Customer < ActiveRecord::Base
 	
 	validate :password_non_blank
 	
+	  # Add creation of non-nil confirmation token to 
+	  # inherited initialization.
+	def initialize(attributes = nil, options = {})
+	  super(attributes, options)
+	  self.reg_confirm_token = 'xyzzy'
+	end
+	  
+	  # Initialize creates non-nil token and confirmation nils the token.
+	  # Customer Registration is confirmed if the token is nil.
+	def confirmed?()
+	  self.reg_confirm_token.nil?
+	end
+	
 	def self.authenticate(userid, password)
 		cust = self.find_by_userid(userid)
 		if cust

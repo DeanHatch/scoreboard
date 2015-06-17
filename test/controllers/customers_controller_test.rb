@@ -28,8 +28,27 @@ class CustomersControllerTest < ActionController::TestCase
 					phone: "(111) 555-1212",
 					website: "www.id.com" }
     end
+    assert_redirected_to greet_customer_path
+  end
 
-    assert_redirected_to edit_customer_path
+  test "should handle customer confirmation correctly" do
+      session[:customer_id] = nil
+      post :create, customer: { userid: "user@id.com",
+					password: "yabba",
+					password_confirmation: "yabba",
+					name: "Fred Flintstone",
+					phone: "(111) 555-1212",
+					website: "www.id.com" }
+    # Customer we just created should not yet be confirmed
+    mynewcust = Customer.find_by(userid: "user@id.com")
+    assert ! mynewcust.confirmed?
+    # Change the token to nil and then it should be confirmed
+    get :confirm, {id: mynewcust,
+			reg_confirm_token: mynewcust.reg_confirm_token }
+    mynewcust2 = Customer.find_by(userid: "user@id.com")
+    assert mynewcust2.confirmed?
+    # Is this a valid assertion to make?
+    assert ! session[:customer_id].nil?
   end
 
   test "should show customer" do

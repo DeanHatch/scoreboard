@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'display/:competition_id/team/:id', to: 'display#team', as: :display_team
    
   #post 'customer/new', to: 'customers#create'
+  get '/customer/:id/confirm/:reg_confirm_token', to: 'customers#confirm', as: :confirm_registration
   resource :customer, except: :destroy do
 	  member do
 		  get 'greet'  # analgous to member #index

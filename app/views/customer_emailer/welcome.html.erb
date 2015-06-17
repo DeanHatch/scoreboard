@@ -6,6 +6,9 @@ welcome to Online-Scoreboard.net! This is the place where you can manage schedul
 </p>
 
 <p>
+Use this link to Confirm your Registration: <%= confirm_registration_url(@customer, @customer.reg_confirm_token) %>
+</p>
+<p>
 Use this link to log on: <%= new_customer_session_url %>
 </p>
 
