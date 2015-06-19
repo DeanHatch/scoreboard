@@ -4,6 +4,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer_from_session, except: [:new, :create, :confirm, :reset_password]
 
+  # Use this Link Array when Customer is both Confirmed and Logged In. 
   def fullnav()
       [ navitem('Change Password' , :change_password_customer),
 	     navitem('Edit Profile' , :edit_customer),
@@ -12,10 +13,12 @@ class CustomersController < ApplicationController
 	     navitem('Logout' , :logout_customer_session) ] 
   end
 
+  # Use this Link Array when Customer has Logged In but is not yet Confirmed. 
   def unconfirmed()
       [ navitem('Logout' , :logout_customer_session) ] 
   end
 
+  # Link Array. 
   def loggedout()
       [ navitem('Logout' , :logout_customer_session) ] 
   end
@@ -139,7 +142,12 @@ class CustomersController < ApplicationController
   
     # Use callbacks to share common setup or constraints between actions.
     def set_customer_from_session
-      @customer = Customer.find(session[:customer_id])
+      if session[:customer_id]
+        @customer = Customer.find(session[:customer_id])
+	else
+	@customer = Customer.new
+	redirect_to :logout_customer_session
+	end
       rescue
       begin
 	@customer = Customer.new

@@ -33,6 +33,8 @@ class NestedController  < ApplicationController
 	# Once a Customer has been identified, the response prompts
 	# the user to choose which of the Customer's Competitions to use.
 	def choose_competition
+	  logger.info ("Customer ID #{params[:customer_id]} was passed...")
+	  Competition.default_cust(params[:customer_id])
 	end
 	
 

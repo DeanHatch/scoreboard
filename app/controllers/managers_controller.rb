@@ -19,11 +19,13 @@ class ManagersController < NestedController
 	# linked pages is not followed (e.g. with a bookmark or the
 	# browser's BACK functionality.
      def choose_customer()
-        redirect_to :greet_manager if session[:manager_id]
+       super()
+       redirect_to :greet_manager if session[:manager_id]
     end
  
      def choose_competition()
-        session[:manager_id] = nil
+       super()
+       session[:manager_id] = nil
     end
  
   

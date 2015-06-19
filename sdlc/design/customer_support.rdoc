@@ -1,0 +1,52 @@
+== Design for Customer Support
+
+Customers are ...
+
+=== What's Needed
+
+
+This enhancement will add an entire new function to the Online-Scoreboard.net 
+application. The new function will only be used by Online-Scoreboard.net support staff.
+
+Here's what needs to be added:
+
+==== Customer Support Model
+This is essentially a Problem/Issue Ticket tracking table and model.
+
+==== Customer Support Emailer and Customer Support Emailer Views
+The primary means of communication between support staff and Customers will 
+be via email.
+
+==== Customer Support Controller
+This is where the bulk of the changes need to be made.
+
+* At end of #create action in customers controller, the Customer is NOT logged in
+  (i.e.  customer id is not kept in session.)
+* Create a #confirm action to accept/verify confirmation token and
+  set confirmation token to *nil*.
+* Correctly specified #confirm action should result in Customer being logged in.
+* Navigation items on left should only appear if confirmed.
+ 
+==== Customer Support Views
+An additional view must be provided to inform the Customer that they need to (or did)
+complete their Registration Confirmation.
+
+
+==== routes.rb
+Add routes to actions in customer support controller.
+
+=== Tests
+
+==== Unit Tests
+*  N
+*  N
+*  S
+
+
+==== Functional Tests
+*  C
+*  V
+*  V
+
+
+==== Other Tests?

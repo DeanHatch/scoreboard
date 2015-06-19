@@ -6,6 +6,24 @@ class ScorersController < NestedController # Formerly < ApplicationController
 	  @scorer ? scorer_link_array() : []
   end
   
+   
+	# Display list of Customers for user to select one
+	# unless we ended up here after a Competition has
+	# been chosen and the Scorer authenticated.
+	# This could happen if the normal sequence of
+	# linked pages is not followed (e.g. with a bookmark or the
+	# browser's BACK functionality.
+     def choose_customer()
+       super()
+       redirect_to :scorer_index if session[:scorer_id]
+    end
+
+     def choose_competition()
+       super()
+       session[:scorer_id] = nil
+    end
+ 
+
  
     # Create two lists of Contests, one of Contests with
     # scores and one of Contests without scores.
