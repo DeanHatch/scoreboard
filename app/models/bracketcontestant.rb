@@ -76,9 +76,9 @@ class Bracketcontestant < Contestant
 	end
 						
 	# Provide conditional information.
-	def briefname
+	def briefname()
 	  case
- 	    when self.teamname() then self.teamname()
+ 	    when self.team() then self.teamname()
 	    when self.contestantlabel() then self.contestantlabel()
 	    when self.seeding() then ('#' + (self.seeding().to_s))
 	    else "TBD - #{self.contestantcode}"
