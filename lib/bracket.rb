@@ -87,7 +87,7 @@ class Bracketpairing < Object
 
     # Text of the top portion of the Bracketpairing, that is, the Home Team.
   def top()
-    [@bcontest.homecontestant.fullname(), @bcontest.homecontestant.score().inspect()].join(" ")
+    [@bcontest.homecontestant.briefname(), @bcontest.homecontestant.score().inspect()].join(" ")
   end
 
     # Text of the middle is two parts. This is the first of the two.
@@ -102,7 +102,7 @@ class Bracketpairing < Object
 
     # Text of the bottom portion of the Bracketpairing, that is, the Away Team.
   def bottom()
-    [@bcontest.awaycontestant.fullname(), @bcontest.awaycontestant.score().inspect()].join(" ")
+    [@bcontest.awaycontestant.briefname(), @bcontest.awaycontestant.score().inspect()].join(" ")
   end
   
   def inspect()
