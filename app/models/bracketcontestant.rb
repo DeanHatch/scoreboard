@@ -79,8 +79,8 @@ class Bracketcontestant < Contestant
 	def briefname
 	  case
  	    when self.teamname() then self.teamname()
-	    when self.contestantlabel then self.contestantlabel
-	    when self.seeding then '#' + (self.seeding.to_s)
+	    when self.contestantlabel() then self.contestantlabel()
+	    when self.seeding() then '#' + (self.seeding().to_s)
 	    else "TBD"
 	  end
 	end
