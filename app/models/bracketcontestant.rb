@@ -81,7 +81,7 @@ class Bracketcontestant < Contestant
  	    when self.teamname() then self.teamname()
 	    when self.contestantlabel() then self.contestantlabel()
 	    when self.seeding() then ('#' + (self.seeding().to_s))
-	    else "TBD"
+	    else "TBD - #{self.contestantcode}"
 	  end
 	end
   
