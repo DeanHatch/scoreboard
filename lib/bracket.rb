@@ -92,7 +92,13 @@ class Bracketpairing < Object
 
     # Text of the middle is two parts. This is the first of the two.
   def upper_mid()
-    [@bcontest.name(), @bcontest.display_date(), @bcontest.display_time].join(" ")
+    @bcontest.name()
+  end
+
+
+    # Text of the middle is two parts. This is the first of the two.
+  def middle_mid()
+    [@bcontest.display_date(), @bcontest.display_time].join(" ")
   end
 
     # Text in the middle of the pairing is two parts. This is the second of the two.

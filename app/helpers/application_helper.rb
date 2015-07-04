@@ -102,7 +102,7 @@ module ApplicationHelper
   
   def bc_midcontents(pair)
     raw(content_tag(:span,
-			[pair.upper_mid, pair.lower_mid()].join().html_safe,
+			[pair.upper_mid, pair.middle_mid, pair.lower_mid()].join(tag("br")).html_safe,
 			{class: "bmid"}) )
   end
 
