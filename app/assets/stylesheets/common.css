@@ -30,11 +30,33 @@
      /* All links in RED */
 
    a { color: red; }
-   a.sellistlink {color: blue;
+
+
+
+     /* Selection List Links in BLUE. Bordered Selection List DIV. */
+
+   div.sellist {    border: solid;
+              border-width: 1px;
+              border-color: blue;
+                  overflow: auto;
+                    height: 55px;
+                     width: 75%;
+                      left: 12%;
+                  position: relative;
+                 background-color: #EEEE88;
+               }
+   a.sellistlink {   color: blue;
+                      font: normal 11px/140% Verdana, Arial, Helvetica, sans-serif;
            text-decoration: none; }
    a.sellistlink:hover { font-weight: bold;
-                         background-color: blue;
-                         color: white; }
+                    background-color: blue;
+                               color: white; }
+   ul.sellist { margin: 0;
+               padding: 0;
+            list-style: none; }
+
+
+
 
      /* Headings differ from each other only in font size */
 
