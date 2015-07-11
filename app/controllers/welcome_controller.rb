@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    customers = Customer.all()
+    customers = Customer.unscoped.all()
   end
   
   def send_us_a_message()
