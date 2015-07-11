@@ -1,7 +1,12 @@
 <h1>Display</h1>
 <h2>Which Customer&apos;s Competition?</h2>
 
+<% content_for :info_message do %>
+Click on a Customer (below) and you can choose one of that
+Customer&apos;s Competitions to show.
+<% end %>
+
 <% Customer.all.each do |cust| %>
-  <%= link_to cust.name, choose_display_competition_path(cust) %>
+  <%= link_to cust.name, choose_display_competition_path(cust), class: "sellistlink" %>
   <br/>
 <% end %>

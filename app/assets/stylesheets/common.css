@@ -30,7 +30,11 @@
      /* All links in RED */
 
    a { color: red; }
-
+   a.sellistlink {color: blue;
+           text-decoration: none; }
+   a.sellistlink:hover { font-weight: bold;
+                         background-color: blue;
+                         color: white; }
 
      /* Headings differ from each other only in font size */
 

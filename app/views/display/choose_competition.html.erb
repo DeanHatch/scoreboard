@@ -1,8 +1,13 @@
 <h1>Display</h1>
 <h2>Which Competition?</h2>
 
+<% content_for :info_message do %>
+Ok. Click on the Competition you want to see.
+<% end %>
+
+
 <% Competition.all.each do |comp| %>
   <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
-                   display_competition_path(comp) %>
+                   display_competition_path(comp), class: "sellistlink" %>
   <br/>
 <% end %>

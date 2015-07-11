@@ -12,12 +12,28 @@
     </div>
   <% end %>
   <br/>
+  
+  <fieldset>
+   <legend>Home Team</legend>
+   <%= @homecontestant.fullname %><br/>
+   <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
+   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
+		                                selected: @homecontestant.contestantcode), 
+		    {prompt: 'Which'} %>
+
+   <%= contestant_fields.select :team_id,
+		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		                                selected: @homecontestant.team_id), 
+		    {prompt: 'TBD'} %>
+  <% end %>
+  </fieldset>
+
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
     </div>
   <div class="field">
-    Date / Time:
+    <%= f.label 'Date / Time:' %>
     <%= f.select :date,
 		      options_for_select(Validdate.all.sort{|a,b| a.gamedate <=> b.gamedate}.
 		                                                 collect {|v| [ v.gamedate, v.gamedate ]},
@@ -44,30 +60,15 @@
 		                                selected: @selectedstatus), 
 		    {} %>
   </div>
-  
-  <fieldset>
-   <legend>Home Team</legend>
-   <%= @homecontestant.fullname %><br/>
-   <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
-   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
-		                                selected: @homecontestant.contestantcode), 
-		    {prompt: 'Which'} %><br/>
-<br/>
-   <%= contestant_fields.select :team_id,
-		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
-		                                selected: @homecontestant.team_id), 
-		    {prompt: 'TBD'} %>
-  <% end %>
-  </fieldset>
-
+ 
   <fieldset>
    <legend>Visitor</legend>
    <%= @awaycontestant.fullname %><br/>
    <%= fields_for :awaycontestant, @bracketcontest.awaycontestant do |contestant_fields| %>
    <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
 		                                selected: @awaycontestant.contestantcode), 
-		    {prompt: 'Which'} %><br/>
-<br/>
+		    {prompt: 'Which'} %>
+
    <%= contestant_fields.select :team_id,
 		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
 		                                selected: @awaycontestant.team_id), 
