@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
 
   def index
     customers = Customer.unscoped.all()
+    # logger.info("session info is: #{session.inspect()}")
   end
   
   def send_us_a_message()

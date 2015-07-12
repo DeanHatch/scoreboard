@@ -137,6 +137,21 @@
 
      /*  */
 
+   div.waytop { width: 840px;
+
+               height: 20px;
+                  top: 0px;
+                 left: 100px;
+               margin: 0px 0 0px 0;
+              padding: 10px 50px 10px 50px;
+           text-align: right;
+                 font: normal 8pt Verdana, Arial, Helvetica, sans-serif;
+     background-color: yellow;
+             position: absolute;
+              z-index: 5;}
+
+     /*  */
+
    div.header {	width: 940px;
 
                height: 120px;
