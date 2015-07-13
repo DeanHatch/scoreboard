@@ -43,6 +43,8 @@ class NestedController  < ApplicationController
      def set_competition(competition_id)
 	@competition_id = competition_id
 	@competition = Competition.find(competition_id)
+	rescue 
+	return redirect_to(oops_path)
 	begin
 	Validdate.default_comp(competition_id)
 	Venue.default_comp(competition_id)

@@ -1,8 +1,7 @@
 require 'bracket.rb'
 
 class DisplayController < NestedController # Formerly < ApplicationController
-     before_action :set_competition, except: [:choose_customer, :choose_competition]
-     #before_action :set_customer, only: [:choose_competition]
+     before_action :set_competition
 
     # Array of Grouping links can have nested Arrays of Grouping links,
     # but it all starts at the top. No navigation if the Competition has not
@@ -69,30 +68,10 @@ class DisplayController < NestedController # Formerly < ApplicationController
      def set_competition
 	@competition_id = params[:competition_id]
 	super(@competition_id)
-	return(redirect_to(competitions_display_url)) unless @competition_id
+	  # If we do not have a valid Competition (e.g. bad bookmark)
+	  # then go to root, Welcome page
+	return(redirect_to(welcome_index_path)) unless @competition_id
     end
 
   
-     def set_customer
-	@customer_id = params[:customer_id]
-	return(redirect_to(competitions_display_url)) unless @customer_id
-	begin
-	@customer = Customer.find(@customer_id)
-	Competition.default_cust(@customer_id)
-	rescue
-	return redirect_to(competitions_display_url)
-	end
-    end
-
-     def set_navigation
-	@customer_id = params[:customer_id]
-	return(redirect_to(competitions_display_url)) unless @customer_id
-	begin
-	@customer = Customer.find(@customer_id)
-	Competition.default_cust(@customer_id)
-	rescue
-	return redirect_to(competitions_display_url)
-	end
-    end
-
 end

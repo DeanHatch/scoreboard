@@ -1,8 +1,0 @@
-<h1>Manage a Competition</h1>
-<h2>Which Competition Do You Want to Manage?</h2>
-
-<% Competition.all.each do |comp| %>
-  <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
-                   login_manager_session_path(comp.id) %>
-  <br/>
-<% end %>

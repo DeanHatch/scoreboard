@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/index'
+  get 'oops', to: 'welcome#oops'
   get 'what_we_do', to: 'welcome#what_we_do'
   get 'whats_new', to: 'welcome#whats_new'
   get 'contact_us', to: 'welcome#contact_us'
@@ -13,8 +14,7 @@ Rails.application.routes.draw do
   get 'for_fans', to: 'welcome#for_fans'
   get 'demos', to: 'welcome#demos'
   
-  get 'display', to: 'display#choose_customer', as: :choose_display_customer
-  get 'display/customer/:customer_id', to: 'display#choose_competition', as: :choose_display_competition
+  get 'display', to: 'welcome#index'
   get 'display/:competition_id', to: 'display#index', as: :display_competition
   get 'display/:competition_id/grouping/:id(/:xyzzy)', to: 'display#grouping', as: :display_grouping
   get 'display/:competition_id/team/:id', to: 'display#team', as: :display_team
@@ -50,12 +50,6 @@ Rails.application.routes.draw do
 	   get 'logout' # , as: :logout_manager_session
   end
   resource :manager, except: [:create, :destroy ] do
-	  get 'choose_customer',
-		on: :collection
-	  get 'choose_competition_for/:customer_id',
-		to: 'managers#choose_competition',
-		on: :member,
-		as: :choose_competition
 	  member do
 		  get 'greet'  # equivalent to member #index
 		  get 'passwords'  # displays prompt page for passwords
@@ -113,11 +107,6 @@ Rails.application.routes.draw do
 		  get 'logout'
 		  end
   end
-  get 'scorer/choose_customer',
-		to: 'scorers#choose_customer'
-  get 'scorer/choose_competition_for/:customer_id',
-		to: 'scorers#choose_competition',
-		as: :scorer_choose_competition
   get 'scorer/index',  to: 'scorers#index'
   patch 'scorer/report',  to: 'scorers#report'
  
