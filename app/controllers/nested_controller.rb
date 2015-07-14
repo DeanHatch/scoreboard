@@ -22,21 +22,6 @@ class NestedController  < ApplicationController
 	competitions_url
 	end
   
-	# Competitions are nested within Customers. If a subclass of
-	# NestedController does not have a Competition specified then
-	# the correct response to the request is to prompt for a
-	# Customer identifier and then prompt user to choose
-	# which of that customer's Competitions to use.
-	def choose_customer
-	end
-
-	# Once a Customer has been identified, the response prompts
-	# the user to choose which of the Customer's Competitions to use.
-	def choose_competition
-	  logger.info ("Customer ID #{params[:customer_id]} was passed...")
-	  Competition.default_cust(params[:customer_id])
-	end
-	
 
      # If a Competition has been specified, then set the scope for
      # all nested resources to that Competition.

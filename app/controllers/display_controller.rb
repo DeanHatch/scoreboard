@@ -7,7 +7,7 @@ class DisplayController < NestedController # Formerly < ApplicationController
     # but it all starts at the top. No navigation if the Competition has not
     # yet been established.
   def nav_link_array()
-	  @competition ? nav_link_to_grouping(Grouping.top_grouping) : []
+	  @competition ? nav_link_to_grouping(@competition.top_grouping) : []
   end
   
 	   # (Recursive) The navigation link to this grouping is followed by an Array of

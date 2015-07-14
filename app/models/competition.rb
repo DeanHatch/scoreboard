@@ -136,6 +136,11 @@ class Competition < ActiveRecord::Base
 	end
 	
 	
+	# This Competition's Grouping which has no parent.
+	def top_grouping()
+		self.groupings.where(parent_id: nil).first
+	end
+	
 	
 	# scorer_password is included on the HTML form and is sent with
 	# the HTTP request but hashed_scorer_password is what
