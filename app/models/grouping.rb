@@ -12,6 +12,7 @@ class Grouping < ActiveRecord::Base
 
 	has_many :teams, foreign_key: "grouping_id",
 					class_name: "Team"  # making default explicit
+	has_many :contests, through: :teams
 
 	def self.default_comp(comp_id)
 		self.default_scope { (where(competition_id: comp_id) ) }

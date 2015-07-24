@@ -18,6 +18,7 @@ class Competition < ActiveRecord::Base
 	validates_confirmation_of :scorer_password
 	
 	has_many :groupings
+	has_many :teams, through: :groupings
 	has_many :contests
 	
 	def Competition.poolgroupseasonlabels

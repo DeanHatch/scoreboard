@@ -13,7 +13,7 @@
 
   <tbody>
       <!-- Show sorted, unique Teams -->
-    <% @contests.select{|c| c.needs_score?}.each do |cntst| %>
+    <% @grouping.contests.select{|c| c.needs_score?}.each do |cntst| %>
       <tr>
         <td><%= cntst.display_date %></td>
         <td><%= cntst.display_time %></td>
