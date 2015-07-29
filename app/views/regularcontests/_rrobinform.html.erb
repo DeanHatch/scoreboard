@@ -15,9 +15,9 @@
   </div>
   
   <div class="field">
-    <%= label_tag "Date(s) " + Validdate.all.size.to_s %><br>
+    <%= label_tag "Date(s) " + @manager.validdates.size.to_s %><br>
     <%= select_tag(:gamedates,
-		options_from_collection_for_select(Validdate.all,:gamedate, :gamedate),
+		options_from_collection_for_select(@manager.validdates,:gamedate, :gamedate),
 		 multiple: true, include_blank: true,  prompt: "Do something" )
 		%>
   </div>

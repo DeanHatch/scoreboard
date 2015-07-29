@@ -24,7 +24,6 @@
 
   <tbody>
   
-    <!-- % @regularcontests.sort{ |a,b| a.updated_at <=> b.updated_at }.reverse.each do |regularcontest| % -->
     <% @regularcontests.sort.each do |regularcontest| %>
       <tr>
         <td><%= regularcontest.display_date  %></td>

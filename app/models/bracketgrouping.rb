@@ -6,7 +6,7 @@ class Bracketgrouping < Grouping
 	has_many :bracketcontests
 	has_many :bracketcontestants, through: :bracketcontests
 	
-	def Bracketgrouping.all()
+	def Bracketgrouping.alll()
 		super.where(bracket_grouping: true)
 	end
 	

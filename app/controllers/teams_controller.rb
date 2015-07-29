@@ -5,7 +5,7 @@ class TeamsController < ManagersController
   # Only show Teams for this Grouping
   # GET /grouping/1/teams
   def index
-    @teams = Team.where(competition: @competition, grouping: @grouping)
+    @teams = @grouping.teams()
   end
 
   # GET /teams/1
@@ -16,14 +16,14 @@ class TeamsController < ManagersController
   # GET /grouping/1/teams/new
   def new
     @team = Team.new
-    @team.competition = @competition
+    @team.manager = @manager
     @team.grouping = @grouping
   end
 
   # POST /teams
   def create
     @team = Team.new(team_params)
-    @team.competition = @competition
+    @team.manager = @manager
     @team.grouping = @grouping
 
     respond_to do |format|
@@ -39,7 +39,7 @@ class TeamsController < ManagersController
   # GET /teams/1/edit
   def edit
 	     # User can change the Grouping
-    @groupings = Grouping.where(competition: @competition)
+    @groupings = Grouping.where(manager: @manager)
   end
 
   # PATCH/PUT /teams/1

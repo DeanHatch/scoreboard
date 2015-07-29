@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   
 	  
   resources :venues 
-  resources :validdates
+  resources :validdates, only: [:create] 
   resources :groupings, :shallow => true do
 	  resources :teams
   end

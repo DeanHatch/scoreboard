@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.label :date %><br>
     <%= f.select :date,
-		      options_for_select(Validdate.all.sort{|a,b| a.gamedate <=> b.gamedate}.
+		      options_for_select(@manager.validdates.sort{|a,b| a.gamedate <=> b.gamedate}.
 		                                                 collect {|v| [ v.gamedate, v.gamedate ]},
 		                                selected: @selecteddate), 
 		    {prompt: 'TBD'} %>
@@ -30,7 +30,7 @@
   <div class="field">
     <%= f.label :venue %><br>
     <%= f.select :venue_id,
-		      options_for_select(Venue.all.collect {|v| [ v.name, v.id ] },
+		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
 		                                selected: @selectedvenue), 
 		    {prompt: 'TBD'} %>
   </div>
@@ -50,7 +50,7 @@
      <%= home_form.text_field :homeaway %>
     <% end %><br>
     <%= f.select :home_team_id,
-		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @homecontestant.team_id), 
 		    {prompt: 'TBD'} %>
   </fieldset>
@@ -63,7 +63,7 @@
      <%= away_form.text_field :homeaway %>
     <% end %><br>
     <%= f.select :away_team_id,
-		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @awaycontestant.team_id), 
 		    {prompt: 'TBD'} %>
   </fieldset>

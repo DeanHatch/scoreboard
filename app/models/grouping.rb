@@ -2,6 +2,7 @@
 #  Playoffs, as well as limiting or organizing the display of Results and Standings.
 class Grouping < ActiveRecord::Base
 	
+	belongs_to :manager, foreign_key: "competition_id"
 	belongs_to :competition, foreign_key: "competition_id"
 	validates_presence_of :competition_id
 	

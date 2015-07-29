@@ -7,7 +7,8 @@ class BracketgroupingsController < ManagersController
 
   # GET /bracketgroupings
   def index
-    @bracketgroupings = Bracketgrouping.all
+    #@bracketgroupings = Bracketgrouping.all
+    @bracketgroupings = @manager.bracketgroupings
   end
 
   # GET /bracketgroupings/1

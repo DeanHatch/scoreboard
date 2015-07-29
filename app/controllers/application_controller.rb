@@ -37,8 +37,8 @@ class ApplicationController < ActionController::Base
 	navitem('Schedule Bracket Contests' , :bracketgroupings),
 	navitem('Set Manager/Scorer Passwords' , :passwords_manager),
 	navitem('Logout' , :logout_manager_session) ,
-	navitem('Report/Correct Scores for This Competition' , login_scorer_session_path(@competition), target: "_blank" ),
-	navitem('View This Competition' , display_competition_path(@competition), target: "_blank")  ]
+	navitem('Report/Correct Scores for This Competition' , login_scorer_session_path(@manager), target: "_blank" ),
+	navitem('View This Competition' , display_competition_path(@manager), target: "_blank")  ]
   end
 
 end

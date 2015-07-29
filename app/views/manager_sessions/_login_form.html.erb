@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= hidden_field_tag 'manager_session[manager_id]', @manager_id %>
+    <%= hidden_field_tag 'manager_session[manager_id]', @manager.id %>
   </div>
   <div class="field">
     <%= f.label :hashed_manager_password, 'Password' %>

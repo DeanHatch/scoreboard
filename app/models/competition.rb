@@ -17,9 +17,13 @@ class Competition < ActiveRecord::Base
 	attr_accessor :scorer_password_confirmation
 	validates_confirmation_of :scorer_password
 	
+	has_many :venues
+	has_many :validdates
 	has_many :groupings
+	has_many :bracketgroupings, -> { where(bracket_grouping: true) }
 	has_many :teams, through: :groupings
 	has_many :contests
+	has_many :regularcontests
 	
 	def Competition.poolgroupseasonlabels
 		['Pool', 'Group', 'Season']

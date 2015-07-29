@@ -9,6 +9,7 @@ class Contest < ActiveRecord::Base
 	include Comparable
 	
 	belongs_to :competition
+	belongs_to :manager
 	belongs_to :venue
 	
 	validates_associated :venue
