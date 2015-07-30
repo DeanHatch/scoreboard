@@ -27,7 +27,8 @@ class BracketcontestsController < BracketgroupingsController
   # GET /bracketcontests/new
   def new
     @bracketcontest = Bracketcontest.new
-    @bracketcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @bracketcontest.competition = @manager
     @bracketcontest.bracketgrouping_id = @bracketgrouping_id
     @selectedvenue = nil
     @selecteddate = nil
@@ -52,7 +53,8 @@ class BracketcontestsController < BracketgroupingsController
   # POST /bracketcontests.json
   def create
     @bracketcontest = Bracketcontest.new(bracketcontest_params)
-    @bracketcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @bracketcontest.competition = @manager
     @bracketcontest.bracketgrouping_id = @bracketgrouping_id
 
     respond_to do |format|

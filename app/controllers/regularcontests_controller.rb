@@ -46,7 +46,8 @@ class RegularcontestsController < ManagersController
   # POST /regularcontests.json
   def create
     @regularcontest = Regularcontest.new(regularcontest_params)
-    @regularcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @regularcontest.competition = @manager
     
     process_teams()
  
