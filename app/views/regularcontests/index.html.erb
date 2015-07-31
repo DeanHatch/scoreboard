@@ -31,8 +31,7 @@
         <td><%= regularcontest.awaycontestant.fullname if regularcontest.awaycontestant %>
         at <%= regularcontest.homecontestant.fullname if regularcontest.homecontestant %></td>
         <td><%= regularcontest.venue_name  %></td>
-        <td><%= link_to 'Show', regularcontest_path(regularcontest)  %></td>
-        <td><%= link_to 'Edit', edit_regularcontest_path(regularcontest) %></td>
+        <td><%= link_to 'Edit/Delete', edit_regularcontest_path(regularcontest) %></td>
       </tr>
     <% end %>
   </tbody>

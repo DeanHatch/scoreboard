@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   resources :bracketgroupings, only: [:index, :show] do
 	get 'complete', on: :member
 	  # httpverb /competitions/:competition_id/brackets/...
-	  resources :bracketcontests, only: [:show, :new, :edit, :create, :update]  do
+	  resources :bracketcontests, only: [:show, :new, :edit, :create, :update, :destroy]  do
 		 # get /competitions/:competition_id/bracket/:bracket_id/bracketcontests/edithome
 		  get 'edithome', on: :member
 		  # patch/put /competitions/:competition_id/bracket/:bracket_id/bracketcontests/updthome

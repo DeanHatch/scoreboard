@@ -12,27 +12,11 @@
     </div>
   <% end %>
   <br/>
-  
-  <fieldset>
-   <legend>Home Team</legend>
-   <%= @homecontestant.fullname %><br/>
-   <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
-   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
-		                                selected: @homecontestant.contestantcode), 
-		    {prompt: 'Which'} %>
-
-   <%= contestant_fields.select :team_id,
-		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @homecontestant.team_id), 
-		    {prompt: 'TBD'} %>
-  <% end %>
-  </fieldset>
 
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
-    </div>
-  <div class="field">
+    
     <%= f.label 'Date / Time:' %>
     <%= f.select :date,
 		      options_for_select(@manager.validdates.sort{|a,b| a.gamedate <=> b.gamedate}.
@@ -51,16 +35,29 @@
 		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
 		                                selected: @selectedvenue), 
 		    {prompt: 'TBD'} %>
-  </div>
-  
-  <div class="field">
+		    
     <%= f.label :status %>:
     <%= f.select :status,
 		      options_for_select(Bracketcontest.statuses.collect {|st| [ st, st ] },
 		                                selected: @selectedstatus), 
 		    {} %>
   </div>
- 
+   
+  <fieldset>
+   <legend>Home Team</legend>
+   <%= @homecontestant.fullname %><br/>
+   <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
+   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
+		                                selected: @homecontestant.contestantcode), 
+		    {prompt: 'Which'} %>
+
+   <%= contestant_fields.select :team_id,
+		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
+		                                selected: @homecontestant.team_id), 
+		    {prompt: 'TBD'} %>
+  <% end %>
+  </fieldset>
+
   <fieldset>
    <legend>Visitor</legend>
    <%= @awaycontestant.fullname %><br/>

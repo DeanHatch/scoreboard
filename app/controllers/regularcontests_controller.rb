@@ -15,10 +15,6 @@ class RegularcontestsController < ManagersController
     @regularcontests = @manager.regularcontests
   end
 
-  # GET /regularcontests/1
-  # GET /regularcontests/1.json
-  def show
-  end
 
   # GET /regularcontests/new
   def new
@@ -103,7 +99,7 @@ class RegularcontestsController < ManagersController
   def destroy
     @regularcontest.destroy
     respond_to do |format|
-	      flash[:notice] = 'Regularcontest was successfully deleted.' 
+	      flash[:notice] = 'The Contest was successfully deleted.' 
       format.html { redirect_to regularcontests_url }
       format.json { head :no_content }
     end

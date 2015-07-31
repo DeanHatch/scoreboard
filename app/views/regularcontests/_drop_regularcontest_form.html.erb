@@ -1,0 +1,22 @@
+<%= form_for @regularcontest,
+			method: :delete,
+               data: { confirm: "Are you sure? For real?  Once it's Gone, it's GONE." } do |f| %>
+  <% if @regularcontest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@regularcontest.errors.count, "error") %> prohibited this regularcontest from being saved:</h2>
+
+      <ul>
+      <% @regularcontest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+ <fieldset>
+   <legend><%= "Remove this Contest From the Competition" %></legend>
+   <div class="actions">
+    <%= submit_tag("Remove It!") %>
+  </div>
+  </fieldset>
+<% end %>
