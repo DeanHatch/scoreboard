@@ -16,6 +16,7 @@
 # 
 class Bracketcontestant < Contestant
 						
+	belongs_to :bcspec, polymorphic: true
 	
 	belongs_to :bracketcontest, foreign_key: "contest_id"
 

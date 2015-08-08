@@ -38,15 +38,19 @@ class Bracketcontest < Contest
     "L"+self.id.to_s
   end
   
+    # Returns Array of Bracketcontestants which refer to this Bracketcontest.
+  def all_priors()
+    #self.bracketgrouping.bracketcontests.bracketcontestants
+    Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest().id()==self.id()}.collect{|bc|bc.priorcontest()}
+  end
 	
 	# Advance teams if this Bracketcontest is referred to by the contestants of a
 	# subsequent Bracketcontest.
   def advance_contestants()
-    all_priors = Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest==self}
     #logger.debug "Prior(s): #{all_priors.collect{|bc| bc.contestantcode}.inspect()}"
     winning_team = self.homecontestant.win ? self.homecontestant.team : self.awaycontestant.team
     losing_team = self.homecontestant.loss ? self.homecontestant.team : self.awaycontestant.team
-    all_priors.each{|bc| bc.contestanttype=="W" ? bc.team = winning_team : losing_team; bc.save! }
+    self.all_priors().each{|bc| bc.contestanttype=="W" ? bc.team = winning_team : losing_team; bc.save! }
   end
 	
 end

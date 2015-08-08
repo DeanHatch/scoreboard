@@ -47,6 +47,10 @@ class BracketcontestsController < BracketgroupingsController
     @selectedstatus = @bracketcontest.status
     @homecontestant = @bracketcontest.homecontestant
     @awaycontestant = @bracketcontest.awaycontestant
+      # Only allow this Bracketcontest to be dropped if it is
+      # not referred to by another Bracketcontest.
+    logger.debug "Prior(s) for #{@bracketcontest.id}: #{@bracketcontest.all_priors().collect{|bc|bc.id==@bracketcontest.id}.inspect()}"
+    @dropable = (@bracketcontest.all_priors().size()==0)
   end
 
   # POST /bracketcontests
@@ -54,7 +58,7 @@ class BracketcontestsController < BracketgroupingsController
   def create
     @bracketcontest = Bracketcontest.new(bracketcontest_params)
       # This next statement is due to Manager inheriting from Competition.
-    @bracketcontest.competition = @manager
+    @bracketcontest.competition = @manager.as_competition()
     @bracketcontest.bracketgrouping_id = @bracketgrouping_id
 
     respond_to do |format|

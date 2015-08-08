@@ -6,7 +6,7 @@
 #
 rcgameoneH: 
   type: Regularcontestant
-  competition: bball
+  #competition: bball
   contest: rcgameone
   homeaway: H
   team: heat
@@ -14,7 +14,7 @@ rcgameoneH:
 #
 rcgameoneA: 
   type: Regularcontestant
-  competition: bball
+  #competition: bball
   contest: rcgameone
   homeaway: A
   team: thunder
@@ -22,7 +22,7 @@ rcgameoneA:
 
 rcgametwoH: 
   type: Regularcontestant
-  competition: bball
+  #competition: bball
   contest: rcgametwo
   homeaway: H
   team: lightning
@@ -30,7 +30,7 @@ rcgametwoH:
 #
 rcgametwoA: 
   type: Regularcontestant
-  competition: bball
+  #competition: bball
   contest: rcgametwo
   homeaway: A
   team: hailstones
@@ -40,7 +40,7 @@ rcgametwoA:
 #
 bcgameoneH: 
   type: Bracketcontestant
-  competition: bball
+  #competition: bball
   contest: bcgameone
   homeaway: H
   team: heat
@@ -48,7 +48,7 @@ bcgameoneH:
 #
 bcgameoneA: 
   type: Bracketcontestant
-  competition: bball
+  #competition: bball
   contest: bcgameone
   homeaway: A
   team: thunder

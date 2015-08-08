@@ -18,10 +18,12 @@ class Contest < ActiveRecord::Base
 	
 	has_one :homecontestant, -> { where homeaway: 'H' },
 						class_name: "Contestant",
-						foreign_key: "contest_id"
+						foreign_key: "contest_id", 
+						dependent: :destroy  # destroys the associated homecontestant
 	has_one :awaycontestant, -> { where homeaway: 'A' },
 						class_name: "Contestant",
-						foreign_key: "contest_id"
+						foreign_key: "contest_id", 
+						dependent: :destroy  # destroys the associated awaycontestant
 	
 	
 	def self.default_comp(comp_id)

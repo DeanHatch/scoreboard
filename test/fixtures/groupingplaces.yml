@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grouping_id: 1
+  place: 1
+
+two:
+  grouping_id: 1
+  place: 1

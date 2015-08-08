@@ -1,13 +1,12 @@
 class Contestant < ActiveRecord::Base
 	
-	belongs_to :competition
+	#belongs_to :competition
 	belongs_to :contest
 	belongs_to :team
-    
-	
-	def self.default_comp(comp_id)
-		self.default_scope { (where(competition_id: comp_id) ) }
-	end
+
+	delegate :competition, to: :contest   
+	delegate :manager, to: :contest   
+   
 	
 	 # Returns instance of a descendant of Contestant class that is the
 	 # other contestant in the Contest with this Contestant.

@@ -28,9 +28,21 @@ class Manager < Competition
 		mgr # returns a Manager object or Nil
 	end
 
-	
+	  # Is this needed?
 	def manager_id()
 		self.id
+	end
+	
+
+	  # Is this needed?
+	def conpetition_id()
+		self.id
+	end
+	
+
+	  # Re-cast to inherited class
+	def as_competition()
+		self.becomes(Competition)
 	end
 	
 end
