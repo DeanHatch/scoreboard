@@ -19,14 +19,37 @@ rcgametwo:
   date: 2015-01-25
   time: 120
   status: SCHEDULED
+
   #
 bcgameone: 
   type: Bracketcontest
   competition: bball
   bracketgrouping: bballdiv1
   venue: auxgym
-  name: The Big Game
+  name: Game Uno
   date: 2015-01-27
+  time: 120
+  status: SCHEDULED
+  
+  #
+bcgametwo: 
+  type: Bracketcontest
+  competition: bball
+  bracketgrouping: bballdiv1
+  venue: auxgym
+  name: Game Dos
+  date: 2015-01-27
+  time: 120
+  status: SCHEDULED
+  
+  #
+bcgamethree: 
+  type: Bracketcontest
+  competition: bball
+  bracketgrouping: bballdiv1
+  venue: auxgym
+  name: The Big Championship Game
+  date: 2015-01-28
   time: 120
   status: SCHEDULED
   

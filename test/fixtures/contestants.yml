@@ -54,3 +54,41 @@ bcgameoneA:
   team: thunder
   score: 16
 
+
+#
+bcgametwoH: 
+  type: Bracketcontestant
+  #competition: bball
+  contest: bcgametwo
+  homeaway: H
+  team: lightning
+  score: 15
+#
+bcgametwoA: 
+  type: Bracketcontestant
+  #competition: bball
+  contest: bcgametwo
+  homeaway: A
+  team: storm
+  score: 16
+
+
+#
+bcgamethreeH: 
+  type: Bracketcontestant
+  #competition: bball
+  contest: bcgamethree
+  homeaway: H
+  bcspec: bcgameonewinner
+  team: thunder
+  score: 25
+#
+bcgamethreeA: 
+  type: Bracketcontestant
+  #competition: bball
+  contest: bcgamethree
+  homeaway: A
+  bcspec: bcgametwowinner
+  team: storm
+  score: 26
+

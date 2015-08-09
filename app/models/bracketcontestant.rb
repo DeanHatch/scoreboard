@@ -28,9 +28,10 @@ class Bracketcontestant < Contestant
 	end
 
 	
-	# Provide controlled public access to private class method.
-  def self.default_bracketgrouping(bracketgrouping)
-	  self.default_scope { (where(bracketgrouping: bracketgrouping) ) }
+	# Override with automatic save of bcspec, if it exists.
+  def save(*)
+    super()
+    self.bcspec.save if self.bcspec()
   end
 
 						

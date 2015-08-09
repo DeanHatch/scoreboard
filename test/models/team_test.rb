@@ -21,9 +21,10 @@ class TeamTest < ActiveSupport::TestCase
    end
 
 	#
-   test "teams wins are correct" do
-	   [:thunder].each { |t| assert_equal 2, teams(t).wins }
-	   [:heat].each { |t| assert_equal 2, teams(t).losses }
+   test "teams wins/losses are correct (only counts Regular)" do
+	   [:thunder].each { |t| assert_equal 1, teams(t).wins }
+	   [:thunder].each { |t| assert_equal 0, teams(t).losses }
+	   [:heat].each { |t| assert_equal 1, teams(t).losses }
 	   [:lightning].each { |t| assert_equal 1, teams(t).wins }
 	   [:hailstones].each { |t| assert_equal 1, teams(t).losses }
    end
