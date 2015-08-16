@@ -168,7 +168,7 @@ application for a <a href="Competition.html">Competition</a>.</p>
 
           
           <div class="method-source-code" id="manager_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manager_link_array</span>()
         [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> , <span class="ruby-value">:venues</span>),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Groupings/Teams&#39;</span> , <span class="ruby-value">:groupings</span>),
@@ -176,8 +176,8 @@ application for a <a href="Competition.html">Competition</a>.</p>
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Schedule Bracket Contests&#39;</span> , <span class="ruby-value">:bracketgroupings</span>),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Set Manager/Scorer Passwords&#39;</span> , <span class="ruby-value">:passwords_manager</span>),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_manager_session</span>) ,
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores for This Competition&#39;</span> , <span class="ruby-identifier">login_scorer_session_path</span>(<span class="ruby-ivar">@competition</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View This Competition&#39;</span> , <span class="ruby-identifier">display_competition_path</span>(<span class="ruby-ivar">@competition</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>)  ]
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores for This Competition&#39;</span> , <span class="ruby-identifier">login_scorer_session_path</span>(<span class="ruby-ivar">@manager</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ),
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View This Competition&#39;</span> , <span class="ruby-identifier">display_competition_path</span>(<span class="ruby-ivar">@manager</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>)  ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -278,9 +278,8 @@ this application in a separate tab.</p>
           <div class="method-source-code" id="scorer_link_array-source">
             <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scorer_link_array</span>()
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores&#39;</span> , <span class="ruby-value">:scorer_index</span>) ,
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_scorer_session</span> )  ,
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span> , <span class="ruby-value">:choose_display_customer</span>, <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ) ]
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_scorer_session</span> )  ,
+      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View This Competition&#39;</span> , <span class="ruby-identifier">display_competition_path</span>(<span class="ruby-ivar">@scorer</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ) ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

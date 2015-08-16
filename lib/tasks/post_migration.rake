@@ -10,16 +10,22 @@ namespace :bcspec do
  						    /G(\d+)P(\d+)/ =~ bc.contestantcode
 						    bc.bcspec.grouping = Grouping.find(Regexp.last_match(1))
 						    bc.bcspec.place = Regexp.last_match(2)
+						    bc.contestantcode = nil
+						    bc.save!
 						  when "W"
 						    bc.bcspec = Priorbracketcontest.new()
  						    /W(\d+)/ =~ bc.contestantcode
 						    bc.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
 						    bc.bcspec.wl = "W"
+						    bc.contestantcode = nil
+						    bc.save!
 						  when "L"
 						    bc.bcspec = Priorbracketcontest.new()
 						    /L(\d+)/ =~ bc.contestantcode
 						    bc.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
 						    bc.bcspec.wl = "L"
+						    bc.contestantcode = nil
+						    bc.save!
 						  else 
 						    nil
 						end

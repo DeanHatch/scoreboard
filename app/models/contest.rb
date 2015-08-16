@@ -61,12 +61,12 @@ class Contest < ActiveRecord::Base
 	# the subclass of this Contest class.
 	# (Note: tried after_initialize but it did not work as I expected)
 	def initialize(attributes = nil, options = {})
-		super(attributes, options)
-		self.awaycontestant = self.contestant_class.new(:contest_type => self.class.name,
+	  super
+	  self.awaycontestant = self.contestant_class.new(:contest_type => self.class.name,
                                                                    :forfeit => false,
 								    homeaway: 'A',
 								    contest_id: self.id)
-		self.homecontestant = self.contestant_class.new(:contest_type => self.class.name,
+	  self.homecontestant = self.contestant_class.new(:contest_type => self.class.name,
                                                                   :forfeit => false,
 								    homeaway: 'H',
 								    contest_id: self.id)

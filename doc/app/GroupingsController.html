@@ -140,7 +140,7 @@
             <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">grouping_params</span>)
-  <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">competition</span> = <span class="ruby-ivar">@competition</span>
+  <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">manager</span> = <span class="ruby-ivar">@manager</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">save</span>
@@ -220,7 +220,7 @@
             <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
         <span class="ruby-comment"># list of groupings for drop-down</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">manager</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@manager</span>)
   <span class="ruby-ivar">@grouping_id</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -254,7 +254,7 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">manager</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@manager</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -287,12 +287,12 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">groupings</span>()
     <span class="ruby-comment"># ALL does not include the Grouping about to be created.</span>
     <span class="ruby-comment"># That is why groupings is assigned first.</span>
   <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
-  <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">top_grouping</span>() <span class="ruby-comment"># assign default</span>
+  <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">manager</span> = <span class="ruby-ivar">@manager</span>
+  <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">grouping</span> = <span class="ruby-ivar">@groupings</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">grouping</span>().<span class="ruby-identifier">nil?</span>}.<span class="ruby-identifier">first</span>() <span class="ruby-comment"># assign default</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

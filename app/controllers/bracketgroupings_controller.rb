@@ -28,8 +28,6 @@ class BracketgroupingsController < ManagersController
     # Use callbacks to share common setup or constraints between actions.
     def set_bracketgrouping
       @bracketgrouping = Bracketgrouping.find(params[:id])
-      Bracketcontest.default_bracketgrouping(@bracketgrouping)
-      Bracketcontestant.default_bracketgrouping(@bracketgrouping)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -86,11 +86,7 @@
     
     <li ><a href="#method-i-roundrobin">#roundrobin</a>
     
-    <li ><a href="#method-i-roundrobin2">#roundrobin2</a>
-    
     <li ><a href="#method-i-rrobin">#rrobin</a>
-    
-    <li ><a href="#method-i-show">#show</a>
     
     <li ><a href="#method-i-update">#update</a>
     
@@ -148,7 +144,7 @@
 
           
           <div class="method-source-code" id="cancel-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 85</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel</span>
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&#39;CAN&#39;</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -191,10 +187,11 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@regularcontest</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">regularcontest_params</span>)
-  <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
+    <span class="ruby-comment"># This next statement is due to Manager inheriting from Competition.</span>
+  <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">competition</span> = <span class="ruby-ivar">@manager</span>
   
   <span class="ruby-identifier">process_teams</span>()
  
@@ -240,11 +237,11 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 102</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Regularcontest was successfully deleted.&#39;</span> 
+            <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;The Contest was successfully deleted.&#39;</span> 
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">regularcontests_url</span> }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
   <span class="ruby-keyword">end</span>
@@ -280,7 +277,7 @@
           <div class="method-source-code" id="dump-source">
             <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>
-  <span class="ruby-ivar">@regularcontests</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@regularcontests</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">regularcontests</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -311,7 +308,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">venue_id</span>
   <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">date</span>
@@ -351,8 +348,8 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@regularcontests</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">sort</span>
-  
+  <span class="ruby-ivar">@regularcontests</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">regularcontests</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-ivar">@regularcontests</span>.<span class="ruby-identifier">size</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -383,7 +380,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@regularcontest</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
@@ -423,70 +420,13 @@
 
           
           <div class="method-source-code" id="roundrobin-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">roundrobin</span>
         <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grouping_id</span>])
         <span class="ruby-identifier">arr</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">teams</span>().<span class="ruby-identifier">to_a</span>
         <span class="ruby-ivar">@contests</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>() 
           <span class="ruby-comment"># balannce home/away</span>
         <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">combination</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">each_with_index</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@contests</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">i</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">schedule_with</span>(<span class="ruby-identifier">c</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">schedule_with</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">reverse</span>) ) }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-roundrobin2" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">roundrobin2</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>POST/regularcontests/roundrobin POST /regularcontests/roundrobin.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="roundrobin2-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 131</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">roundrobin2</span>
-        <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grouping_id</span>])
-        <span class="ruby-identifier">arr</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">teams</span>().<span class="ruby-identifier">to_a</span>
-        <span class="ruby-comment"># Add BYE (nil Team) if necessary, to create an Array </span>
-        <span class="ruby-comment"># with an even number of elements.</span>
-        <span class="ruby-comment"># We will not keep those Contests with a nil Team.</span>
-        <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">odd?</span>
-        <span class="ruby-ivar">@contests</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>() 
-        <span class="ruby-comment"># The &quot;j-th&quot; team from the front of the array will be matched with the &quot;j-th&quot;</span>
-        <span class="ruby-comment"># team from the end of the array.</span>
-        <span class="ruby-comment"># We need to think about flipping Home/Away, possibly.</span>
-        <span class="ruby-comment"># Maybe &quot;if jth.modulo(2)==1 &quot;</span>
-        <span class="ruby-comment"># .combination(2).each_with_index{|c,i| i % 2 == 0 ? c : c.reverse }</span>
-        <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">arr</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">idx</span><span class="ruby-operator">|</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>((<span class="ruby-identifier">arr</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>)<span class="ruby-operator">-</span><span class="ruby-value">1</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">jth</span><span class="ruby-operator">|</span> 
-                                              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">arr</span>[<span class="ruby-identifier">jth</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">arr</span>[<span class="ruby-value">-1</span><span class="ruby-operator">-</span><span class="ruby-identifier">jth</span>].<span class="ruby-identifier">nil?</span> 
-                                                      <span class="ruby-ivar">@regularcontest</span> = <span class="ruby-constant">Regularcontest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">roundrobin_params</span>)
-                                                      <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
-                                                      <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&#39;SCHEDULED&#39;</span>
-                                                      <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span> = <span class="ruby-identifier">arr</span>[<span class="ruby-value">-1</span><span class="ruby-operator">-</span><span class="ruby-identifier">jth</span>]
-                                                      <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span> = <span class="ruby-identifier">arr</span>[<span class="ruby-identifier">jth</span>]
-                                                      <span class="ruby-ivar">@contests</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@regularcontest</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">save</span>
-                                              <span class="ruby-keyword">end</span> <span class="ruby-comment"># of if-then </span>
-                                              } 
-                                      <span class="ruby-comment"># Rotate all elements but the first. </span>
-                                      <span class="ruby-identifier">arr</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">arr</span>.<span class="ruby-identifier">size</span>]=<span class="ruby-identifier">arr</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">arr</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">rotate</span>
-                                      } 
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -517,42 +457,10 @@
 
           
           <div class="method-source-code" id="rrobin-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 114</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rrobin</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">all</span>
-  <span class="ruby-ivar">@venues</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">all</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-show" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">show</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /regularcontests/1 GET /regularcontests/1.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">groupings</span>
+  <span class="ruby-ivar">@venues</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">venues</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -583,7 +491,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">process_teams</span>()
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>

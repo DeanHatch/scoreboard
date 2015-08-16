@@ -159,13 +159,10 @@
     <a href="app/views/groupings/show_json_jbuilder.html">show.json.jbuilder</a>
   </li>
     <li class="file">
-    <a href="app/views/managers/_managerpw_form_html_erb_bak.html">_managerpw_form.html.erb.bak</a>
+    <a href="app/views/layouts/application_html_erb_bak.html">application.html.erb.bak</a>
   </li>
     <li class="file">
     <a href="app/views/regularcontests/index_json_jbuilder.html">index.json.jbuilder</a>
-  </li>
-    <li class="file">
-    <a href="app/views/regularcontests/show_json_jbuilder.html">show.json.jbuilder</a>
   </li>
     <li class="file">
     <a href="app/views/teams/index_json_jbuilder.html">index.json.jbuilder</a>
@@ -188,6 +185,12 @@
     <li class="file">
     <a href="app/views/welcome/robots_txt.html">robots</a>
   </li>
+    <li class="file">
+    <a href="lib/generators/rails/my_rspec/USAGE.html">USAGE</a>
+  </li>
+    <li class="file">
+    <a href="lib/tasks/post_migration_rake.html">post_migration.rake</a>
+  </li>
   
 </ul>
 
@@ -198,6 +201,9 @@
   </li>
   <li class="module">
     <a href="ApplicationHelper.html">ApplicationHelper</a>
+  </li>
+  <li class="class">
+    <a href="Bracket.html">Bracket</a>
   </li>
   <li class="class">
     <a href="Bracketcontest.html">Bracketcontest</a>
@@ -216,6 +222,9 @@
   </li>
   <li class="class">
     <a href="BracketgroupingsController.html">BracketgroupingsController</a>
+  </li>
+  <li class="class">
+    <a href="Bracketpairing.html">Bracketpairing</a>
   </li>
   <li class="module">
     <a href="BracketsHelper.html">BracketsHelper</a>
@@ -260,7 +269,16 @@
     <a href="DisplayHelper.html">DisplayHelper</a>
   </li>
   <li class="class">
+    <a href="GameDate.html">GameDate</a>
+  </li>
+  <li class="class">
+    <a href="GameTime.html">GameTime</a>
+  </li>
+  <li class="class">
     <a href="Grouping.html">Grouping</a>
+  </li>
+  <li class="class">
+    <a href="Groupingplace.html">Groupingplace</a>
   </li>
   <li class="class">
     <a href="GroupingsController.html">GroupingsController</a>
@@ -281,10 +299,25 @@
     <a href="ManagersController.html">ManagersController</a>
   </li>
   <li class="class">
+    <a href="NavItem.html">NavItem</a>
+  </li>
+  <li class="class">
     <a href="NestedController.html">NestedController</a>
   </li>
   <li class="module">
     <a href="Nestedmodel.html">Nestedmodel</a>
+  </li>
+  <li class="class">
+    <a href="Object.html">Object</a>
+  </li>
+  <li class="class">
+    <a href="Priorbracketcontest.html">Priorbracketcontest</a>
+  </li>
+  <li class="module">
+    <a href="Rails.html">Rails</a>
+  </li>
+  <li class="class">
+    <a href="Rails/MyRspecGenerator.html">Rails::MyRspecGenerator</a>
   </li>
   <li class="class">
     <a href="Regularcontest.html">Regularcontest</a>
@@ -355,19 +388,24 @@
 <ul>
 
   <li class="method">
-    <a href="Bracketgrouping.html#method-c-all">::all</a>
+    <a href="Bracket.html#method-c-all_for">::all_for</a>
     &mdash;
-    <span class="container">Bracketgrouping</span>
+    <span class="container">Bracket</span>
 
   <li class="method">
-    <a href="Scorer.html#method-c-authenticate">::authenticate</a>
+    <a href="Bracketgrouping.html#method-c-alll">::alll</a>
     &mdash;
-    <span class="container">Scorer</span>
+    <span class="container">Bracketgrouping</span>
 
   <li class="method">
     <a href="Customer.html#method-c-authenticate">::authenticate</a>
     &mdash;
     <span class="container">Customer</span>
+
+  <li class="method">
+    <a href="Scorer.html#method-c-authenticate">::authenticate</a>
+    &mdash;
+    <span class="container">Scorer</span>
 
   <li class="method">
     <a href="Manager.html#method-c-authenticate">::authenticate</a>
@@ -383,26 +421,6 @@
     <a href="Bracketcontest.html#method-c-default_bracketgrouping">::default_bracketgrouping</a>
     &mdash;
     <span class="container">Bracketcontest</span>
-
-  <li class="method">
-    <a href="Bracketcontestant.html#method-c-default_bracketgrouping">::default_bracketgrouping</a>
-    &mdash;
-    <span class="container">Bracketcontestant</span>
-
-  <li class="method">
-    <a href="Nestedmodel.html#method-c-default_comp">::default_comp</a>
-    &mdash;
-    <span class="container">Nestedmodel</span>
-
-  <li class="method">
-    <a href="Contestant.html#method-c-default_comp">::default_comp</a>
-    &mdash;
-    <span class="container">Contestant</span>
-
-  <li class="method">
-    <a href="Team.html#method-c-default_comp">::default_comp</a>
-    &mdash;
-    <span class="container">Team</span>
 
   <li class="method">
     <a href="Grouping.html#method-c-default_comp">::default_comp</a>
@@ -425,14 +443,34 @@
     <span class="container">Validdate</span>
 
   <li class="method">
+    <a href="Team.html#method-c-default_comp">::default_comp</a>
+    &mdash;
+    <span class="container">Team</span>
+
+  <li class="method">
+    <a href="Nestedmodel.html#method-c-default_comp">::default_comp</a>
+    &mdash;
+    <span class="container">Nestedmodel</span>
+
+  <li class="method">
     <a href="Competition.html#method-c-default_cust">::default_cust</a>
     &mdash;
     <span class="container">Competition</span>
 
   <li class="method">
+    <a href="GameTime.html#method-c-dump">::dump</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
     <a href="Competition.html#method-c-encrypted_password">::encrypted_password</a>
     &mdash;
     <span class="container">Competition</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-c-load">::load</a>
+    &mdash;
+    <span class="container">GameTime</span>
 
   <li class="method">
     <a href="Manager.html#method-c-needs_no_authentication">::needs_no_authentication</a>
@@ -448,6 +486,31 @@
     <a href="Contest.html#method-c-new">::new</a>
     &mdash;
     <span class="container">Contest</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
+    <a href="Bracketpairing.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
+
+  <li class="method">
+    <a href="Bracket.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Bracket</span>
+
+  <li class="method">
+    <a href="Customer.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Customer</span>
+
+  <li class="method">
+    <a href="NavItem.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">NavItem</span>
 
   <li class="method">
     <a href="Competition.html#method-c-playoffbracketlabels">::playoffbracketlabels</a>
@@ -470,14 +533,49 @@
     <span class="container">Contest</span>
 
   <li class="method">
-    <a href="Grouping.html#method-c-top_grouping">::top_grouping</a>
+    <a href="GameTime.html#method-c-times">::times</a>
     &mdash;
-    <span class="container">Grouping</span>
+    <span class="container">GameTime</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-i-3C">#&lt;</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
+    <a href="GameDate.html#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    &mdash;
+    <span class="container">GameDate</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    &mdash;
+    <span class="container">GameTime</span>
 
   <li class="method">
     <a href="Contest.html#method-i-3C-3D-3E">#&lt;=&gt;</a>
     &mdash;
     <span class="container">Contest</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-i-3D-3D">#==</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-i-3E">#&gt;</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
+    <a href="Object.html#method-i-Gamedate">#Gamedate</a>
+    &mdash;
+    <span class="container">Object</span>
+
+  <li class="method">
+    <a href="Object.html#method-i-Gametime">#Gametime</a>
+    &mdash;
+    <span class="container">Object</span>
 
   <li class="method">
     <a href="Bracketcontest.html#method-i-advance_contestants">#advance_contestants</a>
@@ -488,6 +586,11 @@
     <a href="Bracketgrouping.html#method-i-all_participant_codes">#all_participant_codes</a>
     &mdash;
     <span class="container">Bracketgrouping</span>
+
+  <li class="method">
+    <a href="Bracketcontest.html#method-i-all_priors">#all_priors</a>
+    &mdash;
+    <span class="container">Bracketcontest</span>
 
   <li class="method">
     <a href="Grouping.html#method-i-all_subgroupings">#all_subgroupings</a>
@@ -503,6 +606,11 @@
     <a href="Grouping.html#method-i-as_bracket">#as_bracket</a>
     &mdash;
     <span class="container">Grouping</span>
+
+  <li class="method">
+    <a href="Manager.html#method-i-as_competition">#as_competition</a>
+    &mdash;
+    <span class="container">Manager</span>
 
   <li class="method">
     <a href="Team.html#method-i-as_contestants">#as_contestants</a>
@@ -580,6 +688,16 @@
     <span class="container">ApplicationHelper</span>
 
   <li class="method">
+    <a href="Bracketpairing.html#method-i-bottom">#bottom</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
+
+  <li class="method">
+    <a href="Bracketcontestant.html#method-i-briefname">#briefname</a>
+    &mdash;
+    <span class="container">Bracketcontestant</span>
+
+  <li class="method">
     <a href="RegularcontestsController.html#method-i-cancel">#cancel</a>
     &mdash;
     <span class="container">RegularcontestsController</span>
@@ -605,19 +723,9 @@
     <span class="container">ManagersController</span>
 
   <li class="method">
-    <a href="NestedController.html#method-i-choose_competition">#choose_competition</a>
-    &mdash;
-    <span class="container">NestedController</span>
-
-  <li class="method">
     <a href="ManagersController.html#method-i-choose_customer">#choose_customer</a>
     &mdash;
     <span class="container">ManagersController</span>
-
-  <li class="method">
-    <a href="NestedController.html#method-i-choose_customer">#choose_customer</a>
-    &mdash;
-    <span class="container">NestedController</span>
 
   <li class="method">
     <a href="Competition.html#method-i-clear_manager_password">#clear_manager_password</a>
@@ -655,6 +763,21 @@
     <span class="container">Bracketgrouping</span>
 
   <li class="method">
+    <a href="CustomersController.html#method-i-confirm">#confirm</a>
+    &mdash;
+    <span class="container">CustomersController</span>
+
+  <li class="method">
+    <a href="Customer.html#method-i-confirmed-3F">#confirmed?</a>
+    &mdash;
+    <span class="container">Customer</span>
+
+  <li class="method">
+    <a href="Manager.html#method-i-conpetition_id">#conpetition_id</a>
+    &mdash;
+    <span class="container">Manager</span>
+
+  <li class="method">
     <a href="Contest.html#method-i-contestant_class">#contestant_class</a>
     &mdash;
     <span class="container">Contest</span>
@@ -670,39 +793,14 @@
     <span class="container">Bracketcontestant</span>
 
   <li class="method">
-    <a href="Grouping.html#method-i-contests">#contests</a>
-    &mdash;
-    <span class="container">Grouping</span>
-
-  <li class="method">
     <a href="Team.html#method-i-contests">#contests</a>
     &mdash;
     <span class="container">Team</span>
 
   <li class="method">
-    <a href="CustomersController.html#method-i-create">#create</a>
+    <a href="Grouping.html#method-i-contests">#contests</a>
     &mdash;
-    <span class="container">CustomersController</span>
-
-  <li class="method">
-    <a href="VenuesController.html#method-i-create">#create</a>
-    &mdash;
-    <span class="container">VenuesController</span>
-
-  <li class="method">
-    <a href="ValiddatesController.html#method-i-create">#create</a>
-    &mdash;
-    <span class="container">ValiddatesController</span>
-
-  <li class="method">
-    <a href="BracketcontestsController.html#method-i-create">#create</a>
-    &mdash;
-    <span class="container">BracketcontestsController</span>
-
-  <li class="method">
-    <a href="TeamsController.html#method-i-create">#create</a>
-    &mdash;
-    <span class="container">TeamsController</span>
+    <span class="container">Grouping</span>
 
   <li class="method">
     <a href="ScorerSessionsController.html#method-i-create">#create</a>
@@ -710,14 +808,14 @@
     <span class="container">ScorerSessionsController</span>
 
   <li class="method">
-    <a href="RegularcontestsController.html#method-i-create">#create</a>
+    <a href="ManagerSessionsController.html#method-i-create">#create</a>
     &mdash;
-    <span class="container">RegularcontestsController</span>
+    <span class="container">ManagerSessionsController</span>
 
   <li class="method">
-    <a href="CustomerSessionsController.html#method-i-create">#create</a>
+    <a href="BracketcontestsController.html#method-i-create">#create</a>
     &mdash;
-    <span class="container">CustomerSessionsController</span>
+    <span class="container">BracketcontestsController</span>
 
   <li class="method">
     <a href="CompetitionsController.html#method-i-create">#create</a>
@@ -725,14 +823,39 @@
     <span class="container">CompetitionsController</span>
 
   <li class="method">
+    <a href="TeamsController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">TeamsController</span>
+
+  <li class="method">
+    <a href="CustomerSessionsController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">CustomerSessionsController</span>
+
+  <li class="method">
+    <a href="VenuesController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">VenuesController</span>
+
+  <li class="method">
     <a href="GroupingsController.html#method-i-create">#create</a>
     &mdash;
     <span class="container">GroupingsController</span>
 
   <li class="method">
-    <a href="ManagerSessionsController.html#method-i-create">#create</a>
+    <a href="ValiddatesController.html#method-i-create">#create</a>
     &mdash;
-    <span class="container">ManagerSessionsController</span>
+    <span class="container">ValiddatesController</span>
+
+  <li class="method">
+    <a href="RegularcontestsController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">RegularcontestsController</span>
+
+  <li class="method">
+    <a href="CustomersController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">CustomersController</span>
 
   <li class="method">
     <a href="CustomersController.html#method-i-create_competition">#create_competition</a>
@@ -750,14 +873,19 @@
     <span class="container">Competition</span>
 
   <li class="method">
-    <a href="ValiddatesController.html#method-i-destroy">#destroy</a>
+    <a href="VenuesController.html#method-i-destroy">#destroy</a>
     &mdash;
-    <span class="container">ValiddatesController</span>
+    <span class="container">VenuesController</span>
 
   <li class="method">
     <a href="GroupingsController.html#method-i-destroy">#destroy</a>
     &mdash;
     <span class="container">GroupingsController</span>
+
+  <li class="method">
+    <a href="CompetitionsController.html#method-i-destroy">#destroy</a>
+    &mdash;
+    <span class="container">CompetitionsController</span>
 
   <li class="method">
     <a href="RegularcontestsController.html#method-i-destroy">#destroy</a>
@@ -770,14 +898,9 @@
     <span class="container">TeamsController</span>
 
   <li class="method">
-    <a href="CompetitionsController.html#method-i-destroy">#destroy</a>
+    <a href="GameDate.html#method-i-display_date">#display_date</a>
     &mdash;
-    <span class="container">CompetitionsController</span>
-
-  <li class="method">
-    <a href="VenuesController.html#method-i-destroy">#destroy</a>
-    &mdash;
-    <span class="container">VenuesController</span>
+    <span class="container">GameDate</span>
 
   <li class="method">
     <a href="Contest.html#method-i-display_date">#display_date</a>
@@ -793,6 +916,11 @@
     <a href="Team.html#method-i-display_pct">#display_pct</a>
     &mdash;
     <span class="container">Team</span>
+
+  <li class="method">
+    <a href="GameDate.html#method-i-display_time">#display_time</a>
+    &mdash;
+    <span class="container">GameDate</span>
 
   <li class="method">
     <a href="Contest.html#method-i-display_time">#display_time</a>
@@ -815,9 +943,9 @@
     <span class="container">RegularcontestsController</span>
 
   <li class="method">
-    <a href="ValiddatesController.html#method-i-edit">#edit</a>
+    <a href="VenuesController.html#method-i-edit">#edit</a>
     &mdash;
-    <span class="container">ValiddatesController</span>
+    <span class="container">VenuesController</span>
 
   <li class="method">
     <a href="CompetitionsController.html#method-i-edit">#edit</a>
@@ -825,9 +953,9 @@
     <span class="container">CompetitionsController</span>
 
   <li class="method">
-    <a href="CustomersController.html#method-i-edit">#edit</a>
+    <a href="GroupingsController.html#method-i-edit">#edit</a>
     &mdash;
-    <span class="container">CustomersController</span>
+    <span class="container">GroupingsController</span>
 
   <li class="method">
     <a href="RegularcontestsController.html#method-i-edit">#edit</a>
@@ -835,14 +963,9 @@
     <span class="container">RegularcontestsController</span>
 
   <li class="method">
-    <a href="VenuesController.html#method-i-edit">#edit</a>
+    <a href="CustomersController.html#method-i-edit">#edit</a>
     &mdash;
-    <span class="container">VenuesController</span>
-
-  <li class="method">
-    <a href="GroupingsController.html#method-i-edit">#edit</a>
-    &mdash;
-    <span class="container">GroupingsController</span>
+    <span class="container">CustomersController</span>
 
   <li class="method">
     <a href="BracketcontestsController.html#method-i-edit">#edit</a>
@@ -870,14 +993,14 @@
     <span class="container">Bracketcontestant</span>
 
   <li class="method">
-    <a href="Grouping.html#method-i-fullname">#fullname</a>
-    &mdash;
-    <span class="container">Grouping</span>
-
-  <li class="method">
     <a href="Contestant.html#method-i-fullname">#fullname</a>
     &mdash;
     <span class="container">Contestant</span>
+
+  <li class="method">
+    <a href="Grouping.html#method-i-fullname">#fullname</a>
+    &mdash;
+    <span class="container">Grouping</span>
 
   <li class="method">
     <a href="Competition.html#method-i-fullname">#fullname</a>
@@ -885,9 +1008,19 @@
     <span class="container">Competition</span>
 
   <li class="method">
+    <a href="CustomersController.html#method-i-fullnav">#fullnav</a>
+    &mdash;
+    <span class="container">CustomersController</span>
+
+  <li class="method">
     <a href="Bracketgrouping.html#method-i-game_number">#game_number</a>
     &mdash;
     <span class="container">Bracketgrouping</span>
+
+  <li class="method">
+    <a href="GameTime.html#method-i-gametimeindex">#gametimeindex</a>
+    &mdash;
+    <span class="container">GameTime</span>
 
   <li class="method">
     <a href="Team.html#method-i-goal_diff">#goal_diff</a>
@@ -913,6 +1046,16 @@
     <a href="CustomersController.html#method-i-greet">#greet</a>
     &mdash;
     <span class="container">CustomersController</span>
+
+  <li class="method">
+    <a href="DisplayHelper.html#method-i-group_schedule_headers">#group_schedule_headers</a>
+    &mdash;
+    <span class="container">DisplayHelper</span>
+
+  <li class="method">
+    <a href="DisplayHelper.html#method-i-group_schedule_row">#group_schedule_row</a>
+    &mdash;
+    <span class="container">DisplayHelper</span>
 
   <li class="method">
     <a href="DisplayController.html#method-i-grouping">#grouping</a>
@@ -950,19 +1093,9 @@
     <span class="container">Contest</span>
 
   <li class="method">
-    <a href="ScorersController.html#method-i-index">#index</a>
-    &mdash;
-    <span class="container">ScorersController</span>
-
-  <li class="method">
     <a href="GroupingsController.html#method-i-index">#index</a>
     &mdash;
     <span class="container">GroupingsController</span>
-
-  <li class="method">
-    <a href="ValiddatesController.html#method-i-index">#index</a>
-    &mdash;
-    <span class="container">ValiddatesController</span>
 
   <li class="method">
     <a href="DisplayController.html#method-i-index">#index</a>
@@ -970,29 +1103,14 @@
     <span class="container">DisplayController</span>
 
   <li class="method">
-    <a href="BracketgroupingsController.html#method-i-index">#index</a>
-    &mdash;
-    <span class="container">BracketgroupingsController</span>
-
-  <li class="method">
-    <a href="WelcomeController.html#method-i-index">#index</a>
-    &mdash;
-    <span class="container">WelcomeController</span>
-
-  <li class="method">
     <a href="VenuesController.html#method-i-index">#index</a>
     &mdash;
     <span class="container">VenuesController</span>
 
   <li class="method">
-    <a href="RegularcontestsController.html#method-i-index">#index</a>
+    <a href="ScorersController.html#method-i-index">#index</a>
     &mdash;
-    <span class="container">RegularcontestsController</span>
-
-  <li class="method">
-    <a href="TeamsController.html#method-i-index">#index</a>
-    &mdash;
-    <span class="container">TeamsController</span>
+    <span class="container">ScorersController</span>
 
   <li class="method">
     <a href="CompetitionsController.html#method-i-index">#index</a>
@@ -1000,9 +1118,49 @@
     <span class="container">CompetitionsController</span>
 
   <li class="method">
+    <a href="WelcomeController.html#method-i-index">#index</a>
+    &mdash;
+    <span class="container">WelcomeController</span>
+
+  <li class="method">
+    <a href="RegularcontestsController.html#method-i-index">#index</a>
+    &mdash;
+    <span class="container">RegularcontestsController</span>
+
+  <li class="method">
+    <a href="BracketgroupingsController.html#method-i-index">#index</a>
+    &mdash;
+    <span class="container">BracketgroupingsController</span>
+
+  <li class="method">
+    <a href="TeamsController.html#method-i-index">#index</a>
+    &mdash;
+    <span class="container">TeamsController</span>
+
+  <li class="method">
+    <a href="Bracketpairing.html#method-i-inspect">#inspect</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
+
+  <li class="method">
+    <a href="Priorbracketcontest.html#method-i-inspect">#inspect</a>
+    &mdash;
+    <span class="container">Priorbracketcontest</span>
+
+  <li class="method">
     <a href="ApplicationHelper.html#method-i-instructions">#instructions</a>
     &mdash;
     <span class="container">ApplicationHelper</span>
+
+  <li class="method">
+    <a href="CustomersController.html#method-i-loggedout">#loggedout</a>
+    &mdash;
+    <span class="container">CustomersController</span>
+
+  <li class="method">
+    <a href="CustomerSessionsController.html#method-i-logout">#logout</a>
+    &mdash;
+    <span class="container">CustomerSessionsController</span>
 
   <li class="method">
     <a href="ScorerSessionsController.html#method-i-logout">#logout</a>
@@ -1010,19 +1168,14 @@
     <span class="container">ScorerSessionsController</span>
 
   <li class="method">
-    <a href="CustomersController.html#method-i-logout">#logout</a>
-    &mdash;
-    <span class="container">CustomersController</span>
-
-  <li class="method">
     <a href="ManagerSessionsController.html#method-i-logout">#logout</a>
     &mdash;
     <span class="container">ManagerSessionsController</span>
 
   <li class="method">
-    <a href="CustomerSessionsController.html#method-i-logout">#logout</a>
+    <a href="CustomersController.html#method-i-logout">#logout</a>
     &mdash;
-    <span class="container">CustomerSessionsController</span>
+    <span class="container">CustomersController</span>
 
   <li class="method">
     <a href="Bracketcontest.html#method-i-loser_code">#loser_code</a>
@@ -1038,6 +1191,11 @@
     <a href="Team.html#method-i-losses">#losses</a>
     &mdash;
     <span class="container">Team</span>
+
+  <li class="method">
+    <a href="Bracketpairing.html#method-i-lower_mid">#lower_mid</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
 
   <li class="method">
     <a href="Manager.html#method-i-manager_id">#manager_id</a>
@@ -1060,6 +1218,11 @@
     <span class="container">Competition</span>
 
   <li class="method">
+    <a href="Bracketpairing.html#method-i-middle_mid">#middle_mid</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
+
+  <li class="method">
     <a href="ApplicationHelper.html#method-i-navPanel">#navPanel</a>
     &mdash;
     <span class="container">ApplicationHelper</span>
@@ -1068,26 +1231,6 @@
     <a href="ApplicationHelper.html#method-i-nav_Panel">#nav_Panel</a>
     &mdash;
     <span class="container">ApplicationHelper</span>
-
-  <li class="method">
-    <a href="ScorersController.html#method-i-nav_link_array">#nav_link_array</a>
-    &mdash;
-    <span class="container">ScorersController</span>
-
-  <li class="method">
-    <a href="ManagersController.html#method-i-nav_link_array">#nav_link_array</a>
-    &mdash;
-    <span class="container">ManagersController</span>
-
-  <li class="method">
-    <a href="ManagerSessionsController.html#method-i-nav_link_array">#nav_link_array</a>
-    &mdash;
-    <span class="container">ManagerSessionsController</span>
-
-  <li class="method">
-    <a href="CustomerSessionsController.html#method-i-nav_link_array">#nav_link_array</a>
-    &mdash;
-    <span class="container">CustomerSessionsController</span>
 
   <li class="method">
     <a href="WelcomeController.html#method-i-nav_link_array">#nav_link_array</a>
@@ -1100,14 +1243,34 @@
     <span class="container">DisplayController</span>
 
   <li class="method">
+    <a href="CustomerSessionsController.html#method-i-nav_link_array">#nav_link_array</a>
+    &mdash;
+    <span class="container">CustomerSessionsController</span>
+
+  <li class="method">
     <a href="CustomersController.html#method-i-nav_link_array">#nav_link_array</a>
     &mdash;
     <span class="container">CustomersController</span>
 
   <li class="method">
+    <a href="ManagerSessionsController.html#method-i-nav_link_array">#nav_link_array</a>
+    &mdash;
+    <span class="container">ManagerSessionsController</span>
+
+  <li class="method">
+    <a href="ManagersController.html#method-i-nav_link_array">#nav_link_array</a>
+    &mdash;
+    <span class="container">ManagersController</span>
+
+  <li class="method">
     <a href="ApplicationController.html#method-i-nav_link_array">#nav_link_array</a>
     &mdash;
     <span class="container">ApplicationController</span>
+
+  <li class="method">
+    <a href="ScorersController.html#method-i-nav_link_array">#nav_link_array</a>
+    &mdash;
+    <span class="container">ScorersController</span>
 
   <li class="method">
     <a href="BracketcontestsController.html#method-i-nav_link_hash">#nav_link_hash</a>
@@ -1135,14 +1298,14 @@
     <span class="container">GroupingsHelper</span>
 
   <li class="method">
-    <a href="ValiddatesController.html#method-i-new">#new</a>
+    <a href="CustomersController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">ValiddatesController</span>
+    <span class="container">CustomersController</span>
 
   <li class="method">
-    <a href="RegularcontestsController.html#method-i-new">#new</a>
+    <a href="CustomerSessionsController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">RegularcontestsController</span>
+    <span class="container">CustomerSessionsController</span>
 
   <li class="method">
     <a href="BracketcontestsController.html#method-i-new">#new</a>
@@ -1155,19 +1318,9 @@
     <span class="container">TeamsController</span>
 
   <li class="method">
-    <a href="CompetitionsController.html#method-i-new">#new</a>
+    <a href="GroupingsController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">CompetitionsController</span>
-
-  <li class="method">
-    <a href="ScorerSessionsController.html#method-i-new">#new</a>
-    &mdash;
-    <span class="container">ScorerSessionsController</span>
-
-  <li class="method">
-    <a href="ManagerSessionsController.html#method-i-new">#new</a>
-    &mdash;
-    <span class="container">ManagerSessionsController</span>
+    <span class="container">GroupingsController</span>
 
   <li class="method">
     <a href="VenuesController.html#method-i-new">#new</a>
@@ -1175,24 +1328,34 @@
     <span class="container">VenuesController</span>
 
   <li class="method">
-    <a href="GroupingsController.html#method-i-new">#new</a>
+    <a href="ManagerSessionsController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">GroupingsController</span>
+    <span class="container">ManagerSessionsController</span>
 
   <li class="method">
-    <a href="CustomerSessionsController.html#method-i-new">#new</a>
+    <a href="RegularcontestsController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">CustomerSessionsController</span>
+    <span class="container">RegularcontestsController</span>
 
   <li class="method">
-    <a href="CustomersController.html#method-i-new">#new</a>
+    <a href="ScorerSessionsController.html#method-i-new">#new</a>
     &mdash;
-    <span class="container">CustomersController</span>
+    <span class="container">ScorerSessionsController</span>
+
+  <li class="method">
+    <a href="CompetitionsController.html#method-i-new">#new</a>
+    &mdash;
+    <span class="container">CompetitionsController</span>
 
   <li class="method">
     <a href="CustomersController.html#method-i-new_competition">#new_competition</a>
     &mdash;
     <span class="container">CustomersController</span>
+
+  <li class="method">
+    <a href="Bracket.html#method-i-numrounds">#numrounds</a>
+    &mdash;
+    <span class="container">Bracket</span>
 
   <li class="method">
     <a href="Contestant.html#method-i-opponent">#opponent</a>
@@ -1235,14 +1398,14 @@
     <span class="container">SupportEmailer</span>
 
   <li class="method">
-    <a href="Contest.html#method-i-record_result">#record_result</a>
-    &mdash;
-    <span class="container">Contest</span>
-
-  <li class="method">
     <a href="Bracketcontest.html#method-i-record_result">#record_result</a>
     &mdash;
     <span class="container">Bracketcontest</span>
+
+  <li class="method">
+    <a href="Contest.html#method-i-record_result">#record_result</a>
+    &mdash;
+    <span class="container">Contest</span>
 
   <li class="method">
     <a href="ScorersController.html#method-i-report">#report</a>
@@ -1270,14 +1433,14 @@
     <span class="container">RegularcontestsController</span>
 
   <li class="method">
-    <a href="RegularcontestsController.html#method-i-roundrobin2">#roundrobin2</a>
+    <a href="RegularcontestsController.html#method-i-rrobin">#rrobin</a>
     &mdash;
     <span class="container">RegularcontestsController</span>
 
   <li class="method">
-    <a href="RegularcontestsController.html#method-i-rrobin">#rrobin</a>
+    <a href="Bracketcontestant.html#method-i-save">#save</a>
     &mdash;
-    <span class="container">RegularcontestsController</span>
+    <span class="container">Bracketcontestant</span>
 
   <li class="method">
     <a href="Competition.html#method-i-save">#save</a>
@@ -1330,19 +1493,9 @@
     <span class="container">NestedController</span>
 
   <li class="method">
-    <a href="ValiddatesController.html#method-i-show">#show</a>
-    &mdash;
-    <span class="container">ValiddatesController</span>
-
-  <li class="method">
     <a href="TeamsController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">TeamsController</span>
-
-  <li class="method">
-    <a href="BracketcontestsController.html#method-i-show">#show</a>
-    &mdash;
-    <span class="container">BracketcontestsController</span>
 
   <li class="method">
     <a href="VenuesController.html#method-i-show">#show</a>
@@ -1350,24 +1503,24 @@
     <span class="container">VenuesController</span>
 
   <li class="method">
-    <a href="CompetitionsController.html#method-i-show">#show</a>
-    &mdash;
-    <span class="container">CompetitionsController</span>
-
-  <li class="method">
     <a href="GroupingsController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">GroupingsController</span>
 
   <li class="method">
+    <a href="BracketcontestsController.html#method-i-show">#show</a>
+    &mdash;
+    <span class="container">BracketcontestsController</span>
+
+  <li class="method">
+    <a href="CompetitionsController.html#method-i-show">#show</a>
+    &mdash;
+    <span class="container">CompetitionsController</span>
+
+  <li class="method">
     <a href="BracketgroupingsController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">BracketgroupingsController</span>
-
-  <li class="method">
-    <a href="RegularcontestsController.html#method-i-show">#show</a>
-    &mdash;
-    <span class="container">RegularcontestsController</span>
 
   <li class="method">
     <a href="ApplicationHelper.html#method-i-spacer_div">#spacer_div</a>
@@ -1390,6 +1543,11 @@
     <span class="container">Grouping</span>
 
   <li class="method">
+    <a href="GameTime.html#method-i-tbd-3F">#tbd?</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
     <a href="DisplayController.html#method-i-team">#team</a>
     &mdash;
     <span class="container">DisplayController</span>
@@ -1400,9 +1558,34 @@
     <span class="container">Contestant</span>
 
   <li class="method">
-    <a href="CustomersController.html#method-i-update">#update</a>
+    <a href="GameTime.html#method-i-to_s">#to_s</a>
+    &mdash;
+    <span class="container">GameTime</span>
+
+  <li class="method">
+    <a href="Bracketpairing.html#method-i-top">#top</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
+
+  <li class="method">
+    <a href="Competition.html#method-i-top_grouping">#top_grouping</a>
+    &mdash;
+    <span class="container">Competition</span>
+
+  <li class="method">
+    <a href="CustomersController.html#method-i-unconfirmed">#unconfirmed</a>
     &mdash;
     <span class="container">CustomersController</span>
+
+  <li class="method">
+    <a href="GroupingsController.html#method-i-update">#update</a>
+    &mdash;
+    <span class="container">GroupingsController</span>
+
+  <li class="method">
+    <a href="RegularcontestsController.html#method-i-update">#update</a>
+    &mdash;
+    <span class="container">RegularcontestsController</span>
 
   <li class="method">
     <a href="CompetitionsController.html#method-i-update">#update</a>
@@ -1415,34 +1598,29 @@
     <span class="container">TeamsController</span>
 
   <li class="method">
-    <a href="BracketcontestsController.html#method-i-update">#update</a>
-    &mdash;
-    <span class="container">BracketcontestsController</span>
-
-  <li class="method">
     <a href="VenuesController.html#method-i-update">#update</a>
     &mdash;
     <span class="container">VenuesController</span>
 
   <li class="method">
-    <a href="RegularcontestsController.html#method-i-update">#update</a>
+    <a href="CustomersController.html#method-i-update">#update</a>
     &mdash;
-    <span class="container">RegularcontestsController</span>
+    <span class="container">CustomersController</span>
 
   <li class="method">
-    <a href="ValiddatesController.html#method-i-update">#update</a>
+    <a href="BracketcontestsController.html#method-i-update">#update</a>
     &mdash;
-    <span class="container">ValiddatesController</span>
-
-  <li class="method">
-    <a href="GroupingsController.html#method-i-update">#update</a>
-    &mdash;
-    <span class="container">GroupingsController</span>
+    <span class="container">BracketcontestsController</span>
 
   <li class="method">
     <a href="CustomersController.html#method-i-update_password">#update_password</a>
     &mdash;
     <span class="container">CustomersController</span>
+
+  <li class="method">
+    <a href="Bracketpairing.html#method-i-upper_mid">#upper_mid</a>
+    &mdash;
+    <span class="container">Bracketpairing</span>
 
   <li class="method">
     <a href="Contest.html#method-i-venue_name">#venue_name</a>

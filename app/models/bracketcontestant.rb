@@ -27,11 +27,41 @@ class Bracketcontestant < Contestant
 		self.contestantcode.nil? ? nil : self.contestantcode[0]
 	end
 
+    # Accept code and interpret it
+  def contestantcode=(ccode)
+    self.bcspec.destroy() if self.bcspec
+    case ccode[0]
+      when "G"
+        self.bcspec = Groupingplace.new()
+	/G(\d+)P(\d+)/ =~ ccode
+	self.bcspec.grouping = Grouping.find(Regexp.last_match(1))
+	self.bcspec.place = Regexp.last_match(2)
+	puts "*   * *  * * * * *  GroupingPlaceCode " + ccode
+      when "W"
+        self.bcspec = Priorbracketcontest.new()
+        /W(\d+)/ =~ ccode
+        self.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
+        self.bcspec.wl = "W"
+      when "L"
+        self.bcspec = Priorbracketcontest.new()
+        /L(\d+)/ =~ ccode
+        self.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
+        self.bcspec.wl = "L"
+      else 
+        nil
+    end
+  end
 	
 	# Override with automatic save of bcspec, if it exists.
   def save(*)
     super()
     self.bcspec.save if self.bcspec()
+  end
+	
+	# Override with automatic save of bcspec, if it exists.
+  def save!(*)
+    super
+    self.bcspec.save! if self.bcspec()
   end
 
 						
@@ -52,23 +82,9 @@ class Bracketcontestant < Contestant
 						
 						
 	# Human-readable version of coded Contestant.
-	def contestantlabel
-		return nil if self.contestantcode.nil?
-		case self.contestantcode[0]
-			when "W"
-				/W(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1)).name + " Winner"
-			when "L"
-				/L(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1)).name + " Loser"
-			when "G" 
-				/G(\d+)P(\d+)/ =~ self.contestantcode
-				Regexp.last_match(2).to_i.ordinalize + ' Place ' +
-					Grouping.find(Regexp.last_match(1)).name
-			else 
-				nil
-			end
-	end
+  def contestantlabel
+    self.bcspec ? self.bcspec.label() : " "
+  end
 						
 	# Override with additional information.
 	def fullname

@@ -94,6 +94,11 @@ class BracketcontestsController < BracketgroupingsController
     # Use callbacks to share common setup or constraints between actions.
   private
 
+    # Bracketcontests occur with a Bracketgrouping..
+    def set_bracketgrouping
+      @bracketgrouping = Bracketgrouping.find(params[:bracketgrouping_id])
+    end
+
     def set_bracketcontest
       @bracketcontest = Bracketcontest.find(params[:id])
     end

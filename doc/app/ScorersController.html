@@ -132,7 +132,7 @@ Contests without scores.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/scorers_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-        <span class="ruby-identifier">contests</span> = <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">id</span>}.
+        <span class="ruby-identifier">contests</span> = <span class="ruby-ivar">@scorer</span>.<span class="ruby-identifier">contests</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">id</span>}.
                                       <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span>}.
                                       <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>}
         <span class="ruby-ivar">@contests_with_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">has_score?</span>}
@@ -167,7 +167,7 @@ Contests without scores.</p>
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/scorers_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/scorers_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>
         <span class="ruby-ivar">@scorer</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">scorer_link_array</span>() <span class="ruby-operator">:</span> []
 <span class="ruby-keyword">end</span></pre>

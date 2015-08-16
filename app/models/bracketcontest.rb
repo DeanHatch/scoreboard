@@ -5,17 +5,15 @@ class Bracketcontest < Contest
 	
 	belongs_to :bracketgrouping, foreign_key: "bracketgrouping_id"
 	
+	has_many :priorbracketcontests
+	
 	validates :competition_id,
 		     :bracketgrouping_id,
 		     :homecontestant,
 		     :awaycontestant,
 		     presence: true
 	
-	# Provide controlled public access to private class method.
-  def self.default_bracketgrouping(bracketgrouping)
-	  self.default_scope { (where(bracketgrouping: bracketgrouping) ) }
-  end
-  
+
   
 	# Assign score to each Bracketcontestant and status to entire Bracketcontest.
 	# Save all three records in a single transaction. This overrides (adds to)
@@ -41,7 +39,8 @@ class Bracketcontest < Contest
     # Returns Array of Bracketcontestants which refer to this Bracketcontest.
   def all_priors()
     #self.bracketgrouping.bracketcontests.bracketcontestants
-    Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest().id()==self.id()}.collect{|bc|bc.priorcontest()}
+    #Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest().id()==self.id()}.collect{|bc|bc.priorcontest()}
+    self.priorbracketcontests.collect {|pbc| pbc.bracketcontestant}
   end
 	
 	# Advance teams if this Bracketcontest is referred to by the contestants of a

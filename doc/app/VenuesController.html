@@ -140,7 +140,7 @@
             <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@venue</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">venue_params</span>)
-  <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
+  <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">manager</span> = <span class="ruby-ivar">@manager</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">save</span>
@@ -254,11 +254,11 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/venues_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@venues</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+  <span class="ruby-ivar">@venues</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">venues</span>
     <span class="ruby-comment"># Need a venue object for form which is now on index page</span>
   <span class="ruby-ivar">@venue</span> = <span class="ruby-constant">Venue</span>.<span class="ruby-identifier">new</span>()
-  <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
-  <span class="ruby-ivar">@validdates</span> = <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition_id</span>)
+  <span class="ruby-ivar">@venue</span>.<span class="ruby-identifier">manager</span> = <span class="ruby-ivar">@manager</span>
+  <span class="ruby-ivar">@validdates</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">validdates</span>
     <span class="ruby-comment"># Need a validdate object for form which is now on index page</span>
   <span class="ruby-ivar">@validdate</span> = <span class="ruby-constant">Validdate</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment"># index contains the validdateform</span>
 <span class="ruby-keyword">end</span></pre>

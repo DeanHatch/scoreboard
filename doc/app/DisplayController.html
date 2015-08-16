@@ -133,7 +133,7 @@
 
           
           <div class="method-source-code" id="grouping-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">grouping</span>
         <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
         <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grouping</span>)
@@ -197,7 +197,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -232,9 +232,9 @@ not yet been established.</p>
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
-        <span class="ruby-ivar">@competition</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">top_grouping</span>) <span class="ruby-operator">:</span> []
+        <span class="ruby-ivar">@competition</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">top_grouping</span>) <span class="ruby-operator">:</span> []
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -266,7 +266,7 @@ navigation links to each subgrouping within this grouping.</p>
 
           
           <div class="method-source-code" id="nav_link_to_grouping-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-identifier">grp</span>)
         [<span class="ruby-identifier">navitem</span>(<span class="ruby-identifier">grp</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">display_grouping_path</span>(<span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">grp</span>.<span class="ruby-identifier">id</span>))] <span class="ruby-operator">&lt;&lt;</span>
           <span class="ruby-identifier">grp</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">sg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-identifier">sg</span>)}
@@ -300,7 +300,7 @@ navigation links to each subgrouping within this grouping.</p>
 
           
           <div class="method-source-code" id="team-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">team</span>
         <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
         <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping_id</span>)
