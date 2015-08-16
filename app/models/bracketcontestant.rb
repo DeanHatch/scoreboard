@@ -27,6 +27,16 @@ class Bracketcontestant < Contestant
 		self.contestantcode.nil? ? nil : self.contestantcode[0]
 	end
 
+    # Accessor
+  def contestantcode
+    case self.bcspec.class
+      when Groupingplace
+        ("G" + self.bcspec.grouping.id.to_s + "P" + self.bcspec.place.to_s ) 
+      when Priorbracketcontest
+	(self.bcspec.wl + self.bcspec.bracketcontest.id.to_s)
+      end
+  end
+  
     # Accept code and interpret it
   def contestantcode=(ccode)
     self.bcspec.destroy() if self.bcspec
