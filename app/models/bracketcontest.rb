@@ -25,6 +25,17 @@ class Bracketcontest < Contest
     self.advance_contestants()
   end
   
+    # 
+  def bracketdepth()
+    self.has_prior? ?
+      [self.homecontestant.bracketdepth(), self.awaycontestant.bracketdepth()].max + 1 :
+      1
+  end
+  
+    #
+  def has_prior?()
+    ! (self.homecontestant.priorcontest.nil? and self.awaycontestant.priorcontest.nil?)
+  end
   
     # return the contestantcode for the Winner of this Bracketcontest
   def winner_code()

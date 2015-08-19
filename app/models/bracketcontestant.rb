@@ -24,7 +24,14 @@ class Bracketcontestant < Contestant
 
 	# Override with additional information.
 	def contestanttype
-		self.contestantcode.nil? ? nil : self.contestantcode[0]
+  	  case self.bcspec_type
+	    when "Groupingplace"
+	      "G"
+	    when "Priorbracketcontest"
+	      self.bcspec.wl
+	    else
+	      self.bcspec.class.name
+	  end
 	end
 
     # Accessor
@@ -77,19 +84,13 @@ class Bracketcontestant < Contestant
 						
 	# Prior Bracketcontest referred to by this Contestant.
 	def priorcontest
-		return nil if self.contestantcode.nil?
-		case self.contestantcode[0]
-			when "W"
-				/W(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1))
-			when "L"
-				/L(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1))
-			else 
-				nil
-			end
+	  self.bcspec_type == "Priorbracketcontest" ? self.bcspec.bracketcontest : nil
 	end
-						
+	
+    # 	
+  def bracketdepth()
+    self.priorcontest ? self.priorcontest.bracketdepth() : 1
+  end  
 						
 	# Human-readable version of coded Contestant.
   def contestantlabel

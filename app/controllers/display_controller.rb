@@ -1,4 +1,3 @@
-require 'bracket.rb'
 
 class DisplayController < NestedController # Formerly < ApplicationController
      before_action :set_competition
@@ -32,22 +31,14 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	  @grouping = Grouping.find(params[:id])
 	  @groupingteams = Team.where(grouping: @grouping)
 	  @contests = @grouping.contests()
+	  @bracketgrouping = Bracketgrouping.find(params[:id])
+	  @bracketcontests = @bracketgrouping.bracketcontests
 	  what2show = params[:xyzzy]
-	  if @grouping.bracket_grouping
-	    brackets = Bracket.all_for(@grouping)
-	    @bracket = brackets.first
-	    @bfirst = @bracket.terminalpairing if @bracket
-	  end
 	  @what_to_render = (case what2show
 				when "bracket" 
-				  @brackets = Bracket.all_for(@grouping)
- 				  @bracketgrouping = Bracketgrouping.find(params[:id])
-				  @bracketcontests = Bracketcontest.where(bracketgrouping: @bracketgrouping)
-				  logger.info("Bracket Contests: #{@bracketcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
-				  @priorcontests = Bracketcontestant.where(bracketgrouping: @bracketgrouping).select{|bc| bc.priorcontest()}.collect{|bc| bc.priorcontest()}
-				  logger.info("Prior Contests: #{@priorcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
+				  @priorcontests = @bracketgrouping.priorbracketcontests.collect{|pbc| pbc.bracketcontest}
 				  @terminalcontests = @bracketcontests - @priorcontests
-				  logger.info("Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
+				  logger.info("*** Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
 				 'grouping_bracket'   
 				when "schedule" 
 				 @contests = @contests.select{|c| c.needs_score?}.sort
