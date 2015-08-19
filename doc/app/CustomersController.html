@@ -72,13 +72,19 @@
     
     <li ><a href="#method-i-change_password">#change_password</a>
     
+    <li ><a href="#method-i-confirm">#confirm</a>
+    
     <li ><a href="#method-i-create">#create</a>
     
     <li ><a href="#method-i-create_competition">#create_competition</a>
     
     <li ><a href="#method-i-edit">#edit</a>
     
+    <li ><a href="#method-i-fullnav">#fullnav</a>
+    
     <li ><a href="#method-i-greet">#greet</a>
+    
+    <li ><a href="#method-i-loggedout">#loggedout</a>
     
     <li ><a href="#method-i-logout">#logout</a>
     
@@ -87,6 +93,8 @@
     <li ><a href="#method-i-new">#new</a>
     
     <li ><a href="#method-i-new_competition">#new_competition</a>
+    
+    <li ><a href="#method-i-unconfirmed">#unconfirmed</a>
     
     <li ><a href="#method-i-update">#update</a>
     
@@ -151,8 +159,51 @@ Session.</p>
 
           
           <div class="method-source-code" id="change_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 66</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_password</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-confirm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">confirm</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /customer/:id/confirm/:reg_confirm_token</p>
+          
+          
+
+          
+          <div class="method-source-code" id="confirm-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">confirm</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">reg_confirm_token</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:reg_confirm_token</span>]
+      <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">reg_confirm_token</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">save!</span>()
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;greet&quot;</span> ) }
+      <span class="ruby-keyword">else</span>
+       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_path</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -183,7 +234,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">customer_params</span>)
 
@@ -227,7 +278,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="create_competition-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_competition</span>
         <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">competition_params</span>)
         <span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">customer</span> = <span class="ruby-ivar">@customer</span>
@@ -269,8 +320,46 @@ Session.</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fullnav" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fullnav</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Use this Link Array when <a href="Customer.html">Customer</a> is both
+Confirmed and Logged In.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fullnav-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fullnav</span>()
+    [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Change Password&#39;</span> , <span class="ruby-value">:change_password_customer</span>),
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Edit Profile&#39;</span> , <span class="ruby-value">:edit_customer</span>),
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Create a New Competition&#39;</span> , <span class="ruby-value">:new_competition_customer</span>),
+           <span class="ruby-comment">#navitem(&#39;Manage My Competitions&#39; , choose_competition_manager_path(@customer), target: &quot;_blank&quot;),</span>
+           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer_session</span>) ] 
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -301,10 +390,44 @@ Session.</p>
 
           
           <div class="method-source-code" id="greet-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">greet</span>
-        <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">default_cust</span>(<span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>)
-        <span class="ruby-ivar">@competitions</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">default_cust</span>(<span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@competitions</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;You need to confirm your Registration.&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">confirmed?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-loggedout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">loggedout</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Link Array.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="loggedout-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">loggedout</span>()
+    [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer_session</span>) ] 
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -335,7 +458,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="logout-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 103</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logout</span>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] = <span class="ruby-keyword">nil</span>
         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Bye.&#39;</span>
@@ -370,16 +493,12 @@ Session.</p>
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
-        <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] <span class="ruby-operator">?</span>
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Change Password&#39;</span> , <span class="ruby-value">:change_password_customer</span>),
-           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Edit Profile&#39;</span> , <span class="ruby-value">:edit_customer</span>),
-           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Create a New Competition&#39;</span> , <span class="ruby-value">:new_competition_customer</span>),
-           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage My Competitions&#39;</span> , <span class="ruby-identifier">choose_competition_manager_path</span>(<span class="ruby-ivar">@customer</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>),
-           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer_session</span>) ]  <span class="ruby-operator">:</span>
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Login&#39;</span> , <span class="ruby-value">:new_customer_session</span>),
-           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Register&#39;</span> , <span class="ruby-value">:new_customer</span>)]
+      <span class="ruby-comment"># Can be one of three states: 1) logged-in and confirmed, 2) logged-in and unconfirmed, 3) not logged in.</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] <span class="ruby-operator">?</span> 
+        (<span class="ruby-constant">Customer</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>]).<span class="ruby-identifier">confirmed?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">fullnav</span>() <span class="ruby-operator">:</span> <span class="ruby-identifier">unconfirmed</span>()) <span class="ruby-operator">:</span>
+         <span class="ruby-identifier">loggedout</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -410,7 +529,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@customer</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -443,9 +562,43 @@ Session.</p>
 
           
           <div class="method-source-code" id="new_competition-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_competition</span>
         <span class="ruby-ivar">@competition</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unconfirmed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unconfirmed</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Use this Link Array when <a href="Customer.html">Customer</a> has Logged In
+but is not yet Confirmed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unconfirmed-source">
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">unconfirmed</span>()
+    [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer_session</span>) ] 
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -476,7 +629,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">customer_params</span>)
@@ -516,7 +669,7 @@ Session.</p>
 
           
           <div class="method-source-code" id="update_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/customers_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_password</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@customer</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">customer_params</span>)

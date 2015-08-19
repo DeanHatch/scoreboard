@@ -1,8 +1,19 @@
-
 <% if @competition %>
-<% content_for :page_title do %>
-<%= @competition.fullname %>
-<% end %> 
-<% end %>
+  <% content_for :page_title do %>
+  <%= @competition.fullname %>
+  <% end %> 
+
+  <% content_for :waytop do %>
+  Need to Report a Score for this Competition or Manage this Competition?
+  <br/>
+  Scorers Login
+  <%= link_to  "Here",
+                   login_scorer_session_path(@competition), target: "_blank" %>
+  ||||    
+  Managers/Directors Login
+  <%= link_to "Here",
+                   login_manager_session_path(@competition), target: "_blank" %>
+  <% end # of content for waytop %> 
+<% end # of if @competition %>
 
 <%= render template: "layouts/application" %>

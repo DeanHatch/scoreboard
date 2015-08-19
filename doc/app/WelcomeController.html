@@ -129,8 +129,10 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">customers</span> = <span class="ruby-constant">Customer</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">all</span>()
+  <span class="ruby-comment"># logger.info(&quot;session info is: #{session.inspect()}&quot;)</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -163,10 +165,7 @@
           <div class="method-source-code" id="nav_link_array-source">
             <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View a Competition&#39;</span> , <span class="ruby-value">:choose_display_customer</span>) ,
-           <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Report/Correct Scores&#39;</span> , <span class="ruby-value">:scorer_choose_customer</span>) ,
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage a Competition&#39;</span> , <span class="ruby-value">:choose_customer_manager</span>),
-      <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Customer Login/Register&#39;</span>, <span class="ruby-value">:new_customer_session</span>) ]
+        [<span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Customer Login/Register&#39;</span>, <span class="ruby-value">:new_customer_session</span>) ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -197,7 +196,7 @@
 
           
           <div class="method-source-code" id="send_us_a_message-source">
-            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_us_a_message</span>()
   <span class="ruby-constant">SupportEmailer</span>.<span class="ruby-identifier">rant</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">deliver</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:thanks_for_the_message</span>

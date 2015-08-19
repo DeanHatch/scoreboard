@@ -1,14 +1,12 @@
-require 'bracket.rb'
 
 class DisplayController < NestedController # Formerly < ApplicationController
-     before_action :set_competition, except: [:choose_customer, :choose_competition]
-     #before_action :set_customer, only: [:choose_competition]
+     before_action :set_competition
 
     # Array of Grouping links can have nested Arrays of Grouping links,
     # but it all starts at the top. No navigation if the Competition has not
     # yet been established.
   def nav_link_array()
-	  @competition ? nav_link_to_grouping(Grouping.top_grouping) : []
+	  @competition ? nav_link_to_grouping(@competition.top_grouping) : []
   end
   
 	   # (Recursive) The navigation link to this grouping is followed by an Array of
@@ -33,22 +31,14 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	  @grouping = Grouping.find(params[:id])
 	  @groupingteams = Team.where(grouping: @grouping)
 	  @contests = @grouping.contests()
+	  @bracketgrouping = Bracketgrouping.find(params[:id])
+	  @bracketcontests = @bracketgrouping.bracketcontests
 	  what2show = params[:xyzzy]
-	  if @grouping.bracket_grouping
-	    brackets = Bracket.all_for(@grouping)
-	    @bracket = brackets.first
-	    @bfirst = @bracket.terminalpairing if @bracket
-	  end
 	  @what_to_render = (case what2show
 				when "bracket" 
-				  @brackets = Bracket.all_for(@grouping)
- 				  @bracketgrouping = Bracketgrouping.find(params[:id])
-				  @bracketcontests = Bracketcontest.where(bracketgrouping: @bracketgrouping)
-				  logger.info("Bracket Contests: #{@bracketcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
-				  @priorcontests = Bracketcontestant.where(bracketgrouping: @bracketgrouping).select{|bc| bc.priorcontest()}.collect{|bc| bc.priorcontest()}
-				  logger.info("Prior Contests: #{@priorcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
+				  @priorcontests = @bracketgrouping.priorbracketcontests.collect{|pbc| pbc.bracketcontest}
 				  @terminalcontests = @bracketcontests - @priorcontests
-				  logger.info("Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
+				  logger.info("*** Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
 				 'grouping_bracket'   
 				when "schedule" 
 				 @contests = @contests.select{|c| c.needs_score?}.sort
@@ -69,30 +59,10 @@ class DisplayController < NestedController # Formerly < ApplicationController
      def set_competition
 	@competition_id = params[:competition_id]
 	super(@competition_id)
-	return(redirect_to(competitions_display_url)) unless @competition_id
+	  # If we do not have a valid Competition (e.g. bad bookmark)
+	  # then go to root, Welcome page
+	return(redirect_to(welcome_index_path)) unless @competition_id
     end
 
   
-     def set_customer
-	@customer_id = params[:customer_id]
-	return(redirect_to(competitions_display_url)) unless @customer_id
-	begin
-	@customer = Customer.find(@customer_id)
-	Competition.default_cust(@customer_id)
-	rescue
-	return redirect_to(competitions_display_url)
-	end
-    end
-
-     def set_navigation
-	@customer_id = params[:customer_id]
-	return(redirect_to(competitions_display_url)) unless @customer_id
-	begin
-	@customer = Customer.find(@customer_id)
-	Competition.default_cust(@customer_id)
-	rescue
-	return redirect_to(competitions_display_url)
-	end
-    end
-
 end

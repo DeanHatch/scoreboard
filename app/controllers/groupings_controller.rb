@@ -5,7 +5,7 @@ class GroupingsController < ManagersController  # formerly ApplicationController
   # GET /groupings
   # GET /groupings.json
   def index
-    @groupings = Grouping.where(competition_id: @competition_id)
+    @groupings = Grouping.where(manager: @manager)
   end
 
   # GET /groupings/1
@@ -15,25 +15,25 @@ class GroupingsController < ManagersController  # formerly ApplicationController
 
   # GET /groupings/new
   def new
-    @groupings = Grouping.where(competition_id: @competition_id)
+    @groupings = @manager.groupings()
       # ALL does not include the Grouping about to be created.
       # That is why groupings is assigned first.
     @grouping = Grouping.new
-    @grouping.competition_id = @competition_id
-    @grouping.grouping = Grouping.top_grouping() # assign default
+    @grouping.manager = @manager
+    @grouping.grouping = @groupings.select{|g| g.grouping().nil?}.first() # assign default
   end
 
   # GET /groupings/1/edit
   def edit
 	  # list of groupings for drop-down
-    @groupings = Grouping.where(competition_id: @competition_id)
+    @groupings = Grouping.where(manager: @manager)
     @grouping_id = @grouping.id
   end
 
   # POST /groupings
   def create
     @grouping = Grouping.new(grouping_params)
-    @grouping.competition = @competition
+    @grouping.manager = @manager
     
     respond_to do |format|
       if @grouping.save

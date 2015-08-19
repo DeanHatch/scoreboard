@@ -11,64 +11,61 @@
     </div>
   <% end %>
 
+  <fieldset>
+  <legend><%= "Update this Contest" %></legend>
   <div class="field">
-    <%= f.label :date %><br>
+    <%= f.label :date %>
     <%= f.select :date,
-		      options_for_select(Validdate.all.sort{|a,b| a.gamedate <=> b.gamedate}.
+		      options_for_select(@manager.validdates.sort{|a,b| a.gamedate <=> b.gamedate}.
 		                                                 collect {|v| [ v.gamedate, v.gamedate ]},
 		                                selected: @selecteddate), 
 		    {prompt: 'TBD'} %>
-  </div>
-  <div class="field">
     <%= f.label :time %>
-    <!-- %= time_select 'regularcontest', 'time', {minute_step: 5} % --><br>
     <%= f.select :time,
 		      options_for_select(Regularcontest.times,
 		                                selected: @selectedtime), 
 		    {prompt: 'TBD'} %>
-  </div>
-  <div class="field">
-    <%= f.label :venue %><br>
+		    
+    <%= f.label :venue %>
     <%= f.select :venue_id,
-		      options_for_select(Venue.all.collect {|v| [ v.name, v.id ] },
+		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
 		                                selected: @selectedvenue), 
 		    {prompt: 'TBD'} %>
   </div>
   <div class="field">
-    <%= f.label :status %><br>
+    <%= f.label :status %>
     <%= f.select :status,
 		      options_for_select(Regularcontest.statuses.collect {|st| [ st, st ] },
 		                                selected: @selectedstatus), 
 		    {} %>
   </div>
   
-  <fieldset>
-   <legend>Home</legend>
-   <%= @homecontestant.fullname %>
+  <div class="field">
+   <%= f.label :home %>
    <% f.fields_for :homecontestant, @homecontestant do |home_form| %>
      <%= home_form.label :name %>
      <%= home_form.text_field :homeaway %>
-    <% end %><br>
+    <% end %>
     <%= f.select :home_team_id,
-		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @homecontestant.team_id), 
 		    {prompt: 'TBD'} %>
-  </fieldset>
-
-  <fieldset>
-   <legend>Visitor</legend>
-   <%= @awaycontestant.fullname %>
+  
+  
+  
+  <%= f.label :visitor %>
    <% f.fields_for :awaycontestant, @awaycontestant do |away_form| %>
      <%= away_form.label :name %>
      <%= away_form.text_field :homeaway %>
-    <% end %><br>
+    <% end %>
     <%= f.select :away_team_id,
-		      options_for_select(Team.all.collect {|t| [ t.name, t.id ] },
+		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @awaycontestant.team_id), 
 		    {prompt: 'TBD'} %>
-  </fieldset>
+    </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+  </fieldset>
 <% end %>

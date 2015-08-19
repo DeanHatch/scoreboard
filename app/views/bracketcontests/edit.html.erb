@@ -1,5 +1,5 @@
-<h1>Editing Bracket Contest</h1>
-
 <%= render 'form' %>
+<%= @dropable.inspect() %>
+<%= render 'drop_bracketcontest_form' if @dropable %>
 
 <%= link_to 'Back', bracketgrouping_path(@bracketgrouping) %>

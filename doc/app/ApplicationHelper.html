@@ -293,7 +293,7 @@ viewers.</p>
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_midcontents</span>(<span class="ruby-identifier">pair</span>)
   <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:span</span>,
-                      [<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">upper_mid</span>, <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">lower_mid</span>()].<span class="ruby-identifier">join</span>().<span class="ruby-identifier">html_safe</span>,
+                      [<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">upper_mid</span>, <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">middle_mid</span>, <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">lower_mid</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-identifier">tag</span>(<span class="ruby-string">&quot;br&quot;</span>)).<span class="ruby-identifier">html_safe</span>,
                       {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;bmid&quot;</span>}) )
 <span class="ruby-keyword">end</span></pre>
           </div>

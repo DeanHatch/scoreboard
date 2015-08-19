@@ -5,17 +5,15 @@ class Bracketcontest < Contest
 	
 	belongs_to :bracketgrouping, foreign_key: "bracketgrouping_id"
 	
+	has_many :priorbracketcontests
+	
 	validates :competition_id,
 		     :bracketgrouping_id,
 		     :homecontestant,
 		     :awaycontestant,
 		     presence: true
 	
-	# Provide controlled public access to private class method.
-  def self.default_bracketgrouping(bracketgrouping)
-	  self.default_scope { (where(bracketgrouping: bracketgrouping) ) }
-  end
-  
+
   
 	# Assign score to each Bracketcontestant and status to entire Bracketcontest.
 	# Save all three records in a single transaction. This overrides (adds to)
@@ -27,6 +25,17 @@ class Bracketcontest < Contest
     self.advance_contestants()
   end
   
+    # 
+  def bracketdepth()
+    self.has_prior? ?
+      [self.homecontestant.bracketdepth(), self.awaycontestant.bracketdepth()].max + 1 :
+      1
+  end
+  
+    #
+  def has_prior?()
+    ! (self.homecontestant.priorcontest.nil? and self.awaycontestant.priorcontest.nil?)
+  end
   
     # return the contestantcode for the Winner of this Bracketcontest
   def winner_code()
@@ -38,15 +47,20 @@ class Bracketcontest < Contest
     "L"+self.id.to_s
   end
   
+    # Returns Array of Bracketcontestants which refer to this Bracketcontest.
+  def all_priors()
+    #self.bracketgrouping.bracketcontests.bracketcontestants
+    #Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest().id()==self.id()}.collect{|bc|bc.priorcontest()}
+    self.priorbracketcontests.collect {|pbc| pbc.bracketcontestant}
+  end
 	
 	# Advance teams if this Bracketcontest is referred to by the contestants of a
 	# subsequent Bracketcontest.
   def advance_contestants()
-    all_priors = Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest==self}
     #logger.debug "Prior(s): #{all_priors.collect{|bc| bc.contestantcode}.inspect()}"
     winning_team = self.homecontestant.win ? self.homecontestant.team : self.awaycontestant.team
     losing_team = self.homecontestant.loss ? self.homecontestant.team : self.awaycontestant.team
-    all_priors.each{|bc| bc.contestanttype=="W" ? bc.team = winning_team : losing_team; bc.save! }
+    self.all_priors().each{|bc| bc.contestanttype=="W" ? bc.team = winning_team : losing_team; bc.save! }
   end
 	
 end

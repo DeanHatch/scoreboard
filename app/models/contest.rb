@@ -9,6 +9,7 @@ class Contest < ActiveRecord::Base
 	include Comparable
 	
 	belongs_to :competition
+	belongs_to :manager
 	belongs_to :venue
 	
 	validates_associated :venue
@@ -17,10 +18,12 @@ class Contest < ActiveRecord::Base
 	
 	has_one :homecontestant, -> { where homeaway: 'H' },
 						class_name: "Contestant",
-						foreign_key: "contest_id"
+						foreign_key: "contest_id", 
+						dependent: :destroy  # destroys the associated homecontestant
 	has_one :awaycontestant, -> { where homeaway: 'A' },
 						class_name: "Contestant",
-						foreign_key: "contest_id"
+						foreign_key: "contest_id", 
+						dependent: :destroy  # destroys the associated awaycontestant
 	
 	
 	def self.default_comp(comp_id)
@@ -58,12 +61,12 @@ class Contest < ActiveRecord::Base
 	# the subclass of this Contest class.
 	# (Note: tried after_initialize but it did not work as I expected)
 	def initialize(attributes = nil, options = {})
-		super(attributes, options)
-		self.awaycontestant = self.contestant_class.new(:contest_type => self.class.name,
+	  super
+	  self.awaycontestant = self.contestant_class.new(:contest_type => self.class.name,
                                                                    :forfeit => false,
 								    homeaway: 'A',
 								    contest_id: self.id)
-		self.homecontestant = self.contestant_class.new(:contest_type => self.class.name,
+	  self.homecontestant = self.contestant_class.new(:contest_type => self.class.name,
                                                                   :forfeit => false,
 								    homeaway: 'H',
 								    contest_id: self.id)

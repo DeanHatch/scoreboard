@@ -3,7 +3,7 @@
 
 <%= render 'teamform' %>
 <%= render 'moveteamform' %>
-<%= render 'dropteamform' %>
+<%= render 'dropteamform' if @team.as_contestants().size() == 0 %>
 
 <br/>
 <%= link_to 'Skip This and Go Back to Team List', grouping_teams_path(@team.grouping) %> 

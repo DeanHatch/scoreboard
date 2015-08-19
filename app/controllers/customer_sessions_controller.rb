@@ -5,7 +5,7 @@ class CustomerSessionsController < ApplicationController
   # Link Array. 
   def nav_link_array()
 	  session[:customer_id] ?
-	  [ navitem('Logout' , :logout_customer) ]  :
+	  [ navitem('Logout' , :logout_customer_session) ]  :
 	  [ navitem('Login' , :new_customer_session),
 	     navitem('Register' , :new_customer)]
   end

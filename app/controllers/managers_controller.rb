@@ -38,7 +38,7 @@ class ManagersController < NestedController
   def change_manager_password()
 	  manager_pw_params
 	  respond_to do |format|
-		  if @competition.update!(manager_pw_params)
+		  if @manager.update!(manager_pw_params)
 			  flash[:notice] = 'Change made.'
 			  format.html { redirect_to :action => "greet"}
 			  else
@@ -50,9 +50,9 @@ class ManagersController < NestedController
   
   # Set Manager Password to NIL.
   def clear_manager_password()
-	  @competition.clear_manager_password()
+	  @manager.clear_manager_password()
 	  respond_to do |format|
-		  if @competition.save!()
+		  if @manager.save!()
 			  flash[:notice] = 'Change made.'
 			  format.html { redirect_to :action => "greet"}
 			  else
@@ -66,7 +66,7 @@ class ManagersController < NestedController
   def change_scorer_password()
 	p scorer_pw_params.inspect()
 	respond_to do |format|
-		if @competition.update!(scorer_pw_params)
+		if @manager.update!(scorer_pw_params)
 			  flash[:notice] = 'Change made.'
 			format.html { redirect_to :action => "greet"}
 		else
@@ -78,9 +78,9 @@ class ManagersController < NestedController
   
   # Set Scorer Password to NIL.
   def clear_scorer_password()
-	  @competition.clear_scorer_password()
+	  @manager.clear_scorer_password()
 	  respond_to do |format|
-		  if @competition.save!()
+		  if @manager.save!()
 			  flash[:notice] = 'Change made.'
 			  format.html { redirect_to :action => "greet"}
 			  else
@@ -99,7 +99,7 @@ class ManagersController < NestedController
 
  private
 
-  def check_manager_session()
+  def check_manager_sessio()
 	  logger.info("Manager ID from session is: #{session[:manager_id].inspect()}")
 	  if session[:manager_id].nil?
 		  redirect_to choose_customer_manager_path
@@ -114,19 +114,25 @@ class ManagersController < NestedController
 	    end
 	  end
   end
- 
-     def set_customer
-	@customer_id = params[:customer_id]
-	return(redirect_to(competitions_display_url)) unless @customer_id
-	begin
-	@customer = Customer.find(@customer_id)
-	Competition.default_cust(@customer_id)
-	rescue
-	return redirect_to(competitions_display_url)
-	end
-    end
- 
 
+  def check_manager_session()
+	  logger.info("Manager ID from session is: #{session[:manager_id].inspect()}")
+	  if session[:manager_id].nil?
+		  redirect_to oops_path
+		  #redirect_to choose_customer_manager_path
+	  else
+	    begin
+	    @manager = Manager.find(session[:manager_id])
+	    #@manager_id = @competition.id
+	    #set_competition(@competition_id)
+	    rescue
+	      session[:manager_id] = nil
+	      redirect_to oops_path
+	      #redirect_to choose_customer_manager_path
+	    end
+	  end
+  end
+ 
     # Manager Password arrives with a Confirmation.
     def manager_pw_params
       params.require(:competition).permit(:manager_password, :manager_password_confirmation)

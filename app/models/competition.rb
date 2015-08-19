@@ -17,7 +17,13 @@ class Competition < ActiveRecord::Base
 	attr_accessor :scorer_password_confirmation
 	validates_confirmation_of :scorer_password
 	
+	has_many :venues
+	has_many :validdates
 	has_many :groupings
+	has_many :bracketgroupings, -> { where(bracket_grouping: true) }
+	has_many :teams, through: :groupings
+	has_many :contests
+	has_many :regularcontests
 	
 	def Competition.poolgroupseasonlabels
 		['Pool', 'Group', 'Season']
@@ -135,6 +141,11 @@ class Competition < ActiveRecord::Base
 		Grouping.new(competition_id: self.id, name: name).save(validate: false)
 	end
 	
+	
+	# This Competition's Grouping which has no parent.
+	def top_grouping()
+		self.groupings.where(parent_id: nil).first
+	end
 	
 	
 	# scorer_password is included on the HTML form and is sent with

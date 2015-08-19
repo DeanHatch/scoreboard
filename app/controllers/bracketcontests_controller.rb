@@ -27,7 +27,8 @@ class BracketcontestsController < BracketgroupingsController
   # GET /bracketcontests/new
   def new
     @bracketcontest = Bracketcontest.new
-    @bracketcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @bracketcontest.competition = @manager
     @bracketcontest.bracketgrouping_id = @bracketgrouping_id
     @selectedvenue = nil
     @selecteddate = nil
@@ -46,13 +47,18 @@ class BracketcontestsController < BracketgroupingsController
     @selectedstatus = @bracketcontest.status
     @homecontestant = @bracketcontest.homecontestant
     @awaycontestant = @bracketcontest.awaycontestant
+      # Only allow this Bracketcontest to be dropped if it is
+      # not referred to by another Bracketcontest.
+    logger.debug "Prior(s) for #{@bracketcontest.id}: #{@bracketcontest.all_priors().collect{|bc|bc.id==@bracketcontest.id}.inspect()}"
+    @dropable = (@bracketcontest.all_priors().size()==0)
   end
 
   # POST /bracketcontests
   # POST /bracketcontests.json
   def create
     @bracketcontest = Bracketcontest.new(bracketcontest_params)
-    @bracketcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @bracketcontest.competition = @manager.as_competition()
     @bracketcontest.bracketgrouping_id = @bracketgrouping_id
 
     respond_to do |format|
@@ -87,6 +93,11 @@ class BracketcontestsController < BracketgroupingsController
 
     # Use callbacks to share common setup or constraints between actions.
   private
+
+    # Bracketcontests occur with a Bracketgrouping..
+    def set_bracketgrouping
+      @bracketgrouping = Bracketgrouping.find(params[:bracketgrouping_id])
+    end
 
     def set_bracketcontest
       @bracketcontest = Bracketcontest.find(params[:id])

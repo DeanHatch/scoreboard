@@ -1,0 +1,22 @@
+
+<div class="sellist">
+ <ul  class="sellist">
+  <% Customer.all.select {|c| c.competitions.size()>0}.each do |cust| %>
+   <li class="sellist">
+   <%= cust.name %>
+
+     <ul  class="sellist">
+      <% cust.competitions.all.each do |comp| %>
+       <li class="sellist">
+       <%= link_to [comp.name, comp.sport, comp.variety].join(" "),
+                       display_competition_path(comp), class: "sellistlink" %>
+        </li>
+      <% end %>
+       </ul>
+       
+    </li>
+  <% end %>
+   </ul>
+</div>
+
+

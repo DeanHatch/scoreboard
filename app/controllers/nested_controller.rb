@@ -22,39 +22,26 @@ class NestedController  < ApplicationController
 	competitions_url
 	end
   
-	# Competitions are nested within Customers. If a subclass of
-	# NestedController does not have a Competition specified then
-	# the correct response to the request is to prompt for a
-	# Customer identifier and then prompt user to choose
-	# which of that customer's Competitions to use.
-	def choose_customer
-	end
-
-	# Once a Customer has been identified, the response prompts
-	# the user to choose which of the Customer's Competitions to use.
-	def choose_competition
-	  logger.info ("Customer ID #{params[:customer_id]} was passed...")
-	  Competition.default_cust(params[:customer_id])
-	end
-	
 
      # If a Competition has been specified, then set the scope for
      # all nested resources to that Competition.
      def set_competition(competition_id)
 	@competition_id = competition_id
 	@competition = Competition.find(competition_id)
+	rescue 
+	return redirect_to(oops_path)
 	begin
-	Validdate.default_comp(competition_id)
-	Venue.default_comp(competition_id)
-	Grouping.default_comp(competition_id)
-	Team.default_comp(competition_id)
-	Contest.default_comp(competition_id)
-	Contestant.default_comp(competition_id)
-	Regularcontest.default_comp(competition_id)
-	Regularcontestant.default_comp(competition_id)
-	Bracketgrouping.default_comp(competition_id)
-	Bracketcontest.default_comp(competition_id)
-	Bracketcontestant.default_comp(competition_id)
+	#Validdate.default_comp(competition_id)
+	#Venue.default_comp(competition_id)
+	#Grouping.default_comp(competition_id)
+	#Team.default_comp(competition_id)
+	#Contest.default_comp(competition_id)
+	#Contestant.default_comp(competition_id)
+	#Regularcontest.default_comp(competition_id)
+	#Regularcontestant.default_comp(competition_id)
+	#Bracketgrouping.default_comp(competition_id)
+	#Bracketcontest.default_comp(competition_id)
+	#Bracketcontestant.default_comp(competition_id)
 	rescue
 	return redirect_to(self.failure_redirect)
 	end

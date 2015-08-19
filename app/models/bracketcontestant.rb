@@ -16,6 +16,7 @@
 # 
 class Bracketcontestant < Contestant
 						
+	belongs_to :bcspec, polymorphic: true
 	
 	belongs_to :bracketcontest, foreign_key: "contest_id"
 
@@ -23,50 +24,78 @@ class Bracketcontestant < Contestant
 
 	# Override with additional information.
 	def contestanttype
-		self.contestantcode.nil? ? nil : self.contestantcode[0]
+  	  case self.bcspec_type
+	    when "Groupingplace"
+	      "G"
+	    when "Priorbracketcontest"
+	      self.bcspec.wl
+	    else
+	      self.bcspec.class.name
+	  end
 	end
 
+    # Accessor
+  def contestantcode
+    case self.bcspec.class
+      when Groupingplace
+        ("G" + self.bcspec.grouping.id.to_s + "P" + self.bcspec.place.to_s ) 
+      when Priorbracketcontest
+	(self.bcspec.wl + self.bcspec.bracketcontest.id.to_s)
+      end
+  end
+  
+    # Accept code and interpret it
+  def contestantcode=(ccode)
+    self.bcspec.destroy() if self.bcspec
+    case ccode[0]
+      when "G"
+        self.bcspec = Groupingplace.new()
+	/G(\d+)P(\d+)/ =~ ccode
+	self.bcspec.grouping = Grouping.find(Regexp.last_match(1))
+	self.bcspec.place = Regexp.last_match(2)
+	puts "*   * *  * * * * *  GroupingPlaceCode " + ccode
+      when "W"
+        self.bcspec = Priorbracketcontest.new()
+        /W(\d+)/ =~ ccode
+        self.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
+        self.bcspec.wl = "W"
+      when "L"
+        self.bcspec = Priorbracketcontest.new()
+        /L(\d+)/ =~ ccode
+        self.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
+        self.bcspec.wl = "L"
+      else 
+        nil
+    end
+  end
 	
-	# Provide controlled public access to private class method.
-  def self.default_bracketgrouping(bracketgrouping)
-	  self.default_scope { (where(bracketgrouping: bracketgrouping) ) }
+	# Override with automatic save of bcspec, if it exists.
+  def save(*)
+    super()
+    self.bcspec.save if self.bcspec()
+  end
+	
+	# Override with automatic save of bcspec, if it exists.
+  def save!(*)
+    super
+    self.bcspec.save! if self.bcspec()
   end
 
 						
 	# Prior Bracketcontest referred to by this Contestant.
 	def priorcontest
-		return nil if self.contestantcode.nil?
-		case self.contestantcode[0]
-			when "W"
-				/W(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1))
-			when "L"
-				/L(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1))
-			else 
-				nil
-			end
+	  self.bcspec_type == "Priorbracketcontest" ? self.bcspec.bracketcontest : nil
 	end
-						
+	
+    # 	
+  def bracketdepth()
+    self.priorcontest ? self.priorcontest.bracketdepth() : 1
+  end  
 						
 	# Human-readable version of coded Contestant.
-	def contestantlabel
-		return nil if self.contestantcode.nil?
-		case self.contestantcode[0]
-			when "W"
-				/W(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1)).name + " Winner"
-			when "L"
-				/L(\d+)/ =~ self.contestantcode
-				Bracketcontest.find(Regexp.last_match(1)).name + " Loser"
-			when "G" 
-				/G(\d+)P(\d+)/ =~ self.contestantcode
-				Regexp.last_match(2).to_i.ordinalize + ' Place ' +
-					Grouping.find(Regexp.last_match(1)).name
-			else 
-				nil
-			end
-	end
+  def contestantlabel
+    self.bcspec ? self.bcspec.label() : " "
+  end
 						
 	# Override with additional information.
 	def fullname

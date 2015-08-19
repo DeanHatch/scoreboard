@@ -24,9 +24,8 @@ class ApplicationController < ActionController::Base
   # Link array for scorers, who can also open up the
   # public display portion of this application in a separate tab.
   def scorer_link_array()
-	  [ navitem('Report/Correct Scores' , :scorer_index) ,
-	navitem('Logout' , :logout_scorer_session )  ,
-	navitem('Public Display' , :choose_display_customer, target: "_blank" ) ]
+	  [ navitem('Logout' , :logout_scorer_session )  ,
+	navitem('View This Competition' , display_competition_path(@scorer.id), target: "_blank" ) ]
   end
   
   # Link array for Managers, who have access to everything related to the
@@ -38,8 +37,8 @@ class ApplicationController < ActionController::Base
 	navitem('Schedule Bracket Contests' , :bracketgroupings),
 	navitem('Set Manager/Scorer Passwords' , :passwords_manager),
 	navitem('Logout' , :logout_manager_session) ,
-	navitem('Report/Correct Scores for This Competition' , login_scorer_session_path(@competition), target: "_blank" ),
-	navitem('View This Competition' , display_competition_path(@competition), target: "_blank")  ]
+	navitem('Report/Correct Scores for This Competition' , login_scorer_session_path(@manager), target: "_blank" ),
+	navitem('View This Competition' , display_competition_path(@manager), target: "_blank")  ]
   end
 
 end

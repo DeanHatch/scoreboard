@@ -5,11 +5,11 @@ class VenuesController < ManagersController
   # GET /venues
   # GET /venues.json
   def index
-    @venues = Venue.where(competition_id: @competition_id)
+    @venues = @manager.venues
       # Need a venue object for form which is now on index page
     @venue = Venue.new()
-    @venue.competition_id = @competition_id
-    @validdates = Validdate.where(competition_id: @competition_id)
+    @venue.manager = @manager
+    @validdates = @manager.validdates
       # Need a validdate object for form which is now on index page
     @validdate = Validdate.new  # index contains the validdateform
   end
@@ -32,7 +32,7 @@ class VenuesController < ManagersController
   # POST /venues.json
   def create
     @venue = Venue.new(venue_params)
-    @venue.competition_id = @competition_id
+    @venue.manager = @manager
 
     respond_to do |format|
       if @venue.save

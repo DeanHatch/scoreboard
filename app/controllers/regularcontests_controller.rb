@@ -5,20 +5,16 @@ class RegularcontestsController < ManagersController
   # GET /regularcontests
   # GET /regularcontests.json
   def index
-    @regularcontests = Regularcontest.all.sort
-    
+    @regularcontests = @manager.regularcontests.sort
+    p @regularcontests.size()
   end
   
   # GET /regularcontests
   # GET /regularcontests.json
   def dump
-    @regularcontests = Regularcontest.all
+    @regularcontests = @manager.regularcontests
   end
 
-  # GET /regularcontests/1
-  # GET /regularcontests/1.json
-  def show
-  end
 
   # GET /regularcontests/new
   def new
@@ -46,7 +42,8 @@ class RegularcontestsController < ManagersController
   # POST /regularcontests.json
   def create
     @regularcontest = Regularcontest.new(regularcontest_params)
-    @regularcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @regularcontest.competition = @manager
     
     process_teams()
  
@@ -102,7 +99,7 @@ class RegularcontestsController < ManagersController
   def destroy
     @regularcontest.destroy
     respond_to do |format|
-	      flash[:notice] = 'Regularcontest was successfully deleted.' 
+	      flash[:notice] = 'The Contest was successfully deleted.' 
       format.html { redirect_to regularcontests_url }
       format.json { head :no_content }
     end
@@ -112,8 +109,8 @@ class RegularcontestsController < ManagersController
   # GET/regularcontests/rrobin
   # GET /regularcontests/rrobin.json
   def rrobin
-    @groupings = Grouping.all
-    @venues = Venue.all
+    @groupings = @manager.groupings
+    @venues = @manager.venues
   end
 
   # POST/regularcontests/roundrobin
@@ -126,35 +123,7 @@ class RegularcontestsController < ManagersController
 	  arr.combination(2).each_with_index{|c,i| @contests << (i % 2 == 0 ? schedule_with(c) : schedule_with(c.reverse) ) }
   end
 
-  # POST/regularcontests/roundrobin
-  # POST /regularcontests/roundrobin.json
-  def roundrobin2
-	  @grouping = Grouping.find(params[:grouping_id])
-	  arr = @grouping.teams().to_a
-	  # Add BYE (nil Team) if necessary, to create an Array 
-	  # with an even number of elements.
-	  # We will not keep those Contests with a nil Team.
-	  arr << nil if arr.size.odd?
-	  @contests = Array.new() 
-	  # The "j-th" team from the front of the array will be matched with the "j-th"
-	  # team from the end of the array.
-	  # We need to think about flipping Home/Away, possibly.
-	  # Maybe "if jth.modulo(2)==1 "
-	  # .combination(2).each_with_index{|c,i| i % 2 == 0 ? c : c.reverse }
-	  0.upto(arr.size-2) { |idx| 0.upto((arr.size/2)-1) { |jth| 
-						if ! arr[jth].nil? and ! arr[-1-jth].nil? 
-							@regularcontest = Regularcontest.new(roundrobin_params)
-							@regularcontest.competition_id = @competition_id
-							@regularcontest.status = 'SCHEDULED'
-							@regularcontest.awaycontestant.team = arr[-1-jth]
-							@regularcontest.homecontestant.team = arr[jth]
-							@contests << @regularcontest if @regularcontest.save
-						end # of if-then 
-						} 
-					# Rotate all elements but the first. 
-					arr[1..arr.size]=arr[1..arr.size].rotate
-					} 
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -177,7 +146,8 @@ class RegularcontestsController < ManagersController
 
   def schedule_with(teampair)
     regularcontest = Regularcontest.new(roundrobin_params)
-    regularcontest.competition = @competition
+      # This next statement is due to Manager inheriting from Competition.
+    regularcontest.competition = @manager
     regularcontest.status = 'SCHEDULED'
     regularcontest.awaycontestant.team = teampair[1]
     regularcontest.homecontestant.team = teampair[0]

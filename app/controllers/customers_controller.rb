@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
       [ navitem('Change Password' , :change_password_customer),
 	     navitem('Edit Profile' , :edit_customer),
 	     navitem('Create a New Competition' , :new_competition_customer),
-	     navitem('Manage My Competitions' , choose_competition_manager_path(@customer), target: "_blank"),
+	     #navitem('Manage My Competitions' , choose_competition_manager_path(@customer), target: "_blank"),
 	     navitem('Logout' , :logout_customer_session) ] 
   end
 

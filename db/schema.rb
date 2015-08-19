@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615185100) do
+ActiveRecord::Schema.define(version: 20150815234849) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -45,10 +45,12 @@ ActiveRecord::Schema.define(version: 20150615185100) do
     t.integer  "team_id"
     t.integer  "score"
     t.boolean  "forfeit"
-    t.string   "contestantcode"
     t.integer  "seeding"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bracketgrouping_id"
+    t.string   "bcspec_type"
+    t.integer  "bcspec_id"
   end
 
   create_table "contests", force: true do |t|
@@ -78,6 +80,13 @@ ActiveRecord::Schema.define(version: 20150615185100) do
     t.string   "reg_confirm_token"
   end
 
+  create_table "groupingplaces", force: true do |t|
+    t.integer  "grouping_id"
+    t.integer  "place"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groupings", force: true do |t|
     t.integer  "competition_id"
     t.string   "name"
@@ -85,6 +94,13 @@ ActiveRecord::Schema.define(version: 20150615185100) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "bracket_grouping", default: false, null: false
+  end
+
+  create_table "priorbracketcontests", force: true do |t|
+    t.integer  "bracketcontest_id"
+    t.string   "wl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|

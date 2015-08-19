@@ -213,7 +213,7 @@
             <pre><span class="ruby-comment"># File app/controllers/customer_sessions_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:customer_id</span>] <span class="ruby-operator">?</span>
-        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer</span>) ]  <span class="ruby-operator">:</span>
+        [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_customer_session</span>) ]  <span class="ruby-operator">:</span>
         [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Login&#39;</span> , <span class="ruby-value">:new_customer_session</span>),
            <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Register&#39;</span> , <span class="ruby-value">:new_customer</span>)]
 <span class="ruby-keyword">end</span></pre>

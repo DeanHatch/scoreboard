@@ -1,34 +1,16 @@
 class ScorersController < NestedController # Formerly < ApplicationController
-  before_action :set_scorer_from_session,
-			except: [:choose_customer, :choose_competition]
+  before_action :set_scorer_from_session
 
   def nav_link_array
 	  @scorer ? scorer_link_array() : []
   end
   
    
-	# Display list of Customers for user to select one
-	# unless we ended up here after a Competition has
-	# been chosen and the Scorer authenticated.
-	# This could happen if the normal sequence of
-	# linked pages is not followed (e.g. with a bookmark or the
-	# browser's BACK functionality.
-     def choose_customer()
-       super()
-       redirect_to :scorer_index if session[:scorer_id]
-    end
 
-     def choose_competition()
-       super()
-       session[:scorer_id] = nil
-    end
- 
-
- 
     # Create two lists of Contests, one of Contests with
     # scores and one of Contests without scores.
   def index
-	  contests = Contest.all.sort{|a,b| a.id <=> b.id}.
+	  contests = @scorer.contests.sort{|a,b| a.id <=> b.id}.
 					select {|c| c.homecontestant.team}.
 					select {|c| c.awaycontestant.team}
 	  @contests_with_scores = contests.select {|c| c.has_score?}
@@ -62,7 +44,7 @@ class ScorersController < NestedController # Formerly < ApplicationController
       begin
         logger.info("Scorer #{session[:scorer_id]} not found...")
       @scorer = Scorer.new()
-      redirect_to(:action => "choose_customer")
+      redirect_to oops_path
       end
     logger.info("Scorer #{session[:scorer_id]} WAS found...")
     end

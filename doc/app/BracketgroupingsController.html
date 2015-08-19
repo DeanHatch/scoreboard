@@ -137,7 +137,7 @@ href="BracketgroupingsController.html#method-i-show">show</a>.</p>
 
           
           <div class="method-source-code" id="complete-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">complete</span>
   <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">complete_se_matchups</span>()
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">bracketgrouping_path</span>(<span class="ruby-ivar">@bracketgrouping</span>)
@@ -173,7 +173,8 @@ href="BracketgroupingsController.html#method-i-show">show</a>.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@bracketgroupings</span> = <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-comment">#@bracketgroupings = Bracketgrouping.all</span>
+  <span class="ruby-ivar">@bracketgroupings</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">bracketgroupings</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -204,7 +205,7 @@ href="BracketgroupingsController.html#method-i-show">show</a>.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
         <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketgrouping</span>)
 <span class="ruby-keyword">end</span></pre>

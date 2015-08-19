@@ -137,10 +137,11 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@bracketcontest</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bracketcontest_params</span>)
-  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
+    <span class="ruby-comment"># This next statement is due to Manager inheriting from Competition.</span>
+  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">competition</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">as_competition</span>()
   <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">bracketgrouping_id</span> = <span class="ruby-ivar">@bracketgrouping_id</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -184,7 +185,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">venue_id</span>
   <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">date</span>
@@ -192,6 +193,10 @@
   <span class="ruby-ivar">@selectedstatus</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-ivar">@homecontestant</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">homecontestant</span>
   <span class="ruby-ivar">@awaycontestant</span> = <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">awaycontestant</span>
+    <span class="ruby-comment"># Only allow this Bracketcontest to be dropped if it is</span>
+    <span class="ruby-comment"># not referred to by another Bracketcontest.</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Prior(s) for #{@bracketcontest.id}: #{@bracketcontest.all_priors().collect{|bc|bc.id==@bracketcontest.id}.inspect()}&quot;</span>
+  <span class="ruby-ivar">@dropable</span> = (<span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">all_priors</span>().<span class="ruby-identifier">size</span>()<span class="ruby-operator">==</span><span class="ruby-value">0</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -258,7 +263,8 @@
             <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@bracketcontest</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">competition_id</span> = <span class="ruby-ivar">@competition_id</span>
+    <span class="ruby-comment"># This next statement is due to Manager inheriting from Competition.</span>
+  <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">competition</span> = <span class="ruby-ivar">@manager</span>
   <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">bracketgrouping_id</span> = <span class="ruby-ivar">@bracketgrouping_id</span>
   <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-keyword">nil</span>
@@ -369,7 +375,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketcontests_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bracketcontest</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">bracketcontest_params</span>)

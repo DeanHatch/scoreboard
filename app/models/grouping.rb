@@ -2,6 +2,7 @@
 #  Playoffs, as well as limiting or organizing the display of Results and Standings.
 class Grouping < ActiveRecord::Base
 	
+	belongs_to :manager, foreign_key: "competition_id"
 	belongs_to :competition, foreign_key: "competition_id"
 	validates_presence_of :competition_id
 	
@@ -12,16 +13,12 @@ class Grouping < ActiveRecord::Base
 
 	has_many :teams, foreign_key: "grouping_id",
 					class_name: "Team"  # making default explicit
+	has_many :contests, through: :teams
 
 	def self.default_comp(comp_id)
 		self.default_scope { (where(competition_id: comp_id) ) }
 	end
   
-	# sending this method to the parent of this Grouping.
-	def self.top_grouping()
-		self.where(parent_id: nil).first
-	end
-
 	# (Recursive) Return an Array with this Grouping appended to the end of the Array returned by
 	# sending this method to the parent of this Grouping.
 	def hierarchy()
@@ -62,7 +59,7 @@ class Grouping < ActiveRecord::Base
 		(self.teams + self.subgroupings.collect{|sg| sg.all_teams()}).flatten
 	end
 	
-	def as_bracket()
+	def as_bracketgrouping()
 		 self.bracket_grouping ? Bracketgrouping.find(self.id) : Bracketgrouping.new() 
 	end
 	
@@ -70,6 +67,6 @@ class Grouping < ActiveRecord::Base
 	# Return an Array of all Contests for which any Team
 	# in this Grouping is the Team.
 	def contests()
-		(self.all_teams.collect{|c| c.contests } + self.as_bracket.bracketcontests).flatten.uniq
+		(self.all_teams.collect{|c| c.contests } + self.as_bracketgrouping.bracketcontests).flatten.uniq
 	end
 end
