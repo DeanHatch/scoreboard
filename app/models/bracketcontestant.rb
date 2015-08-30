@@ -27,7 +27,7 @@ class Bracketcontestant < Contestant
   	  case self.bcspec_type
 	    when "Groupingplace"
 	      "G"
-	    when "Priorbracketcontest"
+	    when "Bcadvancement"
 	      self.bcspec.wl
 	    else
 	      self.bcspec.class.name
@@ -36,10 +36,10 @@ class Bracketcontestant < Contestant
 
     # Accessor
   def contestantcode
-    case self.bcspec.class
-      when Groupingplace
+    case self.bcspec_type
+      when "Groupingplace"
         ("G" + self.bcspec.grouping.id.to_s + "P" + self.bcspec.place.to_s ) 
-      when Priorbracketcontest
+      when "Bcadvancement"
 	(self.bcspec.wl + self.bcspec.bracketcontest.id.to_s)
       end
   end
@@ -55,14 +55,14 @@ class Bracketcontestant < Contestant
 	self.bcspec.place = Regexp.last_match(2)
 	puts "*   * *  * * * * *  GroupingPlaceCode " + ccode
       when "W"
-        self.bcspec = Priorbracketcontest.new()
+        self.bcspec = Bcadvancement.new()
         /W(\d+)/ =~ ccode
-        self.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
+        self.bcspec.from_contest = Bracketcontest.find(Regexp.last_match(1))
         self.bcspec.wl = "W"
       when "L"
-        self.bcspec = Priorbracketcontest.new()
+        self.bcspec = Bcadvancement.new()
         /L(\d+)/ =~ ccode
-        self.bcspec.bracketcontest = Bracketcontest.find(Regexp.last_match(1))
+        self.bcspec.from_contest = Bracketcontest.find(Regexp.last_match(1))
         self.bcspec.wl = "L"
       else 
         nil
@@ -83,9 +83,10 @@ class Bracketcontestant < Contestant
 
 						
 	# Prior Bracketcontest referred to by this Contestant.
-	def priorcontest
-	  self.bcspec_type == "Priorbracketcontest" ? self.bcspec.bracketcontest : nil
-	end
+	# This acts as a "through" association shortcut, of sorts.
+  def priorcontest
+    self.bcspec_type == "Bcadvancement" ? self.bcspec.from_contest : nil
+  end
 	
     # 	
   def bracketdepth()

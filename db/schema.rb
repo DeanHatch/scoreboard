@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815234849) do
+ActiveRecord::Schema.define(version: 20150827113843) do
+
+  create_table "bcadvancements", force: true do |t|
+    t.integer  "from_contest_id"
+    t.string   "wl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -94,13 +101,6 @@ ActiveRecord::Schema.define(version: 20150815234849) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "bracket_grouping", default: false, null: false
-  end
-
-  create_table "priorbracketcontests", force: true do |t|
-    t.integer  "bracketcontest_id"
-    t.string   "wl"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|

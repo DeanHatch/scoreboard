@@ -5,7 +5,7 @@ class Bracketcontest < Contest
 	
 	belongs_to :bracketgrouping, foreign_key: "bracketgrouping_id"
 	
-	has_many :priorbracketcontests
+	has_many :bcadvancements, foreign_key: "from_contest_id"
 	
 	validates :competition_id,
 		     :bracketgrouping_id,
@@ -51,7 +51,7 @@ class Bracketcontest < Contest
   def all_priors()
     #self.bracketgrouping.bracketcontests.bracketcontestants
     #Bracketcontestant.where(bracketgrouping: self.bracketgrouping).select{|bc|bc.priorcontest().id()==self.id()}.collect{|bc|bc.priorcontest()}
-    self.priorbracketcontests.collect {|pbc| pbc.bracketcontestant}
+    self.bcadvancements.collect {|bcadv| bcadv.bracketcontestant}
   end
 	
 	# Advance teams if this Bracketcontest is referred to by the contestants of a

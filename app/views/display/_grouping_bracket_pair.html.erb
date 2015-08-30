@@ -3,13 +3,13 @@
     <div class="r<%=roundnum %>h">
        <%= contest.homecontestant.contestanttype == "W" ? 
                 (render partial: 'grouping_bracket_pair',
-     		             locals: { contest: contest.homecontestant.bcspec.bracketcontest, roundnum: roundnum - 1} ) :
+     		             locals: { contest: contest.homecontestant.priorcontest, roundnum: roundnum - 1} ) :
                 " "  %>
     </div>
     <div class="r<%=roundnum %>a">
        <%= contest.awaycontestant.contestanttype == "W" ? 
                 (render partial: 'grouping_bracket_pair',
- 		             locals: { contest: contest.awaycontestant.bcspec.bracketcontest, roundnum: roundnum - 1} ) :
+ 		             locals: { contest: contest.awaycontestant.priorcontest, roundnum: roundnum - 1} ) :
                 " "  %>
     </div>
     <div class="r<%=roundnum %>pair">

@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+<%= render partial: 'bracket_contest' , locals: { bracketcontest: @bracketcontest, final: false, editable:false }  %>
+
+<%= link_to 'Ok', bracketgrouping_path(@bracketgrouping) %>

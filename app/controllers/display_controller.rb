@@ -36,7 +36,7 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	  what2show = params[:xyzzy]
 	  @what_to_render = (case what2show
 				when "bracket" 
-				  @priorcontests = @bracketgrouping.priorbracketcontests.collect{|pbc| pbc.bracketcontest}
+				  @priorcontests = @bracketgrouping.bcadvancements.collect{|pbc| pbc.from_contest}
 				  @terminalcontests = @bracketcontests - @priorcontests
 				  logger.info("*** Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(' ')}")
 				 'grouping_bracket'   

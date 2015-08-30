@@ -91,6 +91,22 @@ class BracketcontestsController < BracketgroupingsController
   end
 
 
+  # 
+  def destroy
+    # flash[:notice] = 'Bracketcontest destruction not yet functional.' 
+    #format.html { redirect_to  bracketgrouping_bracketcontest_path(@bracketgrouping, @bracketcontest)}
+    @bracketcontest.homecontestant.bcspec.destroy if @bracketcontest.homecontestant.bcspec
+    @bracketcontest.homecontestant.destroy
+    @bracketcontest.awaycontestant.bcspec.destroy if @bracketcontest.awaycontestant.bcspec
+    @bracketcontest.awaycontestant.destroy
+    @bracketcontest.destroy
+    respond_to do |format|
+      flash[:notice] = 'Bracketcontest destruction Complete.' 
+      format.html { redirect_to bracketgrouping_path(@bracketgrouping) }
+    end
+  end
+    
+ 
     # Use callbacks to share common setup or constraints between actions.
   private
 

@@ -10,11 +10,13 @@ class ScorersController < NestedController # Formerly < ApplicationController
     # Create two lists of Contests, one of Contests with
     # scores and one of Contests without scores.
   def index
-	  contests = @scorer.contests.sort{|a,b| a.id <=> b.id}.
+    logger.debug "GGGGGGGGGetting Contests for Scorer: #{@scorer.id}"
+    contests = @scorer.contests.sort{|a,b| a.id <=> b.id}.
 					select {|c| c.homecontestant.team}.
 					select {|c| c.awaycontestant.team}
-	  @contests_with_scores = contests.select {|c| c.has_score?}
-	  @contests_without_scores = contests.select {|c| c.needs_score?}
+    logger.debug "GGGGGGGGGot Em"
+    @contests_with_scores = contests.select {|c| c.has_score?}
+    @contests_without_scores = contests.select {|c| c.needs_score?}
   end
 
     # PATCH for reporting a score or correcting a score.
