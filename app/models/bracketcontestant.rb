@@ -40,7 +40,7 @@ class Bracketcontestant < Contestant
       when "Groupingplace"
         ("G" + self.bcspec.grouping.id.to_s + "P" + self.bcspec.place.to_s ) 
       when "Bcadvancement"
-	(self.bcspec.wl + self.bcspec.bracketcontest.id.to_s)
+	(self.bcspec.wl + self.bcspec.from_contest.id.to_s)
       end
   end
   
@@ -85,6 +85,7 @@ class Bracketcontestant < Contestant
 	# Prior Bracketcontest referred to by this Contestant.
 	# This acts as a "through" association shortcut, of sorts.
   def priorcontest
+    return nil if self.bcspec.nil?
     self.bcspec_type == "Bcadvancement" ? self.bcspec.from_contest : nil
   end
 	

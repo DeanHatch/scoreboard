@@ -65,17 +65,20 @@ class Contest < ActiveRecord::Base
 	  self.awaycontestant = self.contestant_class.new(:contest_type => self.class.name,
                                                                    :forfeit => false,
 								    homeaway: 'A',
-								    contest_id: self.id)
+								    competition: self.competition,
+								    contest: self)
 	  self.homecontestant = self.contestant_class.new(:contest_type => self.class.name,
                                                                   :forfeit => false,
 								    homeaway: 'H',
-								    contest_id: self.id)
+								    competition: self.competition,
+								    contest: self)
 	end
 	
 	def save_all!()
 	  Contest.transaction do
 	    self.homecontestant.save!
-	    self.homecontestant_id = self.homecontestant.id
+	    logger.debug "homecontestant_id after save and before assignment: #{self.homecontestant_id.inspect}"
+	    self.homecontestant_id = self.homecontestant.id # necessary? 
 	    self.awaycontestant.save!
 	    self.awaycontestant_id = self.awaycontestant.id
 	    self.save!
@@ -95,11 +98,12 @@ class Contest < ActiveRecord::Base
 		0
 	end
 	
-	
+		
 	# Convenience method. Display "TBD" for nil.
 	def venue_name
 		self.venue_id ? Venue.find(venue_id).name : 'TBD'
 	end
+
 	
 	# Convenience method. Display "TBD" for nil.
 	def display_date
@@ -121,44 +125,31 @@ class Contest < ActiveRecord::Base
 			end
 	end
 	
-	# Team ID of Home Contestant, if any
-	def home_team_id
-		self.homecontestant ? self.homecontestant.team_id : nil
-	end
-	
-	# Team ID of Away Contestant, if any
-	def away_team_id
-		self.awaycontestant ? self.awaycontestant.team_id : nil
-	end
-	
-	# Full name can be customized for different contestant types.
-	def homecontestant_fullname
-		self.homecontestant.fullname
-	end
-	
-	# Full name can be customized for different contestant types.
-	def awaycontestant_fullname
-		self.awaycontestant.fullname
-	end
-	
 	# True if either Team has a score.
 	def has_score?
-		not (self.awaycontestant.score.nil? and (self.homecontestant.score.nil?))
+	  ['COMPLETED','FINAL'].include?(self.status)
 	end
 	
 	# True if neither Team has a score.
 	def needs_score?
-		not self.has_score?
+	  ['SCHEDULED','POSTPONED'].include?(self.status)
 	end
 	
 	# Assign score to each Contestant and status to entire Contest.
 	# Save all three records in a single transaction.
 	def record_result(homescore, awayscore, status="COMPLETED")
-		self.homecontestant.score = homescore
-		self.awaycontestant.score = awayscore
-		self.status = status
-		logger.debug "connection: #{Contest.connection.inspect}"
-		self.save_all!
+	  raise StandardError, ["Score was Incomplete (", 
+					  self.awaycontestant.team.name(),
+					  awayscore,
+					  " at ",
+	                                  self.homecontestant.team.name(),
+					  homescore,
+					  ")"].join(" ") if homescore.blank? or awayscore.blank?
+	  self.homecontestant.score = homescore
+	  self.awaycontestant.score = awayscore
+	  self.status = status
+	  #logger.debug "connection: #{Contest.connection.inspect}"
+	  self.save_all!
 	end
 	
 end

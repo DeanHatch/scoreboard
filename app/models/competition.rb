@@ -24,6 +24,7 @@ class Competition < ActiveRecord::Base
 	has_many :teams, through: :groupings
 	has_many :contests
 	has_many :regularcontests
+	has_many :contestants, through: :contests
 	
 	def Competition.poolgroupseasonlabels
 		['Pool', 'Group', 'Season']

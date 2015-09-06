@@ -1,6 +1,6 @@
 class Contestant < ActiveRecord::Base
 	
-	#belongs_to :competition
+	belongs_to :competition
 	belongs_to :contest
 	belongs_to :team
 
@@ -16,12 +16,14 @@ class Contestant < ActiveRecord::Base
 	
 	# A Win is a Win...
 	def win()
-		self.score() ? self.score() > self.opponent.score() : false
+	  return false if (self.score.nil? or self.opponent.score.nil?)
+	  self.score() ? self.score().to_i > self.opponent.score().to_i : false
 	end
 	
 	# But a Loss is a whole other thing...
 	def loss()
-		self.score() ? self.score() < self.opponent.score() : false
+	  return false if (self.score.nil? or self.opponent.score.nil?)
+	  self.score() ? self.score() < self.opponent.score() : false
 	end
 	
 	# Draws (when used) are when the scores are equal.

@@ -13,66 +13,71 @@
   <% end %>
   <br/>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    
-    <%= f.label 'Date / Time:' %>
-    <%= f.select :date,
+
+<div class="rw2">
+    <div class="rw2h"></div>
+    <div class="rw2a"></div>
+    <div class="rw2pair">
+      <div class="btop">
+        <br/>
+        <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
+          <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
+		                                selected: @homecontestant.contestantcode), 
+		    {prompt: 'Which'} %>
+
+          <%= contestant_fields.select :team_id,
+		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
+		                                selected: @homecontestant.team_id), 
+		    {prompt: 'TBD'} %>
+       <% end %>
+     </div>
+  
+     <div class="bmid">
+       <br/>
+       <%= f.label :name %>
+       <%= f.text_field :name %>
+        <br/>
+       <%= f.label 'Date / Time:' %>
+       <%= f.select :date,
 		      options_for_select(@manager.validdates.sort{|a,b| a.gamedate <=> b.gamedate}.
 		                                                 collect {|v| [ v.gamedate, v.gamedate ]},
 		                                selected: @selecteddate), 
 		    {prompt: 'TBD'} %>
 
-    <%= f.select :time,
+       <%= f.select :time,
 		      options_for_select(Bracketcontest.times,
 		                                selected: @selectedtime), 
 		    {prompt: 'TBD'} %>
-  </div>
-  <div class="field">
-    <%= f.label :venue %>:
-    <%= f.select :venue_id,
+	<br/>
+       <%= f.label :venue %>:
+       <%= f.select :venue_id,
 		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
 		                                selected: @selectedvenue), 
 		    {prompt: 'TBD'} %>
 		    
-    <%= f.label :status %>:
-    <%= f.select :status,
+       <%= f.label :status %>:
+       <%= f.select :status,
 		      options_for_select(Bracketcontest.statuses.collect {|st| [ st, st ] },
 		                                selected: @selectedstatus), 
 		    {} %>
-  </div>
-   
-  <fieldset>
-   <legend>Home Team</legend>
-   <%= @homecontestant.fullname %><br/>
-   <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
-   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
-		                                selected: @homecontestant.contestantcode), 
-		    {prompt: 'Which'} %>
+     </div>
 
-   <%= contestant_fields.select :team_id,
-		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @homecontestant.team_id), 
-		    {prompt: 'TBD'} %>
-  <% end %>
-  </fieldset>
-
-  <fieldset>
-   <legend>Visitor</legend>
-   <%= @awaycontestant.fullname %><br/>
-   <%= fields_for :awaycontestant, @bracketcontest.awaycontestant do |contestant_fields| %>
-   <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
+    <div class="bbot">
+      <br/>
+      <%= fields_for :awaycontestant, @bracketcontest.awaycontestant do |contestant_fields| %>
+        <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
 		                                selected: @awaycontestant.contestantcode), 
 		    {prompt: 'Which'} %>
 
-   <%= contestant_fields.select :team_id,
+        <%= contestant_fields.select :team_id,
 		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @awaycontestant.team_id), 
 		    {prompt: 'TBD'} %>
-  <% end %>
-  </fieldset>
-
+      <% end %>
+    </div>
+  </div>
+  </div>
+   <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

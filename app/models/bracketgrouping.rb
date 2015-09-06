@@ -25,8 +25,9 @@ class Bracketgrouping < Grouping
     
      # Complete SingleElimination Matchups.
      # Number of seeds is number of Teams in this Bracketgrouping
-    def complete_se_matchups()
-      for_pair(se_matchups(self.all_teams.size()))
+    def complete_se_matchups(numseeds=nil)
+      numseeds ||= self.all_teams.size()
+      for_pair(se_matchups(numseeds))
     end
     
      # SingleElimination Matchups. Takes the number of seeds (i.e. Teams)

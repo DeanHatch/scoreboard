@@ -29,7 +29,8 @@
    <td class="blml">
      <% gamespecs = "#{bracketcontest.display_date} #{bracketcontest.display_time} #{bracketcontest.venue_name}" %>
      <%= editable ? content_tag(:a, gamespecs, href: link_target) : gamespecs %>
-   </td>
+   </td>     
+     <%= content_tag(:td, "Delete This Entire Bracket?", class: "awayteam") if final and editable %>
   </tr>
  <tr>
    <td class="awayteam"><%= bracketcontest.awaycontestant.fullname %>

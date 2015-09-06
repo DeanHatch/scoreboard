@@ -28,11 +28,16 @@ class ScorersController < NestedController # Formerly < ApplicationController
 	  logger.debug "Converting Contest to: #{@contest.type}"
 	  contest_class = Kernel.const_get(@contest.type)
 	  @contest = contest_class.find(params[:contest_id])
-	  @contest.homecontestant.score = params[:homescore]
+	  #@contest.homecontestant.score = params[:homescore]
 	    # model will handle the details and delegations
+	  begin
 	  @contest.record_result(params[:homescore], params[:awayscore])
 	  flash.now[:notice] = 'Wonderful.'
 	  flash[:notice] = 'Wonderful.'
+	  rescue StandardError => e
+	  flash.now[:notice] = 'Oops! Something was wrong with that score.  ' + e.message
+	  flash[:notice] = 'Oops! Something was wrong with that score.  ' + e.message
+	  end
 	  redirect_to(:action => "index")
   end
 

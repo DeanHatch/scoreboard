@@ -419,14 +419,14 @@ div.bracket {text-align: right;
 	position: relative;
 	height: 25%;
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	}
     div.btopcontents {
 	position: absolute;
 	bottom: 0px;
 	height: 12px;
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	}
     span.btopcontents {
 	dislay: table-cell;
@@ -434,7 +434,7 @@ div.bracket {text-align: right;
         left: 0px;
 	bottom: 0px;
 	width: 100%;
-	text-align: right;
+	text-align: left;
         vertical-align: bottom;
 	}
   div.bmid {
@@ -456,7 +456,7 @@ div.bracket {text-align: right;
 	position: static;
 	height: 25%;
 	width: 100%;
-	text-align: right;
+	text-align: left;
 	}
 
 
@@ -590,3 +590,34 @@ div.bracket {text-align: right;
 	        top: 0px;
          padding-right: 1px;
     }
+
+
+
+
+  div.rw2 {position: relative;
+	          left: -200px;
+	         width: 800px;
+	        height: 200px;
+         padding-right: 1px;
+    }
+
+  div.rw2h {position: absolute;
+	         width: 400px;
+	        height: 100px;
+	        left: 0px;
+	        top: 0px;
+    }
+  div.rw2a {position: absolute;
+	         width: 400px;
+	        height: 100px;
+	        left: 0px;
+	        top: 101px;
+}
+  div.rw2pair {position: relative;
+	        width: 400px;
+	        height: 200px;
+	        left: 401px;
+	        top: 0px;
+         padding-right: 1px;
+    }
+
