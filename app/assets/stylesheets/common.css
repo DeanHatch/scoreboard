@@ -281,6 +281,11 @@ td.schedule {text-align: center;
                 text-align: center;
              border-bottom: solid black 1px}
 
+th.typeBanner {font-weight: bold;
+                text-align: center;
+             background-color: black;
+             color: yellow}
+
 table.standings {text-align: right;
                  margin-left: auto;
                  margin-right: auto;

@@ -16,4 +16,26 @@ module DisplayHelper
    raw(comp.result_row.collect{|rr| raw(content_tag(:td, team.send(rr)))}.join(" ") )
   end
   
+  def group_schedule_section_label(comp, type)
+    (case type
+        when "Regularcontest"
+	  comp.poolgroupseasonlabel()
+	when "Bracketcontest"
+	  comp.playoffbracketlabel()
+	else
+	  "Other"
+	end).to_s+" Contests"
+  end
+  
+  def group_results_section_label(comp, type)
+    (case type
+        when "Regularcontest"
+	  comp.poolgroupseasonlabel()
+	when "Bracketcontest"
+	  comp.playoffbracketlabel()
+	else
+	  "Other"
+	end).to_s+" Results"
+  end
+  
 end

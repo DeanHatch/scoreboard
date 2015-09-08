@@ -9,8 +9,14 @@
   </thead>
 
   <tbody>
-      <!-- Show sorted, unique Teams -->
-    <% @grouping.contests.select{|c| c.has_score?}.each do |cntst| %>
+      <!-- Show Game Results, sorted by Date/Time -->
+    <% moreThanOneType = (@contests.collect{|c|c.type}.uniq.size()>1) %> 
+    <% lastType = nil %>
+    <% @contests.each do |cntst| %>
+      <% if moreThanOneType && cntst.type != lastType %>
+        <tr><th class="typeBanner" colspan="4"><%= group_results_section_label(cntst.competition,cntst.type() )%></th></tr>
+	<% lastType = cntst.type() %>
+       <% end %>
       <tr>
         <td><%= cntst.display_date %></td>
         <td><%= cntst.name %></td>
