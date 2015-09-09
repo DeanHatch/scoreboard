@@ -42,6 +42,7 @@ class DisplayController < NestedController # Formerly < ApplicationController
 				 'grouping_bracket'   
 				when "schedule" 
 				 @contests = @contests.select{|c| c.needs_score?}.sort
+				  logger.info("*** Scheduled Contests: #{@contests.collect{|bc| bc.id.to_s}.join(' ')}")
 				 'grouping_schedule'   
 				when "scores" 
 				 @contests = @contests.select{|c| c.has_score?}.sort
