@@ -67,6 +67,6 @@ class Grouping < ActiveRecord::Base
 	# Return an Array of all Contests for which any Team
 	# in this Grouping is the Team.
 	def unique_contests()
-		(self.all_subgroupings.collect{|sg| sg.contests }).flatten.uniq
+		((self.all_subgroupings << self).collect{|g| g.contests }).flatten.uniq
 	end
 end
