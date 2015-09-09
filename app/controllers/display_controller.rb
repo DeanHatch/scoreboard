@@ -30,7 +30,7 @@ class DisplayController < NestedController # Formerly < ApplicationController
   def grouping
 	  @grouping = Grouping.find(params[:id])
 	  @groupingteams = Team.where(grouping: @grouping)
-	  @contests = @grouping.contests()
+	  @contests = @grouping.contests().uniq()
 	  @bracketgrouping = Bracketgrouping.find(params[:id])
 	  @bracketcontests = @bracketgrouping.bracketcontests
 	  what2show = params[:xyzzy]
