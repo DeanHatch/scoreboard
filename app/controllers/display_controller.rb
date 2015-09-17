@@ -23,8 +23,8 @@ class DisplayController < NestedController # Formerly < ApplicationController
 	  @team = Team.find(params[:id])
 	  @groupingteams = Team.where(grouping_id: @team.grouping_id)
 	  @groupingteamhash = {}
-	  @groupingteams.each{|gt| @groupingteamhash[gt] = gt.as_contestants() }
-	  @contestants = @team.as_contestants()
+	  @groupingteams.each{|gt| @groupingteamhash[gt] = gt.contestants() }
+	  @contestants = @team.contestants()
   end
 
   def grouping

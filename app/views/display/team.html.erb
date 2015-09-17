@@ -51,6 +51,7 @@
 </table>
 
 
+<% if @contestants.select{|c| c.contest.needs_score?}.size()>0 %>
 <h3>Schedule</h3>
 <table class="schedule">
   <thead>
@@ -77,4 +78,8 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<h3>No Contests Scheduled</h3>
+<% end %>
+
 
