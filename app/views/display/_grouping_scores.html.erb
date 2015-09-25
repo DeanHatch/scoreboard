@@ -8,21 +8,7 @@
     </tr>
   </thead>
 
-  <tbody>
-      <!-- Show Game Results, sorted by Date/Time -->
-    <% moreThanOneType = (@contests.collect{|c|c.type}.uniq.size()>1) %> 
-    <% lastType = nil %>
-    <% @contests.each do |cntst| %>
-      <% if moreThanOneType && cntst.type != lastType %>
-        <tr><th class="typeBanner" colspan="4"><%= group_results_section_label(cntst.competition,cntst.type() )%></th></tr>
-	<% lastType = cntst.type() %>
-       <% end %>
-      <tr>
-        <td><%= cntst.display_date %></td>
-        <td><%= cntst.name %></td>
-	<td><%= cntst.awaycontestant.team.name %> <%= cntst.awaycontestant.score %></td>
-	<td><%= cntst.homecontestant.team.name %> <%= cntst.homecontestant.score %></td>
-      </tr>
-    <% end %>
+   <tbody>
+  <%= scores_by_type(@contests) {[:display_date, :name, :winning_team_and_score, :losing_team_and_score]}%>
   </tbody>
   </table>

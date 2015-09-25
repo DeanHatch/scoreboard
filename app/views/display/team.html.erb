@@ -14,7 +14,7 @@
       <!-- Show sorted, unique Teams -->
     <% @groupingteams.sort{ |a,b| @competition.compare_teams(a, b) }.each do |team| %>
       <tr>
-        <td><%= link_to team.name, display_team_path(@competition.id, team.id) %></td>
+        <td><%= team_link_for team %></td>
       <%=  standings_row(@competition, team) %>
       </tr>
     <% end %>
@@ -35,15 +35,21 @@
   </thead>
 
   <tbody>
-      <!-- Show sorted, unique Teams -->
-    <% @contestants.select{|c| c.contest.has_score?}.sort{|a,b| a.contest <=> b.contest}.each do |c| cntst = c.contest %>
+      <!-- Show sorted, unique Contests with Scores -->
+    <% moreThanOneType = (@scores.collect{|c|c.type}.uniq.size()>1) %> 
+    <% lastType = nil %>
+    <% @scores.each do |c| cntst = c.contest %>
+      <% if moreThanOneType && cntst.type != lastType %>
+        <tr><th class="typeBanner" colspan="5"><%= group_results_section_label(cntst.competition,cntst.type() )%></th></tr>
+	<% lastType = cntst.type() %>
+       <% end %>
       <tr>
         <td><%= cntst.display_date %></td>
         <td><%= c.win ? "W" : (c.loss ? "L" : "D") %></td>
         <td><%= c.score %> - 
 	      <%= c.opponent.score %></td>
         <td><%= c.homeaway=='H' ? "vs" : "at" %>
-	      <%= c.opponent.fullname %></td>
+	      <!-- %= c.opponent.fullname % --><%= team_link_for c.opponent.team %></td>
         <td><%= cntst.venue_name %></td>
       </tr>
     <% end %>
@@ -81,5 +87,4 @@
 <% else %>
 <h3>No Contests Scheduled</h3>
 <% end %>
-
 

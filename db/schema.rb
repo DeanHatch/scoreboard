@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827113843) do
+ActiveRecord::Schema.define(version: 20150920010131) do
+
+  create_table "alert_requests", force: true do |t|
+    t.string   "type"
+    t.string   "to_dest"
+    t.string   "at_domain"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "alert_requests", ["team_id"], name: "index_alert_requests_on_team_id"
 
   create_table "bcadvancements", force: true do |t|
     t.integer  "from_contest_id"

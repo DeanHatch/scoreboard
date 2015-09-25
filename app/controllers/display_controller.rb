@@ -20,11 +20,12 @@ class DisplayController < NestedController # Formerly < ApplicationController
   end
 
   def team
-	  @team = Team.find(params[:id])
-	  @groupingteams = Team.where(grouping_id: @team.grouping_id)
-	  @groupingteamhash = {}
-	  @groupingteams.each{|gt| @groupingteamhash[gt] = gt.contestants() }
-	  @contestants = @team.contestants()
+    @team = Team.find(params[:id])
+    @groupingteams = Team.where(grouping_id: @team.grouping_id)
+    @groupingteamhash = {}
+    @groupingteams.each{|gt| @groupingteamhash[gt] = gt.contestants() }
+    @contestants = @team.contestants()
+    @scores = @contestants.select{|c| c.contest.has_score?}.sort{|a,b| a.contest <=> b.contest}
   end
 
   def grouping

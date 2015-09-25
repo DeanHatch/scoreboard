@@ -152,4 +152,24 @@ class Contest < ActiveRecord::Base
 	  self.save_all!
 	end
 	
+  def winning_team_and_score()
+    self.homecontestant.win() ?
+      self.home_team_and_score() :
+      self.away_team_and_score()
+  end
+	
+  def losing_team_and_score()
+    self.homecontestant.win() ?
+      self.away_team_and_score() :
+      self.home_team_and_score()
+  end
+  
+  def home_team_and_score()
+    [self.homecontestant.team.name() , self.homecontestant.score().to_s()].join(" ")
+  end
+  
+  def away_team_and_score()
+    [self.awaycontestant.team.name() , self.awaycontestant.score().to_s()].join(" ")
+  end
+  
 end
