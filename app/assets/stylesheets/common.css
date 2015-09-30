@@ -295,6 +295,10 @@ table.standings {text-align: right;
 
 .standings th {font-weight: bold;
                 text-align: center}
+.standings td {text-align: right;
+                    border: 0;
+                   padding: 0 10px 0px 10px;
+                    margin: 0 10px 0px 10px;}
 
 th.standings   {text-align: center;}
 
