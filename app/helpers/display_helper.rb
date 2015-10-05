@@ -6,20 +6,43 @@ module DisplayHelper
   
 
   
-  def scores_by_type(collectn)
+  def scores_by_type(collectn, columnArray)
+    contests_by_type(collectn, columnArray, "Results" )
+  end
+  
+  def contests_by_type(collectn, columnArray, label)
     moreThanOneType = (collectn.collect{|c|c.type}.uniq.size()>1) 
     lastType = nil
     collectn.inject(' '){|result, cntst|
       if moreThanOneType && cntst.type != lastType
 	lastType = cntst.type()
-        raw(result  +
-          raw(content_tag(:tr, raw(content_tag(:th, group_results_section_label(cntst.competition,cntst.type() ),
-	                                                         class: "typeBanner", colspan: "#{yield.size()}" )) ) ) )
+        result  +
+          content_tag(:tr, content_tag(:th, group_section_label(cntst.competition,cntst.type(), label),
+	                                                         class: "typeBanner", colspan: "#{columnArray.size()}" ))
       else
         result
        end +
-       raw(content_tag(:tr,raw(yield.collect{|x|raw(content_tag(:td, cntst.send(x))) }.join("\n ") )))
+       content_tag(:tr,columnArray.collect{|x|content_tag(:td, cntst.send(x)) }.join("\n ").html_safe )
        }
+  end
+  
+  def group_schedule_section_label(comp, type)
+    group_section_label(comp, type, "Contests")
+  end
+  
+  def group_results_section_label(comp, type)
+    group_section_label(comp, type, "Results")
+  end
+  
+  def group_section_label(comp, type, label)
+    (case type
+        when "Regularcontest"
+	  comp.poolgroupseasonlabel()
+	when "Bracketcontest"
+	  comp.playoffbracketlabel()
+	else
+	  "Other"
+	end).to_s+" " + label
   end
 
   def standings_headers(comp)
@@ -36,28 +59,6 @@ module DisplayHelper
 
   def group_schedule_row(comp, team)
    raw(comp.result_row.collect{|rr| raw(content_tag(:td, team.send(rr)))}.join(" ") )
-  end
-  
-  def group_schedule_section_label(comp, type)
-    (case type
-        when "Regularcontest"
-	  comp.poolgroupseasonlabel()
-	when "Bracketcontest"
-	  comp.playoffbracketlabel()
-	else
-	  "Other"
-	end).to_s+" Contests"
-  end
-  
-  def group_results_section_label(comp, type)
-    (case type
-        when "Regularcontest"
-	  comp.poolgroupseasonlabel()
-	when "Bracketcontest"
-	  comp.playoffbracketlabel()
-	else
-	  "Other"
-	end).to_s+" Results"
   end
   
 end

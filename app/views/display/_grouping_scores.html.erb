@@ -9,6 +9,6 @@
   </thead>
 
    <tbody>
-  <%= scores_by_type(@contests) {[:display_date, :name, :winning_team_and_score, :losing_team_and_score]}%>
+  <%= scores_by_type(@contests, [:display_date, :name, :winning_team_and_score, :losing_team_and_score]).html_safe %>
   </tbody>
   </table>

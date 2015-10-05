@@ -5,6 +5,8 @@ require 'navitem.rb'
 # are very different for the Manager functions than they are for the public viewers.
 module ApplicationHelper
 
+   # Following provides things like carrier pulldown.
+  include SMSEasyHelper
 
   # Produce an Unordered List of Links for Navigation.
   # This may be called recursively.

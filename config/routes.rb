@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'display/:competition_id', to: 'display#index', as: :display_competition
   get 'display/:competition_id/grouping/:id(/:xyzzy)', to: 'display#grouping', as: :display_grouping
   get 'display/:competition_id/team/:id', to: 'display#team', as: :display_team
+  get 'display/:competition_id/team/:id/alert', to: 'display#alert_request', as: :alert_request
+  post 'display/:competition_id/team/:id/alert', to: 'display#set_alert', as: :set_alert
    
   #post 'customer/new', to: 'customers#create'
   get '/customer/:id/confirm/:reg_confirm_token', to: 'customers#confirm', as: :confirm_registration

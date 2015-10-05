@@ -28,6 +28,14 @@ class DisplayController < NestedController # Formerly < ApplicationController
     @scores = @contestants.select{|c| c.contest.has_score?}.sort{|a,b| a.contest <=> b.contest}
   end
 
+  def alert_request
+    @team = Team.find(params[:id])
+  end
+
+  def set_alert
+    @team = Team.find(params[:id])
+  end
+
   def grouping
 	  @grouping = Grouping.find(params[:id])
 	  @groupingteams = Team.where(grouping: @grouping)
