@@ -24,6 +24,11 @@
 <div class="wrapper">
 
 <hr class="message"/>
+<% if flash[:alert] %>
+   <p class="alert">
+    <%= flash[:alert] %>
+   </p>
+<%end %>
  <p class="wrapper">
   <%= flash[:notice] %>
   <%= yield :info_message %>

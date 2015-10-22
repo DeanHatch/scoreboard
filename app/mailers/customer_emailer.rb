@@ -11,10 +11,4 @@ class CustomerEmailer < ActionMailer::Base
     @customer = customer
     mail to: customer.userid
   end
-  def welcomee(recipient)
-    @greeting = "Hi"
-
-    #mail to: "to@example.org"
-    mail to: recipient
-  end
 end

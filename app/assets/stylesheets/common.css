@@ -190,6 +190,11 @@
                 color: green;
            text-align: center;
             font-size: 8pt;}
+   p.alert   {padding: 5px;
+                color: red;
+          font-weight: bold;
+           text-align: center;
+            font-size: 10pt;}
 
    div.widebody {overflow: auto;}
 

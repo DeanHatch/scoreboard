@@ -30,10 +30,35 @@ class DisplayController < NestedController # Formerly < ApplicationController
 
   def alert_request
     @team = Team.find(params[:id])
+    @alert_request = AlertRequest.new()
   end
 
   def set_alert
+    params.require(:alert).permit(:emailaddr, :to_dest, :mobile_carrier)
     @team = Team.find(params[:id])
+    alert = params[:alert]
+    emailaddr = params.require(:alert)[:emailaddr]
+    to_dest = params.require(:alert)[:to_dest]
+    mobile_carrier = params.require(:alert)[:mobile_carrier]
+    logger.info("*** Setting Alert: #{@team.inspect()}")
+    logger.info("            alert: #{alert.inspect()}")
+    logger.info("        emailaddr: #{emailaddr}")
+    logger.info("          to_dest: #{to_dest}")
+    logger.info("   mobile_carrier: #{mobile_carrier}")
+    if not mobile_carrier.blank? or not to_dest.blank?
+      if @team.alert_requests.create(type: "SMSAlert",
+							to_dest: to_dest,
+							at_domain: mobile_carrier).valid?
+        flash[:notice] = 'SMS Notification Request Processed.'
+      else
+        flash[:alert] = 'Unable to Create SMS Notification Request.'
+      end
+    end
+    if not emailaddr.blank?
+      @team.email_alerts.create!(type: "EmailAlert",
+					    to_dest: to_dest,
+					    at_domain: emailaddr) 
+    end
   end
 
   def grouping

@@ -11,11 +11,18 @@
     </div>
   <% end %>
 
-<%= carrier_select %>
-
   <div class="field">
-    <%= f.label :userid, 'Enter your email address:' %><br>
-    <%= f.email_field :userid, :size => 80 %>
+    <%= label :to_dest, 'Enter your phone number:' %>
+    <%=phone_field :alert, :to_dest, :size => 20 %>
+    <%= collection_select(:alert, :mobile_carrier, 
+                                     [ [nil,nil] ] + carrier_collection, 
+				      :last, 
+				      :first) %>
+  </div>
+  <h5>and / or</h5>
+  <div class="field">
+    <%= label :emailaddr, 'Enter your email address:' %>
+    <%= email_field :alert, :emailaddr, :size => 80 %>
   </div>
   <div class="actions">
     <%= f.submit 'Alert Me!' %>

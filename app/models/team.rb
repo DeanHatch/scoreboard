@@ -12,6 +12,10 @@ class Team < ActiveRecord::Base
 	has_many :contestants
 	has_many :contests, through: :contestants
 	
+	has_many :alert_requests
+	has_many :email_alerts
+	has_many :sms_alerts
+	
 	validates_presence_of :name
 	
 	# Since default_scope is private, we use this to allow access.
