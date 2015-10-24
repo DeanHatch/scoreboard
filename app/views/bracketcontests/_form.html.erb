@@ -22,12 +22,12 @@
         <br/>
         <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
           <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
-		                                selected: @homecontestant.contestantcode), 
+		                                selected: @bracketcontest.homecontestant.contestantcode), 
 		    {prompt: 'Which'} %>
 
           <%= contestant_fields.select :team_id,
 		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @homecontestant.team_id), 
+		                                selected: @bracketcontest.homecontestant.team_id), 
 		    {prompt: 'TBD'} %>
        <% end %>
      </div>
@@ -66,12 +66,12 @@
       <br/>
       <%= fields_for :awaycontestant, @bracketcontest.awaycontestant do |contestant_fields| %>
         <%= contestant_fields.select :contestantcode, options_for_select(@bracketgrouping.all_participant_codes(),
-		                                selected: @awaycontestant.contestantcode), 
+		                                selected: @bracketcontest.awaycontestant.contestantcode), 
 		    {prompt: 'Which'} %>
 
         <%= contestant_fields.select :team_id,
 		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @awaycontestant.team_id), 
+		                                selected: @bracketcontest.awaycontestant.team_id), 
 		    {prompt: 'TBD'} %>
       <% end %>
     </div>

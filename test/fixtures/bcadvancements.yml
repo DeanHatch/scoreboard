@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 bcgameonewinner:
-  bracketcontest: bcgameone
+  from_contest: bcgameone
   wl: W
 
 bcgametwowinner:
-  bracketcontest: bcgametwo
+  from_contest: bcgametwo
   wl: W

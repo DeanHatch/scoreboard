@@ -59,7 +59,7 @@ class BracketcontestsController < BracketgroupingsController
     @bracketcontest = Bracketcontest.new(bracketcontest_params)
       # This next statement is due to Manager inheriting from Competition.
     @bracketcontest.competition = @manager.as_competition()
-    @bracketcontest.bracketgrouping_id = @bracketgrouping_id
+    @bracketcontest.bracketgrouping_id = @bracketgrouping.id
 
     respond_to do |format|
       if @bracketcontest.save
@@ -68,8 +68,9 @@ class BracketcontestsController < BracketgroupingsController
 	      format.html { redirect_to  edit_bracketgrouping_bracketcontest_path(@bracketgrouping, @bracketcontest)}
 	      format.json { render :show, status: :created, location: @bracketcontest }
 	else
-        format.html { render :new }
-        format.json { render json: @bracketcontest.errors, status: :unprocessable_entity }
+          flash[:alert] = 'Unable to save new Bracket Contest. '  + @bracketcontest.errors.full_messages().join(" ")
+          format.html { render :new }
+          format.json { render json: @bracketcontest.errors, status: :unprocessable_entity }
       end
     end
   end

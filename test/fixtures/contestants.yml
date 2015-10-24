@@ -79,6 +79,7 @@ bcgamethreeH:
   #competition: bball
   contest: bcgamethree
   homeaway: H
+  bcspec_type: Bcadvancement
   bcspec: bcgameonewinner
   team: thunder
   score: 25
@@ -88,6 +89,7 @@ bcgamethreeA:
   #competition: bball
   contest: bcgamethree
   homeaway: A
+  bcspec_type: Bcadvancement
   bcspec: bcgametwowinner
   team: storm
   score: 26

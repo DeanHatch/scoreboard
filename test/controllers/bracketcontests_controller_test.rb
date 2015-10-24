@@ -16,8 +16,9 @@ class BracketcontestsControllerTest < ActionController::TestCase
     assert_difference('Bracketcontest.count') do
       post :create,   bracketgrouping_id: @bracketgrouping.id,
         bracketcontest: { status: "SCHEDULED" }, 
-	homecontestant: {contestantcode: @bracketgrouping.all_participant_codes().first() }, 
-	awaycontestant: {contestantcode: @bracketgrouping.all_participant_codes().first() }
+	homecontestant: {contestantcode: "G" + @bracketgrouping.id.to_s + "P1" }, 
+	awaycontestant: {contestantcode: "G" + @bracketgrouping.id.to_s + "P2" }
+    puts flash[:alert] + " (" + @bracketgrouping.id.to_s + ")" if flash[:alert]
     end
 
     # should edit the newly created Bracketcontest
