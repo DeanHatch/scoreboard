@@ -12,6 +12,7 @@ class Contest < ActiveRecord::Base
 	belongs_to :manager
 	belongs_to :venue
 	
+	validates_presence_of :competition
 	validates_associated :venue
 	validates_presence_of :homecontestant
 	validates_presence_of :awaycontestant

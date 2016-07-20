@@ -18,6 +18,8 @@ class Team < ActiveRecord::Base
 	
 	validates_presence_of :name
 	
+	#self.table_name = "main.teams"
+	
 	# Since default_scope is private, we use this to allow access.
 	def self.default_comp(comp_id)
 		self.default_scope { (where(competition_id: comp_id) ) }
@@ -64,7 +66,7 @@ class Team < ActiveRecord::Base
 	
 	# Winning Percentage, expressed as a decimal.
 	def pct()
-		(self.wins()==0) ? 0 : self.wins().to_f/(self.wins()+self.losses()) 
+	  (self.wins()==0) ? 0 : self.wins().to_f/(self.wins()+self.losses()) 
 	end
 	
 	# Display version of Winning Percentage.

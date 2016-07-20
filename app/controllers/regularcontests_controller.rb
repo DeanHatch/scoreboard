@@ -116,11 +116,11 @@ class RegularcontestsController < ManagersController
   # POST/regularcontests/roundrobin
   # POST /regularcontests/roundrobin.json
   def roundrobin
-	  @grouping = Grouping.find(params[:grouping_id])
-	  arr = @grouping.teams().to_a
-	  @contests = Array.new() 
-	    # balannce home/away
-	  arr.combination(2).each_with_index{|c,i| @contests << (i % 2 == 0 ? schedule_with(c) : schedule_with(c.reverse) ) }
+    @grouping = Grouping.find(params[:grouping_id])
+    arr = @grouping.teams().to_a
+    @contests = Array.new() 
+    # balannce home/away
+    arr.combination(2).each_with_index{|c,i| @contests << (i % 2 == 0 ? schedule_with(c) : schedule_with(c.reverse) ) }
   end
 
   

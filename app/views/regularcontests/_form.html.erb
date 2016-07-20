@@ -42,14 +42,15 @@
   
   <div class="field">
    <%= f.label :home %>
+   <%= @homecontestant.inspect() %>
    <% f.fields_for :homecontestant, @homecontestant do |home_form| %>
      <%= home_form.label :name %>
      <%= home_form.text_field :homeaway %>
-    <% end %>
-    <%= f.select :home_team_id,
+    <!-- %= home_form.select :team_id,
 		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @homecontestant.team_id), 
-		    {prompt: 'TBD'} %>
+		    {prompt: 'TBD'} % -->
+    <% end %>
   
   
   
@@ -58,10 +59,10 @@
      <%= away_form.label :name %>
      <%= away_form.text_field :homeaway %>
     <% end %>
-    <%= f.select :away_team_id,
+    <!-- %= f.select :away_team_id,
 		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
 		                                selected: @awaycontestant.team_id), 
-		    {prompt: 'TBD'} %>
+		    {prompt: 'TBD'} % -->
     </div>
 
   <div class="actions">
