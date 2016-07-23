@@ -22,7 +22,7 @@ module DisplayHelper
       else
         result
        end +
-       content_tag(:tr,columnArray.collect{|x|content_tag(:td, cntst.send(x)) }.join("\n ").html_safe )
+       content_tag(:tr,columnArray.collect{|x|content_tag(:td, cntst.send(x), class: "schedule") }.join("\n ").html_safe )
        }
   end
   
