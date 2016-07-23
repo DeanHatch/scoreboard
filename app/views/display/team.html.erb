@@ -38,13 +38,14 @@
       <!-- Show sorted, unique Contests with Scores -->
     <% moreThanOneType = (@scores.collect{|c|c.type}.uniq.size()>1) %> 
     <% lastType = nil %>
+    <% lastDate = nil %>
     <% @scores.each do |c| cntst = c.contest %>
       <% if moreThanOneType && cntst.type != lastType %>
         <tr><th class="typeBanner" colspan="5"><%= group_results_section_label(cntst.competition,cntst.type() )%></th></tr>
 	<% lastType = cntst.type() %>
        <% end %>
       <tr>
-        <td><%= cntst.display_date %></td>
+        <td><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
         <td><%= c.win ? "W" : (c.loss ? "L" : "D") %></td>
         <td><%= c.score %> - 
 	      <%= c.opponent.score %></td>
@@ -72,10 +73,11 @@
 
   <tbody>
       <!-- Show sorted, unique Teams -->
+    <% lastDate = nil %>
     <% @contestants.select{|c| c.contest.needs_score?}.sort{|a,b| a.contest <=> b.contest}.each do |c| cntst = c.contest %>
       <tr>
          <td><%= c.fullname %></td>
-        <td><%= cntst.display_date %></td>
+        <td><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
         <td><%= cntst.display_time %></td>
         <td><%= cntst.venue_name %></td>
         <td><%= c.homeaway=='H' ? "vs" : "at" %>

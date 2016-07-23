@@ -14,14 +14,15 @@
   <tbody>
       <!-- Show sorted, unique Teams -->
     <% moreThanOneType = (@contests.collect{|c|c.type}.uniq.size()>1) %> 
-    <% lastType = nil %>
+    <% lastType = nil %> 
+    <% lastDate = nil %>
     <% @contests.each do |cntst| %>
       <% if moreThanOneType && cntst.type != lastType %>
         <tr><th class="typeBanner" colspan="6"><%= group_schedule_section_label(cntst.competition,cntst.type() )%></th></tr>
 	<% lastType = cntst.type() %>
        <% end %>
       <tr>
-        <td><%= cntst.display_date %></td>
+        <td><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
         <td><%= cntst.display_time %></td>
         <td><%= cntst.venue_name %></td>
 	<td><%= cntst.awaycontestant.fullname %></td>

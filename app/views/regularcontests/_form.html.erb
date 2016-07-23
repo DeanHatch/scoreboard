@@ -42,7 +42,6 @@
   
   <div class="field">
    <%= f.label :home %>
-   <%= @homecontestant.inspect() %>
    <% f.fields_for :homecontestant, @homecontestant do |home_form| %>
      <%= home_form.label :name %>
      <%= home_form.text_field :homeaway %>
