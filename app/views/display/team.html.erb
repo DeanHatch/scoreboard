@@ -45,13 +45,13 @@
 	<% lastType = cntst.type() %>
        <% end %>
       <tr>
-        <td><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
-        <td><%= c.win ? "W" : (c.loss ? "L" : "D") %></td>
-        <td><%= c.score %> - 
+        <td class="schedule"><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
+        <td class="schedule"><%= c.win ? "W" : (c.loss ? "L" : "D") %></td>
+        <td class="schedule"><%= c.score %> - 
 	      <%= c.opponent.score %></td>
-        <td><%= c.homeaway=='H' ? "vs" : "at" %>
+        <td class="schedule"><%= c.homeaway=='H' ? "vs" : "at" %>
 	      <!-- %= c.opponent.fullname % --><%= team_link_for c.opponent.team %></td>
-        <td><%= cntst.venue_name %></td>
+        <td class="schedule"><%= cntst.venue_name %></td>
       </tr>
     <% end %>
   </tbody>
@@ -76,11 +76,11 @@
     <% lastDate = nil %>
     <% @contestants.select{|c| c.contest.needs_score?}.sort{|a,b| a.contest <=> b.contest}.each do |c| cntst = c.contest %>
       <tr>
-         <td><%= c.fullname %></td>
-        <td><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
-        <td><%= cntst.display_time %></td>
-        <td><%= cntst.venue_name %></td>
-        <td><%= c.homeaway=='H' ? "vs" : "at" %>
+         <td class="schedule"><%= c.fullname %></td>
+        <td class="schedule"><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
+        <td class="schedule"><%= cntst.display_time %></td>
+        <td class="schedule"><%= cntst.venue_name %></td>
+        <td class="schedule"><%= c.homeaway=='H' ? "vs" : "at" %>
 	      <%= c.opponent.fullname %></td>
       </tr>
     <% end %>
