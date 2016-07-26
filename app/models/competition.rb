@@ -74,8 +74,8 @@ class Competition < ActiveRecord::Base
 		case self.sport
 			when "basketball"
 			  b.send(:pct) == a.send(:pct) ? 
-			  b.send(:pct) <=> a.send(:pct) :
-			    b.send(:wins) <=> a.send(:wins)
+			  b.send(:wins) <=> a.send(:wins) :
+			    b.send(:pct) <=> a.send(:pct)
 			when "soccer"
 			  b.send(:points) == a.send(:points) ? 
 			    b.send(:goal_diff) <=> a.send(:goal_diff) :
