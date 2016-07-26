@@ -1,0 +1,36 @@
+<%= form_for(@valid_time) do |f| %>
+  <% if @valid_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@valid_time.errors.count, "error") %> prohibited this valid_time from being saved:</h2>
+
+      <ul>
+      <% @valid_time.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grouping %><br>
+    <!-- %= f.number_field :grouping_id % -->
+  </div>
+  <div class="field">
+    <%= f.label :venue %>
+    <%= f.select :venue_id,
+		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
+		                                selected: @selectedvenue), 
+		    {prompt: 'All'} %>
+  </div>
+  <div class="field">
+    <%= f.label :from %>
+    <%= f.select :from_time,
+		      options_for_select(GameTime.times) %>
+    <%= f.label :to %>
+    <%= f.select :to_time,
+		      options_for_select(GameTime.times) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

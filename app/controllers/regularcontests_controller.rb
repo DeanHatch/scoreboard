@@ -26,6 +26,7 @@ class RegularcontestsController < ManagersController
     @selectedstatus = Regularcontest.statuses.first
     @homecontestant = @regularcontest.homecontestant
     @awaycontestant = @regularcontest.awaycontestant
+    @formverb = "Schedule"
   end
 
   # GET /regularcontests/1/edit
@@ -36,6 +37,7 @@ class RegularcontestsController < ManagersController
     @selectedstatus = @regularcontest.status
     @homecontestant = @regularcontest.homecontestant
     @awaycontestant = @regularcontest.awaycontestant
+    @formverb = "Update"
   end
 
   # POST /regularcontests
@@ -110,7 +112,7 @@ class RegularcontestsController < ManagersController
   # GET /regularcontests/rrobin.json
   def rrobin
     @groupings = @manager.groupings
-    @venues = @manager.venues
+    @venues = @manager.venues.select{|v| not v.name.blank?}
   end
 
   # POST/regularcontests/roundrobin
@@ -143,6 +145,14 @@ class RegularcontestsController < ManagersController
 		permit(:date, :time, :venue_id, :status)
 
     end
+#    def homecontestant_params
+#      params.require(:homecontestant).
+#		permit(:team_id)
+#    end
+#    def awaycontestant_params
+#      params.require(:awaycontestant).
+#		permit(:team_id)
+#    end
 
   def schedule_with(teampair)
     regularcontest = Regularcontest.new(roundrobin_params)
@@ -151,7 +161,7 @@ class RegularcontestsController < ManagersController
     regularcontest.status = 'SCHEDULED'
     regularcontest.awaycontestant.team = teampair[1]
     regularcontest.homecontestant.team = teampair[0]
-    regularcontest.save ? regularcontest : nil  # returns nil if not saved
+    regularcontest.save_all! ? regularcontest : nil  # returns nil if not saved
   end
 							
   def process_teams()

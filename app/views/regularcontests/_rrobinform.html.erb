@@ -10,12 +10,13 @@
   <div class="field">
     <%= label_tag :venue %><br>
     <%= select_tag :venue_id,
-			options_for_select(@venues.collect {|v| [ v.name, v.id ] }),
+			options_for_select(@venues.collect {|v| [ v.name, v.id ] },
+		                                selected: @venues.size==1 ? @venues.first.id : nil),
 			prompt: "TBD" %>
   </div>
   
   <div class="field">
-    <%= label_tag "Date(s) " + @manager.validdates.size.to_s %><br>
+    <%= label_tag "Date(s)" %><br>
     <%= select_tag(:gamedates,
 		options_from_collection_for_select(@manager.validdates,:gamedate, :gamedate),
 		 multiple: true, include_blank: true,  prompt: "Do something" )

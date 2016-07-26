@@ -73,7 +73,9 @@ class Competition < ActiveRecord::Base
 	def compare_teams(a, b)
 		case self.sport
 			when "basketball"
-			  b.send(:pct) <=> a.send(:pct)
+			  b.send(:pct) == a.send(:pct) ? 
+			  b.send(:pct) <=> a.send(:pct) :
+			    b.send(:wins) <=> a.send(:wins)
 			when "soccer"
 			  b.send(:points) == a.send(:points) ? 
 			    b.send(:goal_diff) <=> a.send(:goal_diff) :

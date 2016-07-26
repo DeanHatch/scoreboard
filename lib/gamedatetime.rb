@@ -39,7 +39,7 @@ class GameTime < Object
 	def self.times
 		# Create a collection of times throughout the day in five minute increments
 		# This will be used to display starting time choices for schedulers
-		(1..287).to_a.collect {|i| [ (Time.new(0)+(i*5*60)).strftime('%I:%M %p').sub(/^0/, ""),
+		(1..287).to_a.collect {|i| [ GameTime.new(i).to_s,
  					                     i.to_s ]}
 	end
 	
@@ -50,7 +50,12 @@ class GameTime < Object
   
     # Store an index value of zero unless we can make sense of whatever string passed in.
   def initialize(whatever)
-    @gametimeindex = whatever.kind_of?(String) ? internal_from_string(whatever) : 0
+    @gametimeindex = 
+      case
+        when whatever.kind_of?(String) then internal_from_string(whatever)
+	when whatever.kind_of?(Fixnum) then whatever
+	else 0
+	end
   end
 			
     # Equal if indexes are equal.

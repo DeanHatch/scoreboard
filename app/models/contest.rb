@@ -41,11 +41,14 @@ class Contest < ActiveRecord::Base
 	
 	# Create a collection of times throughout the day in five minute increments.
 	# This will be used to display starting time choices for schedulers
-	def Contest.times
+	def Contest.timez
 		# Create a collection of times throughout the day in five minute increments
 		# This will be used to display starting time choices for schedulers
 		(1..287).to_a.collect {|i| [ (Time.new(0)+(i*5*60)).strftime('%I:%M %p').sub(/^0/, ""),
  					                     i.to_s ]}
+	end
+	def Contest.times
+	  GameTime.times()
 	end
 
 
@@ -113,17 +116,7 @@ class Contest < ActiveRecord::Base
 	
 	# Convenience method. Display "TBD" for nil.
 	def display_time
-		case self.time
-			    # before 1AM
-			when 1...11 then ("12:%02d AM" % ((self.time) * 5))
-			    # from 1AM to just before Noon
-			when 12...143 then ("%2d:%02d AM" % [(self.time / 12) , ((self.time % 12) * 5)])
-			    # Noon
-			when 144 then "Noon"
-			    # after Noon
-			when 145...287 then ("%2d:%02d PM" % [(self.time / 12) - 12 , ((self.time % 12) * 5)])
-			else "TBD"
-			end
+	  GameTime.new(self.time).to_s
 	end
 	
 	# True if either Team has a score.

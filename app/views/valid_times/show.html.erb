@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grouping:</strong>
+  <%= @valid_time.grouping() %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @valid_time.venue() %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @valid_time.display_from_time %>
+  <strong>To:</strong>
+  <%= @valid_time.display_to_time %>
+</p>
+
+<%= link_to 'Edit', edit_valid_time_path(@valid_time) %> |
+<%= link_to 'Back', valid_times_path %>

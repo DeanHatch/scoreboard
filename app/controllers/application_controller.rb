@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   # application for a Competition.
   def manager_link_array()
 	  [ navitem('Manage Dates/Venues' , :venues),
+	navitem('Manage Game Times' , :valid_times),
 	navitem('Manage Groupings/Teams' , :groupings),
 	navitem('Schedule Regular Contests' , :regularcontests),
 	navitem('Schedule Bracket Contests' , :bracketgroupings),

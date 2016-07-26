@@ -11,9 +11,10 @@ class ScorersController < NestedController # Formerly < ApplicationController
     # scores and one of Contests without scores.
   def index
     logger.debug "GGGGGGGGGetting Contests for Scorer: #{@scorer.id}"
-    contests = @scorer.contests.sort{|a,b| a.id <=> b.id}.
+    contests = @scorer.contests.
 					select {|c| c.homecontestant.team}.
-					select {|c| c.awaycontestant.team}
+					select {|c| c.awaycontestant.team}.
+					sort{|a,b| a <=> b}   # present in chronological order
     logger.debug "GGGGGGGGGot Em"
     @contests_with_scores = contests.select {|c| c.has_score?}
     @contests_without_scores = contests.select {|c| c.needs_score?}

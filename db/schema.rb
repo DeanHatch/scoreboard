@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920010131) do
+ActiveRecord::Schema.define(version: 20160724015043) do
 
-  create_table "alert_requests", force: true do |t|
+  create_table "alert_requests", force: :cascade do |t|
     t.string   "type"
     t.string   "to_dest"
     t.string   "at_domain"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20150920010131) do
 
   add_index "alert_requests", ["team_id"], name: "index_alert_requests_on_team_id"
 
-  create_table "bcadvancements", force: true do |t|
+  create_table "bcadvancements", force: :cascade do |t|
     t.integer  "from_contest_id"
     t.string   "wl"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "competitions", force: true do |t|
+  create_table "competitions", force: :cascade do |t|
     t.string   "name"
     t.integer  "sport"
     t.integer  "variety"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150920010131) do
     t.string   "salt"
   end
 
-  create_table "contestants", force: true do |t|
+  create_table "contestants", force: :cascade do |t|
     t.integer  "competition_id"
     t.string   "type"
     t.integer  "contest_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150920010131) do
     t.integer  "bcspec_id"
   end
 
-  create_table "contests", force: true do |t|
+  create_table "contests", force: :cascade do |t|
     t.integer  "competition_id"
     t.string   "type"
     t.date     "date"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150920010131) do
     t.string   "name"
   end
 
-  create_table "customers", force: true do |t|
+  create_table "customers", force: :cascade do |t|
     t.string   "userid"
     t.string   "hashed_password"
     t.string   "salt"
@@ -98,14 +98,14 @@ ActiveRecord::Schema.define(version: 20150920010131) do
     t.string   "reg_confirm_token"
   end
 
-  create_table "groupingplaces", force: true do |t|
+  create_table "groupingplaces", force: :cascade do |t|
     t.integer  "grouping_id"
     t.integer  "place"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "groupings", force: true do |t|
+  create_table "groupings", force: :cascade do |t|
     t.integer  "competition_id"
     t.string   "name"
     t.integer  "parent_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150920010131) do
     t.boolean  "bracket_grouping", default: false, null: false
   end
 
-  create_table "teams", force: true do |t|
+  create_table "teams", force: :cascade do |t|
     t.integer  "competition_id"
     t.string   "name"
     t.integer  "grouping_id"
@@ -122,21 +122,31 @@ ActiveRecord::Schema.define(version: 20150920010131) do
     t.datetime "updated_at"
   end
 
-  create_table "validdates", force: true do |t|
+  create_table "valid_times", force: :cascade do |t|
+    t.integer  "competition_id"
+    t.integer  "grouping_id"
+    t.integer  "venue_id"
+    t.integer  "from_time"
+    t.integer  "to_time"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "validdates", force: :cascade do |t|
     t.date     "gamedate"
     t.integer  "competition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "venues", force: true do |t|
+  create_table "venues", force: :cascade do |t|
     t.string   "name"
     t.integer  "competition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "welcomes", force: true do |t|
+  create_table "welcomes", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

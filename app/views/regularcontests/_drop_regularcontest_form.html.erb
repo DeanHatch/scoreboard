@@ -1,6 +1,6 @@
 <%= form_for @regularcontest,
 			method: :delete,
-               data: { confirm: "Are you sure? For real?  Once it's Gone, it's GONE." } do |f| %>
+               data: { confirm: "Are you sure? For real?  Once it's Gone, it is GONE." } do |f| %>
   <% if @regularcontest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@regularcontest.errors.count, "error") %> prohibited this regularcontest from being saved:</h2>

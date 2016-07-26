@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :valid_times
   root 'welcome#index'
   get 'welcome/index'
   get 'oops', to: 'welcome#oops'
