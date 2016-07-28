@@ -5,7 +5,7 @@ class Competition < ActiveRecord::Base
 	
 	belongs_to :customer
 	
-	enum sport: [ :basketball, :soccer ]
+	enum sport: [ :basketball, :soccer, :quidditch ]
 	enum variety: [ :tournament, :season, :league ]
 	
 	validates_presence_of :customer_id, :sport, :variety,
@@ -19,6 +19,7 @@ class Competition < ActiveRecord::Base
 	
 	has_many :venues
 	has_many :validdates
+	has_many :valid_times
 	has_many :groupings
 	has_many :bracketgroupings, -> { where(bracket_grouping: true) }
 	has_many :teams, through: :groupings
@@ -90,6 +91,7 @@ class Competition < ActiveRecord::Base
 		[self.name(), self.sport().titleize, self.variety().titleize].join(" ")
 	end
 
+      
 
 		
 	def self.authenticate_manager(compid, mgrpw)
@@ -109,7 +111,11 @@ class Competition < ActiveRecord::Base
 		comp
 	end
 
-
+  def valid_times_as_select_options()
+    self.valid_times.size()==0 ? 
+      ValidTime.default.select_options() :
+      self.valid_times.inject([]){|opt,vt| opt + vt.select_options()}
+  end
 	
 	
 	# manager_password is included on the HTML form and is sent with

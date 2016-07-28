@@ -1,5 +1,4 @@
 require 'navitem.rb'
-require 'gamedatetime.rb'
 
 # The methods in this Module are used by most or all views in the application.
 # Navigation is handled in a uniform manner, although the types of destinations

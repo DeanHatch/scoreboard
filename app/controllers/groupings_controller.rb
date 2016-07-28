@@ -5,7 +5,7 @@ class GroupingsController < ManagersController  # formerly ApplicationController
   # GET /groupings
   # GET /groupings.json
   def index
-    @groupings = Grouping.where(manager: @manager)
+    @groupings = @manager.groupings
   end
 
   # GET /groupings/1
@@ -26,7 +26,7 @@ class GroupingsController < ManagersController  # formerly ApplicationController
   # GET /groupings/1/edit
   def edit
 	  # list of groupings for drop-down
-    @groupings = Grouping.where(manager: @manager)
+    @groupings = @manager.groupings
     @grouping_id = @grouping.id
   end
 

@@ -89,17 +89,4 @@ class Team < ActiveRecord::Base
 	  self.goals_for() - self.goals_against()
 	end
 	
-	# Varies by sport. (Deprecated?)
-	def result_rowww(competition)
-		case competition.sport
-			when "basketball"
-				[self.wins(), self.losses(), sprintf('%0.3f', self.pct())]
-			when "soccer"
-				[self.wins(), self.losses(),  self.draws(), self.points(),
-				 0, 0, 0]
-			else
-				[wins(), losses()]
-			end
-	end
-
 end

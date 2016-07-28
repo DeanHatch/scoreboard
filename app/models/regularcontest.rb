@@ -2,4 +2,9 @@
 # basic Contest class.
 class Regularcontest < Contest
 	
+  validates :competition_id,
+		:homecontestant,
+		:awaycontestant,
+		presence: true
+
 end

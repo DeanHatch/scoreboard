@@ -19,11 +19,13 @@ class RegularcontestsController < ManagersController
   # GET /regularcontests/new
   def new
     @regularcontest = Regularcontest.new
-    @regularcontest.competition_id = @competition_id
+      # This next statement is due to Manager inheriting from Competition.
+    @regularcontest.competition = @manager
     @selectedvenue = nil
     @selecteddate = nil
     @selectedtime = nil
     @selectedstatus = Regularcontest.statuses.first
+    p @regularcontest
     @homecontestant = @regularcontest.homecontestant
     @awaycontestant = @regularcontest.awaycontestant
     @formverb = "Schedule"
@@ -50,11 +52,11 @@ class RegularcontestsController < ManagersController
     process_teams()
  
     respond_to do |format|
-      if @regularcontest.save
-	      flash[:notice] = 'Contest was successfully created.' 
-	      format.html { redirect_to :regularcontests}
-	      # format.html { redirect_to competition_regularcontests_url, notice: 'Regularcontest was successfully created.' }
-	      format.json { render :show, status: :created, location: @regularcontest }
+      if @regularcontest.save_all!
+	 flash[:notice] = 'Contest was successfully created.' 
+	 format.html { redirect_to :regularcontests}
+	 # format.html { redirect_to competition_regularcontests_url, notice: 'Regularcontest was successfully created.' }
+	 format.json { render :show, status: :created, location: @regularcontest }
       else
         format.html { render :new }
         format.json { render json: @regularcontest.errors, status: :unprocessable_entity }
@@ -69,7 +71,8 @@ class RegularcontestsController < ManagersController
     process_teams()
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
-	      flash[:notice] = 'Contest was successfully updated.' 
+        @regularcontest.save_all!
+	flash[:notice] = 'Contest was successfully updated.' 
         format.html { redirect_to :regularcontests}
         format.json { render :show, status: :ok, location: @regularcontest }
       else

@@ -45,7 +45,7 @@
 		    {prompt: 'TBD'} %>
 
        <%= f.select :time,
-		      options_for_select(Bracketcontest.times,
+		      options_for_select(@manager.valid_times_as_select_options(),
 		                                selected: @selectedtime), 
 		    {prompt: 'TBD'} %>
 	<br/>

@@ -1,0 +1,42 @@
+<h3><%= @bracket.hierarchy.join(' ') %></h3>
+<%= form_for ([@bracket, @bracketcontest]) do |f| %>
+  <% if @bracketcontest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bracketcontest.errors.count, "error") %> prohibited this bracketcontest from being saved:</h2>
+
+      <ul>
+      <% @bracketcontest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <fieldset>
+   <legend>Home Team</legend>
+   <%= @homecontestant.fullname %><br/>
+   <%= fields_for :homecontestant, @bracketcontest.homecontestant do |contestant_fields| %>
+   <%= contestant_fields.select :contestantcode, options_for_select(@bracket.all_participant_codes(),
+		                                selected: @homecontestant.contestantcode), 
+		    {prompt: 'Which'} %><br/>
+<br/>
+   <%= contestant_fields.select :team_id,
+		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
+		                                selected: @homecontestant.team_id), 
+		    {prompt: 'TBD'} %>
+  <% end %>
+  </fieldset>
+
+  <fieldset>
+   <legend>Visitor</legend>
+   <%= @awaycontestant.fullname %><br/>
+   <%= f.select :away_team_id,
+		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
+		                                selected: @awaycontestant.team_id), 
+		    {prompt: 'TBD'} %>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

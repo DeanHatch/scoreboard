@@ -76,6 +76,21 @@ class Contest < ActiveRecord::Base
 								    homeaway: 'H',
 								    competition: self.competition,
 								    contest: self)
+	p '***********';
+	p self;
+	p '************';
+	end
+	
+	
+	
+	def save()
+	  super
+	  self.save_all!
+	end
+	
+	def update(attributes=nil)
+	  super(attributes)
+	  self.save_all!
 	end
 	
 	def save_all!()

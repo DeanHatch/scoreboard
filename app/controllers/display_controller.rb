@@ -21,7 +21,8 @@ class DisplayController < NestedController # Formerly < ApplicationController
 
   def team
     @team = Team.find(params[:id])
-    @groupingteams = Team.where(grouping_id: @team.grouping_id)
+    #@groupingteams = Team.where(grouping_id: @team.grouping_id)
+    @groupingteams = @team.grouping.teams()
     @groupingteamhash = {}
     @groupingteams.each{|gt| @groupingteamhash[gt] = gt.contestants() }
     @contestants = @team.contestants()
@@ -63,7 +64,8 @@ class DisplayController < NestedController # Formerly < ApplicationController
 
   def grouping
 	  @grouping = Grouping.find(params[:id])
-	  @groupingteams = Team.where(grouping: @grouping)
+	  #@groupingteams = Team.where(grouping: @grouping)
+	  @groupingteams = @grouping.teams()
 	  @contests = @grouping.unique_contests()
 	  @bracketgrouping = Bracketgrouping.find(params[:id])
 	  @bracketcontests = @bracketgrouping.bracketcontests
