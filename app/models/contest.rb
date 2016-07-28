@@ -88,11 +88,6 @@ class Contest < ActiveRecord::Base
 	  self.save_all!
 	end
 	
-	def update(attributes=nil)
-	  super(attributes)
-	  self.save_all!
-	end
-	
 	def save_all!()
 	  Contest.transaction do
 	    self.homecontestant.save!
