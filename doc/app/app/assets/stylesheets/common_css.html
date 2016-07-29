@@ -60,6 +60,8 @@
   
     <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
   
+    <li><a href="../../../app/assets/javascripts/bracketcontests_js.html">bracketcontests.js</a>
+  
     <li><a href="../../../app/assets/javascripts/bracketcontests_js_coffee.html">bracketcontests.js.coffee</a>
   
     <li><a href="../../../app/assets/javascripts/competitions_js_coffee.html">competitions.js.coffee</a>
@@ -83,6 +85,8 @@
     <li><a href="../../../app/assets/javascripts/results_js_coffee.html">results.js.coffee</a>
   
     <li><a href="../../../app/assets/javascripts/teams_js_coffee.html">teams.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/valid_times_js_coffee.html">valid_times.js.coffee</a>
   
     <li><a href="../../../app/assets/javascripts/validdates_js_coffee.html">validdates.js.coffee</a>
   
@@ -118,6 +122,8 @@
   
     <li><a href="../../../app/assets/stylesheets/teams_css_scss.html">teams.css.scss</a>
   
+    <li><a href="../../../app/assets/stylesheets/valid_times_css_scss.html">valid_times.css.scss</a>
+  
     <li><a href="../../../app/assets/stylesheets/validdates_css_scss.html">validdates.css.scss</a>
   
     <li><a href="../../../app/assets/stylesheets/venues_css_scss.html">venues.css.scss</a>
@@ -152,6 +158,10 @@
   
     <li><a href="../../../app/views/teams/show_json_jbuilder.html">show.json.jbuilder</a>
   
+    <li><a href="../../../app/views/valid_times/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/valid_times/show_json_jbuilder.html">show.json.jbuilder</a>
+  
     <li><a href="../../../app/views/validdates/index_json_jbuilder.html">index.json.jbuilder</a>
   
     <li><a href="../../../app/views/validdates/show_json_jbuilder.html">show.json.jbuilder</a>
@@ -161,10 +171,6 @@
     <li><a href="../../../app/views/venues/show_json_jbuilder.html">show.json.jbuilder</a>
   
     <li><a href="../../../app/views/welcome/robots_txt.html">robots</a>
-  
-    <li><a href="../../../lib/generators/rails/my_rspec/USAGE.html">USAGE</a>
-  
-    <li><a href="../../../lib/tasks/post_migration_rake.html">post_migration.rake</a>
   
   </ul>
 </div>
@@ -352,6 +358,11 @@ p.wrapper {padding: 5px;
              color: green;
         text-align: center;
          font-size: 8pt;}
+p.alert   {padding: 5px;
+             color: red;
+       font-weight: bold;
+        text-align: center;
+         font-size: 10pt;}
 
 div.widebody {overflow: auto;}
 
@@ -428,7 +439,7 @@ div.instructions { width: 240px;
 
 <p>table.schedule {text-align: center;</p>
 
-<pre>padding: 0 0 5px 5px;
+<pre>padding: 0 0 15px 15px;
  margin-left: auto;
  margin-right: auto;
  margin-top: 2px;
@@ -437,13 +448,19 @@ div.instructions { width: 240px;
 <p>td.schedule {text-align: center;</p>
 
 <pre>border: 0;
-padding: 0 0 0px 15px;
+padding: 2px 8px 0 8px;
 margin: 0 0 0px 15px;}</pre>
 
 <p>.schedule th {font-weight: bold;</p>
 
 <pre>   text-align: center;
 border-bottom: solid black 1px}</pre>
+
+<p>th.typeBanner {font-weight: bold;</p>
+
+<pre>   text-align: center;
+background-color: black;
+color: yellow}</pre>
 
 <p>table.standings {text-align: right;</p>
 
@@ -456,6 +473,12 @@ padding: 0 0 5px 5px;}</pre>
 <p>.standings th {font-weight: bold;</p>
 
 <pre>text-align: center}</pre>
+
+<p>.standings td {text-align: right;</p>
+
+<pre> border: 0;
+padding: 0 10px 0px 10px;
+ margin: 0 10px 0px 10px;}</pre>
 
 <p>th.standings   {text-align: center;}</p>
 
@@ -595,14 +618,14 @@ font-family: verdana, arial, helvetica, sans-serif;
       position: relative;
       height: 25%;
       width: 100%;
-      text-align: right;
+      text-align: left;
       }
   div.btopcontents {
       position: absolute;
       bottom: 0px;
       height: 12px;
       width: 100%;
-      text-align: right;
+      text-align: left;
       }
   span.btopcontents {
       dislay: table-cell;
@@ -610,7 +633,7 @@ font-family: verdana, arial, helvetica, sans-serif;
       left: 0px;
       bottom: 0px;
       width: 100%;
-      text-align: right;
+      text-align: left;
       vertical-align: bottom;
       }
 div.bmid {
@@ -632,7 +655,7 @@ span.bmid {
       position: static;
       height: 25%;
       width: 100%;
-      text-align: right;
+      text-align: left;
       }
 
 div.r1 {position: relative;
@@ -755,6 +778,35 @@ div.r5pair {position: relative;
               width: 200px;
               height: 1600px;
               left: 803px;
+              top: 0px;
+       padding-right: 1px;
+  }
+
+div.rw2 {position: relative;
+                left: -200px;
+               width: 800px;
+              height: 200px;
+       padding-right: 1px;
+  }
+
+div.rw2h {position: absolute;
+               width: 400px;
+              height: 100px;
+              left: 0px;
+              top: 0px;
+  }
+div.rw2a {position: absolute;
+               width: 400px;
+              height: 100px;
+              left: 0px;
+              top: 101px;</pre>
+
+<p>}</p>
+
+<pre>div.rw2pair {position: relative;
+              width: 400px;
+              height: 200px;
+              left: 401px;
               top: 0px;
        padding-right: 1px;
   }</pre>

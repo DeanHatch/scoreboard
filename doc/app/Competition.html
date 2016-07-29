@@ -108,6 +108,10 @@
     
     <li ><a href="#method-i-top_grouping">#top_grouping</a>
     
+    <li ><a href="#method-i-valid_times_as_select_options">#valid_times_as_select_options</a>
+    
+    <li ><a href="#method-i-valid_times_sorted">#valid_times_sorted</a>
+    
   </ul>
 </div>
 
@@ -198,7 +202,7 @@ href="Competition.html">Competition</a></p>
 
           
           <div class="method-source-code" id="authenticate_manager-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">authenticate_manager</span>(<span class="ruby-identifier">compid</span>, <span class="ruby-identifier">mgrpw</span>)
         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;finding Compd ID: #{compid}&quot;</span>)
         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;mgrpw: #{mgrpw.inspect()}&quot;</span>)
@@ -245,7 +249,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="default_cust-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">default_cust</span>(<span class="ruby-identifier">cust_id</span>)
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">customer_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">cust_id</span>) ) }
 <span class="ruby-keyword">end</span></pre>
@@ -278,7 +282,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="playoffbracketlabels-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">playoffbracketlabels</span> 
         [<span class="ruby-string">&#39;Playoff&#39;</span>, <span class="ruby-string">&#39;Bracket&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -311,7 +315,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="poolgroupseasonlabels-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">poolgroupseasonlabels</span>
         [<span class="ruby-string">&#39;Pool&#39;</span>, <span class="ruby-string">&#39;Group&#39;</span>, <span class="ruby-string">&#39;Season&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -352,7 +356,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="encrypted_password-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 180</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 199</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">encrypted_password</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">password</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-identifier">string_to_hash</span> = <span class="ruby-identifier">password</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;dingus&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">salt</span>
@@ -395,7 +399,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="clear_manager_password-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 125</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_manager_password</span>()
         <span class="ruby-ivar">@manager_password</span> = <span class="ruby-keyword">nil</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hashed_manager_password</span> = <span class="ruby-keyword">nil</span>
@@ -429,7 +433,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="clear_scorer_password-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 166</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_scorer_password</span>()
         <span class="ruby-ivar">@scorer_password</span> = <span class="ruby-keyword">nil</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hashed_scorer_password</span> = <span class="ruby-keyword">nil</span>
@@ -463,11 +467,13 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="compare_teams-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">compare_teams</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>)
         <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sport</span>
                 <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basketball&quot;</span>
-                  <span class="ruby-identifier">b</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:pct</span>) <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:pct</span>)
+                  <span class="ruby-identifier">b</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:pct</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:pct</span>) <span class="ruby-operator">?</span> 
+                  <span class="ruby-identifier">b</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:wins</span>) <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:wins</span>) <span class="ruby-operator">:</span>
+                    <span class="ruby-identifier">b</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:pct</span>) <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:pct</span>)
                 <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;soccer&quot;</span>
                   <span class="ruby-identifier">b</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:points</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:points</span>) <span class="ruby-operator">?</span> 
                     <span class="ruby-identifier">b</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:goal_diff</span>) <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:goal_diff</span>) <span class="ruby-operator">:</span>
@@ -505,7 +511,7 @@ own public method to access default_scope.</p>
 
           
           <div class="method-source-code" id="create_root_grouping-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 139</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_root_grouping</span>()
         <span class="ruby-identifier">name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">variety</span>.<span class="ruby-identifier">humanize</span>
         <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>).<span class="ruby-identifier">save</span>(<span class="ruby-identifier">validate</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
@@ -540,7 +546,7 @@ suitable for a title or heading.</p>
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>()
         [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>(), <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sport</span>().<span class="ruby-identifier">titleize</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">variety</span>().<span class="ruby-identifier">titleize</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -577,7 +583,7 @@ through a SHA1 digest.</p>
 
           
           <div class="method-source-code" id="manager_password-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 114</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manager_password</span>
         <span class="ruby-ivar">@manager_password</span>
 <span class="ruby-keyword">end</span></pre>
@@ -610,7 +616,7 @@ through a SHA1 digest.</p>
 
           
           <div class="method-source-code" id="manager_password-3D-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 118</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manager_password=</span>(<span class="ruby-identifier">pwd</span>)
         <span class="ruby-ivar">@manager_password</span> = <span class="ruby-identifier">pwd</span>
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">blank?</span>
@@ -647,7 +653,7 @@ href="Grouping.html">Grouping</a> or for a Team&#39;s record.</p>
 
           
           <div class="method-source-code" id="result_headings-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">result_headings</span>()
         <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sport</span>
                 <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basketball&quot;</span>
@@ -687,7 +693,7 @@ href="Grouping.html">Grouping</a> or for a Team&#39;s record.</p>
 
           
           <div class="method-source-code" id="result_row-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">result_row</span>()
         <span class="ruby-keyword">case</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sport</span>
                 <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basketball&quot;</span>
@@ -734,7 +740,7 @@ if this save is a creation save ass opposed to an update save.</p>
 
           
           <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 132</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 151</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
         <span class="ruby-identifier">news_to_me</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
         <span class="ruby-keyword">super</span>()
@@ -773,7 +779,7 @@ through a SHA1 digest.</p>
 
           
           <div class="method-source-code" id="scorer_password-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 155</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 174</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scorer_password</span>
         <span class="ruby-ivar">@scorer_password</span>
 <span class="ruby-keyword">end</span></pre>
@@ -806,7 +812,7 @@ through a SHA1 digest.</p>
 
           
           <div class="method-source-code" id="scorer_password-3D-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 159</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scorer_password=</span>(<span class="ruby-identifier">pwd</span>)
         <span class="ruby-ivar">@scorer_password</span> = <span class="ruby-identifier">pwd</span>
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pwd</span>.<span class="ruby-identifier">blank?</span>
@@ -843,9 +849,78 @@ parent.</p>
 
           
           <div class="method-source-code" id="top_grouping-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 146</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">top_grouping</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">groupings</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">parent_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-valid_times_as_select_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">valid_times_as_select_options</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If this <a href="Competition.html">Competition</a> does not have its own
+list of Valid Time Ranges, then use the default.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="valid_times_as_select_options-source">
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_times_as_select_options</span>()
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_times</span>.<span class="ruby-identifier">size</span>()<span class="ruby-operator">==</span><span class="ruby-value">0</span> <span class="ruby-operator">?</span> 
+    <span class="ruby-constant">ValidTime</span>.<span class="ruby-identifier">default</span>.<span class="ruby-identifier">select_options</span>() <span class="ruby-operator">:</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_times_sorted</span>.<span class="ruby-identifier">inject</span>([]){<span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>,<span class="ruby-identifier">vt</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">vt</span>.<span class="ruby-identifier">select_options</span>()}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-valid_times_sorted" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">valid_times_sorted</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Make sure our list makes sense to users.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="valid_times_sorted-source">
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_times_sorted</span>()
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_times</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span><span class="ruby-identifier">a</span>.<span class="ruby-identifier">from_time</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">from_time</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -885,7 +960,7 @@ assigned if  it is requested and is nil.</p>
 
           
           <div class="method-source-code" id="create_new_salt-source">
-            <pre><span class="ruby-comment"># File app/models/competition.rb, line 175</span>
+            <pre><span class="ruby-comment"># File app/models/competition.rb, line 194</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_new_salt</span>
         (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">salt</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>

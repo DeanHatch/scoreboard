@@ -150,7 +150,7 @@ played.</p>
 
           
           <div class="method-source-code" id="alll-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">alll</span>()
         <span class="ruby-keyword">super</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracket_grouping</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -191,7 +191,7 @@ played.</p>
 
           
           <div class="method-source-code" id="all_participant_codes-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_participant_codes</span>()
         <span class="ruby-identifier">apc</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>).
@@ -231,7 +231,7 @@ played.</p>
 
           
           <div class="method-source-code" id="assign_seeding_and_ccode-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_seeding_and_ccode</span>(<span class="ruby-identifier">bc</span>, <span class="ruby-identifier">seed_or_pair</span>)
   <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">seeding</span> = <span class="ruby-identifier">seed_or_pair</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">seed_or_pair</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Fixnum</span>
     <span class="ruby-comment"># If Array passed, then either get winner of the Bracketcontest it represents</span>
@@ -255,7 +255,7 @@ played.</p>
         
         <div class="method-heading">
           <span class="method-name">complete_se_matchups</span><span
-            class="method-args">()</span>
+            class="method-args">(numseeds=nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -271,9 +271,10 @@ this <a href="Bracketgrouping.html">Bracketgrouping</a></p>
 
           
           <div class="method-source-code" id="complete_se_matchups-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">complete_se_matchups</span>()
-  <span class="ruby-identifier">for_pair</span>(<span class="ruby-identifier">se_matchups</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_teams</span>.<span class="ruby-identifier">size</span>()))
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">complete_se_matchups</span>(<span class="ruby-identifier">numseeds</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">numseeds</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_teams</span>.<span class="ruby-identifier">size</span>()
+  <span class="ruby-identifier">for_pair</span>(<span class="ruby-identifier">se_matchups</span>(<span class="ruby-identifier">numseeds</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -304,7 +305,7 @@ this <a href="Bracketgrouping.html">Bracketgrouping</a></p>
 
           
           <div class="method-source-code" id="for_pair-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">for_pair</span>(<span class="ruby-identifier">bc_array</span>)
   <span class="ruby-identifier">bracketcontest</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">new</span>() <span class="ruby-comment"># also creates Bracketcontestants</span>
   <span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">bracketgrouping</span> = <span class="ruby-keyword">self</span>
@@ -350,7 +351,7 @@ this <a href="Bracketgrouping.html">Bracketgrouping</a></p>
 
           
           <div class="method-source-code" id="game_number-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 62</span>
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">game_number</span>()
   <span class="ruby-ivar">@game_number</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
   <span class="ruby-ivar">@game_number</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
@@ -385,7 +386,7 @@ this <a href="Bracketgrouping.html">Bracketgrouping</a></p>
 
           
           <div class="method-source-code" id="se_matchups-source">
-            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/bracketgrouping.rb, line 34</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">se_matchups</span>(<span class="ruby-identifier">numseeds</span>)
    <span class="ruby-identifier">seeds</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numseeds</span>).<span class="ruby-identifier">to_a</span>
    <span class="ruby-identifier">numrounds</span> = <span class="ruby-constant">Math</span>.<span class="ruby-identifier">log2</span>(<span class="ruby-identifier">numseeds</span>).<span class="ruby-identifier">ceil</span>

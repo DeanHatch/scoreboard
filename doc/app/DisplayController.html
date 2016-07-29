@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-alert_request">#alert_request</a>
+    
     <li ><a href="#method-i-grouping">#grouping</a>
     
     <li ><a href="#method-i-index">#index</a>
@@ -77,6 +79,8 @@
     <li ><a href="#method-i-nav_link_array">#nav_link_array</a>
     
     <li ><a href="#method-i-nav_link_to_grouping">#nav_link_to_grouping</a>
+    
+    <li ><a href="#method-i-set_alert">#set_alert</a>
     
     <li ><a href="#method-i-team">#team</a>
     
@@ -114,6 +118,40 @@
        </header>
 
     
+      <div id="method-i-alert_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">alert_request</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="alert_request-source">
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">alert_request</span>
+  <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@alert_request</span> = <span class="ruby-constant">AlertRequest</span>.<span class="ruby-identifier">new</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-grouping" class="method-detail ">
         
         <div class="method-heading">
@@ -133,30 +171,24 @@
 
           
           <div class="method-source-code" id="grouping-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">grouping</span>
         <span class="ruby-ivar">@grouping</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-        <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grouping</span>)
-        <span class="ruby-ivar">@contests</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">contests</span>()
+        <span class="ruby-comment">#@groupingteams = Team.where(grouping: @grouping)</span>
+        <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">teams</span>()
+        <span class="ruby-ivar">@contests</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">unique_contests</span>()
+        <span class="ruby-ivar">@bracketgrouping</span> = <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+        <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">bracketcontests</span>
         <span class="ruby-identifier">what2show</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:xyzzy</span>]
-        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">bracket_grouping</span>
-          <span class="ruby-identifier">brackets</span> = <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all_for</span>(<span class="ruby-ivar">@grouping</span>)
-          <span class="ruby-ivar">@bracket</span> = <span class="ruby-identifier">brackets</span>.<span class="ruby-identifier">first</span>
-          <span class="ruby-ivar">@bfirst</span> = <span class="ruby-ivar">@bracket</span>.<span class="ruby-identifier">terminalpairing</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bracket</span>
-        <span class="ruby-keyword">end</span>
         <span class="ruby-ivar">@what_to_render</span> = (<span class="ruby-keyword">case</span> <span class="ruby-identifier">what2show</span>
                               <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;bracket&quot;</span> 
-                                <span class="ruby-ivar">@brackets</span> = <span class="ruby-constant">Bracket</span>.<span class="ruby-identifier">all_for</span>(<span class="ruby-ivar">@grouping</span>)
-                                <span class="ruby-ivar">@bracketgrouping</span> = <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-                                <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketgrouping</span>)
-                                <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Bracket Contests: #{@bracketcontests.collect{|bc| bc.id.to_s + bc.name()}.join(&#39; &#39;)}&quot;</span>)
-                                <span class="ruby-ivar">@priorcontests</span> = <span class="ruby-constant">Bracketcontestant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketgrouping</span>).<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">priorcontest</span>()}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">bc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bc</span>.<span class="ruby-identifier">priorcontest</span>()}
-                                <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Prior Contests: #{@priorcontests.collect{|bc| bc.id.to_s + bc.name()}.join(&#39; &#39;)}&quot;</span>)
+                                <span class="ruby-ivar">@priorcontests</span> = <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">bcadvancements</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">pbc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pbc</span>.<span class="ruby-identifier">from_contest</span>}
                                 <span class="ruby-ivar">@terminalcontests</span> = <span class="ruby-ivar">@bracketcontests</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@priorcontests</span>
-                                <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(&#39; &#39;)}&quot;</span>)
+                                <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** Terminal Contests: #{@terminalcontests.collect{|bc| bc.id.to_s + bc.name()}.join(&#39; &#39;)}&quot;</span>)
                                <span class="ruby-string">&#39;grouping_bracket&#39;</span>   
                               <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;schedule&quot;</span> 
                                <span class="ruby-ivar">@contests</span> = <span class="ruby-ivar">@contests</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">needs_score?</span>}.<span class="ruby-identifier">sort</span>
+                                <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** Scheduled Contests: #{@contests.collect{|bc| bc.id.to_s}.join(&#39; &#39;)}&quot;</span>)
                                <span class="ruby-string">&#39;grouping_schedule&#39;</span>   
                               <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;scores&quot;</span> 
                                <span class="ruby-ivar">@contests</span> = <span class="ruby-ivar">@contests</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">has_score?</span>}.<span class="ruby-identifier">sort</span>
@@ -197,7 +229,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -232,7 +264,7 @@ not yet been established.</p>
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
         <span class="ruby-ivar">@competition</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">top_grouping</span>) <span class="ruby-operator">:</span> []
 <span class="ruby-keyword">end</span></pre>
@@ -266,10 +298,67 @@ navigation links to each subgrouping within this grouping.</p>
 
           
           <div class="method-source-code" id="nav_link_to_grouping-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-identifier">grp</span>)
         [<span class="ruby-identifier">navitem</span>(<span class="ruby-identifier">grp</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">display_grouping_path</span>(<span class="ruby-ivar">@competition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">grp</span>.<span class="ruby-identifier">id</span>))] <span class="ruby-operator">&lt;&lt;</span>
           <span class="ruby-identifier">grp</span>.<span class="ruby-identifier">subgroupings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">sg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">nav_link_to_grouping</span>(<span class="ruby-identifier">sg</span>)}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_alert" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_alert</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_alert-source">
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_alert</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:alert</span>).<span class="ruby-identifier">permit</span>(<span class="ruby-value">:emailaddr</span>, <span class="ruby-value">:to_dest</span>, <span class="ruby-value">:mobile_carrier</span>)
+  <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">alert</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:alert</span>]
+  <span class="ruby-identifier">emailaddr</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:alert</span>)[<span class="ruby-value">:emailaddr</span>]
+  <span class="ruby-identifier">to_dest</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:alert</span>)[<span class="ruby-value">:to_dest</span>]
+  <span class="ruby-identifier">mobile_carrier</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:alert</span>)[<span class="ruby-value">:mobile_carrier</span>]
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** Setting Alert: #{@team.inspect()}&quot;</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;            alert: #{alert.inspect()}&quot;</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;        emailaddr: #{emailaddr}&quot;</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;          to_dest: #{to_dest}&quot;</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;   mobile_carrier: #{mobile_carrier}&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">mobile_carrier</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">to_dest</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">alert_requests</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;SMSAlert&quot;</span>,
+                                                      <span class="ruby-identifier">to_dest</span><span class="ruby-operator">:</span> <span class="ruby-identifier">to_dest</span>,
+                                                      <span class="ruby-identifier">at_domain</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mobile_carrier</span>).<span class="ruby-identifier">valid?</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;SMS Notification Request Processed.&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:alert</span>] = <span class="ruby-string">&#39;Unable to Create SMS Notification Request.&#39;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">emailaddr</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">email_alerts</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;EmailAlert&quot;</span>,
+                                          <span class="ruby-identifier">to_dest</span><span class="ruby-operator">:</span> <span class="ruby-identifier">to_dest</span>,
+                                          <span class="ruby-identifier">at_domain</span><span class="ruby-operator">:</span> <span class="ruby-identifier">emailaddr</span>) 
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -300,13 +389,15 @@ navigation links to each subgrouping within this grouping.</p>
 
           
           <div class="method-source-code" id="team-source">
-            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/display_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">team</span>
-        <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-        <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">grouping_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping_id</span>)
-        <span class="ruby-ivar">@groupingteamhash</span> = {}
-        <span class="ruby-ivar">@groupingteams</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gt</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@groupingteamhash</span>[<span class="ruby-identifier">gt</span>] = <span class="ruby-identifier">gt</span>.<span class="ruby-identifier">as_contestants</span>() }
-        <span class="ruby-ivar">@contestants</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">as_contestants</span>()
+  <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-comment">#@groupingteams = Team.where(grouping_id: @team.grouping_id)</span>
+  <span class="ruby-ivar">@groupingteams</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">grouping</span>.<span class="ruby-identifier">teams</span>()
+  <span class="ruby-ivar">@groupingteamhash</span> = {}
+  <span class="ruby-ivar">@groupingteams</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gt</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@groupingteamhash</span>[<span class="ruby-identifier">gt</span>] = <span class="ruby-identifier">gt</span>.<span class="ruby-identifier">contestants</span>() }
+  <span class="ruby-ivar">@contestants</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">contestants</span>()
+  <span class="ruby-ivar">@scores</span> = <span class="ruby-ivar">@contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">contest</span>.<span class="ruby-identifier">has_score?</span>}.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">contest</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">contest</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           

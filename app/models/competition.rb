@@ -110,11 +110,19 @@ class Competition < ActiveRecord::Base
 		end
 		comp
 	end
+	
+	
+    # Make sure our list makes sense to users.
+  def valid_times_sorted()
+    self.valid_times.sort{|a,b|a.from_time <=> b.from_time}
+  end
 
+    # If this Competition does not have its own list of
+    # Valid Time Ranges, then use the default.
   def valid_times_as_select_options()
     self.valid_times.size()==0 ? 
       ValidTime.default.select_options() :
-      self.valid_times.inject([]){|opt,vt| opt + vt.select_options()}
+      self.valid_times_sorted.inject([]){|opt,vt| opt + vt.select_options()}
   end
 	
 	

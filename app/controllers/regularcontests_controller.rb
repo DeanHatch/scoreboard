@@ -21,10 +21,7 @@ class RegularcontestsController < ManagersController
     @regularcontest = Regularcontest.new
       # This next statement is due to Manager inheriting from Competition.
     @regularcontest.competition = @manager
-    @selectedvenue = nil
-    @selecteddate = nil
-    @selectedtime = nil
-    @selectedstatus = Regularcontest.statuses.first
+    #@selectedstatus = Regularcontest.statuses.first
     p @regularcontest
     @homecontestant = @regularcontest.homecontestant
     @awaycontestant = @regularcontest.awaycontestant
@@ -148,6 +145,12 @@ class RegularcontestsController < ManagersController
 		permit(:date, :time, :venue_id, :status)
 
     end
+    def homecontestant_params
+      params.require(:homecontestant).permit(:team_id)
+    end
+    def awaycontestant_params
+      params.require(:awaycontestant).permit(:team_id)
+    end
 #    def homecontestant_params
 #      params.require(:homecontestant).
 #		permit(:team_id)
@@ -168,10 +171,12 @@ class RegularcontestsController < ManagersController
   end
 							
   def process_teams()
-    @home_team_id = params.require(:regularcontest)[:home_team_id]
+    #@home_team_id = params.require(:regularcontest)[:home_team_id]
+    @home_team_id = params.require(:homecontestant)[:team_id]
     @regularcontest.homecontestant.team_id = @home_team_id if @home_team_id
     @regularcontest.homecontestant.save if @regularcontest.homecontestant
-    @away_team_id = params.require(:regularcontest)[:away_team_id]
+    #@away_team_id = params.require(:regularcontest)[:away_team_id]
+    @away_team_id = params.require(:awaycontestant)[:team_id]
     @regularcontest.awaycontestant.team_id = @away_team_id if @away_team_id
     @regularcontest.awaycontestant.save if @regularcontest.awaycontestant
  end

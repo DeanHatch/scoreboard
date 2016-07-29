@@ -135,7 +135,7 @@
 
           
           <div class="method-source-code" id="draw-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">draw</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -168,7 +168,7 @@
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teamname</span>()
 <span class="ruby-keyword">end</span></pre>
@@ -201,9 +201,10 @@
 
           
           <div class="method-source-code" id="loss-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">loss</span>()
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -270,7 +271,7 @@ href="Contestant.html">Contestant</a>.</p>
 
           
           <div class="method-source-code" id="teamname-source">
-            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/models/contestant.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">teamname</span>
         <span class="ruby-identifier">team_id</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">team_id</span>).<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -305,7 +306,8 @@ href="Contestant.html">Contestant</a>.</p>
           <div class="method-source-code" id="win-source">
             <pre><span class="ruby-comment"># File app/models/contestant.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">win</span>()
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>() <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">score</span>().<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>().<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

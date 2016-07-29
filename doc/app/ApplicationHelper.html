@@ -55,7 +55,18 @@
   <div id="class-metadata">
     
     
-    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">SMSEasyHelper</span>
+  
+  
+  </ul>
+</div>
+
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -63,33 +74,11 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-bc_bot">#bc_bot</a>
-    
-    <li ><a href="#method-i-bc_btopcontents">#bc_btopcontents</a>
-    
-    <li ><a href="#method-i-bc_btopcontentz">#bc_btopcontentz</a>
-    
-    <li ><a href="#method-i-bc_mid">#bc_mid</a>
-    
-    <li ><a href="#method-i-bc_midcontents">#bc_midcontents</a>
-    
-    <li ><a href="#method-i-bc_to_adiv">#bc_to_adiv</a>
-    
-    <li ><a href="#method-i-bc_to_div">#bc_to_div</a>
-    
-    <li ><a href="#method-i-bc_to_hdiv">#bc_to_hdiv</a>
-    
-    <li ><a href="#method-i-bc_to_pairdiv">#bc_to_pairdiv</a>
-    
-    <li ><a href="#method-i-bc_top">#bc_top</a>
-    
     <li ><a href="#method-i-instructions">#instructions</a>
     
     <li ><a href="#method-i-navPanel">#navPanel</a>
     
     <li ><a href="#method-i-nav_Panel">#nav_Panel</a>
-    
-    <li ><a href="#method-i-spacer_div">#spacer_div</a>
     
   </ul>
 </div>
@@ -131,358 +120,6 @@ viewers.</p>
        </header>
 
     
-      <div id="method-i-bc_bot" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_bot</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_bot-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 109</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_bot</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                      <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">bottom</span>().<span class="ruby-identifier">html_safe</span>,
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;bbot&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_btopcontents" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_btopcontents</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_btopcontents-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_btopcontents</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:span</span>,
-                      <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">top</span>(),
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;btopcontents&quot;</span>}).<span class="ruby-identifier">html_safe</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_btopcontentz" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_btopcontentz</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_btopcontentz-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_btopcontentz</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                      <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">top</span>(),
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;btopcontents&quot;</span>}).<span class="ruby-identifier">html_safe</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_mid" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_mid</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_mid-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 97</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_mid</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                       <span class="ruby-identifier">bc_midcontents</span>(<span class="ruby-identifier">pair</span>),
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;bmid&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_midcontents" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_midcontents</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_midcontents-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 103</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_midcontents</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:span</span>,
-                      [<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">upper_mid</span>, <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">middle_mid</span>, <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">lower_mid</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-identifier">tag</span>(<span class="ruby-string">&quot;br&quot;</span>)).<span class="ruby-identifier">html_safe</span>,
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;bmid&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_to_adiv" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_to_adiv</span><span
-            class="method-args">(pairside)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_to_adiv-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_to_adiv</span>(<span class="ruby-identifier">pairside</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                            <span class="ruby-identifier">bc_to_div</span>(<span class="ruby-identifier">pairside</span>).<span class="ruby-identifier">html_safe</span>,
-                            {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;r#{pairside.roundnum()+1}a&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_to_div" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_to_div</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_to_div-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_to_div</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                      ((<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">homeside</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">bc_to_hdiv</span>(<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">homeside</span>) ) <span class="ruby-operator">+</span> 
-                              (<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">awayside</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">bc_to_adiv</span>(<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">awayside</span>)) <span class="ruby-operator">+</span>
-                               <span class="ruby-identifier">bc_to_pairdiv</span>(<span class="ruby-identifier">pair</span>) ).<span class="ruby-identifier">html_safe</span>,
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;r#{pair.roundnum()}&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_to_hdiv" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_to_hdiv</span><span
-            class="method-args">(pairside)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_to_hdiv-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_to_hdiv</span>(<span class="ruby-identifier">pairside</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                            <span class="ruby-identifier">bc_to_div</span>(<span class="ruby-identifier">pairside</span>).<span class="ruby-identifier">html_safe</span>,
-                            {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;r#{pairside.roundnum()+1}h&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_to_pairdiv" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_to_pairdiv</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_to_pairdiv-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 64</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_to_pairdiv</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                            <span class="ruby-identifier">bc_top</span>(<span class="ruby-identifier">pair</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">bc_mid</span>(<span class="ruby-identifier">pair</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">bc_bot</span>(<span class="ruby-identifier">pair</span>).<span class="ruby-identifier">html_safe</span>,
-                            {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;r#{pair.roundnum()}pair&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-bc_top" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bc_top</span><span
-            class="method-args">(pair)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="bc_top-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 91</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bc_top</span>(<span class="ruby-identifier">pair</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                           <span class="ruby-identifier">bc_btopcontents</span>(<span class="ruby-identifier">pair</span>),
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;btop&quot;</span>}) )
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-instructions" class="method-detail ">
         
         <div class="method-heading">
@@ -502,7 +139,7 @@ viewers.</p>
 
           
           <div class="method-source-code" id="instructions-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instructions</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -535,7 +172,7 @@ Navigation.</p>
 
           
           <div class="method-source-code" id="navPanel-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">navPanel</span>()
         <span class="ruby-identifier">nav_Panel</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">nav_link_array</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -576,7 +213,7 @@ recurse for an indented list.</p>
 
           
           <div class="method-source-code" id="nav_Panel-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_Panel</span>(<span class="ruby-identifier">nav_level</span>,
                       <span class="ruby-identifier">link_array</span> )
         <span class="ruby-identifier">navitems</span> = <span class="ruby-string">&#39;&#39;</span>
@@ -594,41 +231,6 @@ recurse for an indented list.</p>
                                               <span class="ruby-keyword">end</span>
                                               }
         <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:ul</span>, <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">navitems</span>), <span class="ruby-identifier">ul_opts</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-spacer_div" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">spacer_div</span><span
-            class="method-args">(roundnum)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="spacer_div-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 71</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">spacer_div</span>(<span class="ruby-identifier">roundnum</span>)
-  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:div</span>,
-                      <span class="ruby-string">&quot; &quot;</span>.<span class="ruby-identifier">html_safe</span>,
-                      {<span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;round#{roundnum}&quot;</span>}) )
 <span class="ruby-keyword">end</span></pre>
           </div>
           

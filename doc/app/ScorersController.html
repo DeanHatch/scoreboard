@@ -132,11 +132,14 @@ Contests without scores.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/scorers_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-        <span class="ruby-identifier">contests</span> = <span class="ruby-ivar">@scorer</span>.<span class="ruby-identifier">contests</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">id</span>}.
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;GGGGGGGGGetting Contests for Scorer: #{@scorer.id}&quot;</span>
+  <span class="ruby-identifier">contests</span> = <span class="ruby-ivar">@scorer</span>.<span class="ruby-identifier">contests</span>.
                                       <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span>}.
-                                      <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>}
-        <span class="ruby-ivar">@contests_with_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">has_score?</span>}
-        <span class="ruby-ivar">@contests_without_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">needs_score?</span>}
+                                      <span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>}.
+                                      <span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>}   <span class="ruby-comment"># present in chronological order</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;GGGGGGGGGot Em&quot;</span>
+  <span class="ruby-ivar">@contests_with_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">has_score?</span>}
+  <span class="ruby-ivar">@contests_without_scores</span> = <span class="ruby-identifier">contests</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">needs_score?</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -203,17 +206,22 @@ href="Contest.html">Contest</a>.</p>
 
           
           <div class="method-source-code" id="report-source">
-            <pre><span class="ruby-comment"># File app/controllers/scorers_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/scorers_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">report</span>
         <span class="ruby-ivar">@contest</span> = <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:contest_id</span>])
         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Converting Contest to: #{@contest.type}&quot;</span>
         <span class="ruby-identifier">contest_class</span> = <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-ivar">@contest</span>.<span class="ruby-identifier">type</span>)
         <span class="ruby-ivar">@contest</span> = <span class="ruby-identifier">contest_class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:contest_id</span>])
-        <span class="ruby-ivar">@contest</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:homescore</span>]
+        <span class="ruby-comment">#@contest.homecontestant.score = params[:homescore]</span>
           <span class="ruby-comment"># model will handle the details and delegations</span>
+        <span class="ruby-keyword">begin</span>
         <span class="ruby-ivar">@contest</span>.<span class="ruby-identifier">record_result</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:homescore</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:awayscore</span>])
         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Wonderful.&#39;</span>
         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Wonderful.&#39;</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Oops! Something was wrong with that score.  &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Oops! Something was wrong with that score.  &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-keyword">end</span>
         <span class="ruby-identifier">redirect_to</span>(<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>

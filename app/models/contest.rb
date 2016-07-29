@@ -39,19 +39,6 @@ class Contest < ActiveRecord::Base
 	end
 	
 	
-	# Create a collection of times throughout the day in five minute increments.
-	# This will be used to display starting time choices for schedulers
-	def Contest.timez
-		# Create a collection of times throughout the day in five minute increments
-		# This will be used to display starting time choices for schedulers
-		(1..287).to_a.collect {|i| [ (Time.new(0)+(i*5*60)).strftime('%I:%M %p').sub(/^0/, ""),
- 					                     i.to_s ]}
-	end
-	def Contest.times
-	  GameTime.times()
-	end
-
-
 	# Attach the letters 'ant' to the end of the class name of this Contest
 	# subclass object to determine the name of the Contestant subclass.
 	# Return the Contestant subclass.
@@ -107,7 +94,7 @@ class Contest < ActiveRecord::Base
 		
 	# Convenience method. Display "TBD" for nil.
 	def venue_name
-		self.venue_id ? Venue.find(venue_id).name : 'TBD'
+	  self.venue_id ? self.venue.name : 'TBD'
 	end
 
 	

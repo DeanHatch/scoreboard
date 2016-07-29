@@ -76,9 +76,7 @@
     
     <li ><a href="#method-i-all_teams">#all_teams</a>
     
-    <li ><a href="#method-i-as_bracket">#as_bracket</a>
-    
-    <li ><a href="#method-i-contests">#contests</a>
+    <li ><a href="#method-i-as_bracketgrouping">#as_bracketgrouping</a>
     
     <li ><a href="#method-i-fullname">#fullname</a>
     
@@ -89,6 +87,8 @@
     <li ><a href="#method-i-hierarchy">#hierarchy</a>
     
     <li ><a href="#method-i-subgroupings">#subgroupings</a>
+    
+    <li ><a href="#method-i-unique_contests">#unique_contests</a>
     
   </ul>
 </div>
@@ -240,10 +240,10 @@ the case where there is one or the other or both.</p>
       </div>
 
     
-      <div id="method-i-as_bracket" class="method-detail ">
+      <div id="method-i-as_bracketgrouping" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">as_bracket</span><span
+          <span class="method-name">as_bracketgrouping</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -258,45 +258,10 @@ the case where there is one or the other or both.</p>
           
 
           
-          <div class="method-source-code" id="as_bracket-source">
+          <div class="method-source-code" id="as_bracketgrouping-source">
             <pre><span class="ruby-comment"># File app/models/grouping.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_bracket</span>()
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_bracketgrouping</span>()
          <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bracket_grouping</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Bracketgrouping</span>.<span class="ruby-identifier">new</span>() 
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-contests" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">contests</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Return an Array of all Contests for which any <a href="Team.html">Team</a>
-in this <a href="Grouping.html">Grouping</a> is the <a
-href="Team.html">Team</a>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="contests-source">
-            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 69</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">contests</span>()
-        (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_teams</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">contests</span> } <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_bracket</span>.<span class="ruby-identifier">bracketcontests</span>).<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -468,6 +433,41 @@ parent of this <a href="Grouping.html">Grouping</a>.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">subgroupings</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">groupings</span>()
         <span class="ruby-comment">#Grouping.where(parent_id: self)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unique_contests" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unique_contests</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return an Array of all Contests for which any <a href="Team.html">Team</a>
+in this <a href="Grouping.html">Grouping</a> is the <a
+href="Team.html">Team</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unique_contests-source">
+            <pre><span class="ruby-comment"># File app/models/grouping.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">unique_contests</span>()
+        ((<span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_subgroupings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>).<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">contests</span> }).<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -4,7 +4,6 @@ class ValidTimesController  < ManagersController
   # GET /valid_times
   # GET /valid_times.json
   def index
-    @valid_times = ValidTime.all
   end
 
   # GET /valid_times/1

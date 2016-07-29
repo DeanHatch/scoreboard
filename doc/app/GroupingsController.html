@@ -220,7 +220,7 @@
             <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
         <span class="ruby-comment"># list of groupings for drop-down</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">manager</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@manager</span>)
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">groupings</span>
   <span class="ruby-ivar">@grouping_id</span> = <span class="ruby-ivar">@grouping</span>.<span class="ruby-identifier">id</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -254,7 +254,7 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/groupings_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@groupings</span> = <span class="ruby-constant">Grouping</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">manager</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@manager</span>)
+  <span class="ruby-ivar">@groupings</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">groupings</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

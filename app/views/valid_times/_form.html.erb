@@ -11,16 +11,20 @@
     </div>
   <% end %>
 
+
+     <!-- For now we do not accept Grouping or Venue to modify ValidTimes -->
+     
   <div class="field">
-    <%= f.label :grouping %><br>
+    <%= f.label :grouping %>:<%= f.label :all %><br>
     <!-- %= f.number_field :grouping_id % -->
   </div>
   <div class="field">
-    <%= f.label :venue %>
-    <%= f.select :venue_id,
+    <%= f.label :venue %>:
+    <%= f.label :all %>
+    <!-- %= f.select :venue_id,
 		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
 		                                selected: @selectedvenue), 
-		    {prompt: 'All'} %>
+		    {prompt: 'All'} % -->
   </div>
   <div class="field">
     <%= f.label :from %>

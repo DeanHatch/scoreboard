@@ -72,6 +72,10 @@
     
     <li ><a href="#method-i-complete">#complete</a>
     
+    <li ><a href="#method-i-complete_create">#complete_create</a>
+    
+    <li ><a href="#method-i-complete_delete">#complete_delete</a>
+    
     <li ><a href="#method-i-index">#index</a>
     
     <li ><a href="#method-i-show">#show</a>
@@ -137,9 +141,84 @@ href="BracketgroupingsController.html#method-i-show">show</a>.</p>
 
           
           <div class="method-source-code" id="complete-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">complete</span>
-  <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">complete_se_matchups</span>()
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** complete params: #{params.inspect()}&quot;</span>)
+  <span class="ruby-ivar">@numseeds</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-value">:numseeds</span>] <span class="ruby-operator">||=</span> <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">all_teams</span>.<span class="ruby-identifier">size</span>()).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@numrounds</span> = <span class="ruby-constant">Math</span>.<span class="ruby-identifier">log2</span>(<span class="ruby-ivar">@numseeds</span>).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** numseeds: #{@numseeds}&quot;</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** numrounds: #{@numrounds}&quot;</span>)
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;*** se_matchups: #{ @bracketgrouping.se_matchups(@numseeds).inspect()}&quot;</span>)
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-complete_create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">complete_create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /bracketgroupings/1/complete_create</p>
+          
+          
+
+          
+          <div class="method-source-code" id="complete_create-source">
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">complete_create</span>
+  <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">complete_se_matchups</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:numseeds</span>].<span class="ruby-identifier">to_i</span>)
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">bracketgrouping_path</span>(<span class="ruby-ivar">@bracketgrouping</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-complete_delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">complete_delete</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /bracketgroupings/1/complete_create</p>
+          
+          
+
+          
+          <div class="method-source-code" id="complete_delete-source">
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">complete_delete</span>
+  <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">complete_se_matchups</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:numseeds</span>].<span class="ruby-identifier">to_i</span>)
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">bracketgrouping_path</span>(<span class="ruby-ivar">@bracketgrouping</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -173,7 +252,6 @@ href="BracketgroupingsController.html#method-i-show">show</a>.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-comment">#@bracketgroupings = Bracketgrouping.all</span>
   <span class="ruby-ivar">@bracketgroupings</span> = <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">bracketgroupings</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -205,9 +283,9 @@ href="BracketgroupingsController.html#method-i-show">show</a>.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/bracketgroupings_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-        <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-constant">Bracketcontest</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bracketgrouping</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@bracketgrouping</span>)
+  <span class="ruby-ivar">@bracketcontests</span> = <span class="ruby-ivar">@bracketgrouping</span>.<span class="ruby-identifier">bracketcontests</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

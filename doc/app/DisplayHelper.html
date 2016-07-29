@@ -63,13 +63,25 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-contests_by_type">#contests_by_type</a>
+    
+    <li ><a href="#method-i-group_results_section_label">#group_results_section_label</a>
+    
     <li ><a href="#method-i-group_schedule_headers">#group_schedule_headers</a>
     
     <li ><a href="#method-i-group_schedule_row">#group_schedule_row</a>
     
+    <li ><a href="#method-i-group_schedule_section_label">#group_schedule_section_label</a>
+    
+    <li ><a href="#method-i-group_section_label">#group_section_label</a>
+    
+    <li ><a href="#method-i-scores_by_type">#scores_by_type</a>
+    
     <li ><a href="#method-i-standings_headers">#standings_headers</a>
     
     <li ><a href="#method-i-standings_row">#standings_row</a>
+    
+    <li ><a href="#method-i-team_link_for">#team_link_for</a>
     
   </ul>
 </div>
@@ -105,6 +117,84 @@
        </header>
 
     
+      <div id="method-i-contests_by_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contests_by_type</span><span
+            class="method-args">(collectn, columnArray, label)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="contests_by_type-source">
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contests_by_type</span>(<span class="ruby-identifier">collectn</span>, <span class="ruby-identifier">columnArray</span>, <span class="ruby-identifier">label</span>)
+  <span class="ruby-identifier">moreThanOneType</span> = (<span class="ruby-identifier">collectn</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span><span class="ruby-identifier">c</span>.<span class="ruby-identifier">type</span>}.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">size</span>()<span class="ruby-operator">&gt;</span><span class="ruby-value">1</span>) 
+  <span class="ruby-identifier">lastType</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">collectn</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-string">&#39; &#39;</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">result</span>, <span class="ruby-identifier">cntst</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">moreThanOneType</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">cntst</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">lastType</span>
+      <span class="ruby-identifier">lastType</span> = <span class="ruby-identifier">cntst</span>.<span class="ruby-identifier">type</span>()
+      <span class="ruby-identifier">result</span>  <span class="ruby-operator">+</span>
+        <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:tr</span>, <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-identifier">group_section_label</span>(<span class="ruby-identifier">cntst</span>.<span class="ruby-identifier">competition</span>,<span class="ruby-identifier">cntst</span>.<span class="ruby-identifier">type</span>(), <span class="ruby-identifier">label</span>),
+                                                               <span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;typeBanner&quot;</span>, <span class="ruby-identifier">colspan</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{columnArray.size()}&quot;</span> ))
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">result</span>
+     <span class="ruby-keyword">end</span> <span class="ruby-operator">+</span>
+     <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:tr</span>,<span class="ruby-identifier">columnArray</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:td</span>, <span class="ruby-identifier">cntst</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">x</span>), <span class="ruby-identifier">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;schedule&quot;</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n &quot;</span>).<span class="ruby-identifier">html_safe</span> )
+     }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-group_results_section_label" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">group_results_section_label</span><span
+            class="method-args">(comp, type)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="group_results_section_label-source">
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">group_results_section_label</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">type</span>)
+  <span class="ruby-identifier">group_section_label</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">type</span>, <span class="ruby-string">&quot;Results&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-group_schedule_headers" class="method-detail ">
         
         <div class="method-heading">
@@ -124,7 +214,7 @@
 
           
           <div class="method-source-code" id="group_schedule_headers-source">
-            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">group_schedule_headers</span>(<span class="ruby-identifier">comp</span>)
  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">comp</span>.<span class="ruby-identifier">result_headings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">rh</span><span class="ruby-operator">|</span> <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-identifier">rh</span>))}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) )
 <span class="ruby-keyword">end</span></pre>
@@ -157,9 +247,115 @@
 
           
           <div class="method-source-code" id="group_schedule_row-source">
-            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">group_schedule_row</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">team</span>)
  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">comp</span>.<span class="ruby-identifier">result_row</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">rr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:td</span>, <span class="ruby-identifier">team</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">rr</span>)))}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-group_schedule_section_label" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">group_schedule_section_label</span><span
+            class="method-args">(comp, type)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="group_schedule_section_label-source">
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">group_schedule_section_label</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">type</span>)
+  <span class="ruby-identifier">group_section_label</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">type</span>, <span class="ruby-string">&quot;Contests&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-group_section_label" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">group_section_label</span><span
+            class="method-args">(comp, type, label)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="group_section_label-source">
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">group_section_label</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">label</span>)
+  (<span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Regularcontest&quot;</span>
+        <span class="ruby-identifier">comp</span>.<span class="ruby-identifier">poolgroupseasonlabel</span>()
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Bracketcontest&quot;</span>
+        <span class="ruby-identifier">comp</span>.<span class="ruby-identifier">playoffbracketlabel</span>()
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-string">&quot;Other&quot;</span>
+      <span class="ruby-keyword">end</span>).<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">label</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scores_by_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scores_by_type</span><span
+            class="method-args">(collectn, columnArray)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scores_by_type-source">
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">scores_by_type</span>(<span class="ruby-identifier">collectn</span>, <span class="ruby-identifier">columnArray</span>)
+  <span class="ruby-identifier">contests_by_type</span>(<span class="ruby-identifier">collectn</span>, <span class="ruby-identifier">columnArray</span>, <span class="ruby-string">&quot;Results&quot;</span> )
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -190,7 +386,7 @@
 
           
           <div class="method-source-code" id="standings_headers-source">
-            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">standings_headers</span>(<span class="ruby-identifier">comp</span>)
  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">comp</span>.<span class="ruby-identifier">result_headings</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">rh</span><span class="ruby-operator">|</span> <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:th</span>, <span class="ruby-identifier">rh</span>))}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) )
 <span class="ruby-keyword">end</span></pre>
@@ -223,9 +419,42 @@
 
           
           <div class="method-source-code" id="standings_row-source">
-            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">standings_row</span>(<span class="ruby-identifier">comp</span>, <span class="ruby-identifier">team</span>)
  <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">comp</span>.<span class="ruby-identifier">result_row</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">rr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:td</span>, <span class="ruby-identifier">team</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">rr</span>)))}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>) )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-team_link_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">team_link_for</span><span
+            class="method-args">(team)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="team_link_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/display_helper.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">team_link_for</span>(<span class="ruby-identifier">team</span>)
+  <span class="ruby-identifier">link_to</span> <span class="ruby-identifier">team</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">display_team_path</span>(<span class="ruby-ivar">@competition</span>, <span class="ruby-identifier">team</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

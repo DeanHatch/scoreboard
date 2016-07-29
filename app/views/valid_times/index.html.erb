@@ -14,10 +14,10 @@
   </thead>
 
   <tbody>
-    <% @valid_times.each do |valid_time| %>
+    <% @manager.valid_times_sorted.each do |valid_time| %>
       <tr>
-        <td><%= valid_time.grouping %></td>
-        <td><%= valid_time.venue %></td>
+        <td><%= valid_time.grouping_name %></td>
+        <td><%= valid_time.venue_name %></td>
         <td><%= valid_time.display_from_time %></td>
         <td><%= valid_time.display_to_time %></td>
         <td><%= link_to 'Show', valid_time %></td>
