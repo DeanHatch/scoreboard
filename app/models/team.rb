@@ -17,13 +17,6 @@ class Team < ActiveRecord::Base
 	has_many :sms_alerts
 	
 	validates_presence_of :name
-	
-	#self.table_name = "main.teams"
-	
-	# Since default_scope is private, we use this to allow access.
-	def self.default_comp(comp_id)
-		self.default_scope { (where(competition_id: comp_id) ) }
-	end
 
 	# Return an Array of all Contestants for which this is the Team.
 	def as_contestants()

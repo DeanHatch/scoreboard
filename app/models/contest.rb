@@ -26,11 +26,7 @@ class Contest < ActiveRecord::Base
 						foreign_key: "contest_id", 
 						dependent: :destroy  # destroys the associated awaycontestant
 	
-	
-	def self.default_comp(comp_id)
-		self.default_scope { (where(competition_id: comp_id) ) }
-	end
-  
+ 
 	
 	# Create a collection of contest statuses.
 	# This will be used to display selection choices and for validation.

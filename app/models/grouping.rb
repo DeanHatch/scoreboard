@@ -15,10 +15,7 @@ class Grouping < ActiveRecord::Base
 					class_name: "Team"  # making default explicit
 	has_many :contests, through: :teams
 
-	def self.default_comp(comp_id)
-		self.default_scope { (where(competition_id: comp_id) ) }
-	end
-  
+ 
 	# (Recursive) Return an Array with this Grouping appended to the end of the Array returned by
 	# sending this method to the parent of this Grouping.
 	def hierarchy()

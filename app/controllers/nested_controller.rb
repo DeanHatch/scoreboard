@@ -31,17 +31,6 @@ class NestedController  < ApplicationController
 	rescue 
 	return redirect_to(oops_path)
 	begin
-	#Validdate.default_comp(competition_id)
-	#Venue.default_comp(competition_id)
-	#Grouping.default_comp(competition_id)
-	#Team.default_comp(competition_id)
-	#Contest.default_comp(competition_id)
-	#Contestant.default_comp(competition_id)
-	#Regularcontest.default_comp(competition_id)
-	#Regularcontestant.default_comp(competition_id)
-	#Bracketgrouping.default_comp(competition_id)
-	#Bracketcontest.default_comp(competition_id)
-	#Bracketcontestant.default_comp(competition_id)
 	rescue
 	return redirect_to(self.failure_redirect)
 	end

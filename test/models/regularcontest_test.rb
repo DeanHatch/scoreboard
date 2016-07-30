@@ -24,13 +24,31 @@ class RegularcontestTest < ActiveSupport::TestCase
    end
 
 	#
-   test "saved regularcontest assigns all ids" do
+   test "saved regularcontest assigns all ids for #save_all!" do
 	   rc = Regularcontest.new()
 	   rc.competition = Competition.all.first
+	   p 'Before Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
 	   rc.save_all!
+	   p 'After Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
 	   assert rc.homecontestant.id
+	   assert rc.homecontestant_id
 	   assert rc.awaycontestant.id
+	   assert rc.awaycontestant_id
 	   assert rc.awaycontestant.contest.id
+	   assert rc.awaycontestant.contest_id
+   end
+   test "saved regularcontest assigns all ids for #save" do
+	   rc = Regularcontest.new()
+	   rc.competition = Competition.all.first
+	   p 'Before Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
+	   rc.save
+	   p 'After Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
+	   assert rc.homecontestant.id
+	   assert rc.homecontestant_id
+	   assert rc.awaycontestant.id
+	   assert rc.awaycontestant_id
+	   assert rc.awaycontestant.contest.id
+	   assert rc.awaycontestant.contest_id
    end
 
 

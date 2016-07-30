@@ -32,10 +32,6 @@ class ValidTime < ActiveRecord::Base
   def venue_name()
     self.venue_id ? Venue.find(self.venue_id).name : 'All'
   end
-	
-  def self.default_comp(comp_id)
-    self.default_scope { (where(competition_id: comp_id) ) }
-  end
   
     # Use GameTime class to format beginning of time range.
   def display_from_time
