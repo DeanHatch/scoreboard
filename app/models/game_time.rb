@@ -32,7 +32,8 @@ class GameTime < Object
     @gametimeindex = 
       case
         when whatever.kind_of?(String) then internal_from_string(whatever)
-	when whatever.kind_of?(Fixnum) then whatever
+	when whatever.kind_of?(Fixnum)
+ 	  then (self.class.earliest() .. self.class.latest()) === whatever ? whatever : 0
 	else 0
 	end
   end

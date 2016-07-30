@@ -17,4 +17,21 @@ class RegularcontestTest < ActiveSupport::TestCase
 	   #[:gameone].each { |rc| assert regularcontests(rc).valid? }
    end
 
+	#
+   test "regularcontests creates both contestants" do
+	   assert Regularcontest.new().homecontestant
+	   assert Regularcontest.new().awaycontestant
+   end
+
+	#
+   test "saved regularcontest assigns all ids" do
+	   rc = Regularcontest.new()
+	   rc.competition = Competition.all.first
+	   rc.save_all!
+	   assert rc.homecontestant.id
+	   assert rc.awaycontestant.id
+	   assert rc.awaycontestant.contest.id
+   end
+
+
 end
