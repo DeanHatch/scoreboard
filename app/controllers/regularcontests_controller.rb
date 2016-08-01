@@ -30,12 +30,12 @@ class RegularcontestsController < ManagersController
 
   # GET /regularcontests/1/edit
   def edit
-    @selectedvenue = @regularcontest.venue_id
-    @selecteddate = @regularcontest.date
-    @selectedtime = @regularcontest.time
-    @selectedstatus = @regularcontest.status
-    @homecontestant = @regularcontest.homecontestant
-    @awaycontestant = @regularcontest.awaycontestant
+    #@selectedvenue = @regularcontest.venue_id
+    #@selecteddate = @regularcontest.date
+    #@selectedtime = @regularcontest.time
+    #@selectedstatus = @regularcontest.status
+    #@homecontestant = @regularcontest.homecontestant
+    #@awaycontestant = @regularcontest.awaycontestant
     @formverb = "Update"
   end
 
@@ -49,7 +49,7 @@ class RegularcontestsController < ManagersController
     process_teams()
  
     respond_to do |format|
-      if @regularcontest.save_all!
+      if @regularcontest.save!
 	 flash[:notice] = 'Contest was successfully created.' 
 	 format.html { redirect_to :regularcontests}
 	 # format.html { redirect_to competition_regularcontests_url, notice: 'Regularcontest was successfully created.' }
@@ -68,7 +68,7 @@ class RegularcontestsController < ManagersController
     process_teams()
     respond_to do |format|
       if @regularcontest.update(regularcontest_params)
-        @regularcontest.save_all!
+        @regularcontest.save!
 	flash[:notice] = 'Contest was successfully updated.' 
         format.html { redirect_to :regularcontests}
         format.json { render :show, status: :ok, location: @regularcontest }

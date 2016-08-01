@@ -63,14 +63,33 @@ class Contest < ActiveRecord::Base
 	
 	
 	
-	def save_all!()
+	def save(*)
+	  super
+	  Contest.transaction do
+	    self.homecontestant.save
+	      # Next assignment is necessary because we have two has_one
+	      # type of associations and foreign key instance variable will not
+	      # be set the way we might hope.  The same is true for
+	      # awaycontestant_id.
+	    self.homecontestant_id = self.homecontestant.id
+	    self.awaycontestant.save
+	    self.awaycontestant_id = self.awaycontestant.id
+	    super # yes, again
+	  end
+	end
+	
+	def save!(*)
+	  super
 	  Contest.transaction do
 	    self.homecontestant.save!
-	    logger.debug "homecontestant_id after save and before assignment: #{self.homecontestant_id.inspect}"
-	    self.homecontestant_id = self.homecontestant.id # necessary? 
+	      # Next assignment is necessary because we have two has_one
+	      # type of associations and foreign key instance variable will not
+	      # be set the way we might hope.  The same is true for
+	      # awaycontestant_id.
+	    self.homecontestant_id = self.homecontestant.id
 	    self.awaycontestant.save!
 	    self.awaycontestant_id = self.awaycontestant.id
-	    self.save!
+	    super # yes, again
 	  end
 	end
 	
@@ -128,7 +147,7 @@ class Contest < ActiveRecord::Base
 	  self.awaycontestant.score = awayscore
 	  self.status = status
 	  #logger.debug "connection: #{Contest.connection.inspect}"
-	  self.save_all!
+	  self.save!
 	end
 	
   def winning_team_and_score()

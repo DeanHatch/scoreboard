@@ -43,5 +43,14 @@ module ApplicationHelper
   def instructions()
   end
   
+      # Accepts a list of objects.  Each object in the list must respond to
+      # both #name and #id.  From this list of objects, an HTML Select/Options
+      # element will be created. Optionally, an object from the list can be
+      # pre-selected.
+    def select_from_objects(objectList, chosen=nil)
+    options_for_select(objectList.collect {|o| [ o.name, o.id ] },
+				chosen ? {selected: chosen.id} : nil)
+  end
+
   
 end

@@ -58,7 +58,7 @@ class Bracketgrouping < Grouping
       # It may also be a seeding number or a Winner of a prior Bracketcontest
     assign_seeding_and_ccode(bracketcontest.awaycontestant, bc_array[1])
     bracketcontest.name = 'Game ' + self.game_number.to_s
-    bracketcontest.save_all! ? bracketcontest : nil  # returns nil if not saved
+    bracketcontest.save! ? bracketcontest : nil  # returns nil if not saved
   end
 
   def game_number()

@@ -46,7 +46,7 @@
      <%= home_form.label :team %>
     <%= home_form.select :team_id,
 		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @homecontestant.team), 
+		                                selected: @regularcontest.homecontestant.team), 
 		    {prompt: 'TBD'} %>
     <% end %>
    
@@ -54,8 +54,13 @@
    <%= fields_for :awaycontestant, @regularcontest.awaycontestant do |away_form| %>
     <%= away_form.select :team_id,
 		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @awaycontestant.team), 
+		                                selected: @regularcontest.awaycontestant.team), 
 		    {prompt: 'TBD'} %>
+	*** 
+    <%= away_form.select :team_id,
+		    select_from_objects(@manager.teams, @regularcontest.awaycontestant.team),
+		    {prompt: 'TBD'} %>
+		    *** 
     <% end %>
     </div>
 

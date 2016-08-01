@@ -27,29 +27,27 @@ class RegularcontestTest < ActiveSupport::TestCase
    test "saved regularcontest assigns all ids for #save_all!" do
 	   rc = Regularcontest.new()
 	   rc.competition = Competition.all.first
-	   p 'Before Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
-	   rc.save_all!
-	   p 'After Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
-	   assert rc.homecontestant.id
-	   assert rc.homecontestant_id
-	   assert rc.awaycontestant.id
-	   assert rc.awaycontestant_id
-	   assert rc.awaycontestant.contest.id
-	   assert rc.awaycontestant.contest_id
+	   rc.save!
+	   assert rc.homecontestant.id, "homecontestant.id nil"
+	   assert rc.homecontestant_id, "homecontestant_id nil"
+	   assert rc.awaycontestant.id, "homecontestant.id nil"
+	   assert rc.awaycontestant_id, "awaycontestant_id nil"
+	   assert rc.awaycontestant.contest, "awaycontestant's contest nil"
+	   assert rc.awaycontestant.contest.id, "awaycontestant's contest's id nil"
+	   assert rc.awaycontestant.contest_id, "awaycontestant's contest_id nil"
    end
+   
    test "saved regularcontest assigns all ids for #save" do
 	   rc = Regularcontest.new()
 	   rc.competition = Competition.all.first
-	   p 'Before Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
 	   rc.save
-	   p 'After Save: ' , rc.inspect(), rc.homecontestant.inspect(), rc.homecontestant.competition.inspect()
-	   assert rc.homecontestant.id
-	   assert rc.homecontestant_id
-	   assert rc.awaycontestant.id
-	   assert rc.awaycontestant_id
-	   assert rc.awaycontestant.contest.id
-	   assert rc.awaycontestant.contest_id
+	   assert rc.homecontestant.id, "homecontestant.id nil"
+	   assert rc.homecontestant_id, "homecontestant_id nil"
+	   assert rc.awaycontestant.id, "homecontestant.id nil"
+	   assert rc.awaycontestant_id, "awaycontestant_id nil"
+	   assert rc.awaycontestant.contest, "awaycontestant's contest nil"
+	   assert rc.awaycontestant.contest.id, "awaycontestant's contest's id nil"
+	   assert rc.awaycontestant.contest_id, "awaycontestant's contest_id nil"
    end
-
 
 end

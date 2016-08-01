@@ -1,0 +1,4 @@
+  def select_from_objects(objectList, chosen)
+    options_for_select(objectList.collect {|o| [ o.name, o.id ] },
+				chosen ? {selected: chosen} : nil)
+  end
