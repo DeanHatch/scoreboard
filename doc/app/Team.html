@@ -70,8 +70,6 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-default_comp">::default_comp</a>
-    
     <li ><a href="#method-i-as_contestants">#as_contestants</a>
     
     <li ><a href="#method-i-as_regular_contestants">#as_regular_contestants</a>
@@ -124,47 +122,6 @@
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-    
-      <div id="method-c-default_comp" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">default_comp</span><span
-            class="method-args">(comp_id)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Since default_scope is private, we use this to allow access.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="default_comp-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">comp_id</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">comp_id</span>) ) }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
@@ -191,7 +148,7 @@ href="Team.html">Team</a>.</p>
 
           
           <div class="method-source-code" id="as_contestants-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">as_contestants</span>()
         <span class="ruby-constant">Contestant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">team</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -226,7 +183,7 @@ within its <a href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="as_regular_contestants-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">as_regular_contestants</span>()
   <span class="ruby-constant">Regularcontestant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">team</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -259,7 +216,7 @@ within its <a href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="contests-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">contests</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_contestants</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">contest</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -292,7 +249,7 @@ within its <a href="Grouping.html">Grouping</a>.</p>
 
           
           <div class="method-source-code" id="display_pct-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_pct</span>()
   <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&#39;%0.3f&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pct</span>())
 <span class="ruby-keyword">end</span></pre>
@@ -327,7 +284,7 @@ score.</p>
 
           
           <div class="method-source-code" id="draws-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">draws</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">draw</span>()}.<span class="ruby-identifier">size</span>()
 <span class="ruby-keyword">end</span></pre>
@@ -360,7 +317,7 @@ score.</p>
 
           
           <div class="method-source-code" id="goal_diff-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 88</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">goal_diff</span>()
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">goals_for</span>() <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">goals_against</span>()
 <span class="ruby-keyword">end</span></pre>
@@ -393,7 +350,7 @@ score.</p>
 
           
           <div class="method-source-code" id="goals_against-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">goals_against</span>()
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">opponent</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">inject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gf</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>} <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -426,7 +383,7 @@ score.</p>
 
           
           <div class="method-source-code" id="goals_for-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">goals_for</span>()
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">score</span>}.<span class="ruby-identifier">inject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gf</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>} <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -461,7 +418,7 @@ score.</p>
 
           
           <div class="method-source-code" id="losses-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">losses</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">loss</span>()}.<span class="ruby-identifier">size</span>()
 <span class="ruby-keyword">end</span></pre>
@@ -494,7 +451,7 @@ score.</p>
 
           
           <div class="method-source-code" id="pct-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">pct</span>()
   (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>()<span class="ruby-operator">==</span><span class="ruby-value">0</span>) <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>().<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>()<span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">losses</span>()) 
 <span class="ruby-keyword">end</span></pre>
@@ -527,7 +484,7 @@ score.</p>
 
           
           <div class="method-source-code" id="points-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">points</span>()  
         (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">wins</span>()<span class="ruby-operator">*</span><span class="ruby-value">3</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">draws</span>()) 
 <span class="ruby-keyword">end</span></pre>
@@ -562,7 +519,7 @@ score.</p>
 
           
           <div class="method-source-code" id="wins-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wins</span>()
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">as_regular_contestants</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">win</span>()}.<span class="ruby-identifier">size</span>()
 <span class="ruby-keyword">end</span></pre>

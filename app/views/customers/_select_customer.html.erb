@@ -2,5 +2,5 @@
   <div class="field">
     <%= label_tag :customer %>
     <%= select_tag :customer_id,
-		      options_for_select(Customer.all.collect {|c| [ c.name, c.id ]}) %>
+		    select_from_objects(Customer.all) %>
   </div>

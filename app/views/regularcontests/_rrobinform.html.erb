@@ -3,15 +3,15 @@
   <div class="field">
     <%= label_tag :grouping %><br>
     <%= select_tag :grouping_id,
-		      options_for_select(@groupings.select{|g| g.has_teams?}.
-		                                                collect {|g| [ g.hierarchy.join(' - '), g.id ]}) %>
+                        select_from_objects(@manager.groupings, 
+						    @manager.groupings.size==1 ? @manager.groupings.first : nil) %>
   </div>
   
   <div class="field">
     <%= label_tag :venue %><br>
     <%= select_tag :venue_id,
-			options_for_select(@venues.collect {|v| [ v.name, v.id ] },
-		                                selected: @venues.size==1 ? @venues.first.id : nil),
+                        select_from_objects(@manager.venues, 
+						    @manager.venues.size==1 ? @manager.venues.first : nil),
 			prompt: "TBD" %>
   </div>
   

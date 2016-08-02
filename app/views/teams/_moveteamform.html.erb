@@ -16,8 +16,7 @@
   <div class="field">
     <%= f.label "Move to " %>
      <%= f.select :grouping_id,
-		      options_for_select(@team.competition.groupings.collect {|g| [ g.fullname, g.id ] },
-		                                selected: @team.grouping_id), 
+		      select_from_objects(@manager.groupings, @team.grouping), 
 		    {prompt: 'Which?'} %>
   </div>
     

@@ -22,8 +22,7 @@
     <%= f.label :venue %>:
     <%= f.label :all %>
     <!-- %= f.select :venue_id,
-		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
-		                                selected: @selectedvenue), 
+                      select_from_objects(@manager.venues, @valid_time.venue),
 		    {prompt: 'All'} % -->
   </div>
   <div class="field">

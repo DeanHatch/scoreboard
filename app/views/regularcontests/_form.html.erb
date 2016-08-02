@@ -28,8 +28,7 @@
 		    
     <%= f.label :venue %>
     <%= f.select :venue_id,
-		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
-		                                selected: @regularcontest.venue), 
+		    select_from_objects(@manager.venues, @regularcontest.venue),
 		    {prompt: 'TBD'} %>
   </div>
   <div class="field">
@@ -45,22 +44,15 @@
    <%= fields_for :homecontestant, @regularcontest.homecontestant do |home_form| %>
      <%= home_form.label :team %>
     <%= home_form.select :team_id,
-		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @regularcontest.homecontestant.team), 
+		    select_from_objects(@manager.teams, @regularcontest.homecontestant.team),
 		    {prompt: 'TBD'} %>
     <% end %>
-   
+   <br/>
   <%= f.label :visitor %>
    <%= fields_for :awaycontestant, @regularcontest.awaycontestant do |away_form| %>
     <%= away_form.select :team_id,
-		      options_for_select(@manager.teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @regularcontest.awaycontestant.team), 
-		    {prompt: 'TBD'} %>
-	*** 
-    <%= away_form.select :team_id,
 		    select_from_objects(@manager.teams, @regularcontest.awaycontestant.team),
 		    {prompt: 'TBD'} %>
-		    *** 
     <% end %>
     </div>
 

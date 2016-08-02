@@ -26,8 +26,7 @@
 		    {prompt: 'Which'} %>
 
           <%= contestant_fields.select :team_id,
-		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @bracketcontest.homecontestant.team_id), 
+		    select_from_objects(@bracketgrouping.all_teams, @bracketcontest.homecontestant.team),
 		    {prompt: 'TBD'} %>
        <% end %>
      </div>
@@ -51,8 +50,7 @@
 	<br/>
        <%= f.label :venue %>:
        <%= f.select :venue_id,
-		      options_for_select(@manager.venues.collect {|v| [ v.name, v.id ] },
-		                                selected: @selectedvenue), 
+		    select_from_objects(@manager.venues, @bracketcontest.venue),
 		    {prompt: 'TBD'} %>
 		    
        <%= f.label :status %>:
@@ -70,8 +68,7 @@
 		    {prompt: 'Which'} %>
 
         <%= contestant_fields.select :team_id,
-		      options_for_select(@bracketgrouping.all_teams.collect {|t| [ t.name, t.id ] },
-		                                selected: @bracketcontest.awaycontestant.team_id), 
+		    select_from_objects(@bracketgrouping.all_teams, @bracketcontest.awaycontestant.team),
 		    {prompt: 'TBD'} %>
       <% end %>
     </div>

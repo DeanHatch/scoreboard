@@ -81,8 +81,6 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-default_comp">::default_comp</a>
-    
     <li class="calls-super" ><a href="#method-c-new">::new</a>
     
     <li ><a href="#method-c-statuses">::statuses</a>
@@ -107,7 +105,9 @@
     
     <li ><a href="#method-i-record_result">#record_result</a>
     
-    <li ><a href="#method-i-save_all-21">#save_all!</a>
+    <li class="calls-super" ><a href="#method-i-save">#save</a>
+    
+    <li class="calls-super" ><a href="#method-i-save-21">#save!</a>
     
     <li ><a href="#method-i-venue_name">#venue_name</a>
     
@@ -156,39 +156,6 @@ maintain the integrity of the associations.  This is because two
        </header>
 
     
-      <div id="method-c-default_comp" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">default_comp</span><span
-            class="method-args">(comp_id)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="default_comp-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_comp</span>(<span class="ruby-identifier">comp_id</span>)
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_scope</span> { (<span class="ruby-identifier">where</span>(<span class="ruby-identifier">competition_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">comp_id</span>) ) }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
@@ -219,7 +186,7 @@ did not work as I expected)</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">attributes</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">super</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">contestant_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:contest_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>,
@@ -263,7 +230,7 @@ selection choices and for validation.</p>
 
           
           <div class="method-source-code" id="statuses-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">statuses</span>
         [<span class="ruby-string">&#39;SCHEDULED&#39;</span>,<span class="ruby-string">&#39;POSTPONED&#39;</span>,<span class="ruby-string">&#39;COMPLETED&#39;</span>,<span class="ruby-string">&#39;FORFEIT&#39;</span>,<span class="ruby-string">&#39;CANCELLED&#39;</span>,<span class="ruby-string">&#39;FINAL&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -304,7 +271,7 @@ selection choices and for validation.</p>
 
           
           <div class="method-source-code" id="3C-3D-3E-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other_contest</span>)
         (<span class="ruby-keyword">return</span> <span class="ruby-identifier">other_contest</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-value">-1</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">nil?</span>
         <span class="ruby-keyword">return</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">other_contest</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">nil?</span>
@@ -346,7 +313,7 @@ selection choices and for validation.</p>
 
           
           <div class="method-source-code" id="away_team_and_score-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 154</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">away_team_and_score</span>()
   [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>.<span class="ruby-identifier">name</span>() , <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span>().<span class="ruby-identifier">to_s</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -382,7 +349,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="contestant_class-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">contestant_class</span>()
         <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;ant&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -415,7 +382,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="display_date-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 102</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_date</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&#39;%m/%d/%Y&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^0/</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -448,7 +415,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="display_time-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 107</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_time</span>
   <span class="ruby-constant">GameTime</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">time</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -481,7 +448,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="has_score-3F-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 112</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_score?</span>
   [<span class="ruby-string">&#39;COMPLETED&#39;</span>,<span class="ruby-string">&#39;FINAL&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -514,7 +481,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="home_team_and_score-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 150</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">home_team_and_score</span>()
   [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">team</span>.<span class="ruby-identifier">name</span>() , <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">score</span>().<span class="ruby-identifier">to_s</span>()].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -547,7 +514,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="losing_team_and_score-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 144</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">losing_team_and_score</span>()
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">win</span>() <span class="ruby-operator">?</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">away_team_and_score</span>() <span class="ruby-operator">:</span>
@@ -582,7 +549,7 @@ href="Contestant.html">Contestant</a> subclass.</p>
 
           
           <div class="method-source-code" id="needs_score-3F-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 117</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">needs_score?</span>
   [<span class="ruby-string">&#39;SCHEDULED&#39;</span>,<span class="ruby-string">&#39;POSTPONED&#39;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -617,7 +584,7 @@ single transaction.</p>
 
           
           <div class="method-source-code" id="record_result-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 123</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">record_result</span>(<span class="ruby-identifier">homescore</span>, <span class="ruby-identifier">awayscore</span>, <span class="ruby-identifier">status</span>=<span class="ruby-string">&quot;COMPLETED&quot;</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, [<span class="ruby-string">&quot;Score was Incomplete (&quot;</span>, 
                                   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">team</span>.<span class="ruby-identifier">name</span>(),
@@ -630,7 +597,7 @@ single transaction.</p>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">score</span> = <span class="ruby-identifier">awayscore</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">status</span>
   <span class="ruby-comment">#logger.debug &quot;connection: #{Contest.connection.inspect}&quot;</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_all!</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save!</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -642,11 +609,11 @@ single transaction.</p>
       </div>
 
     
-      <div id="method-i-save_all-21" class="method-detail ">
+      <div id="method-i-save" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">save_all!</span><span
-            class="method-args">()</span>
+          <span class="method-name">save</span><span
+            class="method-args">(*)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -658,18 +625,76 @@ single transaction.</p>
           
           
           
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
 
           
-          <div class="method-source-code" id="save_all-21-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 70</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_all!</span>()
+          <div class="method-source-code" id="save-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-operator">*</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-comment"># Next assignment is necessary because we have two has_one</span>
+      <span class="ruby-comment"># type of associations and foreign key instance variable will not</span>
+      <span class="ruby-comment"># be set the way we might hope.  The same is true for</span>
+      <span class="ruby-comment"># awaycontestant_id.</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">super</span> <span class="ruby-comment"># yes, again</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-save-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save!</span><span
+            class="method-args">(*)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="save-21-source">
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save!</span>(<span class="ruby-operator">*</span>)
+  <span class="ruby-keyword">super</span>
   <span class="ruby-constant">Contest</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">save!</span>
-    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;homecontestant_id after save and before assignment: #{self.homecontestant_id.inspect}&quot;</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">id</span> <span class="ruby-comment"># necessary? </span>
+      <span class="ruby-comment"># Next assignment is necessary because we have two has_one</span>
+      <span class="ruby-comment"># type of associations and foreign key instance variable will not</span>
+      <span class="ruby-comment"># be set the way we might hope.  The same is true for</span>
+      <span class="ruby-comment"># awaycontestant_id.</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">save!</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">awaycontestant</span>.<span class="ruby-identifier">id</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save!</span>
+    <span class="ruby-keyword">super</span> <span class="ruby-comment"># yes, again</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -701,7 +726,7 @@ single transaction.</p>
 
           
           <div class="method-source-code" id="venue_name-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">venue_name</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">venue_id</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">venue</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;TBD&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -734,7 +759,7 @@ single transaction.</p>
 
           
           <div class="method-source-code" id="winning_team_and_score-source">
-            <pre><span class="ruby-comment"># File app/models/contest.rb, line 138</span>
+            <pre><span class="ruby-comment"># File app/models/contest.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">winning_team_and_score</span>()
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">homecontestant</span>.<span class="ruby-identifier">win</span>() <span class="ruby-operator">?</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">home_team_and_score</span>() <span class="ruby-operator">:</span>

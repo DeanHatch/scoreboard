@@ -320,7 +320,7 @@ this <a href="Bracketgrouping.html">Bracketgrouping</a></p>
     <span class="ruby-comment"># It may also be a seeding number or a Winner of a prior Bracketcontest</span>
   <span class="ruby-identifier">assign_seeding_and_ccode</span>(<span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">awaycontestant</span>, <span class="ruby-identifier">bc_array</span>[<span class="ruby-value">1</span>])
   <span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">name</span> = <span class="ruby-string">&#39;Game &#39;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">game_number</span>.<span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">save_all!</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">bracketcontest</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>  <span class="ruby-comment"># returns nil if not saved</span>
+  <span class="ruby-identifier">bracketcontest</span>.<span class="ruby-identifier">save!</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">bracketcontest</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>  <span class="ruby-comment"># returns nil if not saved</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

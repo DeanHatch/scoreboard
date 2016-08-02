@@ -196,7 +196,7 @@
   <span class="ruby-identifier">process_teams</span>()
  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">save_all!</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">save!</span>
        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Contest was successfully created.&#39;</span> 
        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:regularcontests</span>}
        <span class="ruby-comment"># format.html { redirect_to competition_regularcontests_url, notice: &#39;Regularcontest was successfully created.&#39; }</span>
@@ -310,12 +310,12 @@
           <div class="method-source-code" id="edit-source">
             <pre><span class="ruby-comment"># File app/controllers/regularcontests_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-ivar">@selectedvenue</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">venue_id</span>
-  <span class="ruby-ivar">@selecteddate</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">date</span>
-  <span class="ruby-ivar">@selectedtime</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">time</span>
-  <span class="ruby-ivar">@selectedstatus</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">status</span>
-  <span class="ruby-ivar">@homecontestant</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">homecontestant</span>
-  <span class="ruby-ivar">@awaycontestant</span> = <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">awaycontestant</span>
+  <span class="ruby-comment">#@selectedvenue = @regularcontest.venue_id</span>
+  <span class="ruby-comment">#@selecteddate = @regularcontest.date</span>
+  <span class="ruby-comment">#@selectedtime = @regularcontest.time</span>
+  <span class="ruby-comment">#@selectedstatus = @regularcontest.status</span>
+  <span class="ruby-comment">#@homecontestant = @regularcontest.homecontestant</span>
+  <span class="ruby-comment">#@awaycontestant = @regularcontest.awaycontestant</span>
   <span class="ruby-ivar">@formverb</span> = <span class="ruby-string">&quot;Update&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -497,7 +497,7 @@
   <span class="ruby-identifier">process_teams</span>()
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">regularcontest_params</span>)
-      <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">save_all!</span>
+      <span class="ruby-ivar">@regularcontest</span>.<span class="ruby-identifier">save!</span>
       <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&#39;Contest was successfully updated.&#39;</span> 
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:regularcontests</span>}
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@regularcontest</span> }

@@ -1,4 +1,4 @@
-Fri, 29 Jul 2016 00:26:33 -0400
+Mon, 01 Aug 2016 22:17:32 -0400
 app/assets/images/gr_header2.jpg	Thu, 27 Aug 2015 07:35:46 -0400
 app/assets/images/netting.jpg	Thu, 27 Aug 2015 07:35:46 -0400
 app/assets/images/netting.png	Thu, 27 Aug 2015 07:35:46 -0400
@@ -51,8 +51,8 @@ app/controllers/display_controller.rb	Tue, 26 Jul 2016 20:39:02 -0400
 app/controllers/groupings_controller.rb	Tue, 26 Jul 2016 20:35:23 -0400
 app/controllers/managers_controller.rb	Mon, 19 Oct 2015 23:11:30 -0400
 app/controllers/manager_sessions_controller.rb	Thu, 27 Aug 2015 07:35:47 -0400
-app/controllers/nested_controller.rb	Sat, 29 Aug 2015 22:20:56 -0400
-app/controllers/regularcontests_controller.rb	Thu, 28 Jul 2016 22:20:23 -0400
+app/controllers/nested_controller.rb	Sat, 30 Jul 2016 09:30:10 -0400
+app/controllers/regularcontests_controller.rb	Mon, 01 Aug 2016 10:21:46 -0400
 app/controllers/scorers_controller.rb	Sun, 24 Jul 2016 21:57:19 -0400
 app/controllers/scorer_sessions_controller.rb	Thu, 27 Aug 2015 07:35:47 -0400
 app/controllers/teams_controller.rb	Sat, 29 Aug 2015 22:20:56 -0400
@@ -60,7 +60,7 @@ app/controllers/validdates_controller.rb	Sat, 29 Aug 2015 22:20:56 -0400
 app/controllers/valid_times_controller.rb	Thu, 28 Jul 2016 23:46:49 -0400
 app/controllers/venues_controller.rb	Sat, 29 Aug 2015 22:20:56 -0400
 app/controllers/welcome_controller.rb	Sat, 29 Aug 2015 22:20:56 -0400
-app/helpers/application_helper.rb	Tue, 26 Jul 2016 13:17:11 -0400
+app/helpers/application_helper.rb	Mon, 01 Aug 2016 11:20:12 -0400
 app/helpers/bracketcontests_helper.rb	Fri, 04 Sep 2015 20:10:51 -0400
 app/helpers/brackets_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/helpers/competitions_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
@@ -72,6 +72,7 @@ app/helpers/manager_sessions_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/helpers/regularcontests_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/helpers/scorers_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/helpers/scorer_sessions_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
+app/helpers/select_from_objects.helper.erb	Sun, 31 Jul 2016 22:58:10 -0400
 app/helpers/teams_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/helpers/validdates_helper.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/helpers/valid_times_helper.rb	Sat, 23 Jul 2016 21:50:43 -0400
@@ -83,24 +84,24 @@ app/models/alert_request.rb	Fri, 09 Oct 2015 22:25:58 -0400
 app/models/bcadvancement.rb	Sat, 29 Aug 2015 22:20:56 -0400
 app/models/bracketcontest.rb	Sat, 29 Aug 2015 22:20:56 -0400
 app/models/bracketcontestant.rb	Sun, 30 Aug 2015 15:37:44 -0400
-app/models/bracketgrouping.rb	Sat, 05 Sep 2015 19:39:25 -0400
+app/models/bracketgrouping.rb	Sun, 31 Jul 2016 00:12:50 -0400
 app/models/competition.rb	Fri, 29 Jul 2016 00:12:22 -0400
-app/models/contest.rb	Fri, 29 Jul 2016 00:26:24 -0400
+app/models/contest.rb	Sun, 31 Jul 2016 00:11:52 -0400
 app/models/contestant.rb	Sun, 30 Aug 2015 16:08:39 -0400
 app/models/customer.rb	Thu, 27 Aug 2015 07:35:48 -0400
 app/models/email_alert.rb	Fri, 09 Oct 2015 22:36:35 -0400
-app/models/game_time.rb	Tue, 26 Jul 2016 13:25:13 -0400
-app/models/grouping.rb	Tue, 08 Sep 2015 21:39:13 -0400
+app/models/game_time.rb	Fri, 29 Jul 2016 22:41:57 -0400
+app/models/grouping.rb	Sat, 30 Jul 2016 09:34:12 -0400
 app/models/groupingplace.rb	Sat, 29 Aug 2015 22:20:57 -0400
 app/models/manager.rb	Sat, 29 Aug 2015 22:20:57 -0400
-app/models/nestedmodel.rb	Thu, 27 Aug 2015 07:35:48 -0400
+app/models/nestedmodel.rb	Sat, 30 Jul 2016 09:33:48 -0400
 app/models/regularcontest.rb	Tue, 26 Jul 2016 22:07:50 -0400
 app/models/regularcontestant.rb	Thu, 27 Aug 2015 07:35:49 -0400
 app/models/scorer.rb	Thu, 27 Aug 2015 07:35:49 -0400
 app/models/sms_alert.rb	Sat, 19 Sep 2015 20:47:43 -0400
-app/models/team.rb	Tue, 26 Jul 2016 20:47:09 -0400
-app/models/validdate.rb	Sat, 29 Aug 2015 22:20:57 -0400
-app/models/valid_time.rb	Tue, 26 Jul 2016 22:00:04 -0400
+app/models/team.rb	Sat, 30 Jul 2016 09:33:16 -0400
+app/models/validdate.rb	Sat, 30 Jul 2016 09:32:23 -0400
+app/models/valid_time.rb	Sat, 30 Jul 2016 09:32:53 -0400
 app/models/venue.rb	Sun, 30 Aug 2015 14:23:09 -0400
 app/views/bracketcontests/destroy.html.erb	Sat, 29 Aug 2015 22:20:57 -0400
 app/views/bracketcontests/edit.html.erb	Sun, 30 Aug 2015 15:19:14 -0400
@@ -110,7 +111,7 @@ app/views/bracketcontests/_bracket_contest.html.erb	Fri, 04 Sep 2015 22:42:49 -0
 app/views/bracketcontests/_bracket_spacer.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
 app/views/bracketcontests/_contestant_form.html.erb	Sat, 29 Aug 2015 22:20:57 -0400
 app/views/bracketcontests/_drop_bracketcontest_form.html.erb	Sat, 29 Aug 2015 22:20:57 -0400
-app/views/bracketcontests/_form.html.erb	Tue, 26 Jul 2016 21:37:55 -0400
+app/views/bracketcontests/_form.html.erb	Mon, 01 Aug 2016 11:28:44 -0400
 app/views/bracketgroupings/complete.html.erb	Sat, 05 Sep 2015 19:35:59 -0400
 app/views/bracketgroupings/complete.js.erb	Sat, 05 Sep 2015 14:25:10 -0400
 app/views/bracketgroupings/index.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
@@ -140,7 +141,7 @@ app/views/customers/_add_form.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
 app/views/customers/_change_password_form.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
 app/views/customers/_login_form.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
 app/views/customers/_new_competition_form.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
-app/views/customers/_select_customer.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
+app/views/customers/_select_customer.html.erb	Mon, 01 Aug 2016 11:24:03 -0400
 app/views/customers/_update_form.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
 app/views/customer_emailer/welcome.html.erb	Thu, 27 Aug 2015 07:35:49 -0400
 app/views/customer_emailer/welcome.text.erb	Thu, 27 Aug 2015 07:35:49 -0400
@@ -196,8 +197,8 @@ app/views/regularcontests/roundrobin.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
 app/views/regularcontests/rrobin.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
 app/views/regularcontests/_contestant_form.html.erb	Sat, 29 Aug 2015 22:20:57 -0400
 app/views/regularcontests/_drop_regularcontest_form.html.erb	Thu, 28 Jul 2016 23:38:15 -0400
-app/views/regularcontests/_form.html.erb	Thu, 28 Jul 2016 23:36:58 -0400
-app/views/regularcontests/_rrobinform.html.erb	Sat, 23 Jul 2016 17:30:37 -0400
+app/views/regularcontests/_form.html.erb	Mon, 01 Aug 2016 11:21:17 -0400
+app/views/regularcontests/_rrobinform.html.erb	Mon, 01 Aug 2016 11:06:54 -0400
 app/views/scorers/choose_competition.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
 app/views/scorers/choose_customer.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
 app/views/scorers/index.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
@@ -216,7 +217,7 @@ app/views/teams/show.html.erb	Thu, 27 Aug 2015 07:35:52 -0400
 app/views/teams/show.json.jbuilder	Thu, 27 Aug 2015 07:35:52 -0400
 app/views/teams/_dropteamform.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
 app/views/teams/_form.html.erb	Thu, 27 Aug 2015 07:35:51 -0400
-app/views/teams/_moveteamform.html.erb	Tue, 19 Jul 2016 17:16:28 -0400
+app/views/teams/_moveteamform.html.erb	Mon, 01 Aug 2016 22:12:40 -0400
 app/views/teams/_teamform.html.erb	Thu, 27 Aug 2015 07:35:52 -0400
 app/views/validdates/edit.html.erb	Thu, 27 Aug 2015 07:35:52 -0400
 app/views/validdates/index.html.erb	Thu, 27 Aug 2015 07:35:52 -0400
@@ -232,7 +233,7 @@ app/views/valid_times/index.json.jbuilder	Sat, 23 Jul 2016 21:50:43 -0400
 app/views/valid_times/new.html.erb	Sat, 23 Jul 2016 21:50:43 -0400
 app/views/valid_times/show.html.erb	Mon, 25 Jul 2016 20:54:57 -0400
 app/views/valid_times/show.json.jbuilder	Sat, 23 Jul 2016 21:50:43 -0400
-app/views/valid_times/_form.html.erb	Thu, 28 Jul 2016 23:51:44 -0400
+app/views/valid_times/_form.html.erb	Mon, 01 Aug 2016 22:09:41 -0400
 app/views/venues/edit.html.erb	Thu, 27 Aug 2015 07:35:52 -0400
 app/views/venues/index.html.erb	Sat, 29 Aug 2015 22:20:58 -0400
 app/views/venues/index.json.jbuilder	Thu, 27 Aug 2015 07:35:52 -0400
