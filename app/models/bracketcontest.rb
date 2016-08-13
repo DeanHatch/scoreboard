@@ -60,7 +60,7 @@ class Bracketcontest < Contest
     #logger.debug "Prior(s): #{all_priors.collect{|bc| bc.contestantcode}.inspect()}"
     winning_team = self.homecontestant.win ? self.homecontestant.team : self.awaycontestant.team
     losing_team = self.homecontestant.loss ? self.homecontestant.team : self.awaycontestant.team
-    self.all_priors().each{|bc| bc.contestanttype=="W" ? bc.team = winning_team : losing_team; bc.save! }
+    self.all_priors().each{|bc| bc.team = bc.contestanttype=="W" ? winning_team : losing_team; bc.save! }
   end
 	
 end
