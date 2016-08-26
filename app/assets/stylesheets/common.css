@@ -475,15 +475,21 @@ div.bracket {text-align: right;
 
 
 
-  span.finalwinner { position: absolute;
-	height: 50%;
-	width: 100%;
-         left: 0;
-        top: 0;
-	text-align: right;
-         margin-top: 50%;
-        padding-top: 0%;
-	}
+  div.finalspacer {position: relative;
+	         width: 100px;
+	        height: 50%;
+                  left: 100%;
+                bottom: 100%;
+         border-bottom: solid;
+          border-width: 1px;
+    }
+
+  div.finalwinner {position: relative;
+	         width: 100px;
+	        height: 50%;
+                  left: 100%;
+                bottom: 100%;
+    }
 
   div.r1 {position: relative;
 	         width: 200px;

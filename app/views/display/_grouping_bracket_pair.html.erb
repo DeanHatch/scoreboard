@@ -32,10 +32,10 @@
     <div class="bbot"><%=[contest.awaycontestant.briefname(), contest.awaycontestant.score().to_s()].join(" ") %>
     </div>  
     <% if final then %>
-       <div class="r<%=roundnum %>winner">
-         <span class="finalwinner">
+       <div class="finalspacer">
+       </div>
+       <div class="finalwinner">
          <%= contest.name() %> Winner
-         </span>
        </div>
     <% end %>
     </div>
