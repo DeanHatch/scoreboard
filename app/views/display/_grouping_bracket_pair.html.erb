@@ -1,15 +1,20 @@
+<!-- Expects a value for "roundnum" and "contest" -->
 
   <div class="r<%=roundnum %>">
     <div class="r<%=roundnum %>h">
        <%= contest.homecontestant.contestanttype == "W" ? 
                 (render partial: 'grouping_bracket_pair',
-     		             locals: { contest: contest.homecontestant.priorcontest, roundnum: roundnum - 1} ) :
+     		             locals: { contest: contest.homecontestant.priorcontest,
+					final: false,
+					roundnum: roundnum - 1} ) :
                 " "  %>
     </div>
     <div class="r<%=roundnum %>a">
        <%= contest.awaycontestant.contestanttype == "W" ? 
                 (render partial: 'grouping_bracket_pair',
- 		             locals: { contest: contest.awaycontestant.priorcontest, roundnum: roundnum - 1} ) :
+ 		             locals: { contest: contest.awaycontestant.priorcontest,
+					final: false,
+					 roundnum: roundnum - 1} ) :
                 " "  %>
     </div>
     <div class="r<%=roundnum %>pair">
@@ -26,6 +31,13 @@
     </div>
     <div class="bbot"><%=[contest.awaycontestant.briefname(), contest.awaycontestant.score().to_s()].join(" ") %>
     </div>  
+    <% if final then %>
+       <div class="r<%=roundnum %>winner">
+         <span class="finalwinner">
+         <%= contest.name() %> Winner
+         </span>
+       </div>
+    <% end %>
     </div>
 </div>
 

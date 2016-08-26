@@ -28,7 +28,9 @@
   <div class="field">
     <%= f.label :from %>
     <%= f.select :from_time,
-		      options_for_select(GameTime.times) %>
+		      options_for_select(GameTime.times),
+		      {},
+			    {onchange: 'doNotEndBeforeStart()'}  %>
     <%= f.label :to %>
     <%= f.select :to_time,
 		      options_for_select(GameTime.times) %>

@@ -4,6 +4,7 @@
     <div class="bracket">
       <%= render partial: 'grouping_bracket_pair',
                           locals: { contest: brckt,
+			               final: true,
 	 		          roundnum: brckt.bracketdepth()} %>
     </div>
     <hr/>

@@ -475,6 +475,16 @@ div.bracket {text-align: right;
 
 
 
+  span.finalwinner { position: absolute;
+	height: 50%;
+	width: 100%;
+         left: 0;
+        top: 0;
+	text-align: right;
+         margin-top: 50%;
+        padding-top: 0%;
+	}
+
   div.r1 {position: relative;
 	         width: 200px;
 	        height: 100px;
@@ -485,6 +495,15 @@ div.bracket {text-align: right;
 	         width: 200px;
 	        height: 100px;
          padding-right: 1px;
+    }
+
+  div.r1winner {position: relative;
+	         width: 100px;
+	        height: 50px;
+                  left: 100%;
+                bottom: 100%;
+         border-bottom: solid;
+          border-width: 1px;
     }
 
 
@@ -513,6 +532,15 @@ div.bracket {text-align: right;
 	        left: 201px;
 	        top: 0px;
          padding-right: 1px;
+    }
+
+  div.r2winner {position: relative;
+	         width: 100px;
+	        height: 100px;
+                  left: 100%;
+                bottom: 100%;
+         border-bottom: solid;
+          border-width: 1px;
     }
 
 
@@ -545,6 +573,15 @@ div.bracket {text-align: right;
          padding-right: 1px;
     }
 
+  div.r3winner {position: relative;
+	         width: 100px;
+	        height: 200px;
+                  left: 100%;
+                bottom: 100%;
+         border-bottom: solid;
+          border-width: 1px;
+    }
+
 
 
   div.r4 {position: relative;
@@ -575,6 +612,15 @@ div.bracket {text-align: right;
          padding-right: 1px;
     }
 
+  div.r4winner {position: relative;
+	         width: 100px;
+	        height: 400px;
+                  left: 100%;
+                bottom: 100%;
+         border-bottom: solid;
+          border-width: 1px;
+    }
+
 
 
   div.r5 {position: relative;
@@ -603,6 +649,15 @@ div.bracket {text-align: right;
 	        left: 803px;
 	        top: 0px;
          padding-right: 1px;
+    }
+
+  div.r5winner {position: relative;
+	         width: 100px;
+	        height: 800px;
+                  left: 100%;
+                bottom: 100%;
+         border-bottom: solid;
+          border-width: 1px;
     }
 
 

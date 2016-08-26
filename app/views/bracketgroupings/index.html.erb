@@ -12,8 +12,6 @@
       <tr>
         <td>
 	<%= link_to bracketgrouping.fullname, bracketgrouping_path(bracketgrouping) %>
-	<%= select_tag('pcode', options_for_select(bracketgrouping.all_participant_codes())) if 
-	     bracketgrouping.all_subgroupings.select{|sg|sg.has_teams?}.count>0 %>...
 	</td>
       </tr>
     <% end %>
