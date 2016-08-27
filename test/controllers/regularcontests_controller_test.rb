@@ -22,15 +22,12 @@ class RegularcontestsControllerTest < ActionController::TestCase
 
   test "should create regularcontest" do
     assert_difference('Regularcontest.count') do
-      post :create, regularcontest: { status: "SCHEDULED" }
+      post :create, regularcontest: { status: "SCHEDULED" }, 
+	homecontestant: {team: teams(:storm) }, 
+	awaycontestant: {team: teams(:hailstones) }
     end
 
     assert_redirected_to regularcontests_path # (assigns(:regularcontest))
-  end
-
-  test "should show regularcontest" do
-    get :show, id: @regularcontest
-    assert_response :success
   end
 
   test "should get edit" do
@@ -39,7 +36,10 @@ class RegularcontestsControllerTest < ActionController::TestCase
   end
 
   test "should update regularcontest" do
-    patch :update, id: @regularcontest, regularcontest: {  status: "SCHEDULED" }
+    patch :update, id: @regularcontest,
+		regularcontest: {  status: "SCHEDULED" },
+	homecontestant: {team: @regularcontest.homecontestant.team }, 
+	awaycontestant: {team: @regularcontest.awaycontestant.team }		
     assert_redirected_to regularcontests_path # (assigns(:regularcontest))
   end
 

@@ -24,7 +24,7 @@ class RegularcontestTest < ActiveSupport::TestCase
    end
 
 	#
-   test "saved regularcontest assigns all ids for #save_all!" do
+   test "saved regularcontest assigns all ids for #save!" do
 	   rc = Regularcontest.new()
 	   rc.competition = Competition.all.first
 	   rc.save!

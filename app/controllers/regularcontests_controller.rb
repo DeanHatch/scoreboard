@@ -167,7 +167,7 @@ class RegularcontestsController < ManagersController
     regularcontest.status = 'SCHEDULED'
     regularcontest.awaycontestant.team = teampair[1]
     regularcontest.homecontestant.team = teampair[0]
-    regularcontest.save_all! ? regularcontest : nil  # returns nil if not saved
+    regularcontest.save! ? regularcontest : nil  # returns nil if not saved
   end
 							
   def process_teams()
