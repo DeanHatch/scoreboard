@@ -76,7 +76,7 @@
     
     <li class="calls-super" ><a href="#method-i-choose_competition">#choose_competition</a>
     
-    <li class="calls-super" ><a href="#method-i-choose_customer">#choose_customer</a>
+    <li class="calls-super" ><a href="#method-i-choose_organization">#choose_organization</a>
     
     <li ><a href="#method-i-clear_manager_password">#clear_manager_password</a>
     
@@ -255,10 +255,10 @@ Validations.</p>
       </div>
 
     
-      <div id="method-i-choose_customer" class="method-detail ">
+      <div id="method-i-choose_organization" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">choose_customer</span><span
+          <span class="method-name">choose_organization</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -268,11 +268,11 @@ Validations.</p>
 
         <div class="method-description">
           
-          <p>Display list of Customers for user to select one unless we ended up here
-after a <a href="Competition.html">Competition</a> has been chosen and the
-<a href="Manager.html">Manager</a> authenticated. This could happen if the
-normal sequence of linked pages is not followed (e.g. with a bookmark or
-the browser&#39;s BACK functionality.</p>
+          <p>Display list of Organizations for user to select one unless we ended up
+here after a <a href="Competition.html">Competition</a> has been chosen and
+the <a href="Manager.html">Manager</a> authenticated. This could happen if
+the normal sequence of linked pages is not followed (e.g. with a bookmark
+or the browser&#39;s BACK functionality.</p>
           
           
             <div class="method-calls-super">
@@ -282,9 +282,9 @@ the browser&#39;s BACK functionality.</p>
           
 
           
-          <div class="method-source-code" id="choose_customer-source">
+          <div class="method-source-code" id="choose_organization-source">
             <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 21</span>
- <span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_customer</span>()
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_organization</span>()
    <span class="ruby-keyword">super</span>()
    <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:greet_manager</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:manager_id</span>]
 <span class="ruby-keyword">end</span></pre>

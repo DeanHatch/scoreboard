@@ -97,8 +97,8 @@
 
   <section class="description">
     
-<p>A <a href="Competition.html">Competition</a> is created from the
-Customerscontroller.</p>
+<p>A <a href="Competition.html">Competition</a> is created from the <a
+href="OrganizationsController.html">OrganizationsController</a>.</p>
 
   </section>
 
@@ -149,11 +149,11 @@ Customerscontroller.</p>
             <span class="ruby-comment"># Also create a root Grouping object and save it.</span>
             <span class="ruby-comment"># Note that, being the root Grouping, it will not have a parent Grouping.</span>
             <span class="ruby-comment"># Note that this is done by the model in the #save method.</span>
-            <span class="ruby-comment"># Remember that the create competition action is initiated from the Customers controller.</span>
+            <span class="ruby-comment"># Remember that the create competition action is initiated from the Organizations controller.</span>
             <span class="ruby-comment"># After successful creation of a Competition, return to the</span>
-            <span class="ruby-comment"># greet action of the Customers controller.</span>
+            <span class="ruby-comment"># greet action of the Organizations controller.</span>
       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">notice</span>] = <span class="ruby-string">&quot;Competition was successfully created.&quot;</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_customer_url</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">greet_organization_url</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@competition</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
@@ -261,7 +261,7 @@ Customerscontroller.</p>
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/competitions_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-identifier">set_customer</span>()
+  <span class="ruby-identifier">set_organization</span>()
   <span class="ruby-ivar">@competitions</span> = <span class="ruby-constant">Competition</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

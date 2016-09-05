@@ -1,11 +1,11 @@
-# A Competition is created from the Organizationscontroller.
+# A Competition is created from the OrganizationsController.
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   # GET /competitions
   # GET /competitions.json
   def index
-    set_Organization()
+    set_organization()
     @competitions = Competition.all
   end
 
@@ -37,7 +37,7 @@ class CompetitionsController < ApplicationController
 	      # After successful creation of a Competition, return to the
 	      # greet action of the Organizations controller.
 	flash[notice] = "Competition was successfully created."
-	format.html { redirect_to greet_Organization_url }
+	format.html { redirect_to greet_organization_url }
         format.json { render :show, status: :created, location: @competition }
       else
         format.html { render :new }
@@ -72,14 +72,12 @@ class CompetitionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_Organization
-      @Organization = Organization.find(params[:Organization_id])
+    def set_organization
+      @organization = Organization.find(params[:organization_id])
       rescue
       begin
-      @Organization = Organization.new()
+      @organization = Organization.new()
       end
-      Competition.default_cust(@Organization.id)
-      Competition.default_cust(2)
     end
 
     # Use callbacks to share common setup or constraints between actions.

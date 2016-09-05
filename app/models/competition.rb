@@ -36,12 +36,6 @@ class Competition < ActiveRecord::Base
 		['Playoff', 'Bracket']
 	end
 	
-	# Note that since this is not a subclass of NestedModel, we must write our
-	# own public method to access #default_scope.
-	def Competition.default_cussed(cust_id) # Renamed to make this stick out like a sore thumb
-		self.default_scope { (where(customer_id: cust_id) ) }
-	end
-	
 	# Display table headings for Standings for a Grouping or
 	# for a Team's record.
 	def result_headings()
