@@ -2,7 +2,7 @@
 class ManagersController < NestedController
 
      before_action :check_manager_session,
-			except: [:choose_customer, :choose_competition]
+			except: [:choose_organization, :choose_competition]
 
     # Only display navigation links if we are working
     # within a Competition. If we are still selecting
@@ -12,13 +12,13 @@ class ManagersController < NestedController
 	session[:manager_id] ? manager_link_array() : []
   end
   
-	# Display list of Customers for user to select one
+	# Display list of Organizations for user to select one
 	# unless we ended up here after a Competition has
 	# been chosen and the Manager authenticated.
 	# This could happen if the normal sequence of
 	# linked pages is not followed (e.g. with a bookmark or the
 	# browser's BACK functionality.
-     def choose_customer()
+     def choose_organization()
        super()
        redirect_to :greet_manager if session[:manager_id]
     end
@@ -107,7 +107,7 @@ class ManagersController < NestedController
   def check_manager_sessio()
 	  logger.info("Manager ID from session is: #{session[:manager_id].inspect()}")
 	  if session[:manager_id].nil?
-		  redirect_to choose_customer_manager_path
+		  redirect_to choose_organization_manager_path
 	  else
 	    begin
 	    @competition = Competition.find(session[:manager_id])
@@ -115,7 +115,7 @@ class ManagersController < NestedController
 	    set_competition(@competition_id)
 	    rescue
 	      session[:manager_id] = nil
-	      redirect_to choose_customer_manager_path
+	      redirect_to choose_organization_manager_path
 	    end
 	  end
   end
@@ -124,7 +124,7 @@ class ManagersController < NestedController
 	  logger.info("Manager ID from session is: #{session[:manager_id].inspect()}")
 	  if session[:manager_id].nil?
 		  redirect_to oops_path
-		  #redirect_to choose_customer_manager_path
+		  #redirect_to choose_organization_manager_path
 	  else
 	    begin
 	    @manager = Manager.find(session[:manager_id])
@@ -133,7 +133,7 @@ class ManagersController < NestedController
 	    rescue
 	      session[:manager_id] = nil
 	      redirect_to oops_path
-	      #redirect_to choose_customer_manager_path
+	      #redirect_to choose_organization_manager_path
 	    end
 	  end
   end

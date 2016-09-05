@@ -3,12 +3,12 @@ require 'digest/sha1'
 # This class contains the essentials for a Competition
 class Competition < ActiveRecord::Base
 	
-	belongs_to :customer
+	belongs_to :organization
 	
 	enum sport: [ :basketball, :soccer, :quidditch ]
 	enum variety: [ :tournament, :season, :league ]
 	
-	validates_presence_of :customer_id, :sport, :variety,
+	validates_presence_of :organization_id, :sport, :variety,
 				:poolgroupseasonlabel, :playoffbracketlabel
 	
 	attr_accessor :manager_password_confirmation
@@ -38,7 +38,7 @@ class Competition < ActiveRecord::Base
 	
 	# Note that since this is not a subclass of NestedModel, we must write our
 	# own public method to access #default_scope.
-	def Competition.default_cust(cust_id)
+	def Competition.default_cussed(cust_id) # Renamed to make this stick out like a sore thumb
 		self.default_scope { (where(customer_id: cust_id) ) }
 	end
 	

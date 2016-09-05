@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724015043) do
+ActiveRecord::Schema.define(version: 20160905115209) do
 
   create_table "alert_requests", force: :cascade do |t|
-    t.string   "type"
-    t.string   "to_dest"
-    t.string   "at_domain"
+    t.string   "type",       limit: 255
+    t.string   "to_dest",    limit: 255
+    t.string   "at_domain",  limit: 255
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,20 +26,20 @@ ActiveRecord::Schema.define(version: 20160724015043) do
 
   create_table "bcadvancements", force: :cascade do |t|
     t.integer  "from_contest_id"
-    t.string   "wl"
+    t.string   "wl",              limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "competitions", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                    limit: 255
     t.integer  "sport"
     t.integer  "variety"
     t.boolean  "poolgroupseason"
-    t.string   "poolgroupseasonlabel"
+    t.string   "poolgroupseasonlabel",    limit: 255
     t.boolean  "playoffbracket"
-    t.string   "playoffbracketlabel"
-    t.boolean  "keepscores",              default: true
+    t.string   "playoffbracketlabel",     limit: 255
+    t.boolean  "keepscores",                          default: true
     t.integer  "winpoints"
     t.integer  "drawpoints"
     t.integer  "losspoints"
@@ -48,18 +48,18 @@ ActiveRecord::Schema.define(version: 20160724015043) do
     t.integer  "forfeitlossscore"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id"
-    t.string   "hashed_manager_password"
-    t.string   "hashed_scorer_password"
-    t.string   "salt"
+    t.integer  "organization_id"
+    t.string   "hashed_manager_password", limit: 255
+    t.string   "hashed_scorer_password",  limit: 255
+    t.string   "salt",                    limit: 255
   end
 
   create_table "contestants", force: :cascade do |t|
     t.integer  "competition_id"
-    t.string   "type"
+    t.string   "type",               limit: 255
     t.integer  "contest_id"
-    t.string   "contest_type"
-    t.string   "homeaway"
+    t.string   "contest_type",       limit: 255
+    t.string   "homeaway",           limit: 255
     t.integer  "team_id"
     t.integer  "score"
     t.boolean  "forfeit"
@@ -67,35 +67,23 @@ ActiveRecord::Schema.define(version: 20160724015043) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bracketgrouping_id"
-    t.string   "bcspec_type"
+    t.string   "bcspec_type",        limit: 255
     t.integer  "bcspec_id"
   end
 
   create_table "contests", force: :cascade do |t|
     t.integer  "competition_id"
-    t.string   "type"
+    t.string   "type",               limit: 255
     t.date     "date"
     t.integer  "time"
     t.integer  "venue_id"
-    t.string   "status"
+    t.string   "status",             limit: 255
     t.integer  "homecontestant_id"
     t.integer  "awaycontestant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bracketgrouping_id"
-    t.string   "name"
-  end
-
-  create_table "customers", force: :cascade do |t|
-    t.string   "userid"
-    t.string   "hashed_password"
-    t.string   "salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "phone"
-    t.string   "website"
-    t.string   "reg_confirm_token"
+    t.string   "name",               limit: 255
   end
 
   create_table "groupingplaces", force: :cascade do |t|
@@ -107,16 +95,24 @@ ActiveRecord::Schema.define(version: 20160724015043) do
 
   create_table "groupings", force: :cascade do |t|
     t.integer  "competition_id"
-    t.string   "name"
+    t.string   "name",             limit: 255
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "bracket_grouping", default: false, null: false
+    t.boolean  "bracket_grouping",             default: false, null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",       limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "website",    limit: 255
   end
 
   create_table "teams", force: :cascade do |t|
     t.integer  "competition_id"
-    t.string   "name"
+    t.string   "name",           limit: 255
     t.integer  "grouping_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -140,7 +136,7 @@ ActiveRecord::Schema.define(version: 20160724015043) do
   end
 
   create_table "venues", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           limit: 255
     t.integer  "competition_id"
     t.datetime "created_at"
     t.datetime "updated_at"

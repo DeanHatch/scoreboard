@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 soccer:
-  customer: alwaysright
+  organization: alwaysright
   name: My Soccer Tournament
   sport: soccer
   variety: tournament
@@ -18,9 +18,9 @@ soccer:
   forfeitlossscore: 0
 
 
-  # Following two Competitions belong to Customer SqueakyWheel
+  # Following two Competitions belong to organization SqueakyWheel
 bball:
-  customer: squeakywheel
+  organization: squeakywheel
   name: My Summer Basketball League
   sport: basketball
   variety: league
@@ -36,9 +36,9 @@ bball:
   forfeitwinscore: 15
   forfeitlossscore: 0
 
-  # Soccer Competition for SqueakyWheel Customer
+  # Soccer Competition for SqueakyWheel organization
 swsoccer:
-  customer:  squeakywheel
+  organization:  squeakywheel
   name: Another Soccer Tournament
   sport: soccer
   variety: tournament

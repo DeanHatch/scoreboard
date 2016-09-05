@@ -1,11 +1,11 @@
 class WelcomeController < ApplicationController
 
   def nav_link_array()
-	  [navitem('Customer Login/Register', :new_customer_session) ]
+    []
   end
 
   def index
-    customers = Customer.unscoped.all()
+    organizations = Organization.unscoped.all()
     # logger.info("session info is: #{session.inspect()}")
   end
   

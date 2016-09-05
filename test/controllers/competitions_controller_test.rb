@@ -2,16 +2,16 @@ require 'test_helper'
 
 class CompetitionsControllerTest < ActionController::TestCase
   setup do
-    #~ @customer = customers(:alwaysright)
-    #~ session[:customer_id] = @customer.id
+    #~ @organization = organizations(:alwaysright)
+    #~ session[:organization_id] = @organization.id
     #~ @competition = competitions(:soccer)
-    @customer = customers(:squeakywheel)
-    session[:customer_id] = @customer.id
+    @organization = organizations(:squeakywheel)
+    session[:organization_id] = @organization.id
     @competition = competitions(:bball)
   end
 
   #~ test "should get index" do
-    #~ get :index, customer_id: @customer.id
+    #~ get :index, organization_id: @organization.id
     #~ assert_response :success
     #~ assert_not_nil assigns(:competitions)
   #~ end

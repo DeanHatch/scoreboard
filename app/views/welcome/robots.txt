@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /classes/
-Disallow: /customer/
+Disallow: /organization/
 Disallow: /images/
 Disallow: /logs/
 Disallow: /message/

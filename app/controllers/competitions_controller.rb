@@ -1,11 +1,11 @@
-# A Competition is created from the Customerscontroller.
+# A Competition is created from the Organizationscontroller.
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   # GET /competitions
   # GET /competitions.json
   def index
-    set_customer()
+    set_Organization()
     @competitions = Competition.all
   end
 
@@ -33,11 +33,11 @@ class CompetitionsController < ApplicationController
 	      # Also create a root Grouping object and save it.
 	      # Note that, being the root Grouping, it will not have a parent Grouping.
 	      # Note that this is done by the model in the #save method.
-	      # Remember that the create competition action is initiated from the Customers controller.
+	      # Remember that the create competition action is initiated from the Organizations controller.
 	      # After successful creation of a Competition, return to the
-	      # greet action of the Customers controller.
+	      # greet action of the Organizations controller.
 	flash[notice] = "Competition was successfully created."
-	format.html { redirect_to greet_customer_url }
+	format.html { redirect_to greet_Organization_url }
         format.json { render :show, status: :created, location: @competition }
       else
         format.html { render :new }
@@ -72,13 +72,13 @@ class CompetitionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_customer
-      @customer = Customer.find(params[:customer_id])
+    def set_Organization
+      @Organization = Organization.find(params[:Organization_id])
       rescue
       begin
-      @customer = Customer.new()
+      @Organization = Organization.new()
       end
-      Competition.default_cust(@customer.id)
+      Competition.default_cust(@Organization.id)
       Competition.default_cust(2)
     end
 

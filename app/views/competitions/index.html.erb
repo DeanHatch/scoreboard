@@ -1,12 +1,12 @@
 <h1>Listing competitions</h1>
-<h2>for <!-- %= @customer.name % --></h2>
+<h2>for <!-- %= @organization.name % --></h2>
 
-<%= render '/customers/select_customer' %>
+<%= render '/organizations/select_organization' %>
 
 <table>
   <thead>
     <tr>
-      <th>Customer ID</th>
+      <th>Organization ID</th>
       <th>Competition ID</th>
       <th>Name</th>
       <th>Poolgroupseason / Poolgroupseasonlabel</th>
@@ -25,7 +25,7 @@
   <tbody>
     <% @competitions.each do |competition| %>
       <tr>
-        <td><%= competition.customer_id %></td>
+        <td><%= competition.organization_id %></td>
         <td><%= competition.id %></td>
         <td><%= competition.name %>
 		<%= competition.sport %>

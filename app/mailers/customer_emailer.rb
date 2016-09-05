@@ -9,6 +9,6 @@ class CustomerEmailer < ActionMailer::Base
   def welcome(customer)
     @greeting = "Hi"
     @customer = customer
-    mail to: customer.userid
+    mail to: customer.email
   end
 end

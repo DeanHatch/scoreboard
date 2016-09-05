@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   # Link array for the public display portion of this application.
   # The Display Controller should override this and provide its own navigation link array.
   def display_link_array()
-	  [navitem('Public Display', :choose_display_customer)] 
+	  [navitem('Public Display', :choose_display_organization)] 
   end
 
   # Link array for scorers, who can also open up the

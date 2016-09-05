@@ -1,0 +1,25 @@
+<h1>Welcome to Online-Scoreboard.net!</h1>
+
+<p>
+<%= @organization.name %>,
+welcome to Online-Scoreboard.net! This is the place where you can manage schedules, post results, and keep teams and fans informed with up to the minute scores and schedules. 
+</p>
+
+<p>
+Use this link to Confirm your Registration: <%= confirm_registration_url(@organization, @organization.reg_confirm_token) %>
+</p>
+<p>
+Use this link to log on: <%= new_organization_session_url %>
+</p>
+
+<p>
+(You might want to bookmark that one.) 
+</p>
+
+<p>
+Welcome aboard! 
+</p>
+
+<p>
+P.S. I have attached a Guide to this email that will help you get started. 
+</p>

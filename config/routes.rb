@@ -22,13 +22,9 @@ Rails.application.routes.draw do
   get 'display/:competition_id/team/:id/alert', to: 'display#alert_request', as: :alert_request
   post 'display/:competition_id/team/:id/alert', to: 'display#set_alert', as: :set_alert
    
-  #post 'customer/new', to: 'customers#create'
-  get '/customer/:id/confirm/:reg_confirm_token', to: 'customers#confirm', as: :confirm_registration
-  resource :customer, except: :destroy do
+  resource :organization, except: :destroy do
 	  member do
 		  get 'greet'  # analgous to member #index
-		  get 'change_password'
-		  patch 'update_password'
 		  get 'new_competition'
 		  post 'create_competition'
 		  get 'edit_competition'
@@ -36,15 +32,7 @@ Rails.application.routes.draw do
 		  end
   end
   
-  resource :customer_session, only: [:new, :create]  do
-	  member do
-		    # Since an HTTP DELETE request via a #link_to method is
-		    # somewhat dicey, and since the DELETE would only be 
-		    # deleting a session we handle this with an HTTP GET
-		  get 'logout' # , as: :logout_customer_session
-		  end
-  end
-  
+
   get "manager_session/login/:manager_id", to: "manager_sessions#new", as: :login_manager_session
   resource :manager_session, only: [:create]  do
 		    # Since an HTTP DELETE request via a #link_to method is

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# We define two Customers: AlwaysRight and SqueakyWheel
+
+
+alwaysright:
+  name: County Recreation Department
+  phone: (000) 000-0000
+  website: www.countyrecdept.com
+
+squeakywheel:
+  name: Events Host
+  phone: (000) 000-0000
+  website: www.eventshost.com
