@@ -104,36 +104,16 @@ class ManagersController < NestedController
 
  private
 
-  def check_manager_sessio()
-	  logger.info("Manager ID from session is: #{session[:manager_id].inspect()}")
-	  if session[:manager_id].nil?
-		  redirect_to choose_organization_manager_path
-	  else
-	    begin
-	    @competition = Competition.find(session[:manager_id])
-	    @competition_id = @competition.id
-	    set_competition(@competition_id)
-	    rescue
-	      session[:manager_id] = nil
-	      redirect_to choose_organization_manager_path
-	    end
-	  end
-  end
-
   def check_manager_session()
 	  logger.info("Manager ID from session is: #{session[:manager_id].inspect()}")
 	  if session[:manager_id].nil?
 		  redirect_to oops_path
-		  #redirect_to choose_organization_manager_path
 	  else
 	    begin
 	    @manager = Manager.find(session[:manager_id])
-	    #@manager_id = @competition.id
-	    #set_competition(@competition_id)
 	    rescue
 	      session[:manager_id] = nil
 	      redirect_to oops_path
-	      #redirect_to choose_organization_manager_path
 	    end
 	  end
   end

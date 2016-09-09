@@ -7,10 +7,6 @@
 # limit the Competitions available for choosing to only those for a
 # single Organization.
 class NestedController  < ApplicationController
-	# Ensure that a Competition has been specified for all actions
-	# except the two involved in selecting the Competition.
-     #before_action :set_competition, except: [:choose_organization, :choose_competition]
-     #before_action :set_organization, only: [:choose_competition]
 
      # This specifies the url to redirect to if a Competition
      # has not been specified, or if an invalid Competition 

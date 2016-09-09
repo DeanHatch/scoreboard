@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  competition_id: 1
-  grouping_id: 1
-  venue_id: 1
+  competition: soccer
+  #grouping_id: 1
+  #venue_id: 1
   from_time: 1
   to_time: 1
 
 two:
-  competition_id: 1
-  grouping_id: 1
-  venue_id: 1
-  from_time: 1
-  to_time: 1
+  competition: soccer
+  #grouping_id: 1
+  #venue_id: 1
+  from_time: 2
+  to_time: 2

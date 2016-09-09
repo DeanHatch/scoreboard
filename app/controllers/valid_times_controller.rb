@@ -27,8 +27,8 @@ class ValidTimesController  < ManagersController
     @valid_time.manager = @manager
 
     respond_to do |format|
-      if @valid_time.save
-        format.html { redirect_to @valid_time, notice: 'Valid time was successfully created.' }
+      if @valid_time.save!
+        format.html { redirect_to :valid_times, notice: 'Valid time was successfully created.' }
         format.json { render :show, status: :created, location: @valid_time }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ValidTimesController  < ManagersController
   def update
     respond_to do |format|
       if @valid_time.update(valid_time_params)
-        format.html { redirect_to @valid_time, notice: 'Valid time was successfully updated.' }
+        format.html { redirect_to :valid_times, notice: 'Valid time was successfully created.' }
         format.json { render :show, status: :ok, location: @valid_time }
       else
         format.html { render :edit }

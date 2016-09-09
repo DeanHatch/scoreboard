@@ -3,21 +3,21 @@ require 'test_helper'
 class ScorerSessionsControllerTest < ActionController::TestCase
 
  setup do
-	   # Customer must exist for Competition foreign key.
+	   # Organization must exist for Competition foreign key.
 	   # Manager inherits from Competition.
 	   # Steps are:
-	   #  1) Load Customer
+	   #  1) Load Organization
 	   #  2) Load Competition
 	   #  3) Log Manager in to that Competition
-	 #~ cust = customers(:alwaysright)
-	 #~ cust.save!
+	 #~ org = organizations(:alwaysright)
+	 #~ org.save!
 	 #~ competition = competitions(:soccer)
-	 #~ competition.customer_id = cust.id
+	 #~ competition.organization_id = org.id
 	 #~ competition.save!
-	 cust = customers(:squeakywheel)
-	 cust.save!
+	 org = organizations(:squeakywheel)
+	 org.save!
 	 competition = competitions(:bball)
-	 competition.customer_id = cust.id
+	 competition.organization_id = org.id
 	 competition.save!
   end
 
