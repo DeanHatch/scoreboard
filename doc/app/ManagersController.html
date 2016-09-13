@@ -74,6 +74,10 @@
     
     <li ><a href="#method-i-change_scorer_password">#change_scorer_password</a>
     
+    <li class="calls-super" ><a href="#method-i-choose_competition">#choose_competition</a>
+    
+    <li class="calls-super" ><a href="#method-i-choose_organization">#choose_organization</a>
+    
     <li ><a href="#method-i-clear_manager_password">#clear_manager_password</a>
     
     <li ><a href="#method-i-clear_scorer_password">#clear_scorer_password</a>
@@ -141,7 +145,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="change_manager_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 38</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_manager_password</span>()
          <span class="ruby-comment">#manager_pw_params</span>
          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -189,7 +193,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="change_scorer_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_scorer_password</span>()
       <span class="ruby-identifier">p</span> <span class="ruby-identifier">scorer_pw_params</span>.<span class="ruby-identifier">inspect</span>()
       <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -201,6 +205,88 @@ Validations.</p>
                       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;passwords&quot;</span> }
               <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-choose_competition" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_competition</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="choose_competition-source">
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 26</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_competition</span>()
+   <span class="ruby-keyword">super</span>()
+   <span class="ruby-identifier">session</span>[<span class="ruby-value">:manager_id</span>] = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-choose_organization" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">choose_organization</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Display list of Organizations for user to select one unless we ended up
+here after a <a href="Competition.html">Competition</a> has been chosen and
+the <a href="Manager.html">Manager</a> authenticated. This could happen if
+the normal sequence of linked pages is not followed (e.g. with a bookmark
+or the browser&#39;s BACK functionality.</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="choose_organization-source">
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 21</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">choose_organization</span>()
+   <span class="ruby-keyword">super</span>()
+   <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:greet_manager</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:manager_id</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -231,7 +317,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="clear_manager_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 57</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_manager_password</span>()
          <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">clear_manager_password</span>()
          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -273,7 +359,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="clear_scorer_password-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 85</span>
  <span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_scorer_password</span>()
          <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">clear_scorer_password</span>()
          <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -315,7 +401,7 @@ Validations.</p>
 
           
           <div class="method-source-code" id="greet-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 82</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">greet</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -349,7 +435,7 @@ href="Competition.html">Competition</a>, do not display navigation.</p>
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
       <span class="ruby-comment">#@competition ? manager_link_array() : []</span>
       <span class="ruby-identifier">session</span>[<span class="ruby-value">:manager_id</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">manager_link_array</span>() <span class="ruby-operator">:</span> []
@@ -385,7 +471,7 @@ href="Scorer.html">Scorer</a> Password.</p>
 
           
           <div class="method-source-code" id="passwords-source">
-            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/managers_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">passwords</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>

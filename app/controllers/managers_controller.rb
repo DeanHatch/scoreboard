@@ -1,7 +1,8 @@
 # Manager controller classes inherit from this class.
 class ManagersController < NestedController
 
-     before_action :check_manager_session
+     before_action :check_manager_session,
+			except: [:choose_organization, :choose_competition]
 
     # Only display navigation links if we are working
     # within a Competition. If we are still selecting
@@ -10,6 +11,23 @@ class ManagersController < NestedController
 	#@competition ? manager_link_array() : []
 	session[:manager_id] ? manager_link_array() : []
   end
+  
+	# Display list of Organizations for user to select one
+	# unless we ended up here after a Competition has
+	# been chosen and the Manager authenticated.
+	# This could happen if the normal sequence of
+	# linked pages is not followed (e.g. with a bookmark or the
+	# browser's BACK functionality.
+     def choose_organization()
+       super()
+       redirect_to :greet_manager if session[:manager_id]
+    end
+ 
+     def choose_competition()
+       super()
+       session[:manager_id] = nil
+    end
+ 
   
   # Display page where Manager can set or clear
   # either the Manager Password or the Scorer Password.
