@@ -41,3 +41,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'sms-easy', "1.2.5"
+
+# For Devise
+gem 'devise'

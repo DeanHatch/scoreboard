@@ -7,5 +7,5 @@ class Organization < ActiveRecord::Base
 	validates_presence_of :name,
 		message: "has to have a name." 
 	
-	
+	belongs_to :customer
 end

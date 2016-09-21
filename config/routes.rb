@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
 
+  devise_for :customers, controllers: {sessions: 'customers/sessions'}
+  devise_scope :customer do
+    get "customer/sign_out", to: "customers/sessions#destroy", as: "customer_sign_out"
+  end
+  resource :customer, only: [:show, :edit, :update] do
+    #get "greet", to: "customers#greet", as: "greeting"
+   end 
+  #customers_root 'customers#show'
+  #customer_root 'customers#show'
+  
   resources :valid_times
   root 'welcome#index'
   get 'welcome/index'

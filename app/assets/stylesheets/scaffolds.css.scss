@@ -1,5 +1,4 @@
- /* Disabled default by renaming "body" to "bbody" */
-bbody {
+body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -19,8 +18,7 @@ pre {
   font-size: 11px;
 }
 
- /* Disabled default by renaming "a" to "aa" */
-aa {
+a {
   color: #000;
   &:visited {
     color: #666;

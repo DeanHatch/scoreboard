@@ -1,0 +1,24 @@
+<% if @org then %>
+<h1>
+  <%= @org.name if @org %>
+</h1>
+<h2>
+  <%= @org.website ? @org.website : "No website on file." %>
+</h2>
+<h3>
+  <%= @org.phone ? @org.phone : "No phone number on file." %>
+</h3>
+
+<% end %>
+<p>
+  <strong>Email Address on File:</strong>
+  <%= @cust.email %>
+</p>
+
+<p>
+  <strong>You have</strong>
+  <%= @cust.credits.count() %>
+  <strong>Credits Remaining</strong>
+</p>
+
+<%=  %>

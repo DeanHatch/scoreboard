@@ -3,7 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def after_sign_in_path_for(resource)
+    customer_path
+  end
 
+  def aafter_sign_out_path_for(resource)
+    root_path
+  end
 
   # Default link array. Should be overridden by controllers for this application.
   def nav_link_array()

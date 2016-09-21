@@ -70,6 +70,10 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-aafter_sign_out_path_for">#aafter_sign_out_path_for</a>
+    
+    <li ><a href="#method-i-after_sign_in_path_for">#after_sign_in_path_for</a>
+    
     <li ><a href="#method-i-display_link_array">#display_link_array</a>
     
     <li ><a href="#method-i-manager_link_array">#manager_link_array</a>
@@ -114,6 +118,72 @@
        </header>
 
     
+      <div id="method-i-aafter_sign_out_path_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">aafter_sign_out_path_for</span><span
+            class="method-args">(resource)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="aafter_sign_out_path_for-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">aafter_sign_out_path_for</span>(<span class="ruby-identifier">resource</span>)
+  <span class="ruby-identifier">root_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-after_sign_in_path_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">after_sign_in_path_for</span><span
+            class="method-args">(resource)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="after_sign_in_path_for-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">after_sign_in_path_for</span>(<span class="ruby-identifier">resource</span>)
+  <span class="ruby-identifier">customer_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-display_link_array" class="method-detail ">
         
         <div class="method-heading">
@@ -134,7 +204,7 @@ Controller should override this and provide its own navigation link array.</p>
 
           
           <div class="method-source-code" id="display_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">display_link_array</span>()
         [<span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Public Display&#39;</span>, <span class="ruby-value">:choose_display_organization</span>)] 
 <span class="ruby-keyword">end</span></pre>
@@ -168,7 +238,7 @@ application for a <a href="Competition.html">Competition</a>.</p>
 
           
           <div class="method-source-code" id="manager_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manager_link_array</span>()
         [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Dates/Venues&#39;</span> , <span class="ruby-value">:venues</span>),
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Manage Game Times&#39;</span> , <span class="ruby-value">:valid_times</span>),
@@ -210,7 +280,7 @@ application.</p>
 
           
           <div class="method-source-code" id="nav_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_link_array</span>()
         [] <span class="ruby-comment"># display_link_array()</span>
 <span class="ruby-keyword">end</span></pre>
@@ -243,7 +313,7 @@ application.</p>
 
           
           <div class="method-source-code" id="navitem-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">navitem</span>(<span class="ruby-identifier">href</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>={})
         <span class="ruby-constant">NavItem</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">href</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -277,7 +347,7 @@ this application in a separate tab.</p>
 
           
           <div class="method-source-code" id="scorer_link_array-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scorer_link_array</span>()
         [ <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;Logout&#39;</span> , <span class="ruby-value">:logout_scorer_session</span> )  ,
       <span class="ruby-identifier">navitem</span>(<span class="ruby-string">&#39;View This Competition&#39;</span> , <span class="ruby-identifier">display_competition_path</span>(<span class="ruby-ivar">@scorer</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span> ) ]
