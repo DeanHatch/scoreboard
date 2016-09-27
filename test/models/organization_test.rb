@@ -14,13 +14,13 @@ class OrganizationTest < ActiveSupport::TestCase
   # 
    test "unique organization names" do
 	   org2 = Organization.new
-	   org2.name = organizations(:alwaysright).name # same
+	   org2.name = organizations(:countyrec).name # same
 	   assert ! org2.valid? , "Duplicate Name Should Not Have Been Allowed!"
    end
   # 
    test "unique organization names ok" do
 	   org2 = Organization.new
-	   org2.name = 'x'+organizations(:alwaysright).name # distinct
+	   org2.name = 'x'+organizations(:countyrec).name # distinct
 	   assert org2.valid? , "Non-Duplicate Names Should Have Been Allowed!"
    end
   # 

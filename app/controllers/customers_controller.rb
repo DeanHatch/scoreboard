@@ -4,19 +4,11 @@
 class CustomersController < ApplicationController
   before_action :set_customer_from_session
 
-  # Use this Link Array when Customer is both Confirmed and Logged In. 
-  def fullnav()
-      [navitem('Edit Profile' , :edit_customer),
-	     navitem('Create a New Competition' , :new_competition_customer),
-	     navitem('Manage My Competitions' , choose_competition_manager_path(@customer), target: "_blank") ] 
-  end
-  
-  
-    # Only display navigation links if we are working
-    # within a Competition. If we are still selecting
-    # the Competition, do not display navigation.
+    # Array of Navigation links to display dependent
+    # on whether Customer is logged in or not.
   def nav_link_array()
 	current_customer ? [navitem('Update Profile' , edit_customer_path()),
+	                               navitem('New Competition', new_competition_customer_path()),
 					navitem('Log Out' , customer_sign_out_path())] :
 				    [navitem('Customer Log In' , new_customer_session_path())]
   end
@@ -34,7 +26,7 @@ class CustomersController < ApplicationController
   end
 
 
-  # PATCH/PUT /customers/1
+  # PATCH/PUT /customer/organization/update
   def update
     respond_to do |format|
       if @org.update(organization_params)
@@ -48,24 +40,56 @@ class CustomersController < ApplicationController
 
   # GET /customer/new_competition
   def new_competition
-	  @competition = Competition.new
+    @competition = @org.competitions.build()
   end
 
 
   # POST /customer/create_competition
+  #
+  # The Competition model will also create a top-level Grouping.
   def create_competition
-	  @competition = Competition.new(competition_params)
-	  @competition.customer = @customer
-	  respond_to do |format|
-		  if @competition.save
-			  flash[:notice] = 'You have a New Competition'
-			  format.html { redirect_to(:action => "greet" ) }
-		else
-			format.html {  redirect_to(:action => "new_competition") }
-		end
-	end
+    respond_to do |format|
+      if @org.competitions.create!(competition_params)
+	flash[:notice] = 'You have a New Competition'
+	format.html { redirect_to(:action => "show" ) }
+      else
+	format.html {  redirect_to(:action => "new_competition") }
+      end
+    end
   end
   
+
+  # GET /customer/edit_competition/:id
+  #
+  # Grab the requested Competition and present it to the
+  # user for edting.
+  def edit_competition
+    if @org.competitions.exists?(params[:competition_id])
+      @competition = @org.competitions.find(params[:competition_id])
+    else
+      flash[:alert] = "Looks like an attempt to update somebody else's Competition" +
+                       " or one that dosen't exist (#" +
+                       params[:competition_id]+")"
+      redirect_to(:oops)  
+    end
+  end
+
+
+  # PUT/PATCH /customer/update_competition
+  #
+  # This will update the Competition specified in the form.
+  def update_competition
+    if @org.competitions.exists?(competition_params[:id])
+      @competition = @org.competitions.find(competition_params[:id]) 
+      @competition.update!(competition_params)
+      redirect_to(:action => "show" )
+    else
+      flash[:alert] = "Looks like an attempt to update somebody else's Competition" +
+                       " or one that dosen't exist (#" +
+                       competition_params[:id].inspect()+")"
+      redirect_to(:oops)  
+    end
+  end
 
   private
 
@@ -78,7 +102,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
-      params.require(:competition).permit(:name, :sport, :variety, :poolgroupseason, :poolgroupseasonlabel, :playoffbracket, :playoffbracketlabel, :keepscores, :winpoints, :drawpoints, :losspoints, :forfeitpoints, :forfeitwinscore, :forfeitlossscore)
+      params.require(:competition).permit(:id, :name, :sport, :variety, :poolgroupseason, :poolgroupseasonlabel, :playoffbracket, :playoffbracketlabel, :keepscores, :winpoints, :drawpoints, :losspoints, :forfeitpoints, :forfeitwinscore, :forfeitlossscore)
     end
 
     def organization_params

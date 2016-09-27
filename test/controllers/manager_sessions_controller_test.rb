@@ -14,7 +14,7 @@ class ManagerSessionsControllerTest < ActionController::TestCase
 	 #~ competition = competitions(:soccer)
 	 #~ competition.organization_id = org.id
 	 #~ competition.save!
-	 org = organizations(:squeakywheel)
+	 org = organizations(:countyrec)
 	 org.save!
 	 competition = competitions(:bball)
 	 competition.organization_id = org.id

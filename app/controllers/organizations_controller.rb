@@ -1,8 +1,9 @@
 # In the routes file, Organization is a Singular Resource. A Organization establishes a
 # Session via a login page/action. Subsequent actions are performed on a
 # single Organization, identified by the organization_id in the Session.
-class OrganizationsController < ApplicationController
-  before_action :set_organization_from_session, except: [:new, :create, :confirm, :reset_password]
+#class OrganizationsController < ApplicationController
+class OrganizationsController < CustomersController
+  before_action :set_organization_from_session
 
   # Use this Link Array when Organization is both Confirmed and Logged In. 
   def fullnav()
@@ -100,6 +101,12 @@ class OrganizationsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_organization_from_session
+      redirect_to new_customer_session_path() unless current_customer
+      @cust = current_customer
+      @org = @cust.organization if @cust
+      @organization = @org
+    end
+    def set_organization_from_sessionn
       @organization = Organization.find(session[:organization_id])
       rescue
       begin

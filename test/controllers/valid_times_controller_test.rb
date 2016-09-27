@@ -3,7 +3,7 @@ require 'test_helper'
 class ValidTimesControllerTest < ActionController::TestCase
   setup do
     @valid_time = valid_times(:one)
-	 org = organizations(:squeakywheel)
+	 org = organizations(:countyrec)
 	 org.save!
 	 competition = competitions(:bball)
 	 competition.organization_id = org.id

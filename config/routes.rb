@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
 
-
   devise_for :customers, controllers: {sessions: 'customers/sessions'}
   devise_scope :customer do
     get "customer/sign_out", to: "customers/sessions#destroy", as: "customer_sign_out"
   end
   resource :customer, only: [:show, :edit, :update] do
-    #get "greet", to: "customers#greet", as: "greeting"
-   end 
-  #customers_root 'customers#show'
-  #customer_root 'customers#show'
+    get 'list_competitions'
+    get 'new_competition'
+    post 'create_competition'
+    get 'edit_competition/:competition_id', to: 'customers#edit_competition', as: :edit_competition
+    patch 'update_competition'
+    put 'update_competition'
+    get 'set_competition_passwords'
+  end 
   
   resources :valid_times
+
   root 'welcome#index'
   get 'welcome/index'
   get 'oops', to: 'welcome#oops'
@@ -32,15 +36,15 @@ Rails.application.routes.draw do
   get 'display/:competition_id/team/:id/alert', to: 'display#alert_request', as: :alert_request
   post 'display/:competition_id/team/:id/alert', to: 'display#set_alert', as: :set_alert
    
-  resource :organization, except: :destroy do
-	  member do
-		  get 'greet'  # analgous to member #index
-		  get 'new_competition'
-		  post 'create_competition'
-		  get 'edit_competition'
-		  get 'set_competition_passwords'
-		  end
-  end
+  #~ resource :organization, except: :destroy do
+	  #~ member do
+		  #~ get 'greet'  # analgous to member #index
+		  #~ get 'new_competition'
+		  #~ post 'create_competition'
+		  #~ get 'edit_competition'
+		  #~ get 'set_competition_passwords'
+		  #~ end
+  #~ end
   
 
   get "manager_session/login/:manager_id", to: "manager_sessions#new", as: :login_manager_session

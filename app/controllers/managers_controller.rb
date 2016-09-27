@@ -51,7 +51,6 @@ class ManagersController < NestedController
   
   # Assign the Scorer Password if it passes Validations.
   def change_scorer_password()
-	p scorer_pw_params.inspect()
 	respond_to do |format|
 		if @manager.update!(scorer_pw_params)
 			  flash[:notice] = 'Change made.'
@@ -65,16 +64,16 @@ class ManagersController < NestedController
   
   # Set Scorer Password to NIL.
   def clear_scorer_password()
-	  @manager.clear_scorer_password()
-	  respond_to do |format|
-		  if @manager.save!()
-			  flash[:notice] = 'Change made.'
-			  format.html { redirect_to :action => "greet"}
-			  else
-				  flash[:notice] = 'Change NOT made.'
-				  format.html { redirect_to :action => "passwords"}
-			  end
-		  end
+    @manager.clear_scorer_password()
+    respond_to do |format|
+      if @manager.save!()
+        flash[:notice] = 'Change made.'
+        format.html { redirect_to :action => "greet"}
+      else
+	flash[:notice] = 'Change NOT made.'
+	format.html { redirect_to :action => "passwords"}
+      end
+   end
  end
   
 	
@@ -107,7 +106,7 @@ class ManagersController < NestedController
 
     # Scorer Password arrives with a Confirmation.
     def scorer_pw_params
-      params.require(:competition).permit(:scorer_password, :scorer_password_confirmation)
+      params.require(:manager).permit(:scorer_password, :scorer_password_confirmation)
     end
  
 end

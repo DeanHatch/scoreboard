@@ -14,11 +14,12 @@ class ManagersControllerTest < ActionController::TestCase
 	 #~ competition = competitions(:soccer)
 	 #~ competition.organization_id = org.id
 	 #~ competition.save!
-	 org = organizations(:squeakywheel)
+	 org = organizations(:countyrec)
 	 org.save!
 	 competition = competitions(:bball)
 	 competition.organization_id = org.id
 	 competition.save!
+	 @swizzle = competition
 	 @org_id = org.id
 	 @comp_id = competition.id
 	 session[:manager_id] = @comp_id
@@ -50,22 +51,24 @@ class ManagersControllerTest < ActionController::TestCase
 
   test "should patch clear_manager_password" do
 	patch :clear_manager_password,
-		{} , {:manager_id => @comp_id}
+		{} ,
+		{:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
   test "should patch change_scorer_password" do
 	patch :change_scorer_password,
-		{competition: { password: "yabba",
+		{manager: { password: "yabba",
 				password_confirmation: "yabba"} },
 		{:manager_id => @comp_id}
 	assert_redirected_to greet_manager_path
   end
 
   test "should patch clear_scorer_password" do
-	patch :clear_scorer_password,
-		{manager: {}} , {:manager_id => @comp_id}
-	assert_redirected_to greet_manager_path
+    patch :clear_scorer_password,
+		{} , 
+		{}
+    assert_redirected_to greet_manager_path
   end
 
 end

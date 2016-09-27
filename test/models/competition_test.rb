@@ -15,19 +15,19 @@ class CompetitionTest < ActiveSupport::TestCase
   
   # Initial Grouping Created Correctly
   test "new Competition has a Grouping." do
-	    # Create a new Competition that is an almost exact copy of an
-	    # existing Competition and then save it.
-	  newcomp = competitions(:bball).dup
-	  newcomp.name = "Slightly Different " + newcomp.name
-	  newcomp.id = competitions(:bball).id + 1 # new primary key value
-	  newcomp.save
-	    # The new Competition should be valid, should have been saved,
-	    # and should have created a new Grouping all on its own.
-	  assert newcomp.valid?, "Should be okay. Name is #{newcomp.name}"
-	  assert newcomp.groupings.size == 1, "#{newcomp.groupings.size} groupings loaded."
-	    # On the following save, no new Grouping should be created, should still be only one.
-	  newcomp.save
-	  assert newcomp.groupings.size == 1, "Whoa! How did we get #{newcomp.groupings.size} Groupings?"
+      # Create a new Competition that is an almost exact copy of an
+      # existing Competition and then save it.
+    newcomp = competitions(:bball).dup
+    newcomp.name = "Slightly Different " + newcomp.name
+    newcomp.id = competitions(:bball).id + 1 # new primary key value
+    newcomp.save
+    # The new Competition should be valid, should have been saved,
+    # and should have created a new Grouping all on its own.
+    assert newcomp.valid?, "Should be okay. Name is #{newcomp.name}"
+    assert newcomp.groupings.size == 1, "#{newcomp.groupings.size} groupings loaded."
+    # On the following save, no new Grouping should be created, should still be only one.
+    newcomp.save
+    assert newcomp.groupings.size == 1, "Whoa! How did we get #{newcomp.groupings.size} Groupings?"
   end
   
 end

@@ -2,12 +2,14 @@
 # We define two Customers: AlwaysRight and SqueakyWheel
 
 
-alwaysright:
+countyrec:
+  #customer: :squeakywheel
   name: County Recreation Department
   phone: (000) 000-0000
   website: www.countyrecdept.com
 
-squeakywheel:
+eventshost:
+  #customer: :bigshot
   name: Events Host
   phone: (000) 000-0000
   website: www.eventshost.com

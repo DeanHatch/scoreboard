@@ -27,7 +27,29 @@ class Competition < ActiveRecord::Base
 	has_many :regularcontests
 	has_many :contestants, through: :contests
 	
+	 # Save associated top-level Grouping for this Competition
+	 # after saving this Competition. That way there will be at
+	 # least one Grouping for the Competition and the Grouping 
+	 # will have the correct Foreign Key value.
+	def save(*args)
+	  grouping_too = self.new_record?
+	  res = super
+	  self.groupings.create(competition: self, name: self.fullname(),
+					bracket_grouping: self.playoffbracket) if grouping_too
+	  res  # return result of call to super
+	end
 	
+	 # Save associated top-level Grouping for this Competition
+	 # after saving this Competition. That way there will be at
+	 # least one Grouping for the Competition and the Grouping 
+	 # will have the correct Foreign Key value.
+	def save!(*args)
+	  grouping_too = self.new_record?
+	  res = super
+	  self.groupings.create!(competition: self, name: self.fullname(),
+					bracket_grouping: self.playoffbracket) if grouping_too
+	  res  # return result of call to super
+	end
 	
 	def Competition.poolgroupseasonlabels
 		['Pool', 'Group', 'Season']
@@ -140,21 +162,7 @@ class Competition < ActiveRecord::Base
 		self.hashed_manager_password = nil
 	end
 	
-	  # Override by adding creation of a root Grouping if this save
-	  # is a creation save ass opposed to an update save.
-	def save
-		news_to_me = self.new_record?
-		super()
-		create_root_grouping() if news_to_me
-	end
-	
-	  # Used when creating a new Competition.
-	def create_root_grouping()
-		name = self.name + ' ' + self.variety.humanize
-		Grouping.new(competition_id: self.id, name: name).save(validate: false)
-	end
-	
-	
+	  	
 	# This Competition's Grouping which has no parent.
 	def top_grouping()
 		self.groupings.where(parent_id: nil).first
