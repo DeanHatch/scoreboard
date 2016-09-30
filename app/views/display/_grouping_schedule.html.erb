@@ -25,9 +25,9 @@
         <td class="schedule"><%= cntst.display_date == lastDate ? " " : lastDate = cntst.display_date %></td>
         <td class="schedule"><%= cntst.display_time %></td>
         <td class="schedule"><%= cntst.venue_name %></td>
-	<td class="schedule"><%= cntst.awaycontestant.fullname %></td>
+	<td class="schedule"><%= contestant_link_for(cntst.awaycontestant) %></td>
         <td>at</td>
-	<td class="schedule"><%= cntst.homecontestant.fullname %></td>
+	<td class="schedule"><%= contestant_link_for(cntst.homecontestant) %></td>
       </tr>
     <% end %>
   </tbody>

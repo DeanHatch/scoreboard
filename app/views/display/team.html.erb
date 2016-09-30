@@ -81,7 +81,7 @@
         <td class="schedule"><%= cntst.display_time %></td>
         <td class="schedule"><%= cntst.venue_name %></td>
         <td class="schedule"><%= c.homeaway=='H' ? "vs" : "at" %>
-	      <%= c.opponent.fullname %></td>
+	      <%= team_link_for c.opponent.team %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,35 @@
+<%= form_for @competition, url: send_competition_link_path do |f| %>
+  <% if @competition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@competition.errors.count, "error") %> prohibited this competition from being saved:</h2>
+
+      <ul>
+      <% @competition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :id %>
+  </div>
+
+  <div class="field">
+    <%= @competition.fullname() %>
+  </div>
+  <div class="field">
+    Recipient:
+    <%= email_field("email", "recipient") %>
+  </div>
+    
+  <div class="field">
+    <%= radio_button("recipient", "type", "Manager")%> Manager  |  
+    <%= radio_button("recipient", "type", "Scorer") %>Scorer  | 
+    <%= radio_button("recipient", "type", "Fan View",  checked: true) %>Public Display Viewer
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Send the Link"  %>
+  </div>
+<% end %>

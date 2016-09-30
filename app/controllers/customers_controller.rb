@@ -91,6 +91,38 @@ class CustomersController < ApplicationController
     end
   end
 
+
+  # GET /customer/edit_competition/:id
+  #
+  # Grab the requested Competition and present it to the
+  # user for edting.
+  def get_competition_link_recipient
+    if @org.competitions.exists?(params[:competition_id])
+      @competition = @org.competitions.find(params[:competition_id])
+    else
+      flash[:alert] = "Looks like an attempt to send a link to somebody else's Competition" +
+                       " or one that dosen't exist (#" +
+                       params[:competition_id]+")"
+      redirect_to(:oops)  
+    end
+  end
+
+
+  # PATCH /customer/send_competition_link
+  #
+  # This will update the Competition specified in the form.
+  def send_competition_link
+    if @org.competitions.exists?(competition_params[:id])
+      @competition = @org.competitions.find(competition_params[:id]) 
+      redirect_to(:action => "show" )
+    else
+      flash[:alert] = "Looks like an attempt to update somebody else's Competition" +
+                       " or one that dosen't exist (#" +
+                       competition_params[:id].inspect()+")"
+      redirect_to(:oops)  
+    end
+  end
+
   private
 
 

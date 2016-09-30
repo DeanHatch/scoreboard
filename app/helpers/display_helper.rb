@@ -1,7 +1,12 @@
 module DisplayHelper
 
+  def contestant_link_for(contestant)
+    team = contestant.team
+    link_to contestant.fullname, display_team_path(team.competition, team), {class: "nav"}
+  end
+
   def team_link_for(team)
-    link_to team.name, display_team_path(@competition, team)
+    link_to team.name, display_team_path(team.competition, team),{class:  "nav"}
   end
   
 

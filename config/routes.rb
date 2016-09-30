@@ -36,17 +36,13 @@ Rails.application.routes.draw do
   get 'display/:competition_id/team/:id/alert', to: 'display#alert_request', as: :alert_request
   post 'display/:competition_id/team/:id/alert', to: 'display#set_alert', as: :set_alert
    
-  #~ resource :organization, except: :destroy do
-	  #~ member do
-		  #~ get 'greet'  # analgous to member #index
-		  #~ get 'new_competition'
-		  #~ post 'create_competition'
-		  #~ get 'edit_competition'
-		  #~ get 'set_competition_passwords'
-		  #~ end
-  #~ end
-  
-
+  get 'get_competition_link_recipient/:competition_id',
+	        to: 'share_links#get_competition_link_recipient',
+		as: :get_competition_link_recipient
+  patch 'send_competition_link',
+		to: 'share_links#send_competition_link',
+		as: :send_competition_link
+			 
   get "manager_session/login/:manager_id", to: "manager_sessions#new", as: :login_manager_session
   resource :manager_session, only: [:create]  do
 		    # Since an HTTP DELETE request via a #link_to method is

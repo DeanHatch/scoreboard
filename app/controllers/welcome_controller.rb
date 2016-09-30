@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
   def nav_link_array()
-    []
+    [navitem('Customer Log In' , new_customer_session_path())]
   end
 
   def index

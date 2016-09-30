@@ -30,8 +30,9 @@ class ApplicationController < ActionController::Base
   # Link array for scorers, who can also open up the
   # public display portion of this application in a separate tab.
   def scorer_link_array()
-	  [ navitem('Logout' , :logout_scorer_session )  ,
-	navitem('View This Competition' , display_competition_path(@scorer.id), target: "_blank" ) ]
+	  [ navitem('View This Competition' , display_competition_path(@scorer.id), target: "_blank" )  ,
+	navitem('Send Someone a Link to This Competition' , get_competition_link_recipient_path(@scorer), target: "_blank"),
+	navitem('Logout' , :logout_scorer_session ) ]
   end
   
   # Link array for Managers, who have access to everything related to the
@@ -42,10 +43,11 @@ class ApplicationController < ActionController::Base
 	navitem('Manage Groupings/Teams' , :groupings),
 	navitem('Schedule Regular Contests' , :regularcontests),
 	navitem('Schedule Bracket Contests' , :bracketgroupings),
-	navitem('Set Manager/Scorer Passwords' , :passwords_manager),
-	navitem('Logout' , :logout_manager_session) ,
+	navitem('Set Manager/Scorer Passwords' , :passwords_manager) , [] ,
 	navitem('Report/Correct Scores for This Competition' , login_scorer_session_path(@manager), target: "_blank" ),
-	navitem('View This Competition' , display_competition_path(@manager), target: "_blank")  ]
+	navitem('View This Competition' , display_competition_path(@manager), target: "_blank"),
+	navitem('Send Someone a Link to This Competition' , get_competition_link_recipient_path(@manager), target: "_blank"),
+	navitem('Logout' , :logout_manager_session)  ]
   end
 
 end

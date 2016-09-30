@@ -26,6 +26,9 @@
 		<% end %>
 		</td>
 	<td> <%= link_to "Edit", edit_competition_customer_path(competition) %>
+		</td>
+	<td> <%= link_to "Send a Link to this Competition", get_competition_link_recipient_path(competition), target: "_blank" %>
+		</td>
       </tr>
     <% end %>
   </tbody>
