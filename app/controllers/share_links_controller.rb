@@ -17,6 +17,9 @@ class ShareLinksController < ApplicationController
   def get_competition_link_recipient
     if Competition.find(params[:competition_id])
       @competition = Competition.find(params[:competition_id])
+      flash[:notice] = 'Enter the email address of the person you want to send the link to.' +
+                 'Then select the type of link to be sent.  '  + 
+		 'Then press the SEND button.'
     else
       flash[:alert] = "Looks like an attempt to send a link to somebody else's Competition" +
                        " or one that dosen't exist (#" +
@@ -47,7 +50,6 @@ class ShareLinksController < ApplicationController
 	else
 	  url = welcome_index_url
 	end
-      flash[:message] = 'Link was sent' 
       flash[:alert] = params[:recipient][:type] + 
 		" Link was sent to " +params[:email][:recipient].inspect()
       redirect_to(get_competition_link_recipient_path(@competition))
