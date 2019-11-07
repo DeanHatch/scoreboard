@@ -1,19 +1,20 @@
+= Overview
+
+Online-Scoreboard.net is an online service that keeps track of sporting schedules and results. Only
+contests involving two contestants at a time will be included; track meets, golf tournaments, and other such
+contests involving a field of contestants competing against each other will not be included.
+
+The Rails API is kept here: https://github.com/DeanHatch/scoreboard-api
+The Angular SPA is kept here: https://github.com/DeanHatch/scoreboard-app
+------
 
 =Online-Scoreboard.net Functional Specification
 ------
-The API is here: https://github.com/DeanHatch/scoreboard-api
-------
-== Overview
-
  This functional specification is still in development
  and will need to be revised several times before it is finalized.
  The web pages described here merely give the underlying
  functionality and flow of the application. The actual look
  and feel will be developed iteratively over time with user feedback.
-
-Online-Scoreboard.net is an online service that keeps track of sporting schedules and results. Only
-contests involving two contestants at a time will be included; track meets, golf tournaments, and other such
-contests involving a field of contestants competing against each other will not be included.
 
 There are four roles involved with the service. They are presented here in *increasing* order of authority.
 
