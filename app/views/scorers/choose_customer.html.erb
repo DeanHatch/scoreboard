@@ -1,7 +1,0 @@
-<h1>Report Scores for a Competition</h1>
-<h2>First, Which Organization&apos;s Competition?</h2>
-
-<% Organization.all.each do |org| %>
-  <%= link_to org.name, scorer_choose_competition_path(org) %>
-  <br/>
-<% end %>

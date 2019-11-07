@@ -1,3 +1,0 @@
-module Nestedmodel
-  
-end

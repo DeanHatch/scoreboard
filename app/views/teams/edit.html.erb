@@ -1,9 +1,0 @@
-<h1>Editing the Team named <%= @team.name %></h1>
-<h1> in <%= @team.grouping.fullname %></h1>
-
-<%= render 'teamform' %>
-<%= render 'moveteamform' %>
-<%= render 'dropteamform' if @team.as_contestants().size() == 0 %>
-
-<br/>
-<%= link_to 'Skip This and Go Back to Team List', grouping_teams_path(@team.grouping) %> 
