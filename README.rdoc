@@ -5,6 +5,7 @@ contests involving two contestants at a time will be included; track meets, golf
 contests involving a field of contestants competing against each other will not be included.
 
 The Rails API is kept here: https://github.com/DeanHatch/scoreboard-api
+
 The Angular SPA is kept here: https://github.com/DeanHatch/scoreboard-app
 ------
 
@@ -12,9 +13,6 @@ The Angular SPA is kept here: https://github.com/DeanHatch/scoreboard-app
 ------
  This functional specification is still in development
  and will need to be revised several times before it is finalized.
- The web pages described here merely give the underlying
- functionality and flow of the application. The actual look
- and feel will be developed iteratively over time with user feedback.
 
 There are four roles involved with the service. They are presented here in *increasing* order of authority.
 
@@ -150,6 +148,10 @@ These  features will not be included and will likely never be:
 
 
 == Web Page Specifications
+
+ The web pages described here merely give the underlying
+ functionality and flow of the application. The actual look
+ and feel will be developed iteratively over time with user feedback.
 
 The overall layout will be the same for nearly all the Web Pages. The layout will consist
 of a banner at the top, a Navigation Panel on the left, main content to the right of the 
