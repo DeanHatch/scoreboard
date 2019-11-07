@@ -1,5 +1,7 @@
 
-Online-Scoreboard.net Functional Specification
+=Online-Scoreboard.net Functional Specification
+------
+The API is here: https://github.com/DeanHatch/scoreboard-api
 ------
 == Overview
 
